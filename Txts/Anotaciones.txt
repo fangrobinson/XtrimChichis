@@ -1,0 +1,28 @@
+Anotaciones
+
+Mapa: 
+La forma del mapa es cuadrada.
+Su subdivisiones también serán cuadradas.
+Cada parcela tiene un solo tipo de terreno
+
+¿Mapas se crean o están guardados de alguna manera en persistencia?
+
+La regeneración es después de cada turno.
+Si no se mueve se cura más. Definir reposo.
+Si está siendo atacada no se cura.
+
+Acciones:
+Las acciones se deciden de a una y se realizan instantáneamente después de ser comandadas. 
+Si un personaje no tiene acción pasa a estar en reposo.
+No se puede deshacer una accion.
+
+Ataque:
+Se ataca solo en tu turno.
+
+Movimiento: 
+Es una sola vez una cantidad menor de distancia que el rango posible que tiene.
+
+Barra de vida implementada distinto para cada raza
+
+Creación de unidades:
+Cuando creas una unidad, te deja ponerla a una distancia de 10 del edificio.

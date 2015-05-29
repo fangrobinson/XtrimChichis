@@ -1,0 +1,13 @@
+Parcelas
+
+Coordenadas
+Vistada por coleccion de jugadores
+
+
+fue vista por(jugador)
+
+se puede transitar (unidad)
+
+puedo construir(edificio)
+
+quien esta()
