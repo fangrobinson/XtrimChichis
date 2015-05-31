@@ -10,8 +10,12 @@ public abstract class Unidad {
 	int suministro;
 	
     public void recibirDaño(int daño){
-        
+        vitalidad.recibirAtaque(daño);
     	
+    }
+    
+    public void atacar (Unidad otraUnidad){
+    	otraUnidad.recibirDaño(this.daño);
     }
 
 }
