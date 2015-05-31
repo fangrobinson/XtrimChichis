@@ -34,7 +34,7 @@ public class Celda {
 
 	public void Ocupar() {
 		
-		this.ocupada=false;
+		this.ocupada=true;
 		
 	}
 	
