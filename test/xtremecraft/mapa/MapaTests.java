@@ -35,4 +35,10 @@ public class MapaTests {
 		assertTrue(mapa.tieneAire());
 	}
 	
+	@Test
+	public void CrearMapaCreaUnMapaQueTieneTierra() {
+		Mapa mapa = new Mapa(2);
+		assertTrue(mapa.tieneTierra());
+	}
+	
 }
