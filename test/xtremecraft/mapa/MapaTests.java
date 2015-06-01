@@ -2,7 +2,7 @@ package xtremecraft.mapa;
 
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertFalse;
-//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -27,6 +27,12 @@ public class MapaTests {
 		
 		new Mapa(1);
 		
+	}
+	
+	@Test
+	public void CrearMapaCreaUnMapaQueTieneAire() {
+		Mapa mapa = new Mapa(2);
+		assertTrue(mapa.tieneAire());
 	}
 	
 }
