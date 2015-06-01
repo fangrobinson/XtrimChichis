@@ -12,8 +12,16 @@ public class Mapa {
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}
 		
+		
+		
 		this.mapa = new TreeMap<Integer, Celda>();
 		
 	}
+
+	public boolean tieneAire() {
+		return true;
+	}
+	
+	
 	
 }
