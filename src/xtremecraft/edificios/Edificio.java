@@ -1,14 +1,22 @@
 package xtremecraft.edificios;
-import xtremecraft.raza.Raza;
+import xtremecraft.raza.Terran;
 
 
 abstract class Edificio {
 	
-	Raza razaCreadora;
-	
-	public Edificio(Raza unaRaza){
+
+	public Edificio(){
 		
-		razaCreadora=unaRaza;
+		
+	}
+	
+	
+	public static CentroDeMineral nuevoRecolectorDeMineral(Terran razaTerran){
+		
+		CentroDeMineral nuevoCentroMineral= new CentroDeMineral();
+		razaTerran.agregarCentroMineral(nuevoCentroMineral);
+		return nuevoCentroMineral;
+		
 		
 	}
 
