@@ -21,7 +21,9 @@ public class Mapa {
 	public boolean tieneAire() {
 		return true;
 	}
-	
-	
+
+	public boolean tieneTierra() {
+		return true;
+	}
 	
 }
