@@ -1,28 +1,37 @@
 package xtremecraft.raza;
-import xtremecraft.edificios.Recolector;
+import java.util.ArrayList;
+
+
+import xtremecraft.edificios.CentroDeMineral;
+import xtremecraft.unidades.Unidad;
 
 public class Terran extends Raza {
 	
-	private boolean estaVivo;
-	private static Recolector centroDeMineral;
-	
+	private boolean estaViva;
+	private ArrayList<Unidad> unidadesTerran;
+	private ArrayList<CentroDeMineral> centrosDeMineralTerran;
+		
 	public Terran(){
 		
-		this.estaVivo=true;
+		this.estaViva=true;
+		this.centrosDeMineralTerran=new ArrayList<CentroDeMineral>();
+		this.unidadesTerran=new ArrayList<Unidad>();
+				
+	}
+
+	public boolean estaViva() {
+		
+		return this.estaViva;
 		
 	}
 
-	public boolean estaVivo() {
+	public void agregarCentroMineral(CentroDeMineral nuevoCentroMineral) {
 		
-		return estaVivo;
+		this.centrosDeMineralTerran.add(nuevoCentroMineral);
 		
 	}
 
-	public static Recolector getCentroDeMineral() {
-		
-		return centroDeMineral;
-		
-	}
+
 
 	
 

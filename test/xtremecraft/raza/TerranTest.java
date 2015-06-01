@@ -6,10 +6,10 @@ import org.junit.Test;
 public class TerranTest {
 	
 	@Test
-	public void testNuevoTerranDevuelveInstanciaDeTerranConEstadoInicialVivo(){
+	public void testNuevoTerranDevuelveInstanciaDeTerranConEstadoInicialRazaViva(){
 		
-		Terran nuevoTerran=new Terran();
-		assertTrue(nuevoTerran.estaVivo());
+		Terran razaTerran=new Terran();
+		assertTrue(razaTerran.estaViva());
 		
 	}
 	

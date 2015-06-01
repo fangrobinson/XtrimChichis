@@ -1,22 +1,24 @@
 package xtremecraft.edificios;
 
-import xtremecraft.raza.Raza;
 
-public class Recolector extends Edificio {
+public abstract class Recolector extends Edificio {
 	
-	private int reservas;
+	protected int reservas;
+	protected int aumentoDeReservaEnTurno;
 
-	public Recolector(Raza unaRaza){
-
-		super(unaRaza);
-		this.reservas=0;
-
-
-	}
-
-	public int getReservas() {
+	public Recolector(){
 		
-		return reservas;
+		this.reservas=0;
+		this.aumentoDeReservaEnTurno=10;
+	
 	}
+
+	public void aumentarReservasEnTurno(){
+		
+		this.reservas+=this.aumentoDeReservaEnTurno;
+		
+	}
+	 
+	
 
 }
