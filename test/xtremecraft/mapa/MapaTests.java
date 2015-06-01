@@ -22,4 +22,11 @@ public class MapaTests {
 		
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void CrearMapaConCantJugadoresUnoDaError(){
+		
+		new Mapa(1);
+		
+	}
+	
 }
