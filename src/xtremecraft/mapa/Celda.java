@@ -1,18 +1,12 @@
 package xtremecraft.mapa;
 
-public class Celda {
+public abstract class Celda {
 	
-	private int coordenadaX;
-	private int coordenadaY;
-	private boolean ocupada;
+	int coordenadaX;
+	int coordenadaY;
+	boolean ocupada;
+	String tipo;
 	
-	public Celda(int X,int Y){
-		
-		this.coordenadaX=X;
-		this.coordenadaY=Y;
-		this.ocupada=false;
-		
-	}
 	
 	public boolean estaOcupada(){
 		
