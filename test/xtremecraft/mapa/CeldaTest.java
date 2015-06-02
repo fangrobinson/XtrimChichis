@@ -22,7 +22,7 @@ public class CeldaTest {
 	public void celdaGetAbcisaDevuelveCoordenadaHorizontalDeLaCelda(){
 		
 		Celda celda=new Celda(1,2);
-		assertEquals(celda.getAbcisa(), 1);
+		assertEquals(celda.getY(), 1);
 		
 	}
 	
@@ -30,7 +30,7 @@ public class CeldaTest {
 	public void celdaGetOrdenadaDevuelveCoordenadaVerticalDeLaCelda(){
 		
 		Celda celda=new Celda(1,2);
-		assertEquals(celda.getOrdenada(),2);
+		assertEquals(celda.getX(),2);
 		
 	}
 	

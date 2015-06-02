@@ -21,6 +21,7 @@ public class Mapa {
 
 	private void rellenarMapa(int alto, int ancho) {
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
+		
 		for(int i =0; i < this.alto ;i = i + 1) {
 			this.mapaAlto.put(i, new TreeMap<Integer, Celda>());
 			for(int j = 0; j < this.ancho; j = j + 1) {
@@ -38,11 +39,11 @@ public class Mapa {
 	}
 	
 	private int decidirAlto(int cant_jugadores) {
-		return cant_jugadores * 25;
+		return cant_jugadores * 50;
 	}
 
 	private int decidirAncho(int cant_jugadores) {
-		return cant_jugadores * 100;
+		return cant_jugadores * 50;
 	}
 	
 }
