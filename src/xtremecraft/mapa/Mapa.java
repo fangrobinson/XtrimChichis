@@ -1,8 +1,6 @@
 package xtremecraft.mapa;
 
 import java.util.TreeMap;
-//import java.util.Random;
-
 import xtremecraft.unidades.Unidad;
 
 public class Mapa {
@@ -119,4 +117,20 @@ public class Mapa {
 		return celda.ocuparConUnidad(unaUnidad);
 		
 	}
+	
+	public double calcularDistanciaEntreCeldas(Celda celda1,Celda celda2){
+		
+		int x1 = celda1.getX();
+		int x2 = celda2.getX();
+		int y1 = celda1.getY();
+		int y2 = celda2.getY();
+		
+		double cuadradoDeltaX = Math.pow((x2 - x1), 2);
+		double cuadradoDeltaY = Math.pow((y2 - y1),2);
+		double sumaCuadradosCatetos= (cuadradoDeltaX + cuadradoDeltaY);
+		
+		return Math.sqrt(sumaCuadradosCatetos);
+		
+	}
+	
 }

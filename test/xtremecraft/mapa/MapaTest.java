@@ -36,11 +36,30 @@ public class MapaTest {
 	}
 	
 	@Test 
-	public void testGetCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
+	public void getCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		assertEquals(unaCelda.getX(),1);
 		assertEquals(unaCelda.getY(),7);
 		
+	}
+	
+	@Test 
+	public void calcularDistanciaEntreCeldasDevuelveCeroSiLePasoLaMismaCeldaDosVeces(){
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		double distancia = mapa.calcularDistanciaEntreCeldas(unaCelda, unaCelda);
+		
+		assertTrue(distancia==0);
+	}
+	
+	@Test 
+	public void calcularDistanciaEntreCeldasDevuelveDistanciaMinimaEntreDosCeldas(){
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
+		double distancia = mapa.calcularDistanciaEntreCeldas(unaCelda, otraCelda);
+		
+		assertTrue(distancia==5);
 	}
 }
