@@ -112,4 +112,45 @@ public class MapaTest {
 		
 	}
 	
+	@Test 
+	public void unidadEnCeldaAtacadaRecibeDanioSiEstaDentroDelRangoDeAtaqueDelAtacante(){
+		
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
+		Goliat unGoliat = new Goliat();
+		Goliat otroGoliat = new Goliat();
+		unaCelda.ocuparCeldaConUnidad(unGoliat);
+		otraCelda.ocuparCeldaConUnidad(otroGoliat);
+		
+		mapa.celdaAtacar(unaCelda,otraCelda);
+		
+		assertEquals(otroGoliat.getVida(),113);
+		
+		mapa.celdaAtacar(unaCelda,otraCelda);
+		
+		assertEquals(otroGoliat.getVida(),101);
+		
+	}
+	
+	@Test 
+	public void unidadEnCeldaAtacadaNoRecibeDanioSiEstaFueraDelRangoDeAtaqueDelAtacante(){
+		
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
+		Goliat unGoliat = new Goliat();
+		Goliat otroGoliat = new Goliat();
+		unaCelda.ocuparCeldaConUnidad(unGoliat);
+		otraCelda.ocuparCeldaConUnidad(otroGoliat);
+		
+		mapa.celdaAtacar(unaCelda,otraCelda);
+		
+		assertEquals(otroGoliat.getVida(),125);
+		
+		mapa.celdaAtacar(unaCelda,otraCelda);
+		
+		assertEquals(otroGoliat.getVida(),125);
+	
+	}
 }

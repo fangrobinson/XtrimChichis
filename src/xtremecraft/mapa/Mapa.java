@@ -149,7 +149,16 @@ public class Mapa {
 	
 	public boolean celdaAtacar(Celda celdaAtacante, Celda celdaAtacada){
 		if(this.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(celdaAtacada, celdaAtacante)){
-			return true;
+			if(!celdaAtacada.estaOcupada()){
+				//atacante gasto suministro???
+				return true;
+			}else{
+				//habra que refactorizar cuando tengamos edificios y consideremos los ataques a los mismos.
+				Unidad atacante = celdaAtacante.getUnidadEnCelda();
+				Unidad atacado = celdaAtacada.getUnidadEnCelda();
+				atacante.atacar(atacado, "terrestre");
+				return true;
+			}
 		}
 		return false;
 	}
