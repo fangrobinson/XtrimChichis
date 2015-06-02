@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Marine;
+import xtremecraft.unidades.Unidad;
 
 import org.junit.Test;
 
@@ -38,10 +41,23 @@ public class AireTest {
 	public void aireEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Celda celda=new Aire(1,4);
-		celda.Ocupar();
+		Unidad goliat= new Goliat();
+		celda.ocuparCeldaConUnidad(goliat);
 		assertTrue(celda.estaOcupada());
 		
 	}
+	
+	@Test
+	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
+		
+		Celda celda=new Aire(1,9);
+		Unidad marine= new Marine();
+		celda.ocuparCeldaConUnidad(marine);
+		
+		assertEquals(celda.getUnidadEnCelda().getVida(),40);
+		
+	}
+
 
 
 }

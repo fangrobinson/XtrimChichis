@@ -3,8 +3,6 @@ package xtremecraft.recursos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 
 public class NodoMineralTest {
@@ -17,16 +15,11 @@ public class NodoMineralTest {
 		
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testNodoMineralInicializadoConNumeroDeCristalesNegativoLanzaExcepcion(){
 		
-		try{
 			new NodoMineral(-1);
-			fail();
-		}catch(Exception IllegalArgumentException) {
-			assertTrue(true);
-		}
-		
+			
 	}
 	
 	@Test

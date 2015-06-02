@@ -1,7 +1,9 @@
 package xtremecraft.mapa;
 
 import java.util.TreeMap;
-import java.util.Random;
+//import java.util.Random;
+
+import xtremecraft.unidades.Unidad;
 
 public class Mapa {
 	
@@ -23,10 +25,10 @@ public class Mapa {
 	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
-		for(int i =0; i < this.alto ;i = i + 1) {
-			this.mapaAlto.put(i, new TreeMap<Integer, Celda>());
-			for(int j = 0; j < this.ancho; j = j + 1) {
-				this.mapaAlto.get(i).put(j, obtenerCeldaAdecuada(i, j, cant_jugadores));
+		for(int fila =0; fila < this.alto ;fila = fila + 1) {
+			this.mapaAlto.put(fila, new TreeMap<Integer, Celda>());
+			for(int columna = 0; columna < this.ancho; columna = columna + 1) {
+				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna, cant_jugadores));
 			}
 		}	
 	}
@@ -39,13 +41,17 @@ public class Mapa {
 		return cant_jugadores * 50;
 	}
 	
-	private Celda obtenerCeldaAdecuada(int i, int j, int cant_jugadores) {
-		if (j < (3*cant_jugadores/8) || j > (5*cant_jugadores/8)){
-			if (i < (3*cant_jugadores/8) || i > (5*cant_jugadores/8)) {
-				return new Tierra(j, i);
+	
+	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores) {
+		//NOTA: guardar numeros magicos en variables con nombres que tengan sentido...
+		if (columna < (3*cant_jugadores/8) || columna > (5*cant_jugadores/8)){
+			if (fila < (3*cant_jugadores/8) || fila > (5*cant_jugadores/8)) {
+				//CAMBIE DE LUGAR i=FILA y J=COLUMNA. VERIFICAR!!!!!!! SI ESTAN AL REVES ENTONCES DAR VUELTA Y CAMBIAR NOMBRES DE VARIABLES
+				return new Tierra(fila,columna);
 			}
 		}
-		return new Aire(j,i);
+		//CAMBIE DE LUGAR i=FILA y J=COLUMNA. VERIFICAR!!!!!!! SI ESTAN AL REVES ENTONCES DAR VUELTA Y CAMBIAR NOMBRES DE VARIABLES
+		return new Aire(fila,columna);
 	}
 	/*
 	private void ubicarBases(int cant_jugadores, Ubicable elemento) {
@@ -100,5 +106,16 @@ public class Mapa {
 
 	public boolean tieneTierra() {
 		return true;
+	}
+	
+	//NOTA: tal vez este metodo deberia ser privado. De esa forma el mapa se encarga de ocupar la celda.
+	public Celda getCeldaEnFilaColumna(int fila, int columna){
+		return this.mapaAlto.get(fila).get(columna);
+	}
+	
+	public boolean colocarUnidad(Unidad unaUnidad,int fila, int columna){
+		Celda celda= this.getCeldaEnFilaColumna(fila, columna);
+		return celda.ocuparCeldaConUnidad(unaUnidad);
+		
 	}
 }

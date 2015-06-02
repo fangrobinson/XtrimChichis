@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import xtremecraft.mapa.Tierra;
+import xtremecraft.recursos.NodoMineral;
+import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Unidad;
 
 import org.junit.Test;
 
@@ -14,6 +17,7 @@ public class TierraTest {
 	public void nuevaTierraCreaTierraConEstadoNoOcupado(){
 		
 		Celda celda=new Tierra(1,1);
+		
 		assertFalse(celda.estaOcupada());
 		
 	}
@@ -22,6 +26,7 @@ public class TierraTest {
 	public void tierraGetXDevuelveCoordenadaHorizontalDeLaCelda(){
 		
 		Celda celda=new Tierra(1,2);
+		
 		assertEquals(celda.getX(), 1);
 		
 	}
@@ -30,6 +35,7 @@ public class TierraTest {
 	public void tierraGetYDevuelveCoordenadaVerticalDeLaCelda(){
 		
 		Celda celda=new Tierra(1,2);
+		
 		assertEquals(celda.getY(),2);
 		
 	}
@@ -38,8 +44,33 @@ public class TierraTest {
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Celda celda=new Tierra(1,4);
-		celda.Ocupar();
+		Unidad goliat= new Goliat();
+		celda.ocuparCeldaConUnidad(goliat);
+		
 		assertTrue(celda.estaOcupada());
+		
+	}
+	
+	@Test
+	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
+		
+		Celda celda=new Tierra(1,4);
+		Unidad goliat= new Goliat();
+		celda.ocuparCeldaConUnidad(goliat);
+		
+		assertEquals(celda.getUnidadEnCelda().getVida(),125);
+		
+	}
+	
+	@Test
+	public void celdaTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaCelda(){
+		
+		Tierra tierra=new Tierra(1,4);
+		NodoMineral nodoMineral=new NodoMineral(5);
+		tierra.ocuparTierraConRecursoNatural(nodoMineral);
+		
+		assertTrue(tierra.tierraTieneRecursosNaturales());
+		assertEquals(tierra.getRecurso(),nodoMineral);
 		
 	}
 

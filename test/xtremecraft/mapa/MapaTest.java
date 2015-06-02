@@ -1,6 +1,6 @@
 package xtremecraft.mapa;
 
-//import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -35,4 +35,12 @@ public class MapaTest {
 		assertTrue(mapa.tieneTierra());
 	}
 	
+	@Test 
+	public void testGetCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		assertEquals(unaCelda.getX(),1);
+		assertEquals(unaCelda.getY(),7);
+		
+	}
 }

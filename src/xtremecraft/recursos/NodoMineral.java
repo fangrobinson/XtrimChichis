@@ -1,18 +1,19 @@
 package xtremecraft.recursos;
 
-public class NodoMineral {
+public class NodoMineral extends Recurso{
 	
 	//atributo cantidadDeMinerales tal vez sea de utilidad para la interfaz grafica (???)
 	private int cantidadDeMinerales;
-	private boolean esExplotado;
+	
 	
 	public NodoMineral(int numeroDeCristales){
 		
+		super();
 		if(numeroDeCristales<=0){
 			throw new IllegalArgumentException("La cantidad de minerales en un nodo mineral debe ser un numero entero positivo.");
 		}
 		cantidadDeMinerales=numeroDeCristales;
-		esExplotado=false;
+		
 		
 	}
 	
@@ -25,7 +26,7 @@ public class NodoMineral {
 
 	public boolean estaSiendoExplotado() {
 		
-		return esExplotado;
+		return this.esExplotado;
 		
 	}
 	
