@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-
+import xtremecraft.mapa.Celda;
 
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class CeldaTest {
 	public void celdaGetAbcisaDevuelveCoordenadaHorizontalDeLaCelda(){
 		
 		Celda celda=new Celda(1,2);
-		assertEquals(celda.getY(), 1);
+		assertEquals(celda.getX(), 1);
 		
 	}
 	
@@ -30,7 +30,7 @@ public class CeldaTest {
 	public void celdaGetOrdenadaDevuelveCoordenadaVerticalDeLaCelda(){
 		
 		Celda celda=new Celda(1,2);
-		assertEquals(celda.getX(),2);
+		assertEquals(celda.getY(),2);
 		
 	}
 	
