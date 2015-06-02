@@ -68,6 +68,15 @@ public class Mapa {
 
 			// Quiero cambiarlo para que esto se haga de una sola pasada sin la If Wall con complejos se que se puede
 			// pero ni idea si les jode o no dejarlo asi. Queria que se entienda la idea primero.g
+
+			// Agrego documentacion:
+
+			// Deberia recibir por parametro un array de elementos y un array de jugadores
+			// Entonces cada vez que itera clava arrayDeJugadores.at(i).crearBase();
+			// y alrededor con random le ubicamos lo que haya en el array de elementos,
+			// por ejemplo Gas Vepeno, minerales etc.
+			// Sino la llamas para ubicar gas vespeno, despues la llamas para minerales y te los clava en la loma del ojete.
+
 			if (jugadores_ubicados % 4 = 0) {
 				this.mapaAlto.get(randomInt).get(randomInt).ubicar(elemento);
 			}
