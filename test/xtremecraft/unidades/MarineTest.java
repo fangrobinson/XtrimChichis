@@ -7,6 +7,13 @@ import org.junit.Test;
 public class MarineTest {
 	
 	@Test
+	public void testMarineInicializadoConVidaCompleta(){
+		Marine miniSamus = new Marine();
+		
+		assertEquals(miniSamus.getVida(),40);
+	}
+	
+	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 		Marine miniSamus = new Marine();
 		Marine miniMasterChief = new Marine();

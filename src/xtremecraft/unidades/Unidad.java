@@ -13,5 +13,11 @@ public abstract class Unidad {
     	int daño = this.daño.devolverDaño(medio);
     	otraUnidad.recibirDaño(daño);
     }
+    
+    public int getVida(){
+    	
+    	return this.vitalidad.devolverValor();
+    	
+    }
 
 }

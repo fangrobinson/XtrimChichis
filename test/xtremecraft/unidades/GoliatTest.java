@@ -7,6 +7,13 @@ import org.junit.Test;
 public class GoliatTest {
 	
 	@Test
+	public void testGoliatInicializadoConVidaCompleta(){
+		Goliat tanque1 = new Goliat();
+		
+		assertEquals(tanque1.getVida(),125);
+	}
+	
+	@Test
 	public void siUnGoliatAtacaAOtroPorAireLeSacaDiezDeVida(){
 		Goliat tanque1 = new Goliat();
 		Goliat tanque2 = new Goliat();
@@ -37,5 +44,7 @@ public class GoliatTest {
 		
 		assertEquals(tanque2.vitalidad.devolverValor(), 0);
 	}
+	
+
 }
 

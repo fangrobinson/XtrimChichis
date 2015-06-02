@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.raza.Terran;
+import xtremecraft.recursos.NodoMineral;
 import xtremecraft.edificios.Edificio;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -12,7 +13,8 @@ public class CentroDeMineralTest {
 	public void testNuevoRecolectorDeMineralTerranIniciaConReservaNula(){
 		
 		Terran nuevoClanTerran=new Terran();
-		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran);
+		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral);
 		assertEquals(centroMineralTerran.getReservas(),0);
 		
 	}
@@ -21,7 +23,8 @@ public class CentroDeMineralTest {
 	public void testAumentarReservasAumentaLaCantidadDeReservasEnElEdificioRecolector(){
 		
 		Terran nuevoClanTerran=new Terran();
-		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran);
+		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral);
 		centroMineralTerran.aumentarReservasEnTurno();
 		assertEquals(centroMineralTerran.getReservas(),10);
 		

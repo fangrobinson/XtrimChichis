@@ -1,5 +1,7 @@
 package xtremecraft.edificios;
+
 import xtremecraft.raza.Terran;
+import xtremecraft.recursos.NodoMineral;
 
 
 abstract class Edificio {
@@ -11,9 +13,9 @@ abstract class Edificio {
 	}
 	
 	
-	public static CentroDeMineral nuevoRecolectorDeMineral(Terran razaTerran){
+	public static CentroDeMineral nuevoRecolectorDeMineral(Terran razaTerran,NodoMineral nodoMineral){
 		
-		CentroDeMineral nuevoCentroMineral= new CentroDeMineral();
+		CentroDeMineral nuevoCentroMineral= new CentroDeMineral(nodoMineral);
 		razaTerran.agregarCentroMineral(nuevoCentroMineral);
 		return nuevoCentroMineral;
 		

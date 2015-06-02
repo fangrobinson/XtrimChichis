@@ -15,7 +15,8 @@ public class BarraDeVitalidad {
 		
 	}
 
-	public Object devolverValor() {
+	public int devolverValor() {
 		return this.vida;
 	}
+	
 }

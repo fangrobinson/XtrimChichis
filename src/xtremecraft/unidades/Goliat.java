@@ -6,4 +6,5 @@ public class Goliat extends Unidad {
 		this.vitalidad = new BarraDeVitalidad(125);
 		this.daño = new Daño (10,12);
 	}
+	
 }

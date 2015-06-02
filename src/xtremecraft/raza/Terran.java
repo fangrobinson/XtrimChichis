@@ -30,7 +30,24 @@ public class Terran extends Raza {
 		this.centrosDeMineralTerran.add(nuevoCentroMineral);
 		
 	}
-
+	
+	public void agregarUnidad(Unidad unidad) {
+		
+		this.unidadesTerran.add(unidad);
+		
+	}
+	
+	public ArrayList<CentroDeMineral> getListaDeCentrosMineralesConstruidos(){
+		
+		return this.centrosDeMineralTerran;
+		
+	}
+	
+	public ArrayList<Unidad> getListaDeUnidadesTerranCreadas(){
+		
+		return this.unidadesTerran;
+		
+	}
 
 
 	

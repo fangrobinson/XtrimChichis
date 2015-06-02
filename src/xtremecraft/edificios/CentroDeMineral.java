@@ -1,10 +1,12 @@
 package xtremecraft.edificios;
+
 import xtremecraft.edificios.Recolector;
+import xtremecraft.recursos.NodoMineral;
 
 
 public class CentroDeMineral extends Recolector{
 
-	public CentroDeMineral() {
+	public CentroDeMineral(NodoMineral nodoMineral) {
 		
 		super();
 	
