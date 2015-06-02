@@ -1,10 +1,13 @@
 package xtremecraft.mapa;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 //import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import xtremecraft.unidades.Goliat;
 
 public class MapaTest {
 
@@ -62,4 +65,51 @@ public class MapaTest {
 		
 		assertTrue(distancia==5);
 	}
+	
+	@Test 
+	public void celdaEstaEnRangoDeAtaqueDevuelveTrueSiUnidadTieneVisionDeLaCeldaAtacada(){
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
+		Goliat unGoliat = new Goliat();
+		Goliat otroGoliat = new Goliat();
+		unaCelda.ocuparCeldaConUnidad(unGoliat);
+		otraCelda.ocuparCeldaConUnidad(otroGoliat);
+		
+		assertTrue(mapa.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(unaCelda, otraCelda));
+		
+	}
+	
+	
+	@Test 
+	public void celdaEstaEnRangoDeAtaqueDevuelveFalseSiUnidadNoTieneVisionDeLaCeldaAtacada(){
+		
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
+		Goliat unGoliat = new Goliat();
+		Goliat otroGoliat = new Goliat();
+		unaCelda.ocuparCeldaConUnidad(unGoliat);
+		otraCelda.ocuparCeldaConUnidad(otroGoliat);
+		
+		assertFalse(mapa.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(unaCelda, otraCelda));
+		
+		
+	}
+	
+	
+	@Test 
+	public void celdaEstaEnRangoDeAtaqueDevuelveFalseSiCeldaDeAtaqueEstaVacia(){
+		
+		Mapa mapa = new Mapa(2);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
+		Goliat unidadGoliat = new Goliat();
+		otraCelda.ocuparCeldaConUnidad(unidadGoliat);
+		
+		assertFalse(mapa.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(unaCelda, otraCelda));
+		
+		
+	}
+	
 }

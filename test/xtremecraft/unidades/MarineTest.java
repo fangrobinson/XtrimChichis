@@ -14,6 +14,14 @@ public class MarineTest {
 	}
 	
 	@Test
+	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
+		Marine miniSamus = new Marine();
+		
+		assertEquals(miniSamus.getRadioVision(),7);
+	}
+	
+	
+	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 		Marine miniSamus = new Marine();
 		Marine miniMasterChief = new Marine();

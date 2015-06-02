@@ -3,6 +3,7 @@ package xtremecraft.unidades;
 public abstract class Unidad {
 	BarraDeVitalidad vitalidad;
 	Daño daño;
+	int vision;
 	
     public void recibirDaño(int daño){
         vitalidad.recibirAtaque(daño);
@@ -17,6 +18,12 @@ public abstract class Unidad {
     public int getVida(){
     	
     	return this.vitalidad.devolverValor();
+    	
+    }
+    
+    public int getRadioVision(){
+    	
+    	return this.vision;
     	
     }
 

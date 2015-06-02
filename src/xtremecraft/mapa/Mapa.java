@@ -133,4 +133,29 @@ public class Mapa {
 		
 	}
 	
+	public boolean celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(Celda celdaAtacada, Celda celdaAtacante){
+		if(!celdaAtacante.estaOcupada()){
+			return false;
+		}
+		double distancia = this.calcularDistanciaEntreCeldas(celdaAtacada, celdaAtacante);
+		int visionAtacante = celdaAtacante.getUnidadEnCelda().getRadioVision();
+		if(distancia>visionAtacante){
+			return false;
+		}
+		return true;
+		
+	}
+	
+	
+	public boolean celdaAtacar(Celda celdaAtacante, Celda celdaAtacada){
+		if(this.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(celdaAtacada, celdaAtacante)){
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
 }

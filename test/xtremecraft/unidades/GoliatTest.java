@@ -7,10 +7,17 @@ import org.junit.Test;
 public class GoliatTest {
 	
 	@Test
-	public void testGoliatInicializadoConVidaCompleta(){
+	public void goliatInicializadoConVidaCompleta(){
 		Goliat tanque1 = new Goliat();
 		
 		assertEquals(tanque1.getVida(),125);
+	}
+	
+	@Test
+	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
+		Goliat tanque1 = new Goliat();
+		
+		assertEquals(tanque1.getRadioVision(),8);
 	}
 	
 	@Test
@@ -45,6 +52,7 @@ public class GoliatTest {
 		assertEquals(tanque2.vitalidad.devolverValor(), 0);
 	}
 	
+
 
 }
 
