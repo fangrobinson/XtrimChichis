@@ -16,26 +16,18 @@ public class Mapa {
 		this.alto = this.decidirAlto(cant_jugadores);
 		this.ancho = this.decidirAncho(cant_jugadores);
 		
-		rellenarMapa(alto, ancho);	
+		rellenarMapa(alto, ancho, cant_jugadores);	
 	}
 
-	private void rellenarMapa(int alto, int ancho) {
+	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
 		for(int i =0; i < this.alto ;i = i + 1) {
 			this.mapaAlto.put(i, new TreeMap<Integer, Celda>());
 			for(int j = 0; j < this.ancho; j = j + 1) {
-				this.mapaAlto.get(i).put(j, new Tierra(j, i));
+				this.mapaAlto.get(i).put(j, obtenerCeldaAdecuada(i, j, cant_jugadores));
 			}
 		}	
-	}
-	
-	public boolean tieneAire() {
-		return true;
-	}
-
-	public boolean tieneTierra() {
-		return true;
 	}
 	
 	private int decidirAlto(int cant_jugadores) {
@@ -46,4 +38,20 @@ public class Mapa {
 		return cant_jugadores * 50;
 	}
 	
+	private Celda obtenerCeldaAdecuada(int i, int j, int cant_jugadores) {
+		if (j < (3*cant_jugadores/8) || j > (5*cant_jugadores/8)){
+			if (i < (3*cant_jugadores/8) || i > (5*cant_jugadores/8)) {
+				return new Tierra(j, i);
+			}
+		}
+		return new Agua(j,i);
+	}
+	
+	public boolean tieneAire() {
+		return true;
+	}
+
+	public boolean tieneTierra() {
+		return true;
+	}
 }
