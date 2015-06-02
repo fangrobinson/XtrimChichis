@@ -44,7 +44,7 @@ public class Mapa {
 				return new Tierra(j, i);
 			}
 		}
-		return new Agua(j,i);
+		return new Aire(j,i);
 	}
 	
 	public boolean tieneAire() {
