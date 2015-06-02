@@ -20,13 +20,13 @@ public class Celda {
 		
 	}
 	
-	public int getAbcisa(){
+	public int getX(){
 		
 		return this.coordenadaX;
 		
 	}
 
-	public int getOrdenada() {
+	public int getY() {
 		
 		return this.coordenadaY;
 		
