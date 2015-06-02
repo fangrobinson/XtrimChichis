@@ -42,7 +42,7 @@ public class Tierra extends Celda {
     	
     }
     
-    public boolean ocuparCeldaConUnidad(Unidad unidad) {
+    public boolean ocuparConUnidad(Unidad unidad) {
 		
 		if((!this.ocupada)&&(!this.tierraTieneRecursosNaturales())){
 			this.unidad=unidad;

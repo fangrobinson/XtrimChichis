@@ -13,7 +13,7 @@ public class Aire extends Celda {
 	}
     
     
-	public boolean ocuparCeldaConUnidad(Unidad unidad) {
+	public boolean ocuparConUnidad(Unidad unidad) {
 		
 		if(!this.ocupada){
 			this.unidad=unidad;

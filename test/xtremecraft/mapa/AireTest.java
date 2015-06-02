@@ -42,7 +42,7 @@ public class AireTest {
 		
 		Celda celda=new Aire(1,4);
 		Unidad goliat= new Goliat();
-		celda.ocuparCeldaConUnidad(goliat);
+		celda.ocuparConUnidad(goliat);
 		assertTrue(celda.estaOcupada());
 		
 	}
@@ -52,7 +52,7 @@ public class AireTest {
 		
 		Celda celda=new Aire(1,9);
 		Unidad marine= new Marine();
-		celda.ocuparCeldaConUnidad(marine);
+		celda.ocuparConUnidad(marine);
 		
 		assertEquals(celda.getUnidadEnCelda().getVida(),40);
 		

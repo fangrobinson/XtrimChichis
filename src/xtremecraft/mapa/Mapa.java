@@ -113,9 +113,10 @@ public class Mapa {
 		return this.mapaAlto.get(fila).get(columna);
 	}
 	
+	
 	public boolean colocarUnidad(Unidad unaUnidad,int fila, int columna){
 		Celda celda= this.getCeldaEnFilaColumna(fila, columna);
-		return celda.ocuparCeldaConUnidad(unaUnidad);
+		return celda.ocuparConUnidad(unaUnidad);
 		
 	}
 }

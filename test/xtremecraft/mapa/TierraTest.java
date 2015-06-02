@@ -45,7 +45,7 @@ public class TierraTest {
 		
 		Celda celda=new Tierra(1,4);
 		Unidad goliat= new Goliat();
-		celda.ocuparCeldaConUnidad(goliat);
+		celda.ocuparConUnidad(goliat);
 		
 		assertTrue(celda.estaOcupada());
 		
@@ -56,7 +56,7 @@ public class TierraTest {
 		
 		Celda celda=new Tierra(1,4);
 		Unidad goliat= new Goliat();
-		celda.ocuparCeldaConUnidad(goliat);
+		celda.ocuparConUnidad(goliat);
 		
 		assertEquals(celda.getUnidadEnCelda().getVida(),125);
 		

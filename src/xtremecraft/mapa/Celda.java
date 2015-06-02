@@ -16,6 +16,8 @@ public abstract class Celda {
 		this.ocupada = false;
 	}
 	
+	public abstract boolean ocuparConUnidad(Unidad unidad);
+	
 	public boolean estaOcupada(){
 		
 		return this.ocupada;
@@ -41,31 +43,10 @@ public abstract class Celda {
 		return this.unidad;
 		
 	}
-	//NO ME DEJA HACER ESTO...
-	/* public boolean ocuparCeldaConUnidad(Tierra tierra,Unidad unidad) {
-		 
-		 return tierra.ocuparCeldaConUnidad(unidad);
-		 
-	 }
-	 
-	 public boolean ocuparCeldaConUnidad(Aire aire,Unidad unidad) {
-		 
-		 return aire.ocuparCeldaConUnidad(unidad);
-		 
-	 }*/ 
-	 
-	//FEOOOOOOO!!!!!!!!!!!!!!!!!!:
-	public boolean ocuparCeldaConUnidad(Unidad unidad){
-		if(this.tipo=="tierra"){
-			Tierra celdaTierra= (Tierra)this;
-			return celdaTierra.ocuparCeldaConUnidad(unidad);
-		}
-		Aire celdaAire =(Aire)this;
-		return celdaAire.ocuparCeldaConUnidad(unidad);
 		
-	}
+	public boolean ocuparCeldaConUnidad(Unidad unidad){
 
-	
-	
+		return this.ocuparConUnidad(unidad);
+	}
 
 }
