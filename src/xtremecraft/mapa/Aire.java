@@ -1,9 +1,9 @@
 package xtremecraft.mapa;
 
 
-public class CeldaAgua extends Celda {
+public class Aire extends Celda {
 		
-    public CeldaAgua(int X,int Y){
+    public Aire(int X,int Y){
 			
 		this.coordenadaX = X;
 		this.coordenadaY = Y;

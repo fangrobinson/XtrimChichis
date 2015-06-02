@@ -25,7 +25,7 @@ public class Mapa {
 		for(int i =0; i < this.alto ;i = i + 1) {
 			this.mapaAlto.put(i, new TreeMap<Integer, Celda>());
 			for(int j = 0; j < this.ancho; j = j + 1) {
-				this.mapaAlto.get(i).put(j, new Celda(j, i));
+				this.mapaAlto.get(i).put(j, new Tierra(j, i));
 			}
 		}	
 	}
