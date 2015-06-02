@@ -1,18 +1,23 @@
 package xtremecraft.unidades;
 
-public abstract class Unidad {
+import xtremecraft.interfaces.Atacable;
+import xtremecraft.interfaces.AtacableYDefendible;
+
+public abstract class Unidad implements AtacableYDefendible{
 	BarraDeVitalidad vitalidad;
 	Daño daño;
 	int vision;
 	
     public void recibirDaño(int daño){
+    	
         vitalidad.recibirAtaque(daño);
     	
     }
     
-    public void atacar (Unidad otraUnidad, String medio){
+    public void atacar (Atacable atacado, String medio){
+    	
     	int daño = this.daño.devolverDaño(medio);
-    	otraUnidad.recibirDaño(daño);
+    	atacado.recibirDaño(daño);
     }
     
     public int getVida(){

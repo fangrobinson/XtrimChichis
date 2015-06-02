@@ -1,6 +1,9 @@
 package xtremecraft.mapa;
 
 import java.util.TreeMap;
+
+import xtremecraft.interfaces.Atacable;
+import xtremecraft.interfaces.Defendible;
 import xtremecraft.unidades.Unidad;
 
 public class Mapa {
@@ -151,11 +154,11 @@ public class Mapa {
 		if(this.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(celdaAtacada, celdaAtacante)){
 			if(!celdaAtacada.estaOcupada()){
 				//atacante gasto suministro???
+				//atacante.atacar(nil,'')??
 				return true;
 			}else{
-				//habra que refactorizar cuando tengamos edificios y consideremos los ataques a los mismos.
-				Unidad atacante = celdaAtacante.getUnidadEnCelda();
-				Unidad atacado = celdaAtacada.getUnidadEnCelda();
+				Defendible atacante = celdaAtacante.getUnidadEnCelda();
+				Atacable atacado = celdaAtacada.getUnidadEnCelda();
 				atacante.atacar(atacado, "terrestre");
 				return true;
 			}
