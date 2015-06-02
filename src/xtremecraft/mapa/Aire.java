@@ -8,7 +8,7 @@ public class Aire extends Celda {
 		this.coordenadaX = X;
 		this.coordenadaY = Y;
 		this.ocupada = false;
-		this.tipo = "agua";
+		this.tipo = "aire";
 		
 	}
 }
