@@ -2,8 +2,11 @@ package xtremecraft.mapa;
 
 import java.util.TreeMap;
 
+import xtremecraft.mapa.EstrategiaUbicacion;
 import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.Defendible;
+import xtremecraft.recursos.NodoMineral;
+//import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 public class Mapa {
@@ -21,6 +24,7 @@ public class Mapa {
 		this.ancho = this.decidirAncho(cant_jugadores);
 		
 		rellenarMapa(alto, ancho, cant_jugadores);	
+		ubicarBases(cant_jugadores);
 	}
 
 	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
@@ -44,11 +48,10 @@ public class Mapa {
 	
 	
 	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores) {
-		//NOTA: guardar numeros magicos en variables con nombres que tengan sentido...
-		int primer_corte_ancho = 3*decidirAncho(cant_jugadores)/8;
-		int primer_corte_alto = 3*decidirAlto(cant_jugadores)/8;
-		int segundo_corte_ancho = 5*decidirAncho(cant_jugadores)/8;
-		int segundo_corte_alto = 5*decidirAlto(cant_jugadores)/8;
+		int primer_corte_ancho = 3 *decidirAncho(cant_jugadores)/8;
+		int primer_corte_alto = 3 *decidirAlto(cant_jugadores)/8;
+		int segundo_corte_ancho = 5 *decidirAncho(cant_jugadores)/8;
+		int segundo_corte_alto = 5 *decidirAlto(cant_jugadores)/8;
 		if (fila < (primer_corte_alto) || fila > (segundo_corte_alto)){
 			if (columna < (primer_corte_ancho) || columna > (segundo_corte_ancho)) {
 				return new Tierra(fila,columna);
@@ -56,53 +59,33 @@ public class Mapa {
 		}
 		return new Aire(fila,columna);
 	}
-	/*
-	private void ubicarBases(int cant_jugadores, Ubicable elemento) {
-		Random randomGen = new Random();
+	
+	private void ubicarBases(int cant_jugadores) {
+		EstrategiaUbicacion estrategia = new EstrategiaUbicacion();
+		EstrategiaCuadrante estrategiaParticular;
 		int jugadores_ubicados = 0;
-		int randomInt;
-		int randomCorrimiento;
-
+		int ancho;
+		int alto;
+		int posicionRandom = 0;
+		int cant_recursos = 5000;
+	
 		while (jugadores_ubicados < cant_jugadores) {
-			if (jugadores_ubicados % 4 = 0) {
-				randomInt = randomGen.nextInt(25) + (jugadores_ubicados/4 * 50);
+			if (jugadores_ubicados % 4 == 0) {
+				posicionRandom = estrategia.posicionRandom(jugadores_ubicados);
 			}
-			// Aca genero las posiciones en las que ubicar
-			// Tienen que llamar a this.mapaAlto.get(X).get(Y).ubicar(new GasVepeno); GasVespeno, Material, etc
-			// Si quieren ubicar otra cosa tiran un + randomGen.nextInt(5); para que lo tire en un lugar rangom digamos.
-
-			// Lo cambie para que ubice las cosas por defecto, pero tiene el problema de que no puede ubicar las bases porque 
-			// serian de distinta raza. Recomiendo que pueda llegar a recibir una posible lista de Array con clases
-			// y le tira sarasa.ubicar(array.at(i).crearBase); Por ejemplo... pero bueno. Mañana lo discutimos.
-
-			// Quiero cambiarlo para que esto se haga de una sola pasada sin la If Wall con complejos se que se puede
-			// pero ni idea si les jode o no dejarlo asi. Queria que se entienda la idea primero.g
-
-			// Agrego documentacion:
-
-			// Deberia recibir por parametro un array de elementos y un array de jugadores
-			// Entonces cada vez que itera clava arrayDeJugadores.at(i).crearBase();
-			// y alrededor con random le ubicamos lo que haya en el array de elementos,
-			// por ejemplo Gas Vepeno, minerales etc.
-			// Sino la llamas para ubicar gas vespeno, despues la llamas para minerales y te los clava en la loma del ojete.
-
-			if (jugadores_ubicados % 4 = 0) {
-				this.mapaAlto.get(randomInt).get(randomInt).ubicar(elemento);
-			}
-			if (jugadores_ubicados % 4 = 1) {
-				this.mapaAlto.get(this.alto - randomInt).get(this.ancho - randomInt).ubicar(elemento);
-			}
-			if (jugadores_ubicados % 4 = 2) {
-				this.mapaAlto.get(randomInt).get(this.ancho - randomInt).ubicar(elemento);
-			}
-			if (jugadores_ubicados % 4 = 3) {
-				this.mapaAlto.get(this.alto - randomInt).get(randomInt).ubicar(elemento);
-			}
+			
+			estrategiaParticular = estrategia.conseguirEstrategiaParaCuadrante(jugadores_ubicados, this.alto, this.ancho);
+			
+			// Repetir esto para agregar mas recursos
+			ancho = estrategiaParticular.getAncho(posicionRandom);
+			alto = estrategiaParticular.getAlto(posicionRandom);
+			this.mapaAlto.get(alto).get(ancho).ocuparConRecursoNatural(new NodoMineral(cant_recursos));
+			// Falta agregar Bases todavia no implementadas
 			jugadores_ubicados = jugadores_ubicados + 1;
 		}
 
 	}
-	*/
+	
 	public boolean tieneAire() {
 		return true;
 	}
