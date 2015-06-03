@@ -16,7 +16,7 @@ public class Tierra extends Celda {
 		
 	}
     
-    public boolean ocuparTierraConRecursoNatural(Recurso recursoNatural){
+    public boolean ocuparConRecursoNatural(Recurso recursoNatural){
     	
     	//NOTA:no verifico que este ocupada porque los recursos se agregan a las celdas a la hora de crear el mapa.
     	//NOTA:no cambio estado de celda a ocupada para permitir la creacion de edificios en esas celdas.

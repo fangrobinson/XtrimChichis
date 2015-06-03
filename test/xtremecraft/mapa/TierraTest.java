@@ -67,7 +67,7 @@ public class TierraTest {
 		
 		Tierra tierra=new Tierra(1,4);
 		NodoMineral nodoMineral=new NodoMineral(5);
-		tierra.ocuparTierraConRecursoNatural(nodoMineral);
+		tierra.ocuparConRecursoNatural(nodoMineral);
 		
 		assertTrue(tierra.tierraTieneRecursosNaturales());
 		assertEquals(tierra.getRecurso(),nodoMineral);
