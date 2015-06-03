@@ -35,8 +35,6 @@ public abstract class Celda {
 		return this.coordenadaY;
 		
 	}
-
-
 	
 	public Unidad getUnidadEnCelda(){
 		

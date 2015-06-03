@@ -45,13 +45,15 @@ public class Mapa {
 	
 	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores) {
 		//NOTA: guardar numeros magicos en variables con nombres que tengan sentido...
-		if (columna < (3*cant_jugadores/8) || columna > (5*cant_jugadores/8)){
-			if (fila < (3*cant_jugadores/8) || fila > (5*cant_jugadores/8)) {
-				//CAMBIE DE LUGAR i=FILA y J=COLUMNA. VERIFICAR!!!!!!! SI ESTAN AL REVES ENTONCES DAR VUELTA Y CAMBIAR NOMBRES DE VARIABLES
+		int primer_corte_ancho = 3*decidirAncho(cant_jugadores)/8;
+		int primer_corte_alto = 3*decidirAlto(cant_jugadores)/8;
+		int segundo_corte_ancho = 5*decidirAncho(cant_jugadores)/8;
+		int segundo_corte_alto = 5*decidirAlto(cant_jugadores)/8;
+		if (fila < (primer_corte_alto) || fila > (segundo_corte_alto)){
+			if (columna < (primer_corte_ancho) || columna > (segundo_corte_ancho)) {
 				return new Tierra(fila,columna);
 			}
 		}
-		//CAMBIE DE LUGAR i=FILA y J=COLUMNA. VERIFICAR!!!!!!! SI ESTAN AL REVES ENTONCES DAR VUELTA Y CAMBIAR NOMBRES DE VARIABLES
 		return new Aire(fila,columna);
 	}
 	/*
