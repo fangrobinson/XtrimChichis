@@ -1,5 +1,6 @@
 package xtremecraft.mapa;
 
+import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 
@@ -21,6 +22,10 @@ public class Aire extends Celda {
 			return true;
 		}
 		
+		return false;
+	}
+	
+	public boolean ocuparConRecursoNatural(Recurso recursoNatural){
 		return false;
 	}
 }

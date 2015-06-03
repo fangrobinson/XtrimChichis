@@ -1,5 +1,6 @@
 package xtremecraft.mapa;
 
+import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 public abstract class Celda {
@@ -17,6 +18,8 @@ public abstract class Celda {
 	}
 	
 	public abstract boolean ocuparConUnidad(Unidad unidad);
+	
+	public abstract boolean ocuparConRecursoNatural(Recurso recursoNatural);
 	
 	public boolean estaOcupada(){
 		
