@@ -11,9 +11,9 @@ public class EstrategiaCuartoCuadrante extends EstrategiaCuadrante {
 	}
 	
 	public int getAlto(int posicion_base){
-		return this.alto - posicion_base;
+		return this.alto - posicion_base + this.corrimiento();
 	}
 	public int getAncho(int posicion_base){
-		return this.ancho - posicion_base;
+		return this.ancho - posicion_base + this.corrimiento();
 	}
 }
