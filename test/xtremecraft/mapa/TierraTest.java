@@ -56,16 +56,4 @@ public class TierraTest {
 		
 	}
 	
-
-	@Test
-	public void calcularDistanciaDevuelveLaDistanciaDeLaCeldaRespectoDeOtraCelda(){
-		
-		Celda celda1=new Tierra(1,1);
-		Celda celda2=new Tierra(5,4);
-		
-		assertTrue(celda1.calcularDistancia(celda2)==5);
-	}
-
-
-
 }

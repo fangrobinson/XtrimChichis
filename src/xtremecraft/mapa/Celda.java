@@ -43,14 +43,6 @@ public abstract class Celda {
 		return this.ocuparConUnidad(unidad);
 	}
 
-	public double calcularDistancia(Celda celda2) {
-		
-		Coordenada coordenadaCelda1 = this.getCoordenada();
-		Coordenada coordenadaCelda2 = celda2.getCoordenada();
-		
-		return coordenadaCelda1.distancia(coordenadaCelda2);
-		
-	}
 
 
 }
