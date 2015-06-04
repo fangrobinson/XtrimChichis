@@ -1,6 +1,6 @@
 package xtremecraft.interfaces;
 
-import xtremecraft.unidades.Unidad;
+
 
 public interface Defendible {
 	
