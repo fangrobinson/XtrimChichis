@@ -2,17 +2,16 @@ package xtremecraft.mapa;
 
 import xtremecraft.unidades.Unidad;
 
+
 public abstract class Celda {
 	
-	protected int coordenadaX;
-	protected int coordenadaY;
+	protected Coordenada coordenada;
 	protected boolean ocupada;
 	protected Unidad unidad;
 	protected String tipo;
 	
 	public Celda(int fila, int columna){
-		this.coordenadaX = fila;
-		this.coordenadaY = columna;
+		this.coordenada = new Coordenada(fila,columna);
 		this.ocupada = false;
 	}
 	
@@ -23,24 +22,16 @@ public abstract class Celda {
 		return this.ocupada;
 		
 	}
-	
-	public int getX(){
 		
-		return this.coordenadaX;
-		
-	}
-
-	public int getY() {
-		
-		return this.coordenadaY;
-		
-	}
-
-
-	
 	public Unidad getUnidadEnCelda(){
 		
 		return this.unidad;
+		
+	}
+	
+	public Coordenada getCoordenada() {
+		
+		return this.coordenada;
 		
 	}
 		
@@ -48,5 +39,16 @@ public abstract class Celda {
 
 		return this.ocuparConUnidad(unidad);
 	}
+
+	public double calcularDistancia(Celda celda2) {
+		
+		Coordenada coordenadaCelda1 = this.getCoordenada();
+		Coordenada coordenadaCelda2 = celda2.getCoordenada();
+		
+		return coordenadaCelda1.distancia(coordenadaCelda2);
+		
+	}
+
+	
 
 }

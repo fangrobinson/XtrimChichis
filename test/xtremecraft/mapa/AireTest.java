@@ -21,21 +21,6 @@ public class AireTest {
 		
 	}
 	
-	@Test
-	public void aireGetXDevuelveCoordenadaHorizontalDeLaCelda(){
-		
-		Celda celda=new Aire(1,2);
-		assertEquals(celda.getX(), 1);
-		
-	}
-	
-	@Test
-	public void aireGetYDevuelveCoordenadaVerticalDeLaCelda(){
-		
-		Celda celda=new Aire(1,2);
-		assertEquals(celda.getY(),2);
-		
-	}
 	
 	@Test
 	public void aireEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
@@ -58,6 +43,14 @@ public class AireTest {
 		
 	}
 
+	@Test
+	public void calcularDistanciaDevuelveLaDistanciaDeLaCeldaRespectoDeOtraCelda(){
+		
+		Celda celda1=new Aire(1,1);
+		Celda celda2=new Aire(5,4);
+		
+		assertTrue(celda1.calcularDistancia(celda2)==5);
+	}
 
 
 }

@@ -23,24 +23,6 @@ public class TierraTest {
 	}
 	
 	@Test
-	public void tierraGetXDevuelveCoordenadaHorizontalDeLaCelda(){
-		
-		Celda celda=new Tierra(1,2);
-		
-		assertEquals(celda.getX(), 1);
-		
-	}
-	
-	@Test
-	public void tierraGetYDevuelveCoordenadaVerticalDeLaCelda(){
-		
-		Celda celda=new Tierra(1,2);
-		
-		assertEquals(celda.getY(),2);
-		
-	}
-	
-	@Test
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Celda celda=new Tierra(1,4);
@@ -73,6 +55,17 @@ public class TierraTest {
 		assertEquals(tierra.getRecurso(),nodoMineral);
 		
 	}
+	
+
+	@Test
+	public void calcularDistanciaDevuelveLaDistanciaDeLaCeldaRespectoDeOtraCelda(){
+		
+		Celda celda1=new Tierra(1,1);
+		Celda celda2=new Tierra(5,4);
+		
+		assertTrue(celda1.calcularDistancia(celda2)==5);
+	}
+
 
 
 }

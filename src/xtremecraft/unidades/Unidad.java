@@ -2,11 +2,13 @@ package xtremecraft.unidades;
 
 import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.AtacableYDefendible;
+import xtremecraft.mapa.Coordenada;
 
 public abstract class Unidad implements AtacableYDefendible{
 	BarraDeVitalidad vitalidad;
 	Daño daño;
 	int vision;
+	Coordenada coordenadas;
 	
     public void recibirDaño(int daño){
     	
