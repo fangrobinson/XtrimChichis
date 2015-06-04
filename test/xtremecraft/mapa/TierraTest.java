@@ -26,7 +26,7 @@ public class TierraTest {
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Celda celda=new Tierra(1,4);
-		Unidad goliat= new Goliat();
+		Unidad goliat= new Goliat(1,4);
 		celda.ocuparConUnidad(goliat);
 		
 		assertTrue(celda.estaOcupada());
@@ -37,7 +37,7 @@ public class TierraTest {
 	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
 		
 		Celda celda=new Tierra(1,4);
-		Unidad goliat= new Goliat();
+		Unidad goliat= new Goliat(1,4);
 		celda.ocuparConUnidad(goliat);
 		
 		assertEquals(celda.getUnidadEnCelda().getVida(),125);

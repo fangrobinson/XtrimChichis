@@ -26,7 +26,7 @@ public class AireTest {
 	public void aireEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Celda celda=new Aire(1,4);
-		Unidad goliat= new Goliat();
+		Unidad goliat= new Goliat(1,4);
 		celda.ocuparConUnidad(goliat);
 		assertTrue(celda.estaOcupada());
 		
@@ -36,7 +36,7 @@ public class AireTest {
 	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
 		
 		Celda celda=new Aire(1,9);
-		Unidad marine= new Marine();
+		Unidad marine= new Marine(1,9);
 		celda.ocuparConUnidad(marine);
 		
 		assertEquals(celda.getUnidadEnCelda().getVida(),40);

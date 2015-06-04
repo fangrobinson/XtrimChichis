@@ -72,8 +72,8 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
-		Goliat unGoliat = new Goliat();
-		Goliat otroGoliat = new Goliat();
+		Goliat unGoliat = new Goliat(1,7);
+		Goliat otroGoliat = new Goliat(4,11);
 		unaCelda.ocuparCeldaConUnidad(unGoliat);
 		otraCelda.ocuparCeldaConUnidad(otroGoliat);
 		
@@ -88,8 +88,8 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
-		Goliat unGoliat = new Goliat();
-		Goliat otroGoliat = new Goliat();
+		Goliat unGoliat = new Goliat(1,7);
+		Goliat otroGoliat = new Goliat(22,22);
 		unaCelda.ocuparCeldaConUnidad(unGoliat);
 		otraCelda.ocuparCeldaConUnidad(otroGoliat);
 		
@@ -105,7 +105,7 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
-		Goliat unidadGoliat = new Goliat();
+		Goliat unidadGoliat = new Goliat(1,2);
 		otraCelda.ocuparCeldaConUnidad(unidadGoliat);
 		
 		assertFalse(mapa.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(unaCelda, otraCelda));
@@ -119,8 +119,8 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
-		Goliat unGoliat = new Goliat();
-		Goliat otroGoliat = new Goliat();
+		Goliat unGoliat = new Goliat(1,7);
+		Goliat otroGoliat = new Goliat(4,11);
 		unaCelda.ocuparCeldaConUnidad(unGoliat);
 		otraCelda.ocuparCeldaConUnidad(otroGoliat);
 		
@@ -140,8 +140,8 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2);
 		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		Celda otraCelda= mapa.getCeldaEnFilaColumna(22,22);
-		Goliat unGoliat = new Goliat();
-		Goliat otroGoliat = new Goliat();
+		Goliat unGoliat = new Goliat(1,7);
+		Goliat otroGoliat = new Goliat(22,22);
 		unaCelda.ocuparCeldaConUnidad(unGoliat);
 		otraCelda.ocuparCeldaConUnidad(otroGoliat);
 		

@@ -34,6 +34,18 @@ public class Coordenada {
 		return Math.sqrt(sumaCuadradosCatetos);
 
 	}
-	
+
+	public void setNuevaCoordenadaHorizontal(int y) {
+		
+		this.coordenadaY = y;
+		
+	}
+
+	public void setNuevaCoordenadaVertical(int x) {
+		
+		this.coordenadaX = x;
+				
+	}
+
 	
 }

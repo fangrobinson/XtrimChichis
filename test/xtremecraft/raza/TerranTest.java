@@ -37,7 +37,7 @@ public class TerranTest {
 	public void testTerranAgregarUnidadGuardaInstanciaDelObjetoCentroMineral(){
 		
 		Terran razaTerran = new Terran();
-		Goliat nuevaUnidadGoliat = new Goliat();
+		Goliat nuevaUnidadGoliat = new Goliat(1,2);
 		razaTerran. agregarUnidad(nuevaUnidadGoliat);
 		Unidad unidadGoliat= razaTerran.getListaDeUnidadesTerranCreadas().remove(0);
 		
