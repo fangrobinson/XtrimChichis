@@ -11,10 +11,11 @@ public abstract class Unidad implements Atacable, Defendible{
 	int vision;
 	Coordenada coordenadas;
 	
-	protected Unidad(int coordenadaX, int coordenadaY){
-		
-		this.coordenadas = new Coordenada(coordenadaX,coordenadaY);
-		
+	protected Unidad(Celda celda){
+		if(celda.estaOcupada()){
+			throw new IllegalArgumentException();
+		}
+		this.coordenadas = new Coordenada(celda.getCoordenada().getX(),celda.getCoordenada().getY());
 	}
 	
     public void recibirDaño(int daño){
@@ -50,7 +51,7 @@ public abstract class Unidad implements Atacable, Defendible{
     }
     
     public void moverACelda(Celda celdaDestino){
-    	
+    	    	
     	this.coordenadas.setNuevaCoordenadaHorizontal(celdaDestino.getCoordenada().getY());
     	this.coordenadas.setNuevaCoordenadaVertical(celdaDestino.getCoordenada().getX());
     	

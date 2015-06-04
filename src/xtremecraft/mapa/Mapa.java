@@ -101,6 +101,7 @@ public class Mapa {
 	
 	
 	public boolean colocarUnidad(Unidad unaUnidad,int fila, int columna){
+		
 		Celda celda= this.getCeldaEnFilaColumna(columna, fila);
 		return celda.ocuparConUnidad(unaUnidad);
 		
