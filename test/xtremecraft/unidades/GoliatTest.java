@@ -49,6 +49,20 @@ public class GoliatTest {
 		assertEquals(tanque2.vitalidad.devolverValor(),113);
 	}
 	
+	
+	@Test
+	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
+		Celda unaCelda=new Tierra(2,4);
+		Celda otraCelda=new Tierra(2,14);
+		Goliat tanque1 = new Goliat(unaCelda);
+		Goliat tanque2 = new Goliat(otraCelda);
+		
+		tanque1.atacar(tanque2, "tierra");
+		
+		assertEquals(tanque2.vitalidad.devolverValor(),125);
+	}
+	
+	
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 		Celda unaCelda=new Tierra(1,1);

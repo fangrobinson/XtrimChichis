@@ -50,6 +50,17 @@ public class MarineTest {
 		assertEquals(miniMasterChief.vitalidad.devolverValor(), 34);
 	}
 	
+	@Test
+	public void siUnMarineAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
+		Celda unaCelda=new Tierra(1,1);
+		Celda otraCelda=new Tierra(9,1);
+		Marine miniSamus = new Marine(unaCelda);
+		Marine miniMasterChief = new Marine(otraCelda);
+		
+		miniSamus.atacar(miniMasterChief, "tierra");
+		
+		assertEquals(miniMasterChief.vitalidad.devolverValor(),40);
+	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void siIntentoCrearUnaUnidadEnUnaCeldaOcupadaSeLanzaExcepcion(){

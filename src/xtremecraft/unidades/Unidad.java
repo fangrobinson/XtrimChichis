@@ -22,18 +22,32 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     public void recibirDaño(int daño){
     	
         vitalidad.recibirAtaque(daño);
-        
-    	
+        	
     }
     
     public void atacar (Atacable atacado, String medio){
+    	Ubicable atacadoUbicado = (Ubicable) atacado;
+    	if (this.puedoAtacar(atacadoUbicado)){
+    		int daño = this.daño.devolverDaño(medio);
+        	atacado.recibirDaño(daño);		
+    	}
     	
-    	int daño = this.daño.devolverDaño(medio);
-    	atacado.recibirDaño(daño);
     	
     }
     
-    public int getVida(){
+    private boolean puedoAtacar(Ubicable atacado) {
+    	
+    	Coordenada ubicacionAtacante = this.getUbicacionActual();
+    	Coordenada ubicacionAtacado = atacado.getUbicacionActual();
+    	double distancia = ubicacionAtacante.distancia(ubicacionAtacado);
+    	
+		if (distancia <= this.getRadioVision()){
+			return true;
+		}
+		return false;
+	}
+
+	public int getVida(){
     	
     	return this.vitalidad.devolverValor();
     	
