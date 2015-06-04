@@ -3,10 +3,7 @@ package xtremecraft.mapa;
 import java.util.TreeMap;
 
 import xtremecraft.mapa.EstrategiaUbicacion;
-import xtremecraft.interfaces.Atacable;
-import xtremecraft.interfaces.Defendible;
 import xtremecraft.recursos.NodoMineral;
-//import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 public class Mapa {
@@ -107,43 +104,7 @@ public class Mapa {
 		
 	}
 	
-	public double calcularDistanciaEntreCeldas(Celda celda1,Celda celda2){
-		
-		return celda1.calcularDistancia(celda2);
-		
-	}
-	
-	public boolean celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(Celda celdaAtacada, Celda celdaAtacante){
-		if(!celdaAtacante.estaOcupada()){
-			return false;
-		}
-		double distancia = this.calcularDistanciaEntreCeldas(celdaAtacada, celdaAtacante);
-		int visionAtacante = celdaAtacante.getUnidadEnCelda().getRadioVision();
-		if(distancia>visionAtacante){
-			return false;
-		}
-		return true;
-		
-	}
-	
-	
-	public boolean celdaAtacar(Celda celdaAtacante, Celda celdaAtacada){
-		if(this.celdaAtacadaEstaEnRangoDeVisionDeCeldaAtacante(celdaAtacada, celdaAtacante)){
-			if(!celdaAtacada.estaOcupada()){
-				//atacante gasto suministro???
-				//atacante.atacar(nil,'')??
-				return true;
-			}else{
-				Defendible atacante = celdaAtacante.getUnidadEnCelda();
-				Atacable atacado = celdaAtacada.getUnidadEnCelda();
-				atacante.atacar(atacado, "terrestre");
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	
+
 	
 	
 	
