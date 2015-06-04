@@ -60,8 +60,8 @@ public class MapaTest {
 	@Test 
 	public void calcularDistanciaEntreCeldasDevuelveDistanciaMinimaEntreDosCeldas(){
 		Mapa mapa = new Mapa(2);
-		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
-		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,11);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,1);
+		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,5);
 		double distancia = mapa.calcularDistanciaEntreCeldas(unaCelda, otraCelda);
 		
 		assertTrue(distancia==5);
