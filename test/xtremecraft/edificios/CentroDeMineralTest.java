@@ -17,6 +17,7 @@ public class CentroDeMineralTest {
 		int fila = 1;
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
+		
 		assertEquals(centroMineralTerran.getReservas(),0);
 		
 	}
@@ -30,8 +31,23 @@ public class CentroDeMineralTest {
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral, fila, columna);
 		centroMineralTerran.aumentarReservasEnTurno();
+		
 		assertEquals(centroMineralTerran.getReservas(),10);
 		
+		
+	}
+	
+	@Test
+	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
+		
+		Terran nuevoClanTerran=new Terran();
+		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		int fila = 1;
+		int columna = 2;
+		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
+		
+		assertEquals(centroMineralTerran.getUbicacionActual().getX(),2);
+		assertEquals(centroMineralTerran.getUbicacionActual().getY(),1);
 		
 	}
 

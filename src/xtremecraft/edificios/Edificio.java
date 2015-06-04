@@ -9,15 +9,20 @@ import xtremecraft.recursos.NodoMineral;
 abstract class Edificio implements Ubicable {
 	
 
-	private Coordenada coordenadas;
+	protected Coordenada coordenadas;
 
 	public Edificio(int fila, int columna){
 		
-		@SuppressWarnings("unused")
-		Coordenada coordenadas = new Coordenada(fila,columna);
+		this.coordenadas = new Coordenada(fila,columna);
 		
 	}
 	
+	public Coordenada getUbicacionActual(){
+		
+		return this.coordenadas;
+		
+	}
+
 	
 	public static CentroDeMineral nuevoRecolectorDeMineral(Terran razaTerran,NodoMineral nodoMineral, int fila, int columna){
 		
@@ -28,10 +33,5 @@ abstract class Edificio implements Ubicable {
 		
 	}
 	
-	public Coordenada getUbicacionActual(){
-		
-		return this.coordenadas;
-		
-	}
-
+	
 }
