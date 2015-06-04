@@ -48,25 +48,7 @@ public class MapaTest {
 		
 	}
 	
-	@Test 
-	public void calcularDistanciaEntreCeldasDevuelveCeroSiLePasoLaMismaCeldaDosVeces(){
-		Mapa mapa = new Mapa(2);
-		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
-		double distancia = mapa.calcularDistanciaEntreCeldas(unaCelda, unaCelda);
-		
-		assertTrue(distancia==0);
-	}
-	
-	@Test 
-	public void calcularDistanciaEntreCeldasDevuelveDistanciaMinimaEntreDosCeldas(){
-		Mapa mapa = new Mapa(2);
-		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,1);
-		Celda otraCelda= mapa.getCeldaEnFilaColumna(4,5);
-		double distancia = mapa.calcularDistanciaEntreCeldas(unaCelda, otraCelda);
-		
-		assertTrue(distancia==5);
-	}
-	
+
 	@Test 
 	public void celdaEstaEnRangoDeAtaqueDevuelveTrueSiUnidadTieneVisionDeLaCeldaAtacada(){
 		Mapa mapa = new Mapa(2);
@@ -154,4 +136,5 @@ public class MapaTest {
 		assertEquals(otroGoliat.getVida(),125);
 	
 	}
+	
 }

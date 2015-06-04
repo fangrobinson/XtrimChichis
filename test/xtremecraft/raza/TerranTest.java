@@ -27,7 +27,9 @@ public class TerranTest {
 		
 		Terran razaTerran = new Terran();
 		NodoMineral nodoMineral = new NodoMineral(2);
-		CentroDeMineral nuevoCentroMineral = new CentroDeMineral(nodoMineral);
+		int fila = 3;
+		int columna = 4;
+		CentroDeMineral nuevoCentroMineral = new CentroDeMineral(nodoMineral,fila,columna);
 		razaTerran. agregarCentroMineral(nuevoCentroMineral);
 		CentroDeMineral centroMineral= razaTerran.getListaDeCentrosMineralesConstruidos().remove(0);
 		

@@ -14,7 +14,9 @@ public class CentroDeMineralTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		NodoMineral nuevoNodoMineral=new NodoMineral(4);
-		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral);
+		int fila = 1;
+		int columna = 2;
+		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
 		assertEquals(centroMineralTerran.getReservas(),0);
 		
 	}
@@ -24,7 +26,9 @@ public class CentroDeMineralTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		NodoMineral nuevoNodoMineral=new NodoMineral(4);
-		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral);
+		int fila = 1;
+		int columna = 2;
+		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral, fila, columna);
 		centroMineralTerran.aumentarReservasEnTurno();
 		assertEquals(centroMineralTerran.getReservas(),10);
 		

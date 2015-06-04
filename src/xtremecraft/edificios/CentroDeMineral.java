@@ -6,9 +6,9 @@ import xtremecraft.recursos.NodoMineral;
 
 public class CentroDeMineral extends Recolector{
 
-	public CentroDeMineral(NodoMineral nodoMineral) {
+	public CentroDeMineral(NodoMineral nodoMineral, int fila, int columna) {
 		
-		super();
+		super(fila, columna);
 	
 	}
 	
@@ -18,6 +18,7 @@ public class CentroDeMineral extends Recolector{
 		
 	}
 		
+	
 	
 	
 
