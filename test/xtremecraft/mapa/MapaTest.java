@@ -25,13 +25,7 @@ public class MapaTest {
 	public void CrearMapaConCantJugadoresUnoDaError(){
 		new Mapa(1);
 	}
-	
-	@Test
-	public void CrearMapaCreaUnMapaQueTieneAire() {
-		Mapa mapa = new Mapa(2);
-		assertTrue(mapa.tieneAire());
-	}
-	
+
 	@Test
 	public void CrearMapaCreaUnMapaQueTieneTierra() {
 		Mapa mapa = new Mapa(2);
