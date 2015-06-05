@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import xtremecraft.edificios.CentroDeMineral;
 import xtremecraft.unidades.Unidad;
 
-public class Terran extends Raza {
+public class Terran {
 	
 	private boolean estaViva;
 	private ArrayList<Unidad> unidadesTerran;
