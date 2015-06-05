@@ -13,12 +13,6 @@ public abstract class Recolector extends Edificio {
 	
 	}
 
-	public void aumentarReservasEnTurno(){
-		
-		this.reservas+=this.aumentoDeReservaEnTurno;
-		
-	}
-	 
-	
+	public abstract void aumentarReservasEnTurno();
 
 }

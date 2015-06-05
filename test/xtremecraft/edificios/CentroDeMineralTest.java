@@ -1,7 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.raza.Terran;
-import xtremecraft.recursos.NodoMineral;
+import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.edificios.Edificio;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class CentroDeMineralTest {
 	public void testNuevoRecolectorDeMineralTerranIniciaConReservaNula(){
 		
 		Terran nuevoClanTerran=new Terran();
-		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(4);
 		int fila = 1;
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
@@ -26,7 +26,7 @@ public class CentroDeMineralTest {
 	public void testAumentarReservasAumentaLaCantidadDeReservasEnElEdificioRecolector(){
 		
 		Terran nuevoClanTerran=new Terran();
-		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		int fila = 1;
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral, fila, columna);
@@ -41,7 +41,7 @@ public class CentroDeMineralTest {
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
 		Terran nuevoClanTerran=new Terran();
-		NodoMineral nuevoNodoMineral=new NodoMineral(4);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		int fila = 1;
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
