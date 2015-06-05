@@ -8,7 +8,7 @@ import org.junit.Test;
 import xtremecraft.edificios.CentroDeMineral;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.recursos.NodoMineral;
+import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.Goliat;
 
@@ -26,7 +26,7 @@ public class TerranTest {
 	public void testTerranAgregarCentroMineralGuardaInstanciaDelObjetoCentroMineral(){
 		
 		Terran razaTerran = new Terran();
-		NodoMineral nodoMineral = new NodoMineral(2);
+		MinaDeMinerales nodoMineral = new MinaDeMinerales(2);
 		int fila = 3;
 		int columna = 4;
 		CentroDeMineral nuevoCentroMineral = new CentroDeMineral(nodoMineral,fila,columna);
