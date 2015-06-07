@@ -8,3 +8,4 @@ tmp/
 bin/
 build.xml.old
 *.jar
+.DS_Store
