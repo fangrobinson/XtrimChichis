@@ -46,8 +46,8 @@ public class CentroDeMineralTest {
 		int columna = 2;
 		CentroDeMineral centroMineralTerran=Edificio.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
 		
-		assertEquals(centroMineralTerran.getUbicacionActual().getX(),2);
-		assertEquals(centroMineralTerran.getUbicacionActual().getY(),1);
+		assertEquals(centroMineralTerran.getUbicacionActual().columna(),2);
+		assertEquals(centroMineralTerran.getUbicacionActual().fila(),1);
 		
 	}
 

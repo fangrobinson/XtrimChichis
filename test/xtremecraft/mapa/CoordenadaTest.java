@@ -14,7 +14,7 @@ public class CoordenadaTest {
 		int columna = 3;
 		Coordenada coordenada = new Coordenada(fila,columna);
 		
-		assertEquals(coordenada.getX(),columna);
+		assertEquals(coordenada.columna(),columna);
 		
 	}
 
@@ -25,7 +25,7 @@ public class CoordenadaTest {
 		int columna = 3;
 		Coordenada coordenada = new Coordenada(fila,columna);
 		
-		assertEquals(coordenada.getY(),fila);
+		assertEquals(coordenada.fila(),fila);
 		
 	}
 	

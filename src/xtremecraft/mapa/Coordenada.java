@@ -2,48 +2,48 @@ package xtremecraft.mapa;
 
 public class Coordenada {
 	
-	private int coordenadaX;
-	private int coordenadaY;
+	private int columna;
+	private int fila;
 	
 	
 	public Coordenada(int fila, int columna) {
 
-		this.coordenadaX = columna;
-		this.coordenadaY = fila;
+		this.columna = columna;
+		this.fila = fila;
 		
 	}
 	
-	public int getX(){
+	public int columna(){
 		
-		return this.coordenadaX;
+		return this.columna;
 		
 	}
 
-	public int getY() {
+	public int fila() {
 		
-		return this.coordenadaY;
+		return this.fila;
 		
 	}
 
 	public double distancia(Coordenada coordenadaCelda2) {
 		
-		double cuadradoDeltaX = Math.pow((this.getX() - coordenadaCelda2.getX()), 2);
-		double cuadradoDeltaY = Math.pow((this.getY() - coordenadaCelda2.getY()),2);
+		double cuadradoDeltaX = Math.pow((this.columna() - coordenadaCelda2.columna()), 2);
+		double cuadradoDeltaY = Math.pow((this.fila() - coordenadaCelda2.fila()),2);
 		double sumaCuadradosCatetos= (cuadradoDeltaX + cuadradoDeltaY);
 		
 		return Math.sqrt(sumaCuadradosCatetos);
 
 	}
 
-	public void setNuevaCoordenadaHorizontal(int y) {
+	public void nuevaFila(int y) {
 		
-		this.coordenadaY = y;
+		this.fila = y;
 		
 	}
 
-	public void setNuevaCoordenadaVertical(int x) {
+	public void nuevaColumna(int x) {
 		
-		this.coordenadaX = x;
+		this.columna = x;
 				
 	}
 

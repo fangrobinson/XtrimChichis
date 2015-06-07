@@ -81,8 +81,8 @@ public class MarineTest {
 		Marine miniSamus = new Marine(unaCelda);
 		miniSamus.moverACelda(otraCelda);
 		
-		assertEquals(miniSamus.getUbicacionActual().getX(),2);
-		assertEquals(miniSamus.getUbicacionActual().getY(),1);
+		assertEquals(miniSamus.getUbicacionActual().columna(),2);
+		assertEquals(miniSamus.getUbicacionActual().fila(),1);
 		
 		
 	}

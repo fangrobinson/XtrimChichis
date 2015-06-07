@@ -16,7 +16,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 		if(celda.estaOcupada()){
 			throw new IllegalArgumentException();
 		}
-		this.coordenadas = new Coordenada(celda.getCoordenada().getX(),celda.getCoordenada().getY());
+		this.coordenadas = new Coordenada(celda.getCoordenada().columna(),celda.getCoordenada().fila());
 	}
 	
     public void recibirDaño(int daño){
@@ -67,8 +67,8 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     
     public void moverACelda(Celda celdaDestino){
     	    	
-    	this.coordenadas.setNuevaCoordenadaHorizontal(celdaDestino.getCoordenada().getY());
-    	this.coordenadas.setNuevaCoordenadaVertical(celdaDestino.getCoordenada().getX());
+    	this.coordenadas.nuevaFila(celdaDestino.getCoordenada().fila());
+    	this.coordenadas.nuevaColumna(celdaDestino.getCoordenada().columna());
     	
     }
 

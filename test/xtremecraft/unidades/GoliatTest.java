@@ -96,8 +96,8 @@ public class GoliatTest {
 		Goliat unGoliat = new Goliat(unaCelda);
 		unGoliat.moverACelda(otraCelda);
 		
-		assertEquals(unGoliat.getUbicacionActual().getX(),2);
-		assertEquals(unGoliat.getUbicacionActual().getY(),1);
+		assertEquals(unGoliat.getUbicacionActual().columna(),2);
+		assertEquals(unGoliat.getUbicacionActual().fila(),1);
 		
 		
 	}
