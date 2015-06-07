@@ -3,7 +3,7 @@ package xtremecraft.unidades;
 import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.Defendible;
 import xtremecraft.interfaces.Ubicable;
-import xtremecraft.mapa.Celda;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 
 public abstract class Unidad implements Atacable, Defendible, Ubicable{
@@ -12,7 +12,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	int vision;
 	Coordenada coordenadas;
 	
-	protected Unidad(Celda celda){
+	protected Unidad(Terreno celda){
 		if(celda.estaOcupada()){
 			throw new IllegalArgumentException();
 		}
@@ -65,7 +65,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	
     }
     
-    public void moverACelda(Celda celdaDestino){
+    public void moverACelda(Terreno celdaDestino){
     	    	
     	this.coordenadas.nuevaFila(celdaDestino.getCoordenada().fila());
     	this.coordenadas.nuevaColumna(celdaDestino.getCoordenada().columna());

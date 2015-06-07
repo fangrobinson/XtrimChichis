@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.edificios.CentroDeMineral;
-import xtremecraft.mapa.Celda;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Unidad;
@@ -41,7 +41,7 @@ public class TerranTest {
 	public void testTerranAgregarUnidadGuardaInstanciaDelObjetoCentroMineral(){
 		
 		Terran razaTerran = new Terran();
-		Celda celda=new Tierra(1,4);
+		Terreno celda=new Tierra(1,4);
 		Goliat nuevaUnidadGoliat = new Goliat(celda);
 		razaTerran. agregarUnidad(nuevaUnidadGoliat);
 		Unidad unidadGoliat= razaTerran.getListaDeUnidadesTerranCreadas().remove(0);

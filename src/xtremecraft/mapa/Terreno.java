@@ -4,14 +4,14 @@ import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 
-public abstract class Celda {
+public abstract class Terreno {
 	
 	protected Coordenada coordenada;
 	protected boolean ocupada;
 	protected Unidad unidad;
 	protected String tipo;
 	
-	public Celda(int fila, int columna){
+	public Terreno(int fila, int columna){
 		this.coordenada = new Coordenada(fila,columna);
 		this.ocupada = false;
 	}

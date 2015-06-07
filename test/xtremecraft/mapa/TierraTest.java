@@ -16,7 +16,7 @@ public class TierraTest {
 	@Test
 	public void nuevaTierraCreaTierraConEstadoNoOcupado(){
 		
-		Celda celda=new Tierra(1,1);
+		Terreno celda=new Tierra(1,1);
 		
 		assertFalse(celda.estaOcupada());
 		
@@ -25,7 +25,7 @@ public class TierraTest {
 	@Test
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
-		Celda celda=new Tierra(1,4);
+		Terreno celda=new Tierra(1,4);
 		Unidad goliat= new Goliat(celda);
 		celda.ocuparConUnidad(goliat);
 		
@@ -36,7 +36,7 @@ public class TierraTest {
 	@Test
 	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
 		
-		Celda celda=new Tierra(1,4);
+		Terreno celda=new Tierra(1,4);
 		Unidad goliat= new Goliat(celda);
 		celda.ocuparConUnidad(goliat);
 		

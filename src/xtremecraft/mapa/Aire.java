@@ -4,7 +4,7 @@ import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
 
-public class Aire extends Celda {
+public class Aire extends Terreno {
 		
     public Aire(int X,int Y){
 			

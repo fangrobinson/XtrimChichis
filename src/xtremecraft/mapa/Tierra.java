@@ -3,7 +3,7 @@ package xtremecraft.mapa;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
 
-public class Tierra extends Celda {
+public class Tierra extends Terreno {
 	
 	private Recurso recurso;
 	private boolean tieneRecursos;

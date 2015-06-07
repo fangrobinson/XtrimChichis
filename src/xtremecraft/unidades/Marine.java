@@ -1,11 +1,11 @@
 package xtremecraft.unidades;
 
-import xtremecraft.mapa.Celda;
+import xtremecraft.mapa.Terreno;
 
 
 public class Marine extends Unidad{
 	
-	public Marine(Celda celda){
+	public Marine(Terreno celda){
 		super(celda);
 		this.vitalidad = new BarraDeVitalidad(40);
 		this.daño = new Daño (6,6);

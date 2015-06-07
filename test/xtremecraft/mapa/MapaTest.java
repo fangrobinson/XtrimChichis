@@ -27,7 +27,7 @@ public class MapaTest {
 	@Test 
 	public void getCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
 		Mapa mapa = new Mapa(2);
-		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Terreno unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		//coordenadaX coorresponde a la columna y coordenadaY corresponde a la fila:
 		assertEquals(unaCelda.getCoordenada().columna(),7);
 		assertEquals(unaCelda.getCoordenada().fila(),1);
