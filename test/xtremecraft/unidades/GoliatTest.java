@@ -83,7 +83,7 @@ public class GoliatTest {
 		
 		Terreno unaCelda=new Tierra(1,4);
 		Goliat unGoliat = new Goliat(unaCelda);
-		unaCelda.ocuparCeldaConUnidad(unGoliat);
+		unaCelda.ocuparTerrenoConUnidad(unGoliat);
 		@SuppressWarnings("unused")
 		Goliat otroGoliat = new Goliat(unaCelda);
 	}	

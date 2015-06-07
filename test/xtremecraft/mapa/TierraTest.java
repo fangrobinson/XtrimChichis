@@ -16,36 +16,36 @@ public class TierraTest {
 	@Test
 	public void nuevaTierraCreaTierraConEstadoNoOcupado(){
 		
-		Terreno celda=new Tierra(1,1);
+		Terreno terreno=new Tierra(1,1);
 		
-		assertFalse(celda.estaOcupada());
+		assertFalse(terreno.estaOcupada());
 		
 	}
 	
 	@Test
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
-		Terreno celda=new Tierra(1,4);
-		Unidad goliat= new Goliat(celda);
-		celda.ocuparConUnidad(goliat);
+		Terreno terreno=new Tierra(1,4);
+		Unidad goliat= new Goliat(terreno);
+		terreno.ocuparConUnidad(goliat);
 		
-		assertTrue(celda.estaOcupada());
-		
-	}
-	
-	@Test
-	public void ocuparCeldaConUnidadGuardaLaUnidadEnLaCelda(){
-		
-		Terreno celda=new Tierra(1,4);
-		Unidad goliat= new Goliat(celda);
-		celda.ocuparConUnidad(goliat);
-		
-		assertEquals(celda.getUnidadEnCelda().getVida(),125);
+		assertTrue(terreno.estaOcupada());
 		
 	}
 	
 	@Test
-	public void celdaTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaCelda(){
+	public void ocuparterrenoConUnidadGuardaLaUnidadEnLaterreno(){
+		
+		Terreno terreno=new Tierra(1,4);
+		Unidad goliat= new Goliat(terreno);
+		terreno.ocuparConUnidad(goliat);
+		
+		assertEquals(terreno.getUnidadEnTerreno().getVida(),125);
+		
+	}
+	
+	@Test
+	public void terrenoTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaterreno(){
 		
 		Tierra tierra=new Tierra(1,4);
 		NodoMineral nodoMineral=new NodoMineral(5);

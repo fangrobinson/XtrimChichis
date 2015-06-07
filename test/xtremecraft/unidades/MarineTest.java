@@ -67,7 +67,7 @@ public class MarineTest {
 		
 		Terreno unaCelda=new Tierra(1,4);
 		Marine miniSamus = new Marine(unaCelda);
-		unaCelda.ocuparCeldaConUnidad(miniSamus);
+		unaCelda.ocuparTerrenoConUnidad(miniSamus);
 		@SuppressWarnings("unused")
 		Marine miniMasterChief = new Marine(unaCelda);
 		

@@ -26,7 +26,7 @@ public abstract class Terreno {
 		
 	}
 		
-	public Unidad getUnidadEnCelda(){
+	public Unidad getUnidadEnTerreno(){
 		
 		return this.unidad;
 		
@@ -38,7 +38,7 @@ public abstract class Terreno {
 		
 	}
 		
-	public boolean ocuparCeldaConUnidad(Unidad unidad){
+	public boolean ocuparTerrenoConUnidad(Unidad unidad){
 
 		return this.ocuparConUnidad(unidad);
 	}
