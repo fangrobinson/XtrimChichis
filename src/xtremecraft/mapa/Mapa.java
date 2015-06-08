@@ -3,7 +3,7 @@ package xtremecraft.mapa;
 import java.util.TreeMap;
 
 import xtremecraft.mapa.EstrategiaUbicacion;
-import xtremecraft.recursos.NodoMineral;
+import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Unidad;
 
 public class Mapa {
@@ -76,7 +76,7 @@ public class Mapa {
 			// Repetir esto para agregar mas recursos
 			ancho = estrategiaParticular.getAncho(posicionRandom);
 			alto = estrategiaParticular.getAlto(posicionRandom);
-			this.mapaAlto.get(alto).get(ancho).ocuparConRecursoNatural(new NodoMineral(cant_recursos));
+			this.mapaAlto.get(alto).get(ancho).ocuparConRecursoNatural(new MinaDeMinerales(cant_recursos));
 			// Falta agregar Bases todavia no implementadas
 			jugadores_ubicados = jugadores_ubicados + 1;
 		}

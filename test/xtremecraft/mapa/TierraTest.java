@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import xtremecraft.mapa.Tierra;
-import xtremecraft.recursos.NodoMineral;
+import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Unidad;
 
@@ -48,7 +48,7 @@ public class TierraTest {
 	public void terrenoTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaterreno(){
 		
 		Tierra tierra=new Tierra(1,4);
-		NodoMineral nodoMineral=new NodoMineral(5);
+		MinaDeMinerales nodoMineral=new MinaDeMinerales(5);
 		tierra.ocuparConRecursoNatural(nodoMineral);
 		
 		assertTrue(tierra.tierraTieneRecursosNaturales());

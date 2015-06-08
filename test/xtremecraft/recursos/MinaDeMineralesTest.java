@@ -34,7 +34,7 @@ public class MinaDeMineralesTest {
 	public void minaPasaAEstadoExplotadoLuegoDeSerOcupado(){
 		
 		MinaDeMinerales mina=new MinaDeMinerales(4);
-		mina.ocuparNodo();
+		mina.ocuparMinaDeMineral();
 		assertTrue(mina.estaSiendoExplotado());
 		
 	}

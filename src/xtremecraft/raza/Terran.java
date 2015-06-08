@@ -1,22 +1,26 @@
 package xtremecraft.raza;
+
 import java.util.ArrayList;
 
-
-import xtremecraft.edificios.CentroDeMineral;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.unidades.Unidad;
 
-public class Terran {
+
+public class Terran{
 	
+	private ArrayList<Unidad> unidades;
+	private ArrayList<RecolectorDeMineral> recolectoresDeMineral;
+	private ArrayList<RecolectorDeGasVespeno> recolectoresDeGasVespeno;
 	private boolean estaViva;
-	private ArrayList<Unidad> unidadesTerran;
-	private ArrayList<CentroDeMineral> centrosDeMineralTerran;
 		
 	public Terran(){
 		
 		this.estaViva=true;
-		this.centrosDeMineralTerran=new ArrayList<CentroDeMineral>();
-		this.unidadesTerran=new ArrayList<Unidad>();
-				
+		this.unidades = new ArrayList<Unidad>();
+		this.recolectoresDeMineral = new ArrayList<RecolectorDeMineral>();
+		this.recolectoresDeGasVespeno = new ArrayList<RecolectorDeGasVespeno>();
+					
 	}
 
 	public boolean estaViva() {
@@ -24,32 +28,42 @@ public class Terran {
 		return this.estaViva;
 		
 	}
-
-	public void agregarCentroMineral(CentroDeMineral nuevoCentroMineral) {
+	
+	public void agregarEdificioRecolectorDeMineral(RecolectorDeMineral nuevoCentroMineral) {
 		
-		this.centrosDeMineralTerran.add(nuevoCentroMineral);
+		this.recolectoresDeMineral.add(nuevoCentroMineral);
+		
+	}
+	
+	public ArrayList<RecolectorDeMineral> getListaDeRecolectoresDeMineralConstruidos(){
+		
+		return this.recolectoresDeMineral;
 		
 	}
 	
 	public void agregarUnidad(Unidad unidad) {
 		
-		this.unidadesTerran.add(unidad);
+		this.unidades.add(unidad);
 		
-	}
+	}	
 	
-	public ArrayList<CentroDeMineral> getListaDeCentrosMineralesConstruidos(){
+	public ArrayList<Unidad> getListaDeUnidadesCreadas(){
 		
-		return this.centrosDeMineralTerran;
-		
-	}
-	
-	public ArrayList<Unidad> getListaDeUnidadesTerranCreadas(){
-		
-		return this.unidadesTerran;
+		return this.unidades;
 		
 	}
 
+	public void agregarEdificioRecolectorDeGasVespeno(RecolectorDeGasVespeno nuevaRefineriaDeGasVespeno){
+		
+			this.recolectoresDeGasVespeno.add(nuevaRefineriaDeGasVespeno);
+			
+	}
 
+	public ArrayList<RecolectorDeGasVespeno> getListaDeRecolectoresDeGasVespenoConstruidos() {
+		
+		return recolectoresDeGasVespeno;
+		
+	}
 	
 
 }
