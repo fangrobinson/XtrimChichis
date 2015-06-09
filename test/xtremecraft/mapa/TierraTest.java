@@ -37,10 +37,13 @@ public class TierraTest {
 	public void ocuparterrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
 		Terreno terreno=new Tierra();
-		Unidad goliat= new Goliat(terreno);
+		Unidad goliat= new Goliat(terreno);	
+	
 		terreno.ocuparConUnidad(goliat);
+		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
+		int vida = unidad.getVida();
 		
-		assertEquals(terreno.getUnidadEnTerreno().getVida(),125);
+		assertEquals(vida,125);
 		
 	}
 	
@@ -51,7 +54,7 @@ public class TierraTest {
 		MinaDeMinerales nodoMineral=new MinaDeMinerales(5);
 		tierra.ocuparConRecursoNatural(nodoMineral);
 		
-		assertTrue(tierra.tierraTieneRecursosNaturales());
+		assertTrue(tierra.tieneRecursosNaturales());
 		assertEquals(tierra.getRecurso(),nodoMineral);
 		
 	}

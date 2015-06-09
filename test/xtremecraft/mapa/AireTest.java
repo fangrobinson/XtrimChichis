@@ -38,8 +38,10 @@ public class AireTest {
 		Terreno terreno=new Aire();
 		Unidad marine= new Marine(terreno);
 		terreno.ocuparConUnidad(marine);
-		
-		assertEquals(terreno.getUnidadEnTerreno().getVida(), 40);
+		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
+		int vida = unidad.getVida();
+		 
+		assertEquals(vida, 40);
 		
 	}
 

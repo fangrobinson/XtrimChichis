@@ -1,14 +1,14 @@
 package xtremecraft.mapa;
 
+import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Unidad;
-
 
 public abstract class Terreno {
 	
 	/*protected Coordenada coordenada;*/
 	protected boolean ocupada;
-	protected Unidad unidad;
+	protected Ubicable unidad;
 	
 	public Terreno(){
 		//this.coordenada = new Coordenada(fila,columna);
@@ -25,7 +25,7 @@ public abstract class Terreno {
 		
 	}
 		
-	public Unidad getUnidadEnTerreno(){
+	public Ubicable getUnidadEnTerreno(){
 		
 		return this.unidad;
 		
@@ -43,6 +43,6 @@ public abstract class Terreno {
 		return this.ocuparConUnidad(unidad);
 	}
 
-
+	public abstract boolean ubicar(Ubicable ubicable);
 
 }
