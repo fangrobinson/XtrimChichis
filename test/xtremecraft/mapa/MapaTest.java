@@ -1,9 +1,12 @@
 package xtremecraft.mapa;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
+
+import xtremecraft.unidades.Goliat;
 
 
 public class MapaTest {
@@ -27,13 +30,35 @@ public class MapaTest {
 	@Test 
 	public void getCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
 		Mapa mapa = new Mapa(2);
-		Terreno unaCelda= mapa.getCeldaEnFilaColumna(1,7);
+		Celda unaCelda= mapa.getCeldaEnFilaColumna(1,7);
 		//coordenadaX coorresponde a la columna y coordenadaY corresponde a la fila:
-		assertEquals(unaCelda.getCoordenada().columna(),7);
-		assertEquals(unaCelda.getCoordenada().fila(),1);
+		assertEquals(unaCelda.columna(),7);
+		assertEquals(unaCelda.fila(),1);
 		
 	}
 	
-
+	@Test 
+	public void ubicarCapaInferiorUnGoliatDevuelveTrue(){
+		Mapa mapa = new Mapa(2);
+		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
+		Terreno tierra = celda.getCapaInferior();
+		Goliat goliat = new Goliat(tierra);
+		
+		boolean bool = celda.ubicarCapaInferior(goliat);
+		
+		assertTrue(bool);
+	}
+	
+	@Test 
+	public void ubicarCapaSuperiorUnGoliatDevuelveFalse(){
+		Mapa mapa = new Mapa(2);
+		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
+		Terreno tierra = celda.getCapaInferior();
+		Goliat goliat = new Goliat(tierra);
+		
+		boolean bool = celda.ubicarCapaSuperior(goliat);
+		
+		assertFalse(bool);
+	}
 	
 }
