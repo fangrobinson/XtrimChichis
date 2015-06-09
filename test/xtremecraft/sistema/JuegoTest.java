@@ -18,9 +18,9 @@ public class JuegoTest {
 	@Test
 	public void pasoElTiempoYTiempoAvanza(){
 		Juego juego = new Juego(2);
-		int tiempo = juego.tiempo();
 		
 		juego.pasarTiempo();
+		int tiempo = juego.tiempo();
 		
 		assertTrue(tiempo > 0);
 	}
