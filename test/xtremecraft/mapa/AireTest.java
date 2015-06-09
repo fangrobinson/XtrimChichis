@@ -16,7 +16,7 @@ public class AireTest {
 	@Test
 	public void nuevoAireCreaAguaConEstadoNoOcupado(){
 		
-		Terreno terreno=new Aire();
+		Terreno terreno=new Aire(1,2);
 		assertFalse(terreno.estaOcupada());
 		
 	}
@@ -25,7 +25,7 @@ public class AireTest {
 	@Test
 	public void aireEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
-		Terreno terreno=new Aire();
+		Terreno terreno=new Aire(1,4);
 		Unidad goliat= new Goliat(terreno);
 		terreno.ubicar(goliat);
 		assertTrue(terreno.estaOcupada());
@@ -35,7 +35,7 @@ public class AireTest {
 	@Test
 	public void ocuparterrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
-		Terreno terreno=new Aire();
+		Terreno terreno=new Aire(1,3);
 		Unidad marine= new Marine(terreno);
 		terreno.ubicar(marine);
 		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
@@ -44,6 +44,10 @@ public class AireTest {
 		assertEquals(vida, 40);
 		
 	}
+	
+	
+	
+	
 
 
 

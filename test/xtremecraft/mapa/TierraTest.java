@@ -16,7 +16,7 @@ public class TierraTest {
 	@Test
 	public void nuevaTierraCreaTierraConEstadoNoOcupado(){
 		
-		Terreno terreno=new Tierra();
+		Terreno terreno=new Tierra(1,1);
 		
 		assertFalse(terreno.estaOcupada());
 		
@@ -25,7 +25,7 @@ public class TierraTest {
 	@Test
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
-		Terreno terreno=new Tierra();
+		Terreno terreno=new Tierra(1,1);
 		Unidad goliat= new Goliat(terreno);
 		terreno.ubicar(goliat);
 		
@@ -36,7 +36,7 @@ public class TierraTest {
 	@Test
 	public void ocuparterrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
-		Terreno terreno=new Tierra();
+		Terreno terreno=new Tierra(1,1);
 		Unidad goliat= new Goliat(terreno);	
 	
 		terreno.ubicar(goliat);
@@ -50,7 +50,7 @@ public class TierraTest {
 	@Test
 	public void terrenoTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaterreno(){
 		
-		Tierra tierra=new Tierra();
+		Tierra tierra=new Tierra(1,1);
 		MinaDeMinerales nodoMineral=new MinaDeMinerales(5);
 		tierra.ocuparConRecursoNatural(nodoMineral);
 		

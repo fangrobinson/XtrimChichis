@@ -11,7 +11,7 @@ public class MarineTest {
 	
 	@Test
 	public void testMarineInicializadoConVidaCompleta(){
-		Terreno unaCelda=new Tierra();
+		Terreno unaCelda=new Tierra(1,1);
 		Marine miniSamus = new Marine(unaCelda);
 		
 		assertEquals(miniSamus.getVida(),40);
@@ -19,7 +19,7 @@ public class MarineTest {
 	
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
-		Terreno unaCelda=new Tierra();
+		Terreno unaCelda=new Tierra(2,3);
 		Marine miniSamus = new Marine(unaCelda);
 		
 		assertEquals(miniSamus.getRadioVision(),7);
@@ -28,8 +28,8 @@ public class MarineTest {
 	
 	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
+		Terreno unaCelda=new Tierra(4,3);
+		Terreno otraCelda=new Tierra(5,4);
 		Marine miniSamus = new Marine(unaCelda);
 		Marine miniMasterChief = new Marine(otraCelda);
 		
@@ -40,8 +40,8 @@ public class MarineTest {
 	
 	@Test
 	public void siUnMarineAtacaAOtroPorTierraLeSacaSeisDeVida(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
+		Terreno unaCelda=new Tierra(6,7);
+		Terreno otraCelda=new Tierra(2,3);
 		Marine miniSamus = new Marine(unaCelda);
 		Marine miniMasterChief = new Marine(otraCelda);
 		
@@ -52,8 +52,8 @@ public class MarineTest {
 	
 	@Test
 	public void siUnMarineAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
+		Terreno unaCelda=new Tierra(1,2);
+		Terreno otraCelda=new Tierra(1,1);
 		Marine miniSamus = new Marine(unaCelda);
 		Marine miniMasterChief = new Marine(otraCelda);
 		
@@ -65,7 +65,7 @@ public class MarineTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void siIntentoCrearUnaUnidadEnUnaCeldaOcupadaSeLanzaExcepcion(){
 		
-		Terreno unaCelda=new Tierra();
+		Terreno unaCelda=new Tierra(6,6);
 		Marine miniSamus = new Marine(unaCelda);
 		unaCelda.ubicar(miniSamus);
 		@SuppressWarnings("unused")
@@ -76,8 +76,8 @@ public class MarineTest {
 	@Test
 	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
+		Terreno unaCelda=new Tierra(7,7);
+		Terreno otraCelda=new Tierra(1,8);
 		Marine miniSamus = new Marine(unaCelda);
 		miniSamus.moverACelda(otraCelda);
 		

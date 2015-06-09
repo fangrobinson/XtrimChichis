@@ -44,7 +44,7 @@ public class TerranTest {
 	public void agregarUnidadGuardaInstanciaDeLaUnidadCreada(){
 		
 		Terran razaTerran = new Terran();
-		Terreno celda=new Tierra();
+		Terreno celda=new Tierra(2,3);
 		Goliat nuevaUnidadGoliat = new Goliat(celda);
 		razaTerran. agregarUnidad(nuevaUnidadGoliat);
 		Unidad unidadGoliat= razaTerran.getListaDeUnidadesCreadas().remove(0);

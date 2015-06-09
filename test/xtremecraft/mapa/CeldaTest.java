@@ -11,8 +11,8 @@ import xtremecraft.unidades.Marine;
 public class CeldaTest {
 	@Test
 	public void ubicarCapaInferiorUnMarineDevuelveTrue(){
-		Celda celda_creacion = new Celda(new Tierra(), new Aire());
-		Celda celda_vacia = new Celda(new Tierra(), new Aire());
+		Celda celda_creacion = new Celda(new Tierra(1,5), new Aire(1,5));
+		Celda celda_vacia = new Celda(new Tierra(2,2), new Aire(2,2));
 		Terreno tierra = celda_creacion.getCapaInferior();
 		Ubicable marine = new Marine(tierra);
 		
@@ -23,7 +23,7 @@ public class CeldaTest {
 	
 	@Test
 	public void ubicarCapaSuperiorUnMarineDevuelveFalsee(){
-		Celda celda = new Celda(new Tierra(), new Aire());
+		Celda celda = new Celda(new Tierra(1,2), new Aire(1,2));
 		Terreno tierra = celda.getCapaInferior();
 		Ubicable marine = new Marine(tierra);
 		
