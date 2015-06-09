@@ -7,8 +7,8 @@ import xtremecraft.recursos.Recurso;
 
 public class Aire extends Terreno {
 		
-    public Aire(){
-		super();
+    public Aire(int fila, int columna){
+		super(fila, columna);
 	}
     
     /*
