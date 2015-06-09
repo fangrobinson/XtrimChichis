@@ -1,12 +1,9 @@
 package xtremecraft.mapa;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import xtremecraft.mapa.Aire;
 import xtremecraft.unidades.Goliat;
-import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.Unidad;
 
 import org.junit.Test;
