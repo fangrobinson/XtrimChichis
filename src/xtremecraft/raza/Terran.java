@@ -2,7 +2,7 @@ package xtremecraft.raza;
 
 import java.util.ArrayList;
 
-import xtremecraft.edificios.CreadorDeUnidades;
+import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.unidades.Unidad;
@@ -13,7 +13,7 @@ public class Terran{
 	private ArrayList<Unidad> unidades;
 	private ArrayList<RecolectorDeMineral> recolectoresDeMineral;
 	private ArrayList<RecolectorDeGasVespeno> recolectoresDeGasVespeno;
-	private ArrayList<CreadorDeUnidades> creadoresDeUnidades;
+	private ArrayList<Barraca> barracas;
 	private boolean estaViva;
 		
 	public Terran(){
@@ -22,7 +22,7 @@ public class Terran{
 		this.unidades = new ArrayList<Unidad>();
 		this.recolectoresDeMineral = new ArrayList<RecolectorDeMineral>();
 		this.recolectoresDeGasVespeno = new ArrayList<RecolectorDeGasVespeno>();
-		this.creadoresDeUnidades = new ArrayList<CreadorDeUnidades>();
+		this.barracas = new ArrayList<Barraca>();
 					
 	}
 
@@ -68,15 +68,15 @@ public class Terran{
 		
 	}
 
-	public void agregarEdificioCreadorDeUnidades(CreadorDeUnidades edificioCreadorDeUnidades) {
+	public void agregarBarraca(Barraca edificioCreadorDeUnidades) {
 		
-		this.creadoresDeUnidades.add(edificioCreadorDeUnidades);
+		this.barracas.add(edificioCreadorDeUnidades);
 		
 	}
 	
-	public ArrayList<CreadorDeUnidades> getListaDeCreadoresDeUnidadesConstruidos(){
+	public ArrayList<Barraca> getListaDeBarracasConstruidas(){
 		
-		return this.creadoresDeUnidades;
+		return this.barracas;
 		
 	}
 	

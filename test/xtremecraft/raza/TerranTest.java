@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import xtremecraft.edificios.CreadorDeUnidades;
+import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Recolector;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
@@ -76,8 +76,8 @@ public class TerranTest {
 		Terran razaTerran = new Terran();
 		int fila = 3;
 		int columna = 4;
-		CreadorDeUnidades nuevoCreadorDeUnidades = CreadorDeUnidades.nuevoEdificioCreadorDeUnidades(razaTerran, fila, columna);
-		CreadorDeUnidades creadorDeUnidadesConstruido = razaTerran.getListaDeCreadoresDeUnidadesConstruidos().remove(0);
+		Barraca nuevoCreadorDeUnidades = Barraca.nuevaBarraca(razaTerran, fila, columna);
+		Barraca creadorDeUnidadesConstruido = razaTerran.getListaDeBarracasConstruidas().remove(0);
 		
 		assertEquals(nuevoCreadorDeUnidades,creadorDeUnidadesConstruido);
 		
