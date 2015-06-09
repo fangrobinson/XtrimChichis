@@ -3,6 +3,8 @@ package xtremecraft.raza;
 import java.util.ArrayList;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.unidades.Unidad;
@@ -14,6 +16,8 @@ public class Terran{
 	private ArrayList<RecolectorDeMineral> recolectoresDeMineral;
 	private ArrayList<RecolectorDeGasVespeno> recolectoresDeGasVespeno;
 	private ArrayList<Barraca> barracas;
+	private ArrayList<Fabrica> fabricas;
+	private ArrayList<PuertoEstelar> puertosEstelares;
 	private boolean estaViva;
 		
 	public Terran(){
@@ -23,6 +27,8 @@ public class Terran{
 		this.recolectoresDeMineral = new ArrayList<RecolectorDeMineral>();
 		this.recolectoresDeGasVespeno = new ArrayList<RecolectorDeGasVespeno>();
 		this.barracas = new ArrayList<Barraca>();
+		this.fabricas = new ArrayList<Fabrica>();
+		this.puertosEstelares = new ArrayList<PuertoEstelar>();
 					
 	}
 
@@ -77,6 +83,34 @@ public class Terran{
 	public ArrayList<Barraca> getListaDeBarracasConstruidas(){
 		
 		return this.barracas;
+		
+	}
+	
+	public void agregarFabrica(Fabrica fabrica) {
+		
+		Barraca barracaBase = fabrica.getBarracaBase();
+		this.barracas.remove(barracaBase);
+		this.fabricas.add(fabrica);
+		
+	}
+	
+	public ArrayList<Fabrica> getListaDeFabricasConstruidas(){
+		
+		return this.fabricas;
+		
+	}
+	
+	public void agregarPuertoEstelar(PuertoEstelar unPuertoEstelar) {
+		
+		Fabrica fabricaBase = unPuertoEstelar.getFabricaBase();
+		this.fabricas.remove(fabricaBase);
+		this.puertosEstelares.add(unPuertoEstelar);
+		
+	}
+	
+	public ArrayList<PuertoEstelar> getListaDePuertosEstelaresConstruidos(){
+		
+		return this.puertosEstelares;
 		
 	}
 	

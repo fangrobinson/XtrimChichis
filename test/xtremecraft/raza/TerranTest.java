@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.Recolector;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
@@ -71,20 +73,51 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void agregarCreadorDeUnidadesGuardaInstanciaDelEdificioCreadorDeUnidades(){
+	public void agregarBarracaGuardaInstanciaDelEdificioCreadorDeUnidades(){
 		
 		Terran razaTerran = new Terran();
 		int fila = 3;
 		int columna = 4;
-		Barraca nuevoCreadorDeUnidades = Barraca.nuevaBarraca(razaTerran, fila, columna);
-		Barraca creadorDeUnidadesConstruido = razaTerran.getListaDeBarracasConstruidas().remove(0);
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
+		Barraca barracaConstruida = razaTerran.getListaDeBarracasConstruidas().remove(0);
 		
-		assertEquals(nuevoCreadorDeUnidades,creadorDeUnidadesConstruido);
+		assertEquals(barraca,barracaConstruida);
 		
 		
 		
 	}
 	
+	@Test
+	public void agregarFabricaGuardaInstanciaDeLaFabricaYBorraBarracaBaseDeLaListaDeBarracasCreadas(){
+		
+		Terran razaTerran = new Terran();
+		int fila = 3;
+		int columna = 4;
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,barraca);
+		
+		Fabrica fabricaConstruida = razaTerran.getListaDeFabricasConstruidas().remove(0);
+		
+		assertEquals(fabrica,fabricaConstruida);
+		assertTrue(razaTerran.getListaDeBarracasConstruidas().isEmpty());
 	
+	}
+	
+	@Test
+	public void agregarPuertoEstelarGuardaInstanciaDelPuertoYBorraFabricaBaseDeLaListaDeFabricasCreadas(){
+		
+		Terran razaTerran = new Terran();
+		int fila = 3;
+		int columna = 4;
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,barraca);
+		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran, fabrica);
+		
+		PuertoEstelar puertoConstruido = razaTerran.getListaDePuertosEstelaresConstruidos().remove(0);
+		
+		assertEquals(puerto,puertoConstruido);
+		assertTrue(razaTerran.getListaDeFabricasConstruidas().isEmpty());
+	
+	}
 	
 }

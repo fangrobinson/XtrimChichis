@@ -17,8 +17,8 @@ public class FabricaTest {
 		Terran nuevoClanTerran=new Terran();
 		int fila = 1;
 		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila,columna);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
 		
 		assertEquals(unaFabrica.getUbicacionActual().fila(),1);
 		assertEquals(unaFabrica.getUbicacionActual().columna(),2);
@@ -32,7 +32,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
 		
 		assertEquals(unaFabrica.getVida(),100);
 		
@@ -45,7 +45,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
 		int valorDanio = 30;
 		
 		unaFabrica.recibirDanio(valorDanio);
@@ -59,12 +59,13 @@ public class FabricaTest {
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 		
+		Terran nuevoClanTerran=new Terran();
 		int fila = 1;
 		int columna = 2;
 		Terran razaTerran = new Terran();
 		Tierra unTerreno = new Tierra(4,4); 
 		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
 		Marine nuevoMarine =unaFabrica.entrenarMarine(unTerreno);
 		
 		assertEquals(nuevoMarine.getVida(),40);
@@ -74,12 +75,13 @@ public class FabricaTest {
 	@Test
 	public void entrenarGoliatDevuelveNuevaUnidadMarine(){
 		
+		Terran nuevoClanTerran=new Terran();
 		int fila = 1;
 		int columna = 2;
 		Terran razaTerran = new Terran();
 		Tierra unTerreno = new Tierra(4,4); 
 		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
 		Goliat unGoliat =unaFabrica.entrenarGoliat(unTerreno);
 		
 		assertEquals(unGoliat.getVida(),125);

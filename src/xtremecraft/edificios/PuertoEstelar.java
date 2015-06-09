@@ -4,6 +4,7 @@ import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
@@ -21,9 +22,11 @@ public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Ata
 	}
 	
 
-	public static PuertoEstelar nuevoPuertoEstelar(Fabrica unaFabrica) {
-
-		return new PuertoEstelar(unaFabrica);
+	public static PuertoEstelar nuevoPuertoEstelar(Terran unTerran,Fabrica unaFabrica) {
+		
+		PuertoEstelar nuevoPuertoEstelar = new PuertoEstelar(unaFabrica);
+		unTerran.agregarPuertoEstelar(nuevoPuertoEstelar);
+		return nuevoPuertoEstelar;
 
 	}
 	
@@ -95,6 +98,13 @@ public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Ata
 	public boolean puedeUbicarseEnAire() {
 		
 		return false;
+		
+	}
+
+
+	public Fabrica getFabricaBase() {
+		
+		return this.fabricaBase;
 		
 	}
 

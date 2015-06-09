@@ -16,9 +16,9 @@ public class Barraca extends Edificio implements CreadorDeMarines{
 
 	public static Barraca nuevaBarraca(Terran razaTerran, int fila, int columna){
 		
-		Barraca edificioCreadorDeUnidades = new Barraca(fila,columna);
-		razaTerran.agregarBarraca(edificioCreadorDeUnidades);
-		return edificioCreadorDeUnidades;
+		Barraca barraca = new Barraca(fila,columna);
+		razaTerran.agregarBarraca(barraca);
+		return barraca;
 		
 	}
 	

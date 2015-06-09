@@ -4,6 +4,7 @@ import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
 
@@ -17,10 +18,11 @@ public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
 
 	}
 	
-	public static Fabrica nuevaFabrica(Barraca unaBarraca){
+	public static Fabrica nuevaFabrica(Terran razaTerran, Barraca unaBarraca){
 		
-		//AGREGAR A LAS REFERENCIAS DE LA RAZA TERRAN.
-		return new Fabrica(unaBarraca);
+		Fabrica nuevaFabrica = new Fabrica(unaBarraca);
+		razaTerran.agregarFabrica(nuevaFabrica);
+		return nuevaFabrica;
 		
 	}
 
@@ -71,6 +73,12 @@ public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
 	public boolean puedeUbicarseEnAire() {
 		
 		return false;
+		
+	}
+
+	public Barraca getBarracaBase() {
+		
+		return this.barracaBase;
 		
 	}
 
