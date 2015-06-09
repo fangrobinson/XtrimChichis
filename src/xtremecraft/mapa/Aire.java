@@ -6,11 +6,8 @@ import xtremecraft.unidades.Unidad;
 
 public class Aire extends Terreno {
 		
-    public Aire(int X,int Y){
-			
-		super(X,Y);
-		this.tipo = "aire";
-		
+    public Aire(){
+		super();
 	}
     
     

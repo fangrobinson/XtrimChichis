@@ -8,10 +8,10 @@ public class Tierra extends Terreno {
 	private Recurso recurso;
 	private boolean tieneRecursos;
 	
-    public Tierra(int X,int Y){
+    public Tierra(){
 		
-		super(X,Y);
-		this.tipo = "tierra";
+		super();
+
 		this.tieneRecursos = false;
 		
 	}

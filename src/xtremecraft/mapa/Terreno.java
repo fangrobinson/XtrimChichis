@@ -6,13 +6,12 @@ import xtremecraft.unidades.Unidad;
 
 public abstract class Terreno {
 	
-	protected Coordenada coordenada;
+	/*protected Coordenada coordenada;*/
 	protected boolean ocupada;
 	protected Unidad unidad;
-	protected String tipo;
 	
-	public Terreno(int fila, int columna){
-		this.coordenada = new Coordenada(fila,columna);
+	public Terreno(){
+		//this.coordenada = new Coordenada(fila,columna);
 		this.ocupada = false;
 	}
 	
@@ -32,12 +31,13 @@ public abstract class Terreno {
 		
 	}
 	
-	public Coordenada getCoordenada() {
+	/*public Coordenada getCoordenada() {
 		
 		return this.coordenada;
 		
-	}
+	}*/
 		
+	//Para que esta esto???
 	public boolean ocuparTerrenoConUnidad(Unidad unidad){
 
 		return this.ocuparConUnidad(unidad);
