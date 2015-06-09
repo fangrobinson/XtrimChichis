@@ -36,6 +36,14 @@ public abstract class Terreno {
 		return this.coordenada;
 		
 	}
+	
+	public int fila(){
+		return this.coordenada.fila();
+	}
+	
+	public int columna(){
+		return this.coordenada.columna();
+	}
 		
 	//Para que esta esto???
 	/*public boolean ocuparTerrenoConUnidad(Unidad unidad){

@@ -27,4 +27,12 @@ public class Celda {
     public boolean ubicarCapaInferior(Ubicable ubicable){
     	return this.inferior.ubicar(ubicable);
     }
+    
+    public int fila(){
+    	return this.inferior.fila();
+    }
+    
+    public int columna(){
+    	return this.inferior.columna();
+    }
 }

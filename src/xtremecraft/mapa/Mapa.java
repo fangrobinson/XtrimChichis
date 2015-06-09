@@ -2,13 +2,14 @@ package xtremecraft.mapa;
 
 import java.util.TreeMap;
 
-import xtremecraft.mapa.EstrategiaUbicacion;
-import xtremecraft.recursos.MinaDeMinerales;
-import xtremecraft.unidades.Unidad;
+//import xtremecraft.interfaces.Ubicable;
+//import xtremecraft.mapa.EstrategiaUbicacion;
+//import xtremecraft.recursos.MinaDeMinerales;
+//import xtremecraft.unidades.Unidad;
 
 public class Mapa {
 	
-	private TreeMap<Integer, TreeMap<Integer, Terreno>> mapaAlto;
+	private TreeMap<Integer, TreeMap<Integer, Celda>> mapaAlto;
 	private int alto;
 	private int ancho;
 
@@ -21,14 +22,14 @@ public class Mapa {
 		this.ancho = this.decidirAncho(cant_jugadores);
 		
 		rellenarMapa(alto, ancho, cant_jugadores);	
-		ubicarBases(cant_jugadores);
+		//ubicarBases(cant_jugadores);
 	}
 
 	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
-		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Terreno>>();
+		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
 		for(int fila =0; fila < this.alto ;fila = fila + 1) {
-			this.mapaAlto.put(fila, new TreeMap<Integer, Terreno>());
+			this.mapaAlto.put(fila, new TreeMap<Integer, Celda>());
 			for(int columna = 0; columna < this.ancho; columna = columna + 1) {
 				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna, cant_jugadores));
 			}
@@ -44,6 +45,12 @@ public class Mapa {
 	}
 	
 	
+	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores){
+		return new Celda(new Tierra(fila, columna), new Aire(fila, columna));
+	}
+	
+	//Ya no hay mas islas voladoras
+	/*
 	private Terreno obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores) {
 		int primer_corte_ancho = 3 *decidirAncho(cant_jugadores)/8;
 		int primer_corte_alto = 3 *decidirAlto(cant_jugadores)/8;
@@ -55,8 +62,11 @@ public class Mapa {
 			}
 		}
 		return new Aire(fila,columna);
-	}
+	}*/
 	
+	
+	//No estaba pedido :(
+	/*
 	private void ubicarBases(int cant_jugadores) {
 		EstrategiaUbicacion estrategia = new EstrategiaUbicacion();
 		EstrategiaCuadrante estrategiaParticular;
@@ -81,7 +91,7 @@ public class Mapa {
 			jugadores_ubicados = jugadores_ubicados + 1;
 		}
 
-	}
+	}*/
 	
 	public boolean tieneAire() {
 		return true;
@@ -92,20 +102,16 @@ public class Mapa {
 	}
 	
 	//NOTA: tal vez este metodo deberia ser privado. De esa forma el mapa se encarga de ocupar la celda.
-	public Terreno getCeldaEnFilaColumna(int fila, int columna){
+	public Celda getCeldaEnFilaColumna(int fila, int columna){
 		return this.mapaAlto.get(fila).get(columna);
 	}
 	
-	
-	public boolean colocarUnidad(Unidad unaUnidad,int fila, int columna){
+	/*
+	public boolean colocarUnidad(Ubicable unaUnidad,int fila, int columna){
 		
-		Terreno celda= this.getCeldaEnFilaColumna(columna, fila);
-		return celda.ocuparConUnidad(unaUnidad);
+		Celda celda= this.getCeldaEnFilaColumna(columna, fila);
+		return celda.ubicar(unaUnidad);
 		
-	}
-	
-
-	
-	
+	}*/
 	
 }
