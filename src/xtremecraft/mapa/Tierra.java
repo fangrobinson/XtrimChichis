@@ -2,7 +2,7 @@ package xtremecraft.mapa;
 
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
-import xtremecraft.unidades.Unidad;
+//import xtremecraft.unidades.Unidad;
 
 public class Tierra extends Terreno {
 	
@@ -42,7 +42,7 @@ public class Tierra extends Terreno {
     	return this.tieneRecursos;
     	
     }
-    
+    /*
     public boolean ocuparConUnidad(Unidad unidad) {
 		
 		if((!this.ocupada)&&(!this.tieneRecursosNaturales())){
@@ -52,7 +52,7 @@ public class Tierra extends Terreno {
 		}
 		
 		return false;
-	}
+	}*/
     
     public boolean ubicar(Ubicable ubicable){
     	if((this.ocupada)&&(this.tieneRecursosNaturales())){
