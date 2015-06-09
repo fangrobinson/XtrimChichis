@@ -2,6 +2,7 @@ package xtremecraft.raza;
 
 import java.util.ArrayList;
 
+import xtremecraft.edificios.CreadorDeUnidades;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.unidades.Unidad;
@@ -12,6 +13,7 @@ public class Terran{
 	private ArrayList<Unidad> unidades;
 	private ArrayList<RecolectorDeMineral> recolectoresDeMineral;
 	private ArrayList<RecolectorDeGasVespeno> recolectoresDeGasVespeno;
+	private ArrayList<CreadorDeUnidades> creadoresDeUnidades;
 	private boolean estaViva;
 		
 	public Terran(){
@@ -20,6 +22,7 @@ public class Terran{
 		this.unidades = new ArrayList<Unidad>();
 		this.recolectoresDeMineral = new ArrayList<RecolectorDeMineral>();
 		this.recolectoresDeGasVespeno = new ArrayList<RecolectorDeGasVespeno>();
+		this.creadoresDeUnidades = new ArrayList<CreadorDeUnidades>();
 					
 	}
 
@@ -55,13 +58,25 @@ public class Terran{
 
 	public void agregarEdificioRecolectorDeGasVespeno(RecolectorDeGasVespeno nuevaRefineriaDeGasVespeno){
 		
-			this.recolectoresDeGasVespeno.add(nuevaRefineriaDeGasVespeno);
+		this.recolectoresDeGasVespeno.add(nuevaRefineriaDeGasVespeno);
 			
 	}
 
 	public ArrayList<RecolectorDeGasVespeno> getListaDeRecolectoresDeGasVespenoConstruidos() {
 		
 		return recolectoresDeGasVespeno;
+		
+	}
+
+	public void agregarEdificioCreadorDeUnidades(CreadorDeUnidades edificioCreadorDeUnidades) {
+		
+		this.creadoresDeUnidades.add(edificioCreadorDeUnidades);
+		
+	}
+	
+	public ArrayList<CreadorDeUnidades> getListaDeCreadoresDeUnidadesConstruidos(){
+		
+		return this.creadoresDeUnidades;
 		
 	}
 	

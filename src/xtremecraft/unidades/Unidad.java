@@ -19,7 +19,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 		this.coordenadas = new Coordenada(celda.getCoordenada().columna(),celda.getCoordenada().fila());
 	}
 	
-    public void recibirDaño(int daño){
+    public void recibirDanio(int daño){
     	
         vitalidad.recibirAtaque(daño);
         	
@@ -29,7 +29,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
     		int daño = this.daño.devolverDaño(medio);
-        	atacado.recibirDaño(daño);		
+        	atacado.recibirDanio(daño);		
     	}
     	
     	

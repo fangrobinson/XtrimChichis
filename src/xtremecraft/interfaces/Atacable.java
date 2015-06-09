@@ -2,6 +2,8 @@ package xtremecraft.interfaces;
 
 public interface Atacable {
 	
-	 public void recibirDaño(int daño);
+	 public void recibirDanio(int daño);
+	 
+	 public int getVida();
 
 }

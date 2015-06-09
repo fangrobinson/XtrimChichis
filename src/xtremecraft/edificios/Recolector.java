@@ -9,9 +9,11 @@ public abstract class Recolector extends Edificio {
 	
 	protected int reservas;
 	protected int aumentoDeReservaEnTurno;
-
-	public Recolector(int fila, int columna){
-		super(fila,columna);
+	//definir si la vida deberia ser un atributo de clase predeterminado para los edificios.
+	public static int vida = 100;
+	
+	protected Recolector(int fila, int columna){
+		super(fila,columna,vida);
 		this.reservas=0;
 		this.aumentoDeReservaEnTurno=10;
 	

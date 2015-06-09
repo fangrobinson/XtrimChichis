@@ -50,5 +50,37 @@ public class RecolectorDeGasVespenoTest {
 		assertEquals(refineriaTerran.getUbicacionActual().fila(),1);
 		
 	}
+	
+	@Test
+	public void edificioSeInicializaConBarraDeVidaCompleta(){
+		
+		Terran nuevoClanTerran=new Terran();
+		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
+		int fila = 1;
+		int columna = 2;
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		
+		assertEquals(refineriaTerran.getVida(),100);
+		
+	}
+	
+	@Test
+	public void siElEdificioRecibeDanioSuVidaDecrece(){
+		
+		Terran nuevoClanTerran=new Terran();
+		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
+		int fila = 1;
+		int columna = 2;
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		int valorDanio = 30;
+		
+		refineriaTerran.recibirDanio(valorDanio);
+		assertEquals(refineriaTerran.getVida(),70);
+		
+		refineriaTerran.recibirDanio(valorDanio);
+		assertEquals(refineriaTerran.getVida(),40);
+		
+	}
+
 
 }

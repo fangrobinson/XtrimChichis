@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.edificios.CreadorDeUnidades;
+import xtremecraft.edificios.Recolector;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Terreno;
@@ -31,8 +33,7 @@ public class TerranTest {
 		MinaDeMinerales nodoMineral = new MinaDeMinerales(2);
 		int fila = 3;
 		int columna = 4;
-		RecolectorDeMineral nuevoCentroMineral = new RecolectorDeMineral(nodoMineral,fila,columna);
-		razaTerran. agregarEdificioRecolectorDeMineral(nuevoCentroMineral);
+		RecolectorDeMineral nuevoCentroMineral = Recolector.nuevoRecolectorDeMineral(razaTerran, nodoMineral, fila, columna);
 		RecolectorDeMineral centroMineral= razaTerran.getListaDeRecolectoresDeMineralConstruidos().remove(0);
 		
 		assertEquals(centroMineral,nuevoCentroMineral);
@@ -60,11 +61,25 @@ public class TerranTest {
 		VolcanGasVespeno volcanDeGasVespeno = new VolcanGasVespeno(200);
 		int fila = 3;
 		int columna = 4;
-		RecolectorDeGasVespeno nuevaRefineria = new RecolectorDeGasVespeno(volcanDeGasVespeno,fila,columna);
-		razaTerran. agregarEdificioRecolectorDeGasVespeno(nuevaRefineria);
+		RecolectorDeGasVespeno nuevaRefineria = Recolector.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,fila,columna);
 		RecolectorDeGasVespeno refineriaTerranConstruida = razaTerran.getListaDeRecolectoresDeGasVespenoConstruidos().remove(0);
 		
 		assertEquals(nuevaRefineria,refineriaTerranConstruida);
+		
+		
+		
+	}
+	
+	@Test
+	public void agregarCreadorDeUnidadesGuardaInstanciaDelEdificioCreadorDeUnidades(){
+		
+		Terran razaTerran = new Terran();
+		int fila = 3;
+		int columna = 4;
+		CreadorDeUnidades nuevoCreadorDeUnidades = CreadorDeUnidades.nuevoEdificioCreadorDeUnidades(razaTerran, fila, columna);
+		CreadorDeUnidades creadorDeUnidadesConstruido = razaTerran.getListaDeCreadoresDeUnidadesConstruidos().remove(0);
+		
+		assertEquals(nuevoCreadorDeUnidades,creadorDeUnidadesConstruido);
 		
 		
 		

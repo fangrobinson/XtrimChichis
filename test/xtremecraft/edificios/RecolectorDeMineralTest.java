@@ -49,6 +49,37 @@ public class RecolectorDeMineralTest {
 		assertEquals(centroMineralTerran.getUbicacionActual().fila(),1);
 		
 	}
+	
+	@Test
+	public void edificioSeInicializaConBarraDeVidaCompleta(){
+		
+		Terran nuevoClanTerran=new Terran();
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
+		int fila = 1;
+		int columna = 2;
+		RecolectorDeMineral centroMineralTerran=Recolector.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
+		
+		assertEquals(centroMineralTerran.getVida(),100);
+		
+	}
+	
+	@Test
+	public void siElEdificioRecibeDanioSuVidaDecrece(){
+		
+		Terran nuevoClanTerran=new Terran();
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
+		int fila = 1;
+		int columna = 2;
+		RecolectorDeMineral centroMineralTerran=Recolector.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,fila, columna);
+		int valorDanio = 30;
+		
+		centroMineralTerran.recibirDanio(valorDanio);
+		assertEquals(centroMineralTerran.getVida(),70);
+		
+		centroMineralTerran.recibirDanio(valorDanio);
+		assertEquals(centroMineralTerran.getVida(),40);
+		
+	}
 
 
 }

@@ -6,7 +6,7 @@ public class RecolectorDeGasVespeno extends Recolector {
 	
 	private VolcanGasVespeno volcan;
 	
-	public RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, int fila, int columna){
+	protected RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, int fila, int columna){
 		
 		super(fila,columna);
 		this.volcan = unVolcanDeGasVespeno;

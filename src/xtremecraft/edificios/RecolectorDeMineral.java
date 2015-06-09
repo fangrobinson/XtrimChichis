@@ -6,7 +6,7 @@ public class RecolectorDeMineral extends Recolector{
 
 	private MinaDeMinerales minaDeMinerales;
 
-	public RecolectorDeMineral(MinaDeMinerales unaMinaDeMinerales, int fila, int columna) {
+	protected RecolectorDeMineral(MinaDeMinerales unaMinaDeMinerales, int fila, int columna) {
 		
 		super(fila, columna);
 		this.minaDeMinerales = unaMinaDeMinerales;
