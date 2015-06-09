@@ -56,7 +56,7 @@ public class GoliatTest {
 	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
 		Terreno unaCelda=new Tierra(1,4);
-		Terreno otraCelda=new Tierra(5,5);
+		Terreno otraCelda=new Tierra(10,10);
 		Goliat tanque1 = new Goliat(unaCelda);
 		Goliat tanque2 = new Goliat(otraCelda);
 		tanque1.atacar(tanque2, "tierra");
