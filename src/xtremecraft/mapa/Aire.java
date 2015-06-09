@@ -2,7 +2,7 @@ package xtremecraft.mapa;
 
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
-import xtremecraft.unidades.Unidad;
+//import xtremecraft.unidades.Unidad;
 
 
 public class Aire extends Terreno {
@@ -11,7 +11,7 @@ public class Aire extends Terreno {
 		super();
 	}
     
-    
+    /*
 	public boolean ocuparConUnidad(Unidad unidad) {
 		
 		if(!this.ocupada){
@@ -21,7 +21,7 @@ public class Aire extends Terreno {
 		}
 		
 		return false;
-	}
+	}*/
 	
 	public boolean ocuparConRecursoNatural(Recurso recursoNatural){
 		return false;

@@ -27,7 +27,7 @@ public class AireTest {
 		
 		Terreno terreno=new Aire();
 		Unidad goliat= new Goliat(terreno);
-		terreno.ocuparConUnidad(goliat);
+		terreno.ubicar(goliat);
 		assertTrue(terreno.estaOcupada());
 		
 	}
@@ -37,7 +37,7 @@ public class AireTest {
 		
 		Terreno terreno=new Aire();
 		Unidad marine= new Marine(terreno);
-		terreno.ocuparConUnidad(marine);
+		terreno.ubicar(marine);
 		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
 		int vida = unidad.getVida();
 		 

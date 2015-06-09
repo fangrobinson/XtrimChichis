@@ -27,7 +27,7 @@ public class TierraTest {
 		
 		Terreno terreno=new Tierra();
 		Unidad goliat= new Goliat(terreno);
-		terreno.ocuparConUnidad(goliat);
+		terreno.ubicar(goliat);
 		
 		assertTrue(terreno.estaOcupada());
 		
@@ -39,7 +39,7 @@ public class TierraTest {
 		Terreno terreno=new Tierra();
 		Unidad goliat= new Goliat(terreno);	
 	
-		terreno.ocuparConUnidad(goliat);
+		terreno.ubicar(goliat);
 		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
 		int vida = unidad.getVida();
 		

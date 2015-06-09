@@ -2,7 +2,7 @@ package xtremecraft.mapa;
 
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
-import xtremecraft.unidades.Unidad;
+//import xtremecraft.unidades.Unidad;
 
 public abstract class Terreno {
 	
@@ -15,7 +15,7 @@ public abstract class Terreno {
 		this.ocupada = false;
 	}
 	
-	public abstract boolean ocuparConUnidad(Unidad unidad);
+	//public abstract boolean ocuparConUnidad(Unidad unidad);
 	
 	public abstract boolean ocuparConRecursoNatural(Recurso recursoNatural);
 	
@@ -38,10 +38,10 @@ public abstract class Terreno {
 	}*/
 		
 	//Para que esta esto???
-	public boolean ocuparTerrenoConUnidad(Unidad unidad){
+	/*public boolean ocuparTerrenoConUnidad(Unidad unidad){
 
 		return this.ocuparConUnidad(unidad);
-	}
+	}*/
 
 	public abstract boolean ubicar(Ubicable ubicable);
 
