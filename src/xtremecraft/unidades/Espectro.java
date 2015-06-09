@@ -4,7 +4,7 @@ import xtremecraft.mapa.Terreno;
 
 public class Espectro extends UnidadAerea{
 
-	protected Espectro(Terreno terreno) {
+	public Espectro(Terreno terreno) {
 		super(terreno);
 		this.vitalidad = new BarraDeVitalidad(120);
 		this.daño = new Danio (20,8);

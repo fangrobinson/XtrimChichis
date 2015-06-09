@@ -6,8 +6,11 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
+import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
+import xtremecraft.unidades.NaveCiencia;
+import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelarTest {
 	
@@ -77,7 +80,7 @@ public class PuertoEstelarTest {
 	}
 	
 	@Test
-	public void entrenarGoliatDevuelveNuevaUnidadMarine(){
+	public void entrenarGoliatDevuelveNuevaUnidadGoliat(){
 		
 		int fila = 1;
 		int columna = 2;
@@ -89,6 +92,54 @@ public class PuertoEstelarTest {
 		Goliat unGoliat = puertoEstelar.entrenarGoliat(unTerreno);
 		
 		assertEquals(unGoliat.getVida(),125);
+		
+	}
+	
+	@Test
+	public void crearEspectroDevuelveUnaNuevaUnidadEspectro(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terran razaTerran = new Terran();
+		Tierra unTerreno = new Tierra(4,4); 
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
+		Espectro unEspectro = puertoEstelar.crearEspectro(unTerreno);
+		
+		assertEquals(unEspectro.getVida(),120);
+		
+	}
+	
+	@Test
+	public void crearNaveCienciaDevuelveNuevaUnidadNaveCiencia(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terran razaTerran = new Terran();
+		Tierra unTerreno = new Tierra(4,4); 
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
+		NaveCiencia nave = puertoEstelar.crearNaveCiencia(unTerreno);
+		
+		assertEquals(nave.getVida(),200);
+		
+	}
+	
+	@Test
+	public void crearNaveTransporteCreaNuevaUnidadNaveTransporte(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terran razaTerran = new Terran();
+		Tierra unTerreno = new Tierra(4,4); 
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
+		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(unTerreno);
+		
+		assertEquals(naveTransporte.getVida(),150);
 		
 	}
 

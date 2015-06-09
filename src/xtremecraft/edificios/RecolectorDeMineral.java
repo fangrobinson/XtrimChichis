@@ -18,6 +18,19 @@ public class RecolectorDeMineral extends Recolector{
 		this.reservas += this.minaDeMinerales.explotar(this.aumentoDeReservaEnTurno);
 		
 	}
+
+	public boolean puedeUbicarseEnTierra() {
+		
+		return true;
+		
+	}
+
+	
+	public boolean puedeUbicarseEnAire() {
+		
+		return false;
+		
+	}
 	
 
 }
