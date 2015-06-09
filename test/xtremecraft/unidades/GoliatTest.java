@@ -11,7 +11,7 @@ public class GoliatTest {
 	
 	@Test
 	public void goliatInicializadoConVidaCompleta(){
-		Terreno celda=new Tierra();
+		Terreno celda = new Tierra(1,1);
 		Goliat tanque1 = new Goliat(celda);
 		
 		assertEquals(tanque1.getVida(),125);
@@ -19,7 +19,7 @@ public class GoliatTest {
 	
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
-		Terreno celda=new Tierra();
+		Terreno celda = new Tierra(1,1);
 		Goliat tanque1 = new Goliat(celda);
 		
 		assertEquals(tanque1.getRadioVision(),8);
@@ -27,10 +27,10 @@ public class GoliatTest {
 	
 	@Test
 	public void siUnGoliatAtacaAOtroPorAireLeSacaDiezDeVida(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno unTerreno = new Tierra(1,1);
+		Terreno otroTerreno = new Tierra(1,2);
+		Goliat tanque1 = new Goliat(unTerreno);
+		Goliat tanque2 = new Goliat(otroTerreno);
 		
 		tanque1.atacar(tanque2, "aire");
 		
@@ -39,10 +39,10 @@ public class GoliatTest {
 
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraLeSacaDoceDeVida(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno unTerreno = new Tierra(1,1);
+		Terreno otroTerreno = new Tierra(1,2);
+		Goliat tanque1 = new Goliat(unTerreno);
+		Goliat tanque2 = new Goliat(otroTerreno);
 		
 		tanque1.atacar(tanque2, "tierra");
 		
@@ -52,10 +52,10 @@ public class GoliatTest {
 	
 	@Test
 	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno unTerreno = new Tierra(1,1);
+		Terreno otroTerreno = new Tierra(1,10);
+		Goliat tanque1 = new Goliat(unTerreno);
+		Goliat tanque2 = new Goliat(otroTerreno);
 		
 		tanque1.atacar(tanque2, "tierra");
 		
@@ -65,10 +65,10 @@ public class GoliatTest {
 	
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno unTerreno = new Tierra(1,1);
+		Terreno otroTerreno = new Tierra(1,2);
+		Goliat tanque1 = new Goliat(unTerreno);
+		Goliat tanque2 = new Goliat(otroTerreno);
 		
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2, "tierra");
@@ -79,22 +79,22 @@ public class GoliatTest {
 	
 
 	@Test(expected = IllegalArgumentException.class)
-	public void siIntentoCrearUnaUnidadEnUnaCeldaOcupadaSeLanzaExcepcion(){
+	public void siIntentoCrearUnaUnidadEnunTerrenoOcupadaSeLanzaExcepcion(){
 		
-		Terreno unaCelda=new Tierra();
-		Goliat unGoliat = new Goliat(unaCelda);
-		unaCelda.ubicar(unGoliat);
+		Terreno unTerreno = new Tierra(1,1);
+		Goliat unGoliat = new Goliat(unTerreno);
+		unTerreno.ubicar(unGoliat);
 		@SuppressWarnings("unused")
-		Goliat otroGoliat = new Goliat(unaCelda);
+		Goliat otroGoliat = new Goliat(unTerreno);
 	}	
 	
 	@Test
 	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terreno unaCelda=new Tierra();
-		Terreno otraCelda=new Tierra();
-		Goliat unGoliat = new Goliat(unaCelda);
-		unGoliat.moverACelda(otraCelda);
+		Terreno unTerreno = new Tierra(1,1);
+		Terreno otroTerreno = new Tierra(1,2);
+		Goliat unGoliat = new Goliat(unTerreno);
+		unGoliat.moverACelda(otroTerreno);
 		
 		assertEquals(unGoliat.getUbicacionActual().columna(),2);
 		assertEquals(unGoliat.getUbicacionActual().fila(),1);
