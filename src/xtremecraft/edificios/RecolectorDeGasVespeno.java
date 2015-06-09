@@ -18,5 +18,19 @@ public class RecolectorDeGasVespeno extends Recolector {
 		this.reservas += this.volcan.explotar(this.aumentoDeReservaEnTurno);
 		
 	}
+
+	
+	public boolean puedeUbicarseEnTierra() {
+		
+		return true;
+		
+	}
+
+
+	public boolean puedeUbicarseEnAire() {
+		
+		return false;
+		
+	}
 		
 }

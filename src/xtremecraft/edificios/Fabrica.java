@@ -55,22 +55,23 @@ public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
 		
 	}
 
-	@Override
-	public void actualizarUbicacion(int columna, int fila) {
-		// TODO Auto-generated method stub
+	public void actualizarUbicacion(Terreno terreno) {
+		
+		this.barracaBase.actualizarUbicacion(terreno);
 		
 	}
 
-	@Override
+
 	public boolean puedeUbicarseEnTierra() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
+		
 	}
 
-	@Override
 	public boolean puedeUbicarseEnAire() {
-		// TODO Auto-generated method stub
+		
 		return false;
+		
 	}
 
 	

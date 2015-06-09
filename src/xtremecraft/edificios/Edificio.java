@@ -3,6 +3,7 @@ package xtremecraft.edificios;
 import xtremecraft.interfaces.Atacable;
 import xtremecraft.interfaces.Ubicable;
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.BarraDeVitalidad;
 
 
@@ -36,7 +37,12 @@ abstract class Edificio implements Ubicable,Atacable {
 		
 	}
 
-	
-	
+
+	public void actualizarUbicacion(Terreno terreno) {
+		
+		this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
+		
+	}
+
 	
 }

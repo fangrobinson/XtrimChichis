@@ -57,45 +57,45 @@ public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Ata
 		
 	}
 	
-	public Espectro entrenarEspectro(Terreno unTerreno){
+	public Espectro crearEspectro(Terreno unTerreno){
 		
 		return new Espectro(unTerreno);
 		
 	}
 	
 
-	public NaveCiencia entrenarNaveCiencia(Terreno unTerreno){
+	public NaveCiencia crearNaveCiencia(Terreno unTerreno){
 		
 		return new NaveCiencia(unTerreno);
 		
 	}
 	
 
-	public NaveTransporte entrenarNaveTransporte(Terreno unTerreno){
+	public NaveTransporte crearNaveTransporte(Terreno unTerreno){
 		
 		return new NaveTransporte(unTerreno);
 		
 	}
 
 
-	@Override
-	public void actualizarUbicacion(int columna, int fila) {
-		// TODO Auto-generated method stub
+	public void actualizarUbicacion(Terreno terreno) {
+		
+		this.fabricaBase.actualizarUbicacion(terreno);
 		
 	}
 
 
-	@Override
 	public boolean puedeUbicarseEnTierra() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
+		
 	}
 
 
-	@Override
 	public boolean puedeUbicarseEnAire() {
-		// TODO Auto-generated method stub
+		
 		return false;
+		
 	}
 
 
