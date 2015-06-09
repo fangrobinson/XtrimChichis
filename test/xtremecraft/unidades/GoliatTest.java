@@ -98,14 +98,13 @@ public class GoliatTest {
 		Terreno unaCelda=new Tierra(1,4);
 		Terreno otraCelda=new Tierra(2,3);
 		Goliat unGoliat = new Goliat(unaCelda);
-		unGoliat.moverACelda(otraCelda);
+		unGoliat.actualizarUbicacion(otraCelda);
 
 		assertEquals(unGoliat.getUbicacionActual().columna(),2);
 		assertEquals(unGoliat.getUbicacionActual().fila(),1);
 		
 		
 	}
-
 
 }
 

@@ -84,7 +84,7 @@ public class MarineTest {
 		Terreno unTerreno = new Tierra(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
 		Marine miniSamus = new Marine(unTerreno);
-		miniSamus.moverACelda(otroTerreno);
+		miniSamus.actualizarUbicacion(otroTerreno);
 		
 		assertEquals(miniSamus.getUbicacionActual().columna(),2);
 		assertEquals(miniSamus.getUbicacionActual().fila(),1);

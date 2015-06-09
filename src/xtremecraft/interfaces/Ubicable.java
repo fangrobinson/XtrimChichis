@@ -1,12 +1,13 @@
 package xtremecraft.interfaces;
 
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.mapa.Terreno;
 
 public interface Ubicable {
 	
 	public Coordenada getUbicacionActual();
 	
-	public void actualizarUbicacion(int columna, int fila);
+	public void actualizarUbicacion(Terreno terreno);
 	
 	public boolean puedeUbicarseEnTierra();
 	

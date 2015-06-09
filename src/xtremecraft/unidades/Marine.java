@@ -11,4 +11,15 @@ public class Marine extends Unidad{
 		this.daño = new Daño (6,6);
 		this.vision = 7;
 	}
+
+	@Override
+	public boolean puedeUbicarseEnTierra() {
+		return true;
+	}
+
+	@Override
+	public boolean puedeUbicarseEnAire() {
+		return false;
+	}
+
 }

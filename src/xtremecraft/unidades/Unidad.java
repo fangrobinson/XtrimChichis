@@ -12,11 +12,11 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	int vision;
 	Coordenada coordenadas;
 	
-	protected Unidad(Terreno celda){
-		if(celda.estaOcupada()){
+	protected Unidad(Terreno terreno){
+		if(terreno.estaOcupada()){
 			throw new IllegalArgumentException();
 		}
-		this.coordenadas = new Coordenada(celda.getCoordenada().columna(),celda.getCoordenada().fila());
+		actualizarUbicacion(terreno);
 	}
 	
     public void recibirDanio(int daño){
@@ -65,11 +65,9 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	
     }
     
-    public void moverACelda(Terreno celdaDestino){
-    	    	
-    	this.coordenadas.nuevaFila(celdaDestino.getCoordenada().fila());
-    	this.coordenadas.nuevaColumna(celdaDestino.getCoordenada().columna());
-    	
-    }
+    public void actualizarUbicacion(Terreno terreno) {
+    	this.coordenadas = new Coordenada(terreno.columna(),terreno.fila());
+		
+	}
 
 }
