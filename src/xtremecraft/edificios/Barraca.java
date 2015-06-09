@@ -27,5 +27,23 @@ public class Barraca extends Edificio implements CreadorDeMarines{
 		return new Marine(unTerreno);
 		
 	}
+
+	@Override
+	public void actualizarUbicacion(int columna, int fila) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean puedeUbicarseEnTierra() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean puedeUbicarseEnAire() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

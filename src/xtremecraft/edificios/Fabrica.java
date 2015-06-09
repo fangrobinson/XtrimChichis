@@ -55,5 +55,23 @@ public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
 		
 	}
 
+	@Override
+	public void actualizarUbicacion(int columna, int fila) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean puedeUbicarseEnTierra() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean puedeUbicarseEnAire() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }
