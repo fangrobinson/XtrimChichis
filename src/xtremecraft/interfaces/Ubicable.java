@@ -6,9 +6,9 @@ public interface Ubicable {
 	
 	public Coordenada getUbicacionActual();
 	
-	public void actualizarUbicacion();
+	public void actualizarUbicacion(int columna, int fila);
 	
-	public boolean puedeUbicarseEnTierra(int columna, int fila);
+	public boolean puedeUbicarseEnTierra();
 	
 	public boolean puedeUbicarseEnAire();
 
