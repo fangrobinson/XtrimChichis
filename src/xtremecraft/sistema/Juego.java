@@ -13,7 +13,7 @@ public class Juego {
 	
 	public void pasarTiempo(){
 		this.tiempo = this.tiempo + 1;
-		this.mapa.pasarTiempo();
+		//this.mapa.pasarTiempo();
 	}
 	
 	public int tiempo(){
