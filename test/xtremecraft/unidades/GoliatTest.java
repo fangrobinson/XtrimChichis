@@ -100,8 +100,8 @@ public class GoliatTest {
 		Goliat unGoliat = new Goliat(unaCelda);
 		unGoliat.actualizarUbicacion(otraCelda);
 
-		assertEquals(unGoliat.getUbicacionActual().columna(),2);
-		assertEquals(unGoliat.getUbicacionActual().fila(),1);
+		assertEquals(unGoliat.getUbicacionActual().columna(),3);
+		assertEquals(unGoliat.getUbicacionActual().fila(),2);
 		
 		
 	}

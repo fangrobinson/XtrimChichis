@@ -1,10 +1,10 @@
 package xtremecraft.unidades;
 
-public class Daño {
+public class Danio {
 	int aire;
 	int tierra;
 
-	public Daño(int dañoAire, int dañoTierra){
+	public Danio(int dañoAire, int dañoTierra){
 		this.aire = dañoAire;
 		this.tierra = dañoTierra;
 	}

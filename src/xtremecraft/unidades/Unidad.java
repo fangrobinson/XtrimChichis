@@ -8,7 +8,7 @@ import xtremecraft.mapa.Coordenada;
 
 public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	BarraDeVitalidad vitalidad;
-	Daño daño;
+	Danio daño;
 	int vision;
 	Coordenada coordenadas;
 	
@@ -66,7 +66,8 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     }
     
     public void actualizarUbicacion(Terreno terreno) {
-    	this.coordenadas = new Coordenada(terreno.columna(),terreno.fila());
+    	
+    	this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
 		
 	}
 
