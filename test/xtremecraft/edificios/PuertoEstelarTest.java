@@ -6,11 +6,12 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
-import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Marine;
 
-public class FabricaTest {
+public class PuertoEstelarTest {
 	
+
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
@@ -19,9 +20,10 @@ public class FabricaTest {
 		int columna = 2;
 		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
 		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
 		
-		assertEquals(unaFabrica.getUbicacionActual().fila(),1);
-		assertEquals(unaFabrica.getUbicacionActual().columna(),2);
+		assertEquals(puertoEstelar.getUbicacionActual().fila(),1);
+		assertEquals(puertoEstelar.getUbicacionActual().columna(),2);
 		
 	}
 	
@@ -33,8 +35,9 @@ public class FabricaTest {
 		int columna = 2;
 		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
 		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
 		
-		assertEquals(unaFabrica.getVida(),100);
+		assertEquals(puertoEstelar.getVida(),100);
 		
 	}
 	
@@ -46,13 +49,14 @@ public class FabricaTest {
 		int columna = 2;
 		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
 		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
 		int valorDanio = 30;
 		
-		unaFabrica.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),70);
+		puertoEstelar.recibirDanio(valorDanio);
+		assertEquals(puertoEstelar.getVida(),70);
 		
-		unaFabrica.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),40);
+		puertoEstelar.recibirDanio(valorDanio);
+		assertEquals(puertoEstelar.getVida(),40);
 		
 	}
 	
@@ -65,7 +69,8 @@ public class FabricaTest {
 		Tierra unTerreno = new Tierra(4,4); 
 		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
 		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
-		Marine nuevoMarine =unaFabrica.entrenarMarine(unTerreno);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
+		Marine nuevoMarine =puertoEstelar.entrenarMarine(unTerreno);
 		
 		assertEquals(nuevoMarine.getVida(),40);
 		
@@ -80,10 +85,12 @@ public class FabricaTest {
 		Tierra unTerreno = new Tierra(4,4); 
 		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
 		Fabrica unaFabrica = Fabrica.nuevaFabrica(unaBarraca);
-		Goliat unGoliat =unaFabrica.entrenarGoliat(unTerreno);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(unaFabrica);
+		Goliat unGoliat = puertoEstelar.entrenarGoliat(unTerreno);
 		
 		assertEquals(unGoliat.getVida(),125);
 		
 	}
+
 
 }

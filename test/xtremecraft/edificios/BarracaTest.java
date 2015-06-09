@@ -10,6 +10,20 @@ import xtremecraft.unidades.Marine;
 
 public class BarracaTest {
 	
+
+	@Test
+	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
+		
+		Terran nuevoClanTerran=new Terran();
+		int fila = 1;
+		int columna = 2;
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
+		
+		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
+		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
+		
+	}
+	
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		

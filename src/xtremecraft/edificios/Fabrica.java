@@ -1,14 +1,19 @@
 package xtremecraft.edificios;
 
+import xtremecraft.interfaces.Atacable;
+import xtremecraft.interfaces.Ubicable;
+import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
 
-public class Fabrica extends BarracaDecorator{
+public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
+	
+	Barraca barracaBase;
 
-	protected Fabrica(Barraca unaBarraca) {
+	protected Fabrica(Barraca unaBarraca){
 		
-		super(unaBarraca);
+		this.barracaBase = unaBarraca;
 
 	}
 	
@@ -19,32 +24,36 @@ public class Fabrica extends BarracaDecorator{
 		
 	}
 
-	public Object getVida() {
+	public int getVida(){
 		
-		return this.getBarracaBase().getVida();
+		return this.barracaBase.getVida();
 		
 	}
 
-	public void recibirDanio(int valorDanio) {
+	public void recibirDanio(int valorDanio){
 		
-		this.getBarracaBase().recibirDanio(valorDanio);
+		this.barracaBase.recibirDanio(valorDanio);
 		
 	}
 
 
 	public Marine entrenarMarine(Terreno unTerreno){
 		
-		return this.getBarracaBase().entrenarMarine(unTerreno);
+		return this.barracaBase.entrenarMarine(unTerreno);
 		
 	}
 	
-	public Goliat entrenarGoliat(Terreno unTerreno) {
+	public Goliat entrenarGoliat(Terreno unTerreno){
 		
 		return new Goliat(unTerreno);
 		
 	}
-
-
+	
+	public Coordenada getUbicacionActual(){
+		
+		return this.barracaBase.getUbicacionActual();
+		
+	}
 
 	
 }
