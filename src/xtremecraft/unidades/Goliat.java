@@ -8,7 +8,7 @@ public class Goliat extends UnidadTerrestre {
 	public Goliat(Terreno terreno){
 		super(terreno);
 		this.vitalidad = new BarraDeVitalidad(125);
-		this.daño = new Danio (10,12);
+		this.danio = new Danio (10,12);
 		this.vision = 8;
 		this.tiempoConstruccion = 6;
 		

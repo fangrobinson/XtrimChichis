@@ -43,9 +43,9 @@ public class EdificacionEnConstruccion implements Atacable {
 		return this.listo;
 	}
 	
-	public Edificio terminarConstruccion(){
+	public Edificio terminarConstruccion() throws NoEstaListoException{
 		if(!this.listo){
-			
+			throw new NoEstaListoException("No ha pasado el tiempo suficiente para terminar la construccion.");
 		}
 		return this.edificio;
 	}

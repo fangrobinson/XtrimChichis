@@ -1,5 +1,6 @@
 package xtremecraft.unidades;
 
+import xtremecraft.interfaces.Atacable;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.UnidadAerea;
 
@@ -12,7 +13,7 @@ public class NaveCiencia extends UnidadAerea{
 		
 		super(terreno);
 		this.vitalidad = new BarraDeVitalidad(200);
-		this.daño = new Danio(0,0);
+		this.danio = new Danio(0,0);
 		this.vision = 10;
 		this.energia = 50;
 		this.aumentoDeEnergiaEnTurno = 10;

@@ -4,6 +4,6 @@ package xtremecraft.interfaces;
 
 public interface Defendible {
 	
-	 public void atacar (Atacable atacado, String medio);
+	 public void atacar (Atacable atacado);
 
 }

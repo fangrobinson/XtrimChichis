@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -32,13 +33,13 @@ public class MarineTest {
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 
 		Terreno unTerreno = new Tierra(1,2);
-		Terreno otroTerreno = new Tierra(1,3);
+		Terreno otroTerreno = new Aire(1,3);
 		Marine miniSamus = new Marine(unTerreno);
-		Marine miniMasterChief = new Marine(otroTerreno);
+		Espectro miniMasterChief = new Espectro(otroTerreno);
 		
-		miniSamus.atacar(miniMasterChief, "aire");
+		miniSamus.atacar(miniMasterChief);
 		
-		assertEquals(miniMasterChief.vitalidad.devolverValor(), 34);
+		assertEquals(miniMasterChief.vitalidad.devolverValor(), 114);
 	}
 	
 	@Test
@@ -49,7 +50,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(unTerreno);
 		Marine miniMasterChief = new Marine(otroTerreno);
 		
-		miniSamus.atacar(miniMasterChief, "tierra");
+		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(), 34);
 	}
@@ -62,7 +63,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(unTerreno);
 		Marine miniMasterChief = new Marine(otroTerreno);
 		
-		miniSamus.atacar(miniMasterChief, "tierra");
+		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(),40);
 	}
