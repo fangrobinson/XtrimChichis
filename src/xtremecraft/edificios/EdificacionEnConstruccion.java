@@ -19,8 +19,8 @@ public class EdificacionEnConstruccion implements Atacable {
 	}
 	
 	@Override
-	public void recibirDanio(int daño) {
-		// TODO Auto-generated method stub
+	public void recibirDanio(int danio) {
+		this.vida.recibirAtaque(danio);
 		
 	}
 	@Override
