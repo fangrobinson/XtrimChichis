@@ -25,5 +25,14 @@ public class JuegoTest {
 		assertTrue(tiempo > 0);
 	}
 	
+	@Test
+	public void pasoElTiempoYAvanzaLaCreacionDeUnaConstruccion(){
+		Juego juego = new Juego(2);
+		
+		juego.pasarTiempo();
+		
+		
+	}
+	
 	
 }

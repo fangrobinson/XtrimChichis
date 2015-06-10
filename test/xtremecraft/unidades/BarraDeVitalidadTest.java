@@ -30,4 +30,33 @@ public class BarraDeVitalidadTest {
 		vida.recibirAtaque(40);
 		assertEquals(vida.devolverValor(), 0);
 	}
+	
+	@Test
+	public void alRegenerarBarraLaVidaAumentaEnEseValor(){
+		int vidaInicial = 100;
+		int danio = 40; 
+		int curacion = 30;
+		int valorEsperado = vidaInicial - danio + curacion;
+		BarraDeVitalidad vida = new BarraDeVitalidad(vidaInicial);
+
+		vida.recibirAtaque(danio);
+		vida.regenerar(curacion);
+		
+		assertEquals(vida.devolverValor(), valorEsperado);
+	}
+	
+	@Test
+	public void regerarNoPuedeCurarMasAllaDeLaVidaMax(){
+		int vidaInicial = 100;
+		int danio = 40; 
+		int curacion = 60;
+		int valorEsperado = vidaInicial;
+		BarraDeVitalidad vida = new BarraDeVitalidad(vidaInicial);
+
+		vida.recibirAtaque(danio);
+		vida.regenerar(curacion);
+		
+		assertEquals(vida.devolverValor(), valorEsperado);
+	}
+	
 }
