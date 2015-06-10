@@ -5,12 +5,13 @@ import xtremecraft.recursos.VolcanGasVespeno;
 public class RecolectorDeGasVespeno extends Recolector {
 	
 	private VolcanGasVespeno volcan;
+	private static int tiempoDeConstruccion = 6;
 	
 	protected RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, int fila, int columna){
 		
 		super(fila,columna);
 		this.volcan = unVolcanDeGasVespeno;
-		this.tiempoConstruccion = 6; 
+		this.tiempoConstruccion = tiempoDeConstruccion; 
 		
 	}
 

@@ -6,12 +6,13 @@ import xtremecraft.unidades.Goliat;
 
 public class Fabrica extends Edificio{
 	
-	static int vida = 100;
+	private static int vida = 100;
+	private static int tiempoDeConstruccion = 12;
 	
 	protected Fabrica(int fila, int columna){
 		
 		super(fila,columna,vida);
-		this.tiempoConstruccion = 12;
+		this.tiempoConstruccion = tiempoDeConstruccion;
 
 	}
 	

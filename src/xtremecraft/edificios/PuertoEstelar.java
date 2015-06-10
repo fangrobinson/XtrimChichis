@@ -8,12 +8,13 @@ import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelar extends Edificio{
 	
-	static int vida = 100;
+	private static int vida = 100;
+	private static int tiempoDeConstruccion = 10;
 	
 	protected PuertoEstelar(int fila, int columna){
 		
 		super(fila,columna,vida);
-		this.tiempoConstruccion = 10;
+		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
 	

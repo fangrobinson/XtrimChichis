@@ -7,11 +7,12 @@ import xtremecraft.unidades.Marine;
 public class Barraca extends Edificio{
 	
 	public static int vida = 100;
+	public static int tiempoDeConstruccion = 12;
 	
 	private Barraca(int fila,int columna){
 		
 		super(fila,columna,vida);
-		this.tiempoConstruccion = 12;
+		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
 
@@ -33,6 +34,7 @@ public class Barraca extends Edificio{
 	public boolean puedeUbicarseEnTierra() {
 
 		return true;
+		
 	}
 
 	public boolean puedeUbicarseEnAire() {

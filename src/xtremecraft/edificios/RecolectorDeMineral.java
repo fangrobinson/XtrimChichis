@@ -5,12 +5,13 @@ import xtremecraft.recursos.MinaDeMinerales;
 public class RecolectorDeMineral extends Recolector{
 
 	private MinaDeMinerales minaDeMinerales;
+	private static int tiempoDeConstruccion = 4;
 
 	protected RecolectorDeMineral(MinaDeMinerales unaMinaDeMinerales, int fila, int columna) {
 		
 		super(fila, columna);
 		this.minaDeMinerales = unaMinaDeMinerales;
-		this.tiempoConstruccion = 4;
+		this.tiempoConstruccion = tiempoDeConstruccion;
 	
 	}
 	

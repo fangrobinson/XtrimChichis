@@ -38,7 +38,6 @@ abstract class Edificio implements Ubicable,Atacable {
 		
 	}
 
-
 	public void actualizarUbicacion(Terreno terreno) {
 		
 		this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
@@ -52,7 +51,9 @@ abstract class Edificio implements Ubicable,Atacable {
 	}
 
 	public int vidaMax(){
+		
 		return this.vida.vidaMax();
+		
 	}
 	
 }
