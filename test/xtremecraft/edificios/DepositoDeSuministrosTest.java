@@ -8,11 +8,9 @@ import org.junit.Test;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
-import xtremecraft.unidades.Marine;
 
-public class BarracaTest {
+public class DepositoDeSuministrosTest {
 	
-
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
@@ -20,10 +18,10 @@ public class BarracaTest {
 		int columna = 2;
 		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
 		
-		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
-		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
+		assertEquals(deposito.getUbicacionActual().fila(),1);
+		assertEquals(deposito.getUbicacionActual().columna(),2);
 		
 	}
 	
@@ -34,9 +32,9 @@ public class BarracaTest {
 		int columna = 2;
 		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
 		
-		assertEquals(unaBarraca.getVida(),100);
+		assertEquals(deposito.getVida(),100);
 		
 	}
 	
@@ -47,9 +45,9 @@ public class BarracaTest {
 		int columna = 2;
 		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
 		
-		assertFalse(unaBarraca.estaElevado());
+		assertFalse(deposito.estaElevado());
 		
 	}
 	
@@ -60,29 +58,17 @@ public class BarracaTest {
 		int columna = 2;
 		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
 		int valorDanio = 30;
 		
-		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),70);
+		deposito.recibirDanio(valorDanio);
+		assertEquals(deposito.getVida(),70);
 		
-		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),40);
+		deposito.recibirDanio(valorDanio);
+		assertEquals(deposito.getVida(),40);
 		
 	}
 	
-	@Test
-	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 
-		int fila = 1;
-		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
-		Terreno tierra = new Tierra(fila,columna);
-		Terreno otraTierra = new Tierra(1,1);
-		Marine nuevoMarine = Barraca.nuevaBarraca(nuevoClanTerran,tierra).entrenarMarine(otraTierra);
-		
-		assertEquals(nuevoMarine.getVida(),40);
-		
-	}
 
 }

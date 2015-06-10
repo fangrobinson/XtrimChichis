@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -36,6 +37,20 @@ public class FabricaTest {
 		
 		assertEquals(fabrica.getUbicacionActual().fila(),3);
 		assertEquals(fabrica.getUbicacionActual().columna(),4);
+		
+	}
+	
+	@Test
+	public void edificioEstaElevadoDevuelveFalseParaEdificiosCreadosEnTierra(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unaTierra = new Tierra(1,2);
+		Terreno otraTierra = new Tierra(3,4);
+		@SuppressWarnings("unused")
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
+		
+		assertFalse(fabrica.estaElevado());
 		
 	}
 	

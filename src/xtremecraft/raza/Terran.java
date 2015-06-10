@@ -122,6 +122,6 @@ public class Terran{
 		return ! ( this.fabricas.isEmpty() );
 		
 	}
-	
+
 
 }
