@@ -16,6 +16,7 @@ public class NaveCiencia extends UnidadAerea{
 		this.vision = 10;
 		this.energia = 50;
 		this.aumentoDeEnergiaEnTurno = 10;
+		this.tiempoConstruccion = 10;
 		
 	}
 

@@ -10,6 +10,7 @@ public class Marine extends UnidadTerrestre{
 		this.vitalidad = new BarraDeVitalidad(40);
 		this.daño = new Danio (6,6);
 		this.vision = 7;
+		this.tiempoConstruccion = 3;
 	}
 
 }

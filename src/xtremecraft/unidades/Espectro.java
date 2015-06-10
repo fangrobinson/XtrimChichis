@@ -9,6 +9,7 @@ public class Espectro extends UnidadAerea{
 		this.vitalidad = new BarraDeVitalidad(120);
 		this.daño = new Danio (20,8);
 		this.vision = 7;
+		this.tiempoConstruccion = 8;
 	}
 
 }

@@ -11,6 +11,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	Danio daño;
 	int vision;
 	Coordenada coordenadas;
+	int tiempoConstruccion;
 	
 	protected Unidad(Terreno terreno){
 		if(terreno.estaOcupada()){
