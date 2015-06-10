@@ -10,6 +10,7 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 		super(fila,columna);
 		this.volcan = unVolcanDeGasVespeno;
+		this.tiempoConstruccion = 6; 
 		
 	}
 

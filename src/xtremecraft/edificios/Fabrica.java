@@ -11,6 +11,7 @@ public class Fabrica extends Edificio{
 	protected Fabrica(int fila, int columna){
 		
 		super(fila,columna,vida);
+		this.tiempoConstruccion = 12;
 
 	}
 	

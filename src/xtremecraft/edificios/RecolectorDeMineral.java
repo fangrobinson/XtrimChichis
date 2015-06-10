@@ -10,6 +10,7 @@ public class RecolectorDeMineral extends Recolector{
 		
 		super(fila, columna);
 		this.minaDeMinerales = unaMinaDeMinerales;
+		this.tiempoConstruccion = 4;
 	
 	}
 	

@@ -11,6 +11,7 @@ public class Barraca extends Edificio{
 	private Barraca(int fila,int columna){
 		
 		super(fila,columna,vida);
+		this.tiempoConstruccion = 12;
 		
 	}
 

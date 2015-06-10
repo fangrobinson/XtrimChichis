@@ -13,6 +13,7 @@ public class PuertoEstelar extends Edificio{
 	protected PuertoEstelar(int fila, int columna){
 		
 		super(fila,columna,vida);
+		this.tiempoConstruccion = 10;
 		
 	}
 	
