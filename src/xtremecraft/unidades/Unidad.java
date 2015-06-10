@@ -60,6 +60,10 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	
     }
     
+    public int tiempoConstruccion(){
+    	return this.tiempoConstruccion;
+    }
+    
     public Coordenada getUbicacionActual(){
     	
     	return this.coordenadas;
