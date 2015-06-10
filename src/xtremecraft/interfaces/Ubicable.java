@@ -12,5 +12,7 @@ public interface Ubicable {
 	public boolean puedeUbicarseEnTierra();
 	
 	public boolean puedeUbicarseEnAire();
+	
+	public boolean estaElevado();
 
 }

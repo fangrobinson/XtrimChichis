@@ -44,7 +44,7 @@ abstract class Edificio implements Ubicable,Atacable {
 		
 	}
 	
-	public int getTiempoConstruccion(){
+	public int tiempoConstruccion(){
 		
 		return this.tiempoConstruccion;
 		
@@ -54,6 +54,10 @@ abstract class Edificio implements Ubicable,Atacable {
 		
 		return this.vida.vidaMax();
 		
+	}
+	
+	public boolean estaElevado(){
+		return false;
 	}
 	
 }

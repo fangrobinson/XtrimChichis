@@ -38,5 +38,10 @@ public class Aire extends Terreno {
     	}
     	return false;
     }
+
+	@Override
+	public boolean esElevado() {
+		return true;
+	}
 }
 
