@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 
 public class NaveTransporteTest {
 	
@@ -34,7 +35,7 @@ public class NaveTransporteTest {
 		Terreno otraterreno = new Aire(1,4);
 		NaveTransporte taxiVolador = new NaveTransporte(unaterreno);
 		NaveTransporte remisVolador = new NaveTransporte(otraterreno);
-		remisVolador.atacar(taxiVolador, "aire");
+		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
 	}
@@ -43,10 +44,10 @@ public class NaveTransporteTest {
 	public void siUnaNaveTransporteAtacaAOtroPorTierraLeSacaCeroDeVida(){
 
 		Terreno unaterreno=new Aire(1,2);
-		Terreno otraterreno=new Aire(2,3);
+		Terreno otraterreno=new Tierra(2,3);
 		NaveTransporte taxiVolador = new NaveTransporte(unaterreno);
 		NaveTransporte remisVolador = new NaveTransporte(otraterreno);
-		remisVolador.atacar(taxiVolador, "tierra");
+		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
 	}

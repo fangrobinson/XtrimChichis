@@ -8,7 +8,7 @@ import xtremecraft.mapa.Coordenada;
 
 public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	BarraDeVitalidad vitalidad;
-	Danio daño;
+	Danio danio;
 	int vision;
 	Coordenada coordenadas;
 	int tiempoConstruccion;
@@ -27,13 +27,15 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
         	
     }
     
-    public void atacar (Atacable atacado, String medio){
+    public void atacar (Atacable atacado){
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
-    		int daño = this.daño.devolverDaño(medio);
-        	atacado.recibirDanio(daño);		
+    		if (atacadoUbicado.estaElevado()){
+    			atacado.recibirDanio(this.danio.devolverDaño("aire"));
+    		}else{
+    			atacado.recibirDanio(this.danio.devolverDaño("tierra"));
+    		}			
     	}
-    	
     	
     }
     

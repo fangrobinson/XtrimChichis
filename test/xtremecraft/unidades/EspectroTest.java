@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 
 public class EspectroTest {
 	
@@ -21,7 +22,7 @@ public class EspectroTest {
 	@Test
 	public void EspectroGetVisionDevuelveRadioDeVisionDelEspectro(){
 
-		Terreno terreno=new Aire(1,2);
+		Terreno terreno = new Aire(1,2);
 		Espectro gengar = new Espectro(terreno);
 		
 		assertEquals(gengar.getRadioVision(),7);
@@ -34,7 +35,7 @@ public class EspectroTest {
 		Terreno otraterreno = new Aire(1,4);
 		Espectro gengar = new Espectro(unaterreno);
 		Espectro misdreavus = new Espectro(otraterreno);
-		gengar.atacar(misdreavus, "aire");
+		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),100);
 	}
@@ -43,10 +44,10 @@ public class EspectroTest {
 	public void siUnEspectroAtacaAOtroPorTierraLeSacaOchoDeVida(){
 
 		Terreno unaterreno=new Aire(1,2);
-		Terreno otraterreno=new Aire(2,3);
+		Terreno otraterreno=new Tierra(2,3);
 		Espectro gengar = new Espectro(unaterreno);
 		Espectro misdreavus = new Espectro(otraterreno);
-		gengar.atacar(misdreavus, "tierra");
+		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),112);
 	}
@@ -56,10 +57,10 @@ public class EspectroTest {
 	public void siUnEspectroAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
 		Terreno unaterreno=new Aire(1,4);
-		Terreno otraterreno=new Aire(10,10);
+		Terreno otraterreno=new Tierra(10,10);
 		Espectro gengar = new Espectro(unaterreno);
 		Espectro misdreavus = new Espectro(otraterreno);
-		gengar.atacar(misdreavus, "tierra");
+		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),120);
 	}
@@ -69,12 +70,12 @@ public class EspectroTest {
 	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 
 		Terreno unTerreno = new Aire(1,1);
-		Terreno otroTerreno = new Aire(1,2);
+		Terreno otroTerreno = new Tierra(1,2);
 		Espectro gengar = new Espectro(unTerreno);
 		Espectro misdreavus = new Espectro(otroTerreno);
 		
 		for (int i = 0; i < 16; i++){
-			gengar.atacar(misdreavus, "tierra");
+			gengar.atacar(misdreavus);
 		}
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(), 0);

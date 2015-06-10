@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -28,15 +29,15 @@ public class GoliatTest {
 	}
 	
 	@Test
-	public void siUnGoliatAtacaAOtroPorAireLeSacaDiezDeVida(){
+	public void siUnGoliatAtacaAUnEspectroPorAireLeSacaDiezDeVida(){
 
 		Terreno unaCelda=new Tierra(1,3);
-		Terreno otraCelda=new Tierra(1,4);
+		Terreno otraCelda=new Aire(1,4);
 		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
-		tanque1.atacar(tanque2, "aire");
+		Espectro tanque2 = new Espectro(otraCelda);
+		tanque1.atacar(tanque2);
 		
-		assertEquals(tanque2.vitalidad.devolverValor(),115);
+		assertEquals(tanque2.vitalidad.devolverValor(),110);
 	}
 
 	@Test
@@ -46,7 +47,7 @@ public class GoliatTest {
 		Terreno otraCelda=new Tierra(2,3);
 		Goliat tanque1 = new Goliat(unaCelda);
 		Goliat tanque2 = new Goliat(otraCelda);
-		tanque1.atacar(tanque2, "tierra");
+		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.devolverValor(),113);
 	}
@@ -59,7 +60,7 @@ public class GoliatTest {
 		Terreno otraCelda=new Tierra(10,10);
 		Goliat tanque1 = new Goliat(unaCelda);
 		Goliat tanque2 = new Goliat(otraCelda);
-		tanque1.atacar(tanque2, "tierra");
+		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.devolverValor(),125);
 	}
@@ -74,7 +75,7 @@ public class GoliatTest {
 		Goliat tanque2 = new Goliat(otroTerreno);
 		
 		for (int i = 0; i < 11; i++){
-			tanque1.atacar(tanque2, "tierra");
+			tanque1.atacar(tanque2);
 		}
 		
 		assertEquals(tanque2.vitalidad.devolverValor(), 0);
