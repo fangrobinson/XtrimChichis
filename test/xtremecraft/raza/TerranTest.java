@@ -8,7 +8,6 @@ import org.junit.Test;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
-import xtremecraft.edificios.Recolector;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Terreno;
@@ -34,7 +33,7 @@ public class TerranTest {
 		Terran razaTerran = new Terran();
 		MinaDeMinerales nodoMineral = new MinaDeMinerales(2);
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral nuevoCentroMineral = Recolector.nuevoRecolectorDeMineral(razaTerran, nodoMineral, tierra);
+		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(razaTerran, nodoMineral, tierra);
 		RecolectorDeMineral centroMineral= razaTerran.getListaDeRecolectoresDeMineralConstruidos().remove(0);
 		
 		assertEquals(centroMineral,nuevoCentroMineral);
@@ -61,7 +60,7 @@ public class TerranTest {
 		Terran razaTerran = new Terran();
 		VolcanGasVespeno volcanDeGasVespeno = new VolcanGasVespeno(200);
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno nuevaRefineria = Recolector.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,tierra);
+		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,tierra);
 		RecolectorDeGasVespeno refineriaTerranConstruida = razaTerran.getListaDeRecolectoresDeGasVespenoConstruidos().remove(0);
 		
 		assertEquals(nuevaRefineria,refineriaTerranConstruida);

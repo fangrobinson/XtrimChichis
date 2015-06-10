@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.recursos.VolcanGasVespeno;
 
 public class RecolectorDeGasVespeno extends Recolector {
@@ -33,6 +34,14 @@ public class RecolectorDeGasVespeno extends Recolector {
 	public boolean puedeUbicarseEnAire() {
 		
 		return false;
+		
+	}
+
+	public static RecolectorDeGasVespeno nuevoRecolectorDeGasVespeno(Terran razaTerran, VolcanGasVespeno volcan, Terreno terreno) {
+		
+		RecolectorDeGasVespeno nuevoRecolectorDeGasVespeno = new RecolectorDeGasVespeno(volcan,terreno);
+		razaTerran.agregarEdificioRecolectorDeGasVespeno(nuevoRecolectorDeGasVespeno);
+		return nuevoRecolectorDeGasVespeno;
 		
 	}
 		

@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
 
 public class RecolectorDeMineral extends Recolector{
@@ -32,6 +33,14 @@ public class RecolectorDeMineral extends Recolector{
 	public boolean puedeUbicarseEnAire() {
 		
 		return false;
+		
+	}
+
+	public static RecolectorDeMineral nuevoRecolectorDeMineral(Terran razaTerran,MinaDeMinerales nodoMineral, Terreno terreno){
+		
+		RecolectorDeMineral nuevoRecolectorDeMineral= new RecolectorDeMineral(nodoMineral,terreno);
+		razaTerran.agregarEdificioRecolectorDeMineral(nuevoRecolectorDeMineral);
+		return nuevoRecolectorDeMineral;
 		
 	}
 	
