@@ -12,6 +12,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	int vision;
 	Coordenada coordenadas;
 	int tiempoConstruccion;
+	boolean estaElevado;
 	
 	protected Unidad(Terreno terreno){
 		if(terreno.estaOcupada()){
@@ -73,7 +74,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     public void actualizarUbicacion(Terreno terreno) {
     	
     	this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
+    	this.estaElevado = terreno.esElevado();
 		
 	}
+    
+    public boolean estaElevado(){
+    	return this.estaElevado;
+    }
 
 }

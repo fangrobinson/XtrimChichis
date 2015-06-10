@@ -66,4 +66,9 @@ public class Tierra extends Terreno {
     	return false;
     }
 
+	@Override
+	public boolean esElevado() {
+		return false;
+	}
+
 }

@@ -53,4 +53,6 @@ public abstract class Terreno {
 
 	public abstract boolean ubicar(Ubicable ubicable);
 
+	public abstract boolean esElevado();
+
 }
