@@ -55,4 +55,8 @@ abstract class Edificio implements Ubicable,Atacable {
 		return this.vida.vidaMax();
 	}
 	
+	public boolean estaElevado(){
+		return false;
+	}
+	
 }
