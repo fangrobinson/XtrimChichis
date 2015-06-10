@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
@@ -14,10 +15,11 @@ public class BarracaTest {
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
-		Terran nuevoClanTerran=new Terran();
 		int fila = 1;
 		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
 		
 		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
 		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
@@ -27,10 +29,11 @@ public class BarracaTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terran nuevoClanTerran=new Terran();
 		int fila = 1;
 		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
 		
 		assertEquals(unaBarraca.getVida(),100);
 		
@@ -38,11 +41,12 @@ public class BarracaTest {
 	
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
-		
-		Terran nuevoClanTerran=new Terran();
+
 		int fila = 1;
 		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
 		int valorDanio = 30;
 		
 		unaBarraca.recibirDanio(valorDanio);
@@ -55,12 +59,13 @@ public class BarracaTest {
 	
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
-		
+
 		int fila = 1;
 		int columna = 2;
-		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
-		Marine nuevoMarine = Barraca.nuevaBarraca(razaTerran, fila, columna).entrenarMarine(unTerreno);
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Terreno otraTierra = new Tierra(1,1);
+		Marine nuevoMarine = Barraca.nuevaBarraca(nuevoClanTerran,tierra).entrenarMarine(otraTierra);
 		
 		assertEquals(nuevoMarine.getVida(),40);
 		

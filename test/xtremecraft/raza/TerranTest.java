@@ -33,9 +33,8 @@ public class TerranTest {
 		
 		Terran razaTerran = new Terran();
 		MinaDeMinerales nodoMineral = new MinaDeMinerales(2);
-		int fila = 3;
-		int columna = 4;
-		RecolectorDeMineral nuevoCentroMineral = Recolector.nuevoRecolectorDeMineral(razaTerran, nodoMineral, fila, columna);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral nuevoCentroMineral = Recolector.nuevoRecolectorDeMineral(razaTerran, nodoMineral, tierra);
 		RecolectorDeMineral centroMineral= razaTerran.getListaDeRecolectoresDeMineralConstruidos().remove(0);
 		
 		assertEquals(centroMineral,nuevoCentroMineral);
@@ -46,8 +45,8 @@ public class TerranTest {
 	public void agregarUnidadGuardaInstanciaDeLaUnidadCreada(){
 		
 		Terran razaTerran = new Terran();
-		Terreno celda=new Tierra(2,3);
-		Goliat nuevaUnidadGoliat = new Goliat(celda);
+		Terreno tierra =new Tierra(2,3);
+		Goliat nuevaUnidadGoliat = new Goliat(tierra);
 		razaTerran. agregarUnidad(nuevaUnidadGoliat);
 		Unidad unidadGoliat= razaTerran.getListaDeUnidadesCreadas().remove(0);
 		
@@ -61,9 +60,8 @@ public class TerranTest {
 		
 		Terran razaTerran = new Terran();
 		VolcanGasVespeno volcanDeGasVespeno = new VolcanGasVespeno(200);
-		int fila = 3;
-		int columna = 4;
-		RecolectorDeGasVespeno nuevaRefineria = Recolector.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,fila,columna);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno nuevaRefineria = Recolector.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,tierra);
 		RecolectorDeGasVespeno refineriaTerranConstruida = razaTerran.getListaDeRecolectoresDeGasVespenoConstruidos().remove(0);
 		
 		assertEquals(nuevaRefineria,refineriaTerranConstruida);
@@ -74,7 +72,8 @@ public class TerranTest {
 	public void agregarBarracaGuardaInstanciaDelEdificioCreadorDeUnidades(){
 		
 		Terran razaTerran = new Terran();
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		Terreno tierra = new Tierra(1,2);
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,tierra);
 		Barraca barracaConstruida = razaTerran.getListaDeBarracasConstruidas().remove(0);
 		
 		assertEquals(barraca,barracaConstruida);
@@ -85,9 +84,11 @@ public class TerranTest {
 	public void agregarFabricaGuardaInstanciaDeLaFabrica(){
 		
 		Terran razaTerran = new Terran();
+		Terreno unaTierra = new Tierra(1,2);
+		Terreno otraTierra = new Tierra(3,4);
 		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,1,2);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
 		
 		Fabrica fabricaConstruida = razaTerran.getListaDeFabricasConstruidas().remove(0);
 		
@@ -98,11 +99,14 @@ public class TerranTest {
 	public void agregarPuertoEstelarGuardaInstanciaDelPuertoYBorraFabricaBaseDeLaListaDeFabricasCreadas(){
 		
 		Terran razaTerran = new Terran();
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran, 1,2);
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
-		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
+		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran,tierraTres);
 		
 		PuertoEstelar puertoConstruido = razaTerran.getListaDePuertosEstelaresConstruidos().remove(0);
 		

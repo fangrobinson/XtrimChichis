@@ -17,8 +17,9 @@ public class PuertoEstelarTest {
 	public void siLaRazaCreadoraNoPoseeFabricasYSeQuiereCrearUnPuertoEstelarSeLanzaUnaExcepcion(){
 		
 		Terran nuevoClanTerran=new Terran();
+		Terreno unaTierra = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaTierra);
 		
 	}
 
@@ -26,11 +27,14 @@ public class PuertoEstelarTest {
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
 		Terran nuevoClanTerran=new Terran();
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,tierraTres);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
 		assertEquals(puertoEstelar.getUbicacionActual().columna(),6);
@@ -41,11 +45,14 @@ public class PuertoEstelarTest {
 	public void getActualizarUbicacionModificaCoordenadasDelEdificio(){
 		
 		Terran nuevoClanTerran=new Terran();
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,tierraTres);
 		Terreno unTerreno = new Tierra(1,3);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
@@ -62,11 +69,14 @@ public class PuertoEstelarTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Terran nuevoClanTerran=new Terran();
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,tierraTres);
 		
 		assertEquals(puertoEstelar.getVida(),100);
 		
@@ -76,11 +86,14 @@ public class PuertoEstelarTest {
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
 		Terran nuevoClanTerran=new Terran();
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,tierraTres);
 		int valorDanio = 30;
 		
 		puertoEstelar.recibirDanio(valorDanio);
@@ -95,13 +108,16 @@ public class PuertoEstelarTest {
 	public void crearEspectroDevuelveUnaNuevaUnidadEspectro(){
 		
 		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
+		Terreno tierraCuatro = new Tierra(4,4);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
-		Espectro unEspectro = puertoEstelar.crearEspectro(unTerreno);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,tierraTres);
+		Espectro unEspectro = puertoEstelar.crearEspectro(tierraCuatro);
 		
 		assertEquals(unEspectro.getVida(),120);
 		
@@ -111,13 +127,16 @@ public class PuertoEstelarTest {
 	public void crearNaveCienciaDevuelveNuevaUnidadNaveCiencia(){
 	
 		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
+		Terreno tierraCuatro = new Tierra(4,4);
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
-		NaveCiencia nave = puertoEstelar.crearNaveCiencia(unTerreno);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,tierraTres);
+		NaveCiencia nave = puertoEstelar.crearNaveCiencia(tierraCuatro);
 		
 		assertEquals(nave.getVida(),200);
 		
@@ -127,13 +146,16 @@ public class PuertoEstelarTest {
 	public void crearNaveTransporteCreaNuevaUnidadNaveTransporte(){
 		
 		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
+		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierraDos = new Tierra(3,4);
+		Terreno tierraTres = new Tierra(5,6);
+		Terreno tierraCuatro = new Tierra(4,4); 
 		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,tierraUno);
 		@SuppressWarnings("unused")
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
-		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(unTerreno);
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,tierraTres);
+		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(tierraCuatro);
 		
 		assertEquals(naveTransporte.getVida(),150);
 		

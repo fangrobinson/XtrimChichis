@@ -9,17 +9,17 @@ public class Fabrica extends Edificio{
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 12;
 	
-	protected Fabrica(int fila, int columna){
+	protected Fabrica(Terreno terreno){
 		
-		super(fila,columna,vida);
+		super(terreno,vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 
 	}
 	
-	public static Fabrica nuevaFabrica(Terran razaTerran, int fila, int columna){
+	public static Fabrica nuevaFabrica(Terran razaTerran,Terreno terreno){
 		
 		if(razaTerran.tieneBarracas()){
-			Fabrica nuevaFabrica = new Fabrica(fila,columna);
+			Fabrica nuevaFabrica = new Fabrica(terreno);
 			razaTerran.agregarFabrica(nuevaFabrica);
 			return nuevaFabrica;
 		}

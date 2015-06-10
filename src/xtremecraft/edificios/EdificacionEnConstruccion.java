@@ -23,6 +23,7 @@ public class EdificacionEnConstruccion implements Atacable {
 		this.vida.recibirAtaque(danio);
 		
 	}
+	
 	@Override
 	public int getVida() {
 		return this.vida.devolverValor();

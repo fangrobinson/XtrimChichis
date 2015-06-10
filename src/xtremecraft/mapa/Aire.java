@@ -40,7 +40,7 @@ public class Aire extends Terreno {
     }
 
 	@Override
-	public boolean esElevado() {
+	public boolean estaElevado() {
 		return true;
 	}
 }

@@ -6,14 +6,20 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 
 public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void creoBarracaEnConstruccionYSuVidaEsCero(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		
 		int vida = edif.getVida();
@@ -24,8 +30,12 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void creoBarracaEnConstruccionNoEstaLista(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 	
 		assertFalse(edif.estaListo());
@@ -34,8 +44,12 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void creoBarracaEnConstruccionSuVidaAumentaAlPasarElTiempo(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		
 		edif.pasarTiempo();
@@ -47,8 +61,12 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void alPasarElTiempoNecesarioBarracaEstaLista(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		int tiempo = unaBarraca.tiempoConstruccion();
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		
@@ -62,8 +80,12 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void alPasarTiempoInsuficienteBarracaNoEstaLista(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		int tiempo = unaBarraca.tiempoConstruccion();
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		

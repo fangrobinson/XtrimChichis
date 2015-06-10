@@ -9,16 +9,16 @@ public class Barraca extends Edificio{
 	public static int vida = 100;
 	public static int tiempoDeConstruccion = 12;
 	
-	private Barraca(int fila,int columna){
+	private Barraca(Terreno unTerreno){
 		
-		super(fila,columna,vida);
+		super(unTerreno,vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
 
-	public static Barraca nuevaBarraca(Terran razaTerran, int fila, int columna){
+	public static Barraca nuevaBarraca(Terran razaTerran, Terreno unTerreno){
 		
-		Barraca barraca = new Barraca(fila,columna);
+		Barraca barraca = new Barraca(unTerreno);
 		razaTerran.agregarBarraca(barraca);
 		return barraca;
 		

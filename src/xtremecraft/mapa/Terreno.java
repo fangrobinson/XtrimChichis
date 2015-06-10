@@ -44,15 +44,9 @@ public abstract class Terreno {
 	public int columna(){
 		return this.coordenada.columna();
 	}
-		
-	//Para que esta esto???
-	/*public boolean ocuparTerrenoConUnidad(Unidad unidad){
-
-		return this.ocuparConUnidad(unidad);
-	}*/
 
 	public abstract boolean ubicar(Ubicable ubicable);
 
-	public abstract boolean esElevado();
+	public abstract boolean estaElevado();
 
 }

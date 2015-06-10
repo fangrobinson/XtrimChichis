@@ -1,5 +1,6 @@
 package xtremecraft.edificios;
 
+import xtremecraft.mapa.Terreno;
 import xtremecraft.recursos.VolcanGasVespeno;
 
 public class RecolectorDeGasVespeno extends Recolector {
@@ -7,9 +8,9 @@ public class RecolectorDeGasVespeno extends Recolector {
 	private VolcanGasVespeno volcan;
 	private static int tiempoDeConstruccion = 6;
 	
-	protected RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, int fila, int columna){
+	protected RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, Terreno terreno){
 		
-		super(fila,columna);
+		super(terreno);
 		this.volcan = unVolcanDeGasVespeno;
 		this.tiempoConstruccion = tiempoDeConstruccion; 
 		

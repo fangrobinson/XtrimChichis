@@ -11,18 +11,18 @@ public class PuertoEstelar extends Edificio{
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 10;
 	
-	protected PuertoEstelar(int fila, int columna){
+	private PuertoEstelar(Terreno terreno){
 		
-		super(fila,columna,vida);
+		super(terreno,vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
 	
 
-	public static PuertoEstelar nuevoPuertoEstelar(Terran razaTerran,int fila,int columna) {
+	public static PuertoEstelar nuevoPuertoEstelar(Terran razaTerran,Terreno terreno) {
 		
 		if(razaTerran.tieneFabricas()){
-			PuertoEstelar nuevoPuertoEstelar = new PuertoEstelar(fila,columna);
+			PuertoEstelar nuevoPuertoEstelar = new PuertoEstelar(terreno);
 			razaTerran.agregarPuertoEstelar(nuevoPuertoEstelar);
 			return nuevoPuertoEstelar;
 		}

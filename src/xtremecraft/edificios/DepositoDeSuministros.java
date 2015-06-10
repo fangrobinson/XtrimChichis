@@ -1,13 +1,15 @@
 package xtremecraft.edificios;
 
+import xtremecraft.mapa.Terreno;
+
 public class DepositoDeSuministros extends Edificio{
 
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 6;
 	
-	public DepositoDeSuministros(int fila, int columna) {
+	public DepositoDeSuministros(Terreno unTerreno) {
 		
-		super(fila, columna, vida);
+		super(unTerreno, vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}

@@ -12,12 +12,14 @@ abstract class Edificio implements Ubicable,Atacable {
 	protected BarraDeVitalidad vida;
 	protected Coordenada coordenadas;
 	protected int tiempoConstruccion;
+	protected boolean estaElevado;
 
-	public Edificio(int fila, int columna,int vida){
+	public Edificio(Terreno unTerreno,int vida){
 		
-		this.coordenadas = new Coordenada(fila,columna);
+		this.coordenadas = new Coordenada(unTerreno.fila(),unTerreno.columna());
+		this.estaElevado = unTerreno.estaElevado();
 		this.vida = new BarraDeVitalidad(vida);
-
+	
 	}
 	
 	public Coordenada getUbicacionActual(){

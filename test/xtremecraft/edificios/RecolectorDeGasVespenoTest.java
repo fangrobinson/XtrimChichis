@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.VolcanGasVespeno;
 
@@ -14,9 +16,8 @@ public class RecolectorDeGasVespenoTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		int fila = 1;
-		int columna = 2;
-		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		Terreno tierraUno = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
 		
 		assertEquals(refineriaTerran.getReservas(),0);
 		
@@ -27,9 +28,8 @@ public class RecolectorDeGasVespenoTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		int fila = 1;
-		int columna = 2;
-		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		Terreno tierraUno = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
 		refineriaTerran.aumentarReservasEnTurno();
 		
 		assertEquals(refineriaTerran.getReservas(),10);
@@ -42,9 +42,8 @@ public class RecolectorDeGasVespenoTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		int fila = 1;
-		int columna = 2;
-		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		Terreno tierraUno = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
 		
 		assertEquals(refineriaTerran.getUbicacionActual().columna(),2);
 		assertEquals(refineriaTerran.getUbicacionActual().fila(),1);
@@ -56,9 +55,8 @@ public class RecolectorDeGasVespenoTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
-		int fila = 1;
-		int columna = 2;
-		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		Terreno tierraUno = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
 		
 		assertEquals(refineriaTerran.getVida(),100);
 		
@@ -69,9 +67,8 @@ public class RecolectorDeGasVespenoTest {
 		
 		Terran nuevoClanTerran=new Terran();
 		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
-		int fila = 1;
-		int columna = 2;
-		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,fila, columna);
+		Terreno tierraUno = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = Recolector.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
 		int valorDanio = 30;
 		
 		refineriaTerran.recibirDanio(valorDanio);
