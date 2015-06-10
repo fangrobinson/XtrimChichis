@@ -45,7 +45,7 @@ abstract class Edificio implements Ubicable,Atacable {
 		
 	}
 	
-	public int getTiempoConstruccion(){
+	public int tiempoConstruccion(){
 		
 		return this.tiempoConstruccion;
 		
