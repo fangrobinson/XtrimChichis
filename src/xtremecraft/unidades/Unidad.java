@@ -76,7 +76,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     public void actualizarUbicacion(Terreno terreno) {
     	
     	this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
-    	this.estaElevado = terreno.esElevado();
+    	this.estaElevado = terreno.estaElevado();
 		
 	}
     

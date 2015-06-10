@@ -99,8 +99,12 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test
 	public void alPasarElTiempoNecesarioPuedoObtenerLaBarraca(){
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
 		int tiempo = unaBarraca.tiempoConstruccion();
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		
@@ -119,14 +123,19 @@ public class EdificacionEnConstruccionTest {
 	
 	@Test(expected = NoEstaListoException.class)
 	public void alPasarTiempoInsuficienteBarracaTerminarConstruccionLanzaExcepcion() throws NoEstaListoException{
-		Terran nuevoClanTerran = new Terran();
-		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, 1, 1);
+		
+		int fila = 1;
+		int columna = 2;
+		Terran nuevoClanTerran=new Terran();
+		Terreno tierra = new Tierra(fila,columna);
+		Edificio unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran, tierra);
 		int tiempo = unaBarraca.tiempoConstruccion();
 		EdificacionEnConstruccion edif = new EdificacionEnConstruccion(unaBarraca);
 		
 		for(int i = 0; i < tiempo - 1 ; i = i + 1){
 			edif.pasarTiempo();
 		}
+		@SuppressWarnings("unused")
 		Edificio laBarraca = edif.terminarConstruccion();
 	}
 	

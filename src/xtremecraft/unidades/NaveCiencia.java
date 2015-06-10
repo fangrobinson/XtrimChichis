@@ -1,6 +1,5 @@
 package xtremecraft.unidades;
 
-import xtremecraft.interfaces.Atacable;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.UnidadAerea;
 

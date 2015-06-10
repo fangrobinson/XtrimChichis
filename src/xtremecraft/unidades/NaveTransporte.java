@@ -1,6 +1,5 @@
 package xtremecraft.unidades;
 
-import xtremecraft.interfaces.Atacable;
 import xtremecraft.mapa.Terreno;
 
 public class NaveTransporte extends UnidadAerea {
