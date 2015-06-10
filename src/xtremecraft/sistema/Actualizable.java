@@ -1,4 +1,4 @@
-package xtremecraft.interfaces;
+package xtremecraft.sistema;
 
 public interface Actualizable {
 	

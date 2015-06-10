@@ -9,18 +9,10 @@ public class Danio {
 		this.tierra = dañoTierra;
 	}
 	
-	public int devolverDañoTierra(){
-		return this.tierra;
-	}
-	
-	public int devolverDañoAire(){
-		return this.aire;
-	}
-	
-	public int devolverDaño(String medio){
-		if (medio == "aire"){
-			return this.devolverDañoAire();
+	public int devolverDanio(boolean estaElevado){
+		if(estaElevado){
+			return this.aire;
 		}
-		return this.devolverDañoTierra();
+		return this.tierra;
 	}
 }

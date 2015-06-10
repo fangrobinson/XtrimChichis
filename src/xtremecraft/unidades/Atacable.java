@@ -1,4 +1,4 @@
-package xtremecraft.interfaces;
+package xtremecraft.unidades;
 
 public interface Atacable {
 	

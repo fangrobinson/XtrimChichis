@@ -1,8 +1,5 @@
 package xtremecraft.unidades;
 
-import xtremecraft.interfaces.Atacable;
-import xtremecraft.interfaces.Defendible;
-import xtremecraft.interfaces.Ubicable;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 
@@ -30,11 +27,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     public void atacar (Atacable atacado){
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
-    		if (atacadoUbicado.estaElevado()){
+    		atacado.recibirDanio(this.danio.devolverDanio(atacadoUbicado.estaElevado()));
+    		/*if (atacadoUbicado.estaElevado()){
     			atacado.recibirDanio(this.danio.devolverDaño("aire"));
     		}else{
     			atacado.recibirDanio(this.danio.devolverDaño("tierra"));
-    		}			
+    		}*/			
     	}
     	
     }

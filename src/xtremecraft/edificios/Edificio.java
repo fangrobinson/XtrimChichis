@@ -1,10 +1,10 @@
 package xtremecraft.edificios;
 
-import xtremecraft.interfaces.Atacable;
-import xtremecraft.interfaces.Ubicable;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
+import xtremecraft.unidades.Ubicable;
 
 
 abstract class Edificio implements Ubicable,Atacable {

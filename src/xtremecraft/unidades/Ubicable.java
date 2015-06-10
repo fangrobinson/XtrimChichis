@@ -1,4 +1,4 @@
-package xtremecraft.interfaces;
+package xtremecraft.unidades;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;

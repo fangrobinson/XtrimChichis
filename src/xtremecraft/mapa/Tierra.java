@@ -1,8 +1,8 @@
 package xtremecraft.mapa;
 
-import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
 //import xtremecraft.unidades.Unidad;
+import xtremecraft.unidades.Ubicable;
 
 public class Tierra extends Terreno {
 	
@@ -48,6 +48,7 @@ public class Tierra extends Terreno {
     	if (ubicable.puedeUbicarseEnTierra()){
     		this.unidad = ubicable;
     		this.ocupada = true;
+    		ubicable.actualizarUbicacion(this);
     		return true;
     	}
     	return false;

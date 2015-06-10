@@ -1,8 +1,8 @@
 package xtremecraft.mapa;
 
-import xtremecraft.interfaces.Ubicable;
 import xtremecraft.recursos.Recurso;
 //import xtremecraft.unidades.Unidad;
+import xtremecraft.unidades.Ubicable;
 
 public abstract class Terreno {
 	

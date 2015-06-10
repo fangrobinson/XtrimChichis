@@ -1,6 +1,6 @@
 package xtremecraft.mapa;
 
-import xtremecraft.interfaces.Ubicable;
+import xtremecraft.unidades.Ubicable;
 
 public class Celda {
 	
@@ -34,5 +34,13 @@ public class Celda {
     
     public int columna(){
     	return this.inferior.columna();
+    }
+    
+    public Ubicable getUnidadEnInferior(){
+    	return this.inferior.getUnidadEnTerreno();
+    }
+    
+    public Ubicable getUnidadEnSuperior(){
+    	return this.superior.getUnidadEnTerreno();
     }
 }

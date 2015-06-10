@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import xtremecraft.interfaces.Ubicable;
 import xtremecraft.unidades.Marine;
+import xtremecraft.unidades.Ubicable;
 
 public class CeldaTest {
 	@Test
