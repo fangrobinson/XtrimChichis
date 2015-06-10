@@ -1,63 +1,32 @@
 package xtremecraft.edificios;
 
-import xtremecraft.interfaces.Atacable;
-import xtremecraft.interfaces.Ubicable;
-import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
-import xtremecraft.unidades.Goliat;
-import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 
-public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Atacable{
+public class PuertoEstelar extends Edificio{
 	
-	Fabrica fabricaBase;
+	static int vida = 100;
 	
-	protected PuertoEstelar(Fabrica unaFabrica){
+	protected PuertoEstelar(int fila, int columna){
 		
-		this.fabricaBase = unaFabrica;
+		super(fila,columna,vida);
 		
 	}
 	
 
-	public static PuertoEstelar nuevoPuertoEstelar(Terran unTerran,Fabrica unaFabrica) {
+	public static PuertoEstelar nuevoPuertoEstelar(Terran razaTerran,int fila,int columna) {
 		
-		PuertoEstelar nuevoPuertoEstelar = new PuertoEstelar(unaFabrica);
-		unTerran.agregarPuertoEstelar(nuevoPuertoEstelar);
-		return nuevoPuertoEstelar;
+		if(razaTerran.tieneFabricas()){
+			PuertoEstelar nuevoPuertoEstelar = new PuertoEstelar(fila,columna);
+			razaTerran.agregarPuertoEstelar(nuevoPuertoEstelar);
+			return nuevoPuertoEstelar;
+		}
+		
+		throw new IllegalArgumentException("Para construir puertos estelares debes contar con al menos una fabrica");
 
-	}
-	
-	public int getVida() {
-		
-		return this.fabricaBase.getVida();
-		
-	}
-
-	public void recibirDanio(int valorDanio) {
-		
-		this.fabricaBase.recibirDanio(valorDanio);
-		
-	}
-	
-	public Coordenada getUbicacionActual(){
-		
-		return this.fabricaBase.getUbicacionActual();
-		
-	}
-
-	public Marine entrenarMarine(Terreno unTerreno){
-		
-		return this.fabricaBase.entrenarMarine(unTerreno);
-		
-	}
-
-	public Goliat entrenarGoliat(Terreno unTerreno){
-		
-		return this.fabricaBase.entrenarGoliat(unTerreno);
-		
 	}
 	
 	public Espectro crearEspectro(Terreno unTerreno){
@@ -80,20 +49,11 @@ public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Ata
 		
 	}
 
-
-	public void actualizarUbicacion(Terreno terreno) {
-		
-		this.fabricaBase.actualizarUbicacion(terreno);
-		
-	}
-
-
 	public boolean puedeUbicarseEnTierra() {
 		
 		return true;
 		
 	}
-
 
 	public boolean puedeUbicarseEnAire() {
 		
@@ -101,12 +61,6 @@ public class PuertoEstelar implements CreadorDeUnidadesTerrestres, Ubicable, Ata
 		
 	}
 
-
-	public Fabrica getFabricaBase() {
-		
-		return this.fabricaBase;
-		
-	}
 
 
 }

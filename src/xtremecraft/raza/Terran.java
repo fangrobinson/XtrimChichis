@@ -87,9 +87,7 @@ public class Terran{
 	}
 	
 	public void agregarFabrica(Fabrica fabrica) {
-		
-		Barraca barracaBase = fabrica.getBarracaBase();
-		this.barracas.remove(barracaBase);
+
 		this.fabricas.add(fabrica);
 		
 	}
@@ -102,8 +100,6 @@ public class Terran{
 	
 	public void agregarPuertoEstelar(PuertoEstelar unPuertoEstelar) {
 		
-		Fabrica fabricaBase = unPuertoEstelar.getFabricaBase();
-		this.fabricas.remove(fabricaBase);
 		this.puertosEstelares.add(unPuertoEstelar);
 		
 	}
@@ -111,6 +107,19 @@ public class Terran{
 	public ArrayList<PuertoEstelar> getListaDePuertosEstelaresConstruidos(){
 		
 		return this.puertosEstelares;
+		
+	}
+
+	public boolean tieneBarracas() {
+		
+		return !( this.barracas.isEmpty() );
+		
+	}
+	
+	
+	public boolean tieneFabricas() {
+		
+		return ! ( this.fabricas.isEmpty() );
 		
 	}
 	

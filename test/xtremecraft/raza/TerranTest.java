@@ -68,55 +68,45 @@ public class TerranTest {
 		
 		assertEquals(nuevaRefineria,refineriaTerranConstruida);
 		
-		
-		
 	}
 	
 	@Test
 	public void agregarBarracaGuardaInstanciaDelEdificioCreadorDeUnidades(){
 		
 		Terran razaTerran = new Terran();
-		int fila = 3;
-		int columna = 4;
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,1,2);
 		Barraca barracaConstruida = razaTerran.getListaDeBarracasConstruidas().remove(0);
 		
 		assertEquals(barraca,barracaConstruida);
 		
-		
-		
 	}
 	
 	@Test
-	public void agregarFabricaGuardaInstanciaDeLaFabricaYBorraBarracaBaseDeLaListaDeBarracasCreadas(){
+	public void agregarFabricaGuardaInstanciaDeLaFabrica(){
 		
 		Terran razaTerran = new Terran();
-		int fila = 3;
-		int columna = 4;
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,barraca);
+		@SuppressWarnings("unused")
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
 		
 		Fabrica fabricaConstruida = razaTerran.getListaDeFabricasConstruidas().remove(0);
 		
 		assertEquals(fabrica,fabricaConstruida);
-		assertTrue(razaTerran.getListaDeBarracasConstruidas().isEmpty());
-	
 	}
 	
 	@Test
 	public void agregarPuertoEstelarGuardaInstanciaDelPuertoYBorraFabricaBaseDeLaListaDeFabricasCreadas(){
 		
 		Terran razaTerran = new Terran();
-		int fila = 3;
-		int columna = 4;
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran, fila, columna);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,barraca);
-		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran, fabrica);
+		@SuppressWarnings("unused")
+		Barraca barraca = Barraca.nuevaBarraca(razaTerran, 1,2);
+		@SuppressWarnings("unused")
+		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
+		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
 		
 		PuertoEstelar puertoConstruido = razaTerran.getListaDePuertosEstelaresConstruidos().remove(0);
 		
 		assertEquals(puerto,puertoConstruido);
-		assertTrue(razaTerran.getListaDeFabricasConstruidas().isEmpty());
 	
 	}
 	

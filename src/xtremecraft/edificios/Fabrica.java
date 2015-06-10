@@ -1,68 +1,37 @@
 package xtremecraft.edificios;
 
-import xtremecraft.interfaces.Atacable;
-import xtremecraft.interfaces.Ubicable;
-import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
-import xtremecraft.unidades.Marine;
 
-public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
+public class Fabrica extends Edificio{
 	
-	Barraca barracaBase;
-
-	protected Fabrica(Barraca unaBarraca){
-		
-		this.barracaBase = unaBarraca;
-
-	}
+	static int vida = 100;
 	
-	public static Fabrica nuevaFabrica(Terran razaTerran, Barraca unaBarraca){
+	protected Fabrica(int fila, int columna){
 		
-		Fabrica nuevaFabrica = new Fabrica(unaBarraca);
-		razaTerran.agregarFabrica(nuevaFabrica);
-		return nuevaFabrica;
-		
-	}
+		super(fila,columna,vida);
 
-	public int getVida(){
-		
-		return this.barracaBase.getVida();
-		
-	}
-
-	public void recibirDanio(int valorDanio){
-		
-		this.barracaBase.recibirDanio(valorDanio);
-		
-	}
-
-
-	public Marine entrenarMarine(Terreno unTerreno){
-		
-		return this.barracaBase.entrenarMarine(unTerreno);
-		
 	}
 	
+	public static Fabrica nuevaFabrica(Terran razaTerran, int fila, int columna){
+		
+		if(razaTerran.tieneBarracas()){
+			Fabrica nuevaFabrica = new Fabrica(fila,columna);
+			razaTerran.agregarFabrica(nuevaFabrica);
+			return nuevaFabrica;
+		}
+		
+		throw new IllegalArgumentException("Para construir una fabrica debes contar con al menos una barraca.");
+		
+	}
+
 	public Goliat entrenarGoliat(Terreno unTerreno){
 		
 		return new Goliat(unTerreno);
 		
 	}
 	
-	public Coordenada getUbicacionActual(){
-		
-		return this.barracaBase.getUbicacionActual();
-		
-	}
-
-	public void actualizarUbicacion(Terreno terreno) {
-		
-		this.barracaBase.actualizarUbicacion(terreno);
-		
-	}
-
 
 	public boolean puedeUbicarseEnTierra() {
 		
@@ -73,12 +42,6 @@ public class Fabrica implements CreadorDeMarines,Ubicable,Atacable{
 	public boolean puedeUbicarseEnAire() {
 		
 		return false;
-		
-	}
-
-	public Barraca getBarracaBase() {
-		
-		return this.barracaBase;
 		
 	}
 

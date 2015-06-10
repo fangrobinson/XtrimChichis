@@ -20,4 +20,10 @@ public class Juego {
 		return this.tiempo;
 	}
 	
+	public Mapa getMapa(){
+		
+		return this.mapa;
+		
+	}
+	
 }

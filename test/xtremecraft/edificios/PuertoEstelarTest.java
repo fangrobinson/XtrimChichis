@@ -8,26 +8,32 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
-import xtremecraft.unidades.Goliat;
-import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelarTest {
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void siLaRazaCreadoraNoPoseeFabricasYSeQuiereCrearUnPuertoEstelarSeLanzaUnaExcepcion(){
+		
+		Terran nuevoClanTerran=new Terran();
+		@SuppressWarnings("unused")
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
+		
+	}
 
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
 		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
 		
-		assertEquals(puertoEstelar.getUbicacionActual().fila(),1);
-		assertEquals(puertoEstelar.getUbicacionActual().columna(),2);
+		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
+		assertEquals(puertoEstelar.getUbicacionActual().columna(),6);
 		
 	}
 	
@@ -35,15 +41,15 @@ public class PuertoEstelarTest {
 	public void getActualizarUbicacionModificaCoordenadasDelEdificio(){
 		
 		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
 		Terreno unTerreno = new Tierra(1,3);
 		
-		assertEquals(puertoEstelar.getUbicacionActual().fila(),1);
-		assertEquals(puertoEstelar.getUbicacionActual().columna(),2);
+		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
+		assertEquals(puertoEstelar.getUbicacionActual().columna(),6);
 		
 		puertoEstelar.actualizarUbicacion(unTerreno);
 		
@@ -56,11 +62,11 @@ public class PuertoEstelarTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
 		
 		assertEquals(puertoEstelar.getVida(),100);
 		
@@ -70,11 +76,11 @@ public class PuertoEstelarTest {
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
 		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,5,6);
 		int valorDanio = 30;
 		
 		puertoEstelar.recibirDanio(valorDanio);
@@ -86,50 +92,15 @@ public class PuertoEstelarTest {
 	}
 	
 	@Test
-	public void entrenarMarineDevuelveNuevaUnidadMarine(){
-		
-		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
-		Marine nuevoMarine =puertoEstelar.entrenarMarine(unTerreno);
-		
-		assertEquals(nuevoMarine.getVida(),40);
-		
-	}
-	
-	@Test
-	public void entrenarGoliatDevuelveNuevaUnidadGoliat(){
-		
-		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
-		Terran razaTerran = new Terran();
-		Tierra unTerreno = new Tierra(4,4); 
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
-		Goliat unGoliat = puertoEstelar.entrenarGoliat(unTerreno);
-		
-		assertEquals(unGoliat.getVida(),125);
-		
-	}
-	
-	@Test
 	public void crearEspectroDevuelveUnaNuevaUnidadEspectro(){
 		
-		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
 		Terran razaTerran = new Terran();
 		Tierra unTerreno = new Tierra(4,4); 
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
 		Espectro unEspectro = puertoEstelar.crearEspectro(unTerreno);
 		
 		assertEquals(unEspectro.getVida(),120);
@@ -138,15 +109,14 @@ public class PuertoEstelarTest {
 	
 	@Test
 	public void crearNaveCienciaDevuelveNuevaUnidadNaveCiencia(){
-		
-		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
+	
 		Terran razaTerran = new Terran();
 		Tierra unTerreno = new Tierra(4,4); 
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
 		NaveCiencia nave = puertoEstelar.crearNaveCiencia(unTerreno);
 		
 		assertEquals(nave.getVida(),200);
@@ -156,14 +126,13 @@ public class PuertoEstelarTest {
 	@Test
 	public void crearNaveTransporteCreaNuevaUnidadNaveTransporte(){
 		
-		Terran nuevoClanTerran=new Terran();
-		int fila = 1;
-		int columna = 2;
 		Terran razaTerran = new Terran();
 		Tierra unTerreno = new Tierra(4,4); 
-		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,fila, columna);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,unaBarraca);
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaFabrica);
+		@SuppressWarnings("unused")
+		Barraca unaBarraca = Barraca.nuevaBarraca(razaTerran,1,2);
+		@SuppressWarnings("unused")
+		Fabrica unaFabrica = Fabrica.nuevaFabrica(razaTerran,3,4);
+		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(razaTerran,5,6);
 		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(unTerreno);
 		
 		assertEquals(naveTransporte.getVida(),150);

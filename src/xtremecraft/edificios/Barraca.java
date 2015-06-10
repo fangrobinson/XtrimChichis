@@ -4,7 +4,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
-public class Barraca extends Edificio implements CreadorDeMarines{
+public class Barraca extends Edificio{
 	
 	public static int vida = 100;
 	
