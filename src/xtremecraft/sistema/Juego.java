@@ -20,7 +20,7 @@ public class Juego {
 		this.jugadores = new ArrayList<Jugador>();
 		
 		for (int i = 0; i<cant_jug; i = i + 1){
-			this.jugadores.add(new Jugador());
+			this.jugadores.add(new Jugador("Pepe"));
 		}
 	}
 	
