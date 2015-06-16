@@ -3,10 +3,12 @@ package xtremecraft.raza;
 import java.util.ArrayList;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Unidad;
 
 
@@ -14,27 +16,30 @@ public class Terran{
 	
 	private ArrayList<Unidad> unidades;
 	private ArrayList<RecolectorDeMineral> recolectoresDeMineral;
+	private ArrayList<DepositoDeSuministros> depositosDeSuministros;
 	private ArrayList<RecolectorDeGasVespeno> recolectoresDeGasVespeno;
 	private ArrayList<Barraca> barracas;
 	private ArrayList<Fabrica> fabricas;
 	private ArrayList<PuertoEstelar> puertosEstelares;
-	private boolean estaViva;
 		
-	public Terran(){
+	public Terran(Terreno terreno){
 		
-		this.estaViva=true;
 		this.unidades = new ArrayList<Unidad>();
 		this.recolectoresDeMineral = new ArrayList<RecolectorDeMineral>();
 		this.recolectoresDeGasVespeno = new ArrayList<RecolectorDeGasVespeno>();
 		this.barracas = new ArrayList<Barraca>();
 		this.fabricas = new ArrayList<Fabrica>();
 		this.puertosEstelares = new ArrayList<PuertoEstelar>();
+		this.depositosDeSuministros = new ArrayList<DepositoDeSuministros>();
+		
+		this.depositosDeSuministros.add(new DepositoDeSuministros(terreno));
+		
 					
 	}
 
 	public boolean estaViva() {
 		
-		return this.estaViva;
+		return (this.depositosDeSuministros.size() != 0);
 		
 	}
 	
