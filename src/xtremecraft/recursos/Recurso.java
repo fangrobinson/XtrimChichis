@@ -30,5 +30,17 @@ public abstract class Recurso {
 		return i;
 		
 	}
+	
+	public boolean tieneMineral(){
+		
+		return false;
+		
+	}
 
+	
+	public boolean tieneGasVespeno(){
+		
+		return false;
+		
+	}
 }

@@ -49,5 +49,15 @@ public abstract class Terreno {
 
 	public abstract boolean agregarRecursoNatural(Recurso unRecurso);
 
+	public boolean tieneMineral() {
+		
+		return this.recurso.tieneMineral();
+		
+	}
 
+	public boolean tieneGasVespeno() {
+		
+		return this.recurso.tieneGasVespeno();
+		
+	}
 }

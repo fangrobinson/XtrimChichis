@@ -19,6 +19,9 @@ public class PuertoEstelar extends Edificio{
 	
 	public Espectro crearEspectro(Terreno unTerreno){
 		
+		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
+			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+		}
 		return new Espectro(unTerreno);
 		
 	}
@@ -26,6 +29,9 @@ public class PuertoEstelar extends Edificio{
 
 	public NaveCiencia crearNaveCiencia(Terreno unTerreno){
 		
+		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
+			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+		}
 		return new NaveCiencia(unTerreno);
 		
 	}
@@ -33,6 +39,9 @@ public class PuertoEstelar extends Edificio{
 
 	public NaveTransporte crearNaveTransporte(Terreno unTerreno){
 		
+		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
+			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+		}
 		return new NaveTransporte(unTerreno);
 		
 	}

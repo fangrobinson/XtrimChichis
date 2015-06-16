@@ -25,5 +25,10 @@ public class MinaDeMinerales extends Recurso{
 		
 	}
 
+	public boolean tieneMineral(){
+		
+		return true;
+		
+	}
 
 }

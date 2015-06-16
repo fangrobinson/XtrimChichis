@@ -11,7 +11,8 @@ public class VolcanGasVespenoTest {
 	@Test
 	public void getVolumenDeGasVespenoDevuelveVolumenDeGasContenidoEnElVolcan(){
 		
-		VolcanGasVespeno volcan=new VolcanGasVespeno(100);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(100);
+		
 		assertEquals(volcan.getVolumenDeGasVespeno(),100);
 		
 	}
@@ -21,6 +22,23 @@ public class VolcanGasVespenoTest {
 		
 			new VolcanGasVespeno(-1);
 			
+	}
+	
+	@Test
+	public void tieneMineralDevuelveFalse(){
+		
+		VolcanGasVespeno volcan = new VolcanGasVespeno(100);
+		
+		assertFalse(volcan.tieneMineral());
+	}
+	
+	
+	@Test
+	public void tieneGasVespenoDevuelveTrue(){
+		
+		VolcanGasVespeno volcan=new VolcanGasVespeno(100);
+		
+		assertTrue(volcan.tieneGasVespeno());
 	}
 	
 	@Test

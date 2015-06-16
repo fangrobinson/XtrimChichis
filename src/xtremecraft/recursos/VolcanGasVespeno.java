@@ -22,6 +22,12 @@ public class VolcanGasVespeno extends Recurso{
 		
 	}
 	
+	public boolean tieneGasVespeno(){
+		
+		return true;
+		
+	}
+	
 	
 
 }

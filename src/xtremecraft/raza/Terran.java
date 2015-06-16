@@ -87,7 +87,7 @@ public class Terran{
 	}
 	
 	public void agregarFabrica(Fabrica fabrica) {
-
+		
 		this.fabricas.add(fabrica);
 		
 	}
@@ -112,16 +112,15 @@ public class Terran{
 
 	public boolean tieneBarracas() {
 		
-		return !( this.barracas.isEmpty() );
-		
-	}
-	
-	
-	public boolean tieneFabricas() {
-		
-		return ! ( this.fabricas.isEmpty() );
+		return !this.barracas.isEmpty();
 		
 	}
 
+	public boolean tieneFabricas() {
+		
+		return !this.fabricas.isEmpty();
+		
+	}
+	
 
 }

@@ -17,18 +17,17 @@ public class RecolectorDeGasVespeno extends Recolector {
 	}
 
 	public void pasarTiempo(){
-		
-		this.reservas += this.volcan.explotar(this.aumentoDeReservaEnTurno);
+		//revisar modelado de paso del tiempo
+		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion) this.tiempoDeConstruccionActual += 1;
+		else this.reservas += this.volcan.explotar(this.aumentoDeReservaEnTurno);
 		
 	}
-
 	
 	public boolean puedeUbicarseEnTierra() {
 		
 		return true;
 		
 	}
-
 
 	public boolean puedeUbicarseEnAire() {
 		
