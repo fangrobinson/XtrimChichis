@@ -3,6 +3,7 @@ package xtremecraft.sistema;
 import java.util.ArrayList;
 
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.Tierra;
 
 public class Juego {
 	private int tiempo;
@@ -19,8 +20,9 @@ public class Juego {
 		this.mapa = new Mapa(cant_jug);	
 		this.jugadores = new ArrayList<Jugador>();
 		
+		
 		for (int i = 0; i<cant_jug; i = i + 1){
-			this.jugadores.add(new Jugador("Pepe"));
+			this.jugadores.add(new Jugador("Pepe", new Tierra(0,0)));
 		}
 	}
 	
