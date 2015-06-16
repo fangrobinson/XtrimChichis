@@ -11,19 +11,14 @@ import xtremecraft.unidades.Goliat;
 
 public class FabricaTest {
 	
-	/*
-	@Test(expected = IllegalArgumentException.class)
-	public void siLaRazaCreadoraNoPoseeBarracasYQuiereCrearUnaFabricaSeLanzaUnaExcepcion(){
+	public Fabrica construirNuevaFabrica(Terreno tierra){
 		
-		int fila = 1;
-		int columna = 2;
-		Terran razaTerran = new Terran();
-		Terreno tierra = new Tierra(fila,columna);
-		@SuppressWarnings("unused")
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,tierra);
-		
-	}*/
-	
+		Fabrica fabrica = new Fabrica(tierra);
+		for(int i=0;i<fabrica.tiempoConstruccion;i++){
+			fabrica.pasarTiempo();
+		}
+		return fabrica;
+	}
 	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
@@ -31,7 +26,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Fabrica fabrica = new Fabrica(tierra);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
 		
 		assertEquals(fabrica.getUbicacionActual().fila(),1);
 		assertEquals(fabrica.getUbicacionActual().columna(),2);
@@ -44,7 +39,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Fabrica fabrica = new Fabrica(tierra);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
 		
 		assertFalse(fabrica.puedeUbicarseSobreRecursoNatural());
 		
@@ -56,7 +51,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Fabrica fabrica = new Fabrica(tierra);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
 		
 		assertFalse(fabrica.estaElevado());
 		
@@ -68,7 +63,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Fabrica fabrica = new Fabrica(tierra);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
 		
 		assertEquals(fabrica.getVida(),100);
 		
@@ -80,7 +75,7 @@ public class FabricaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Fabrica fabrica = new Fabrica(tierra);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
 		int valorDanio = 30;
 		
 		fabrica.recibirDanio(valorDanio);
@@ -97,7 +92,7 @@ public class FabricaTest {
 		 
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,4);
-		Fabrica fabrica = new Fabrica(tierra1);
+		Fabrica fabrica = construirNuevaFabrica(tierra1);
 		Goliat unGoliat = fabrica.entrenarGoliat(tierra2);
 		
 		assertEquals(unGoliat.getVida(),125);

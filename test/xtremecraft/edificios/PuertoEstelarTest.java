@@ -13,15 +13,14 @@ import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelarTest {
 	
-	/*@Test(expected = IllegalArgumentException.class)
-	public void siLaRazaCreadoraNoPoseeFabricasYSeQuiereCrearUnPuertoEstelarSeLanzaUnaExcepcion(){
+	public PuertoEstelar construirNuevoPuertoEstelar(Terreno tierra){
 		
-		Terran nuevoClanTerran=new Terran();
-		Terreno unaTierra = new Tierra(5,6);
-		@SuppressWarnings("unused")
-		PuertoEstelar puertoEstelar = PuertoEstelar.nuevoPuertoEstelar(nuevoClanTerran,unaTierra);
-		
-	}*/
+		PuertoEstelar puerto = new PuertoEstelar(tierra);
+		for(int i=0;i<puerto.tiempoConstruccion;i++){
+			puerto.pasarTiempo();
+		}
+		return puerto;
+	}
 
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
@@ -29,7 +28,7 @@ public class PuertoEstelarTest {
 		int fila = 5;
 		int columna = 6;
 		Terreno tierra = new Tierra(fila,columna);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(tierra);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(tierra);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
 		assertEquals(puertoEstelar.getUbicacionActual().columna(),6);
@@ -42,7 +41,7 @@ public class PuertoEstelarTest {
 		int fila = 5;
 		int columna = 6;
 		Terreno tierra = new Tierra(fila,columna);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(tierra);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(tierra);
 		
 		assertFalse(puertoEstelar.puedeUbicarseSobreRecursoNatural());
 		
@@ -53,7 +52,7 @@ public class PuertoEstelarTest {
 		
 		Terreno unTerreno = new Tierra(5,6);
 		Terreno otroTerreno = new Tierra(1,3);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
 		assertEquals(puertoEstelar.getUbicacionActual().columna(),6);
@@ -69,7 +68,7 @@ public class PuertoEstelarTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Terreno unTerreno = new Tierra(5,6);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		
 		assertEquals(puertoEstelar.getVida(),100);
 		
@@ -79,7 +78,7 @@ public class PuertoEstelarTest {
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
 		Terreno unTerreno = new Tierra(5,6);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		int valorDanio = 30;
 		
 		puertoEstelar.recibirDanio(valorDanio);
@@ -95,7 +94,7 @@ public class PuertoEstelarTest {
 		
 		Terreno unTerreno = new Tierra(5,6);
 		Terreno otroTerreno = new Tierra(1,3);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		Espectro unEspectro = puertoEstelar.crearEspectro(otroTerreno);
 		
 		assertEquals(unEspectro.getVida(),120);
@@ -107,7 +106,7 @@ public class PuertoEstelarTest {
 	
 		Terreno unTerreno = new Tierra(5,6);
 		Terreno otroTerreno = new Tierra(1,3);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		NaveCiencia nave = puertoEstelar.crearNaveCiencia(otroTerreno);
 		
 		assertEquals(nave.getVida(),200);
@@ -119,7 +118,7 @@ public class PuertoEstelarTest {
 		
 		Terreno unTerreno = new Tierra(5,6);
 		Terreno otroTerreno = new Tierra(1,3);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(unTerreno);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
 		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(otroTerreno);
 		
 		assertEquals(naveTransporte.getVida(),150);

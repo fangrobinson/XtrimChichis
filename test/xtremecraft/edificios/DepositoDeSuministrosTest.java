@@ -10,13 +10,23 @@ import xtremecraft.mapa.Tierra;
 
 public class DepositoDeSuministrosTest {
 	
+	public DepositoDeSuministros construirNuevoDeposito(Terreno tierra){
+		
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		for(int i=0;i<deposito.tiempoConstruccion;i++){
+			deposito.pasarTiempo();
+		}
+		return deposito;
+		
+	}
+	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
 		assertEquals(deposito.getUbicacionActual().fila(),1);
 		assertEquals(deposito.getUbicacionActual().columna(),2);
@@ -29,7 +39,7 @@ public class DepositoDeSuministrosTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
 		assertFalse(deposito.puedeUbicarseSobreRecursoNatural());
 		
@@ -41,7 +51,7 @@ public class DepositoDeSuministrosTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
 		assertEquals(deposito.getVida(),100);
 		
@@ -53,7 +63,7 @@ public class DepositoDeSuministrosTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
 		assertFalse(deposito.estaElevado());
 		
@@ -65,7 +75,7 @@ public class DepositoDeSuministrosTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		int valorDanio = 30;
 		
 		deposito.recibirDanio(valorDanio);

@@ -8,6 +8,7 @@ public abstract class ConstructorDeEdificios {
 	
 	public static boolean nuevoEdificio(String tipoDeEdificio,Terran razaTerran, Terreno unTerreno){
 		
+		@SuppressWarnings("unused")
 		Edificio nuevoEdificio = null;
 		
 		if( tipoDeEdificio == "Barraca" ){

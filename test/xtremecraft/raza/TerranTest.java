@@ -1,21 +1,9 @@
 package xtremecraft.raza;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import xtremecraft.edificios.Barraca;
-import xtremecraft.edificios.Fabrica;
-import xtremecraft.edificios.PuertoEstelar;
-import xtremecraft.edificios.RecolectorDeGasVespeno;
-import xtremecraft.edificios.RecolectorDeMineral;
-import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
-import xtremecraft.recursos.MinaDeMinerales;
-import xtremecraft.recursos.VolcanGasVespeno;
-import xtremecraft.unidades.Unidad;
-import xtremecraft.unidades.Goliat;
 
 public class TerranTest {
 	

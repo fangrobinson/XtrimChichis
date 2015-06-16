@@ -11,13 +11,23 @@ import xtremecraft.recursos.VolcanGasVespeno;
 
 public class RecolectorDeGasVespenoTest {
 	
+	public RecolectorDeGasVespeno construirNuevoRecolectorDeGasVespeno(Terreno tierra){
+		
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		for(int i=0;i<refineria.tiempoConstruccion;i++){
+			refineria.pasarTiempo();
+		}
+		return refineria;
+	}
+
+	
 	@Test
 	public void nuevaRecolectorDeGasVespenoIniciaConReservaNula(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		
-		assertEquals(refineriaTerran.getReservas(),0);
+		assertEquals(refineria.getReservas(),0);
 		
 	}
 	
@@ -25,9 +35,9 @@ public class RecolectorDeGasVespenoTest {
 	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		
-		assertTrue(refineriaTerran.puedeUbicarseSobreRecursoNatural());
+		assertTrue(refineria.puedeUbicarseSobreRecursoNatural());
 		
 	}
 	
@@ -37,23 +47,22 @@ public class RecolectorDeGasVespenoTest {
 		Terreno tierra = new Tierra(1,2);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(20);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		
-		refineriaTerran.pasarTiempo();
+		refineria.pasarTiempo();
 		
-		assertEquals(refineriaTerran.getReservas(),10);
-		
-		
+		assertEquals(refineria.getReservas(),10);
+			
 	}
 	
 	@Test
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		
-		assertEquals(refineriaTerran.getUbicacionActual().columna(),2);
-		assertEquals(refineriaTerran.getUbicacionActual().fila(),1);
+		assertEquals(refineria.getUbicacionActual().columna(),2);
+		assertEquals(refineria.getUbicacionActual().fila(),1);
 		
 	}
 	
@@ -61,9 +70,9 @@ public class RecolectorDeGasVespenoTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		
-		assertEquals(refineriaTerran.getVida(),100);
+		assertEquals(refineria.getVida(),100);
 		
 	}
 	
@@ -71,14 +80,14 @@ public class RecolectorDeGasVespenoTest {
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
 		int valorDanio = 30;
 		
-		refineriaTerran.recibirDanio(valorDanio);
-		assertEquals(refineriaTerran.getVida(),70);
+		refineria.recibirDanio(valorDanio);
+		assertEquals(refineria.getVida(),70);
 		
-		refineriaTerran.recibirDanio(valorDanio);
-		assertEquals(refineriaTerran.getVida(),40);
+		refineria.recibirDanio(valorDanio);
+		assertEquals(refineria.getVida(),40);
 		
 	}
 

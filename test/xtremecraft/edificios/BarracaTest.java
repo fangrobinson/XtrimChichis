@@ -11,6 +11,15 @@ import xtremecraft.unidades.Marine;
 
 public class BarracaTest {
 	
+	public Barraca construirNuevaBarraca(Terreno tierra){
+		
+		Barraca unaBarraca = new Barraca(tierra);
+		for(int i=0;i<unaBarraca.tiempoConstruccion;i++){
+			unaBarraca.pasarTiempo();
+		}
+		return unaBarraca;
+		
+	}
 
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
@@ -18,7 +27,7 @@ public class BarracaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		
 		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
 		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
@@ -32,7 +41,7 @@ public class BarracaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		
 		assertFalse(unaBarraca.puedeUbicarseSobreRecursoNatural());
 		
@@ -46,7 +55,7 @@ public class BarracaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		
 		assertEquals(unaBarraca.getVida(),100);
 		
@@ -58,7 +67,7 @@ public class BarracaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		
 		assertFalse(unaBarraca.estaElevado());
 		
@@ -70,7 +79,7 @@ public class BarracaTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		int valorDanio = 30;
 		
 		unaBarraca.recibirDanio(valorDanio);
@@ -86,7 +95,7 @@ public class BarracaTest {
 
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,4);
-		Barraca unaBarraca = new Barraca(tierra1);
+		Barraca unaBarraca = construirNuevaBarraca(tierra1);
 		Marine nuevoMarine = unaBarraca.entrenarMarine(tierra2);
 		
 		assertEquals(nuevoMarine.getVida(),40);
