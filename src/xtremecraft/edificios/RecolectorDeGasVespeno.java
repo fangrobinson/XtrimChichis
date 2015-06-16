@@ -1,23 +1,22 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
-import xtremecraft.recursos.VolcanGasVespeno;
+import xtremecraft.recursos.Recurso;
 
 public class RecolectorDeGasVespeno extends Recolector {
 	
-	private VolcanGasVespeno volcan;
+	private Recurso volcan;
 	private static int tiempoDeConstruccion = 6;
 	
-	protected RecolectorDeGasVespeno(VolcanGasVespeno unVolcanDeGasVespeno, Terreno terreno){
+	public RecolectorDeGasVespeno(Terreno terreno){
 		
 		super(terreno);
-		this.volcan = unVolcanDeGasVespeno;
+		this.volcan = terreno.getRecurso();
 		this.tiempoConstruccion = tiempoDeConstruccion; 
 		
 	}
 
-	public void aumentarReservasEnTurno(){
+	public void pasarTiempo(){
 		
 		this.reservas += this.volcan.explotar(this.aumentoDeReservaEnTurno);
 		
@@ -37,12 +36,11 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 	}
 
-	public static RecolectorDeGasVespeno nuevoRecolectorDeGasVespeno(Terran razaTerran, VolcanGasVespeno volcan, Terreno terreno) {
+	public boolean puedeUbicarseSobreRecursoNatural() {
 		
-		RecolectorDeGasVespeno nuevoRecolectorDeGasVespeno = new RecolectorDeGasVespeno(volcan,terreno);
-		razaTerran.agregarEdificioRecolectorDeGasVespeno(nuevoRecolectorDeGasVespeno);
-		return nuevoRecolectorDeGasVespeno;
+		return true;
 		
 	}
+
 		
 }

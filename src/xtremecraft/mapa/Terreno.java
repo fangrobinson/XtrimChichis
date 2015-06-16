@@ -1,7 +1,6 @@
 package xtremecraft.mapa;
 
 import xtremecraft.recursos.Recurso;
-//import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.Ubicable;
 
 public abstract class Terreno {
@@ -9,15 +8,12 @@ public abstract class Terreno {
 	protected Coordenada coordenada;
 	protected boolean ocupada;
 	protected Ubicable unidad;
+	protected Recurso recurso;
 	
 	public Terreno(int fila, int columna){
 		this.coordenada = new Coordenada(fila,columna);
 		this.ocupada = false;
 	}
-	
-	//public abstract boolean ocuparConUnidad(Unidad unidad);
-	
-	public abstract boolean ocuparConRecursoNatural(Recurso recursoNatural);
 	
 	public boolean estaOcupada(){
 		
@@ -48,5 +44,10 @@ public abstract class Terreno {
 	public abstract boolean ubicar(Ubicable ubicable);
 
 	public abstract boolean estaElevado();
+
+	public abstract Recurso getRecurso();
+
+	public abstract boolean agregarRecursoNatural(Recurso unRecurso);
+
 
 }

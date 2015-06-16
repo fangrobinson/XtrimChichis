@@ -3,7 +3,7 @@ package xtremecraft.edificios;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
 
-public class EdificacionEnConstruccion implements Atacable {
+public class EdificacionEnConstruccion implements Atacable{
 	
 	private Edificio edificio;
 	private BarraDeVitalidad vida;

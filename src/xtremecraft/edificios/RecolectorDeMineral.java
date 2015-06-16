@@ -1,23 +1,22 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
-import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.recursos.Recurso;
 
 public class RecolectorDeMineral extends Recolector{
 
-	private MinaDeMinerales minaDeMinerales;
+	private Recurso minaDeMinerales;
 	private static int tiempoDeConstruccion = 4;
 
-	protected RecolectorDeMineral(MinaDeMinerales unaMinaDeMinerales, Terreno terreno) {
+	public RecolectorDeMineral(Terreno terreno) {
 		
 		super(terreno);
-		this.minaDeMinerales = unaMinaDeMinerales;
+		this.minaDeMinerales = terreno.getRecurso();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 	
 	}
 	
-	public void aumentarReservasEnTurno(){
+	public void pasarTiempo(){
 		
 		this.reservas += this.minaDeMinerales.explotar(this.aumentoDeReservaEnTurno);
 		
@@ -36,13 +35,14 @@ public class RecolectorDeMineral extends Recolector{
 		
 	}
 
-	public static RecolectorDeMineral nuevoRecolectorDeMineral(Terran razaTerran,MinaDeMinerales nodoMineral, Terreno terreno){
-		
-		RecolectorDeMineral nuevoRecolectorDeMineral= new RecolectorDeMineral(nodoMineral,terreno);
-		razaTerran.agregarEdificioRecolectorDeMineral(nuevoRecolectorDeMineral);
-		return nuevoRecolectorDeMineral;
+	
+	public boolean puedeUbicarseSobreRecursoNatural() {
+	
+		return true;
 		
 	}
+
+
 	
 
 }

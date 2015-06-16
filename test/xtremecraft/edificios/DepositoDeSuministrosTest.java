@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
 
 public class DepositoDeSuministrosTest {
 	
@@ -16,12 +15,23 @@ public class DepositoDeSuministrosTest {
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
 		
 		assertEquals(deposito.getUbicacionActual().fila(),1);
 		assertEquals(deposito.getUbicacionActual().columna(),2);
+		
+	}
+	
+	@Test
+	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		
+		assertFalse(deposito.puedeUbicarseSobreRecursoNatural());
 		
 	}
 	
@@ -30,9 +40,8 @@ public class DepositoDeSuministrosTest {
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
 		
 		assertEquals(deposito.getVida(),100);
 		
@@ -43,9 +52,8 @@ public class DepositoDeSuministrosTest {
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
 		
 		assertFalse(deposito.estaElevado());
 		
@@ -53,12 +61,11 @@ public class DepositoDeSuministrosTest {
 	
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
-
+		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = DepositoDeSuministros.nuevoDepositoDeSuministros(nuevoClanTerran,tierra);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
 		int valorDanio = 30;
 		
 		deposito.recibirDanio(valorDanio);

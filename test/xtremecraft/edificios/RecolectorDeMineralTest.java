@@ -2,9 +2,10 @@ package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 
@@ -13,23 +14,32 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void testNuevoRecolectorDeMineralIniciaConReservaNula(){
 		
-		Terran nuevoClanTerran=new Terran();
-		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(4);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran=RecolectorDeMineral.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
 		
 		assertEquals(centroMineralTerran.getReservas(),0);
 		
 	}
 	
 	@Test
-	public void testAumentarReservasAumentaLaCantidadDeReservasEnElEdificioRecolector(){
+	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
-		Terran nuevoClanTerran=new Terran();
-		Terreno tierraUno = new Tierra(1,2);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
+		
+		assertTrue(centroMineralTerran.puedeUbicarseSobreRecursoNatural());
+		
+	}
+	
+	@Test
+	public void testPasarTiempoAumentaLaCantidadDeReservasEnElEdificioRecolector(){
+		
+		Terreno tierra = new Tierra(1,2);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
-		RecolectorDeMineral centroMineralTerran=RecolectorDeMineral.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral, tierraUno);
-		centroMineralTerran.aumentarReservasEnTurno();
+		tierra.agregarRecursoNatural(nuevoNodoMineral);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
+		
+		centroMineralTerran.pasarTiempo();
 		
 		assertEquals(centroMineralTerran.getReservas(),10);
 		
@@ -39,10 +49,8 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
-		Terran nuevoClanTerran=new Terran();
-		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran=RecolectorDeMineral.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
 		
 		assertEquals(centroMineralTerran.getUbicacionActual().columna(),2);
 		assertEquals(centroMineralTerran.getUbicacionActual().fila(),1);
@@ -52,10 +60,8 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terran nuevoClanTerran=new Terran();
-		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran=RecolectorDeMineral.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
 		
 		assertEquals(centroMineralTerran.getVida(),100);
 		
@@ -64,10 +70,8 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
-		Terran nuevoClanTerran=new Terran();
-		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran=RecolectorDeMineral.nuevoRecolectorDeMineral(nuevoClanTerran,nuevoNodoMineral,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeMineral centroMineralTerran = new RecolectorDeMineral(tierra);
 		int valorDanio = 30;
 		
 		centroMineralTerran.recibirDanio(valorDanio);

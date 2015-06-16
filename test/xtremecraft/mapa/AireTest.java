@@ -3,6 +3,7 @@ package xtremecraft.mapa;
 import static org.junit.Assert.assertFalse;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Unidad;
 
@@ -26,6 +27,15 @@ public class AireTest {
 		Unidad goliat= new Goliat(terreno);
 		terreno.ubicar(goliat);
 		assertFalse(terreno.estaOcupada());
+		
+	}
+	
+	@Test
+	public void agregarRecursoNaturalDeberiaDevolverFalse(){
+		
+		Terreno terreno=new Aire(1,4);
+		MinaDeMinerales unRecursoNatural = new MinaDeMinerales(3);
+		assertFalse(terreno.agregarRecursoNatural(unRecursoNatural));
 		
 	}
 	

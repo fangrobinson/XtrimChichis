@@ -1,36 +1,45 @@
 package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
 import xtremecraft.recursos.VolcanGasVespeno;
 
 public class RecolectorDeGasVespenoTest {
 	
 	@Test
-	public void testNuevaRecolectorDeGasVespenoIniciaConReservaNula(){
+	public void nuevaRecolectorDeGasVespenoIniciaConReservaNula(){
 		
-		Terran nuevoClanTerran=new Terran();
-		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineriaTerran.getReservas(),0);
 		
 	}
 	
 	@Test
-	public void testAumentarReservasAumentaLaCantidadDeReservasEnElEdificioRecolector(){
+	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
-		Terran nuevoClanTerran=new Terran();
-		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
-		refineriaTerran.aumentarReservasEnTurno();
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		
+		assertTrue(refineriaTerran.puedeUbicarseSobreRecursoNatural());
+		
+	}
+	
+	@Test
+	public void testPasarTiempoAumentaLaCantidadDeReservasEnElEdificioRecolector(){
+
+		Terreno tierra = new Tierra(1,2);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(20);
+		tierra.agregarRecursoNatural(volcan);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
+		
+		refineriaTerran.pasarTiempo();
 		
 		assertEquals(refineriaTerran.getReservas(),10);
 		
@@ -40,10 +49,8 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
-		Terran nuevoClanTerran=new Terran();
-		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(100);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineriaTerran.getUbicacionActual().columna(),2);
 		assertEquals(refineriaTerran.getUbicacionActual().fila(),1);
@@ -53,10 +60,8 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terran nuevoClanTerran=new Terran();
-		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineriaTerran.getVida(),100);
 		
@@ -64,11 +69,9 @@ public class RecolectorDeGasVespenoTest {
 	
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
-		
-		Terran nuevoClanTerran=new Terran();
-		VolcanGasVespeno unVolcanDeGasVespeno=new VolcanGasVespeno(260);
-		Terreno tierraUno = new Tierra(1,2);
-		RecolectorDeGasVespeno refineriaTerran = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nuevoClanTerran,unVolcanDeGasVespeno,tierraUno);
+
+		Terreno tierra = new Tierra(1,2);
+		RecolectorDeGasVespeno refineriaTerran = new RecolectorDeGasVespeno(tierra);
 		int valorDanio = 30;
 		
 		refineriaTerran.recibirDanio(valorDanio);

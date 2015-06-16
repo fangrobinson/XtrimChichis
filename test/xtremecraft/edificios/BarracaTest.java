@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
 public class BarracaTest {
@@ -18,23 +17,36 @@ public class BarracaTest {
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		Barraca unaBarraca = new Barraca(tierra);
 		
 		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
 		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
 		
 	}
 	
+	
+	@Test
+	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = new Barraca(tierra);
+		
+		assertFalse(unaBarraca.puedeUbicarseSobreRecursoNatural());
+		
+	}
+	
+	
+	
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		Barraca unaBarraca = new Barraca(tierra);
 		
 		assertEquals(unaBarraca.getVida(),100);
 		
@@ -45,9 +57,8 @@ public class BarracaTest {
 		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		Barraca unaBarraca = new Barraca(tierra);
 		
 		assertFalse(unaBarraca.estaElevado());
 		
@@ -55,12 +66,11 @@ public class BarracaTest {
 	
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
-
+		
 		int fila = 1;
 		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,tierra);
+		Barraca unaBarraca = new Barraca(tierra);
 		int valorDanio = 30;
 		
 		unaBarraca.recibirDanio(valorDanio);
@@ -74,12 +84,10 @@ public class BarracaTest {
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 
-		int fila = 1;
-		int columna = 2;
-		Terran nuevoClanTerran=new Terran();
-		Terreno tierra = new Tierra(fila,columna);
-		Terreno otraTierra = new Tierra(1,1);
-		Marine nuevoMarine = Barraca.nuevaBarraca(nuevoClanTerran,tierra).entrenarMarine(otraTierra);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(3,4);
+		Barraca unaBarraca = new Barraca(tierra1);
+		Marine nuevoMarine = unaBarraca.entrenarMarine(tierra2);
 		
 		assertEquals(nuevoMarine.getVida(),40);
 		

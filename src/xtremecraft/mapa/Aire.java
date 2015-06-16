@@ -11,17 +11,6 @@ public class Aire extends Terreno {
 		super(fila, columna);
 	}
     
-    /*
-	public boolean ocuparConUnidad(Unidad unidad) {
-		
-		if(!this.ocupada){
-			this.unidad=unidad;
-			this.ocupada=true;
-			return true;
-		}
-		
-		return false;
-	}*/
 	
 	public boolean ocuparConRecursoNatural(Recurso recursoNatural){
 		return false;
@@ -40,9 +29,22 @@ public class Aire extends Terreno {
     	return false;
     }
 
-	@Override
 	public boolean estaElevado() {
 		return true;
+	}
+
+
+	
+	public boolean agregarRecursoNatural(Recurso unRecurso) {
+		
+		return false;
+		
+	}
+
+	public Recurso getRecurso() {
+		
+		throw new IllegalArgumentException("No hay recursos en terrenos aereos.");
+		
 	}
 }
 

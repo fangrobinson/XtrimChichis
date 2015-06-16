@@ -12,7 +12,7 @@ import xtremecraft.raza.Terran;
 
 public class EdificacionEnConstruccionTest {
 	
-	@Test
+	/*@Test
 	public void creoBarracaEnConstruccionYSuVidaEsCero(){
 		
 		int fila = 1;
@@ -138,5 +138,5 @@ public class EdificacionEnConstruccionTest {
 		@SuppressWarnings("unused")
 		Edificio laBarraca = edif.terminarConstruccion();
 	}
-	
+	*/
 }

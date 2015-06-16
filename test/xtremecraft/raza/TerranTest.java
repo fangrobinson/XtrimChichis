@@ -27,7 +27,7 @@ public class TerranTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void agregarRecolectorDeMineralGuardaInstanciaDelEdificioRecolectorDeMineral(){
 		
 		Terran razaTerran = new Terran();
@@ -112,5 +112,5 @@ public class TerranTest {
 		assertEquals(puerto,puertoConstruido);
 	
 	}
-	
+	*/
 }

@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
 
 public class FabricaTest {
 	
+	/*
 	@Test(expected = IllegalArgumentException.class)
 	public void siLaRazaCreadoraNoPoseeBarracasYQuiereCrearUnaFabricaSeLanzaUnaExcepcion(){
 		
@@ -22,33 +22,41 @@ public class FabricaTest {
 		@SuppressWarnings("unused")
 		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,tierra);
 		
-	}
+	}*/
 	
 	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
-		Terran razaTerran = new Terran();
-		Terreno unaTierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
 		
-		assertEquals(fabrica.getUbicacionActual().fila(),3);
-		assertEquals(fabrica.getUbicacionActual().columna(),4);
+		assertEquals(fabrica.getUbicacionActual().fila(),1);
+		assertEquals(fabrica.getUbicacionActual().columna(),2);
+		
+	}
+	
+	@Test
+	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
+		
+		assertFalse(fabrica.puedeUbicarseSobreRecursoNatural());
 		
 	}
 	
 	@Test
 	public void edificioEstaElevadoDevuelveFalseParaEdificiosCreadosEnTierra(){
 		
-		Terran razaTerran = new Terran();
-		Terreno unaTierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
 		
 		assertFalse(fabrica.estaElevado());
 		
@@ -57,26 +65,22 @@ public class FabricaTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terran nuevoClanTerran=new Terran();
-		Terreno unaTierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
-		@SuppressWarnings("unused")
-		Barraca unaBarraca = Barraca.nuevaBarraca(nuevoClanTerran,unaTierra);
-		Fabrica unaFabrica = Fabrica.nuevaFabrica(nuevoClanTerran,otraTierra);
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
 		
-		assertEquals(unaFabrica.getVida(),100);
+		assertEquals(fabrica.getVida(),100);
 		
 	}
 	
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
-		Terran razaTerran = new Terran();
-		Terreno unaTierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
 		int valorDanio = 30;
 		
 		fabrica.recibirDanio(valorDanio);
@@ -91,14 +95,10 @@ public class FabricaTest {
 	@Test
 	public void entrenarGoliatDevuelveNuevaUnidadGoliat(){
 		 
-		Terran razaTerran = new Terran();
-		Terreno tierraUno = new Tierra(1,2);
-		Terreno tierraDos = new Tierra(3,4);
-		Tierra tierraTres = new Tierra(4,4);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran, tierraUno);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
-		Goliat unGoliat = fabrica.entrenarGoliat(tierraTres);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(3,4);
+		Fabrica fabrica = new Fabrica(tierra1);
+		Goliat unGoliat = fabrica.entrenarGoliat(tierra2);
 		
 		assertEquals(unGoliat.getVida(),125);
 		

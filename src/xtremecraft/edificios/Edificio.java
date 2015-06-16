@@ -59,7 +59,9 @@ abstract class Edificio implements Ubicable,Atacable {
 	}
 	
 	public boolean estaElevado(){
+		
 		return false;
+		
 	}
 	
 }

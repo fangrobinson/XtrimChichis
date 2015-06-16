@@ -16,9 +16,19 @@ public class TierraTest {
 	@Test
 	public void nuevaTierraCreaTierraConEstadoNoOcupado(){
 		
-		Terreno terreno=new Tierra(1,1);
+		Terreno terreno = new Tierra(1,1);
 		
 		assertFalse(terreno.estaOcupada());
+		
+	}
+	
+	@Test
+	public void agregarRecursoNaturalDeberiaDevolverTrueSiSeAgregaUnaMinaDeMinerales(){
+		
+		Terreno terreno = new Tierra(1,1);
+		MinaDeMinerales mina = new MinaDeMinerales(3);
+		
+		assertTrue(terreno.agregarRecursoNatural(mina));
 		
 	}
 	
@@ -34,7 +44,7 @@ public class TierraTest {
 	}
 	
 	@Test
-	public void ocuparterrenoConUnidadGuardaLaUnidadEnLaterreno(){
+	public void ocuparTerrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
 		Terreno terreno=new Tierra(1,1);
 		Unidad goliat= new Goliat(terreno);	
@@ -48,7 +58,7 @@ public class TierraTest {
 	}
 	
 	@Test
-	public void terrenoTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEsaterreno(){
+	public void terrenoTieneRecursoNaturalDeberiaDevolverTrueSiGuardoUnMineralEnEseTerreno(){
 		
 		Tierra tierra=new Tierra(1,1);
 		MinaDeMinerales nodoMineral=new MinaDeMinerales(5);
