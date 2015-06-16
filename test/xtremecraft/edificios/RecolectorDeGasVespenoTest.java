@@ -25,7 +25,7 @@ public class RecolectorDeGasVespenoTest {
 	public void nuevaRecolectorDeGasVespenoIniciaConReservaNula(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineria.getReservas(),0);
 		
@@ -35,7 +35,7 @@ public class RecolectorDeGasVespenoTest {
 	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		
 		assertTrue(refineria.puedeUbicarseSobreRecursoNatural());
 		
@@ -47,7 +47,7 @@ public class RecolectorDeGasVespenoTest {
 		Terreno tierra = new Tierra(1,2);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(20);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		
 		refineria.pasarTiempo();
 		
@@ -59,7 +59,7 @@ public class RecolectorDeGasVespenoTest {
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineria.getUbicacionActual().columna(),2);
 		assertEquals(refineria.getUbicacionActual().fila(),1);
@@ -70,7 +70,7 @@ public class RecolectorDeGasVespenoTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		
 		assertEquals(refineria.getVida(),100);
 		
@@ -80,7 +80,7 @@ public class RecolectorDeGasVespenoTest {
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 
 		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
 		int valorDanio = 30;
 		
 		refineria.recibirDanio(valorDanio);
