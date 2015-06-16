@@ -1,6 +1,7 @@
 package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -17,6 +18,15 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(celda);
 		
 		assertEquals(tanque1.getVida(),125);
+	}
+	
+	@Test
+	public void goliatPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+
+		Terreno celda=new Tierra(1,2);
+		Goliat tanque1 = new Goliat(celda);
+		
+		assertFalse(tanque1.puedeUbicarseSobreRecursoNatural());
 	}
 	
 	@Test

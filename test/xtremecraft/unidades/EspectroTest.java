@@ -1,6 +1,7 @@
 package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -17,6 +18,16 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(terreno);
 		
 		assertEquals(gengar.getVida(),120);
+	}
+	
+	@Test
+	public void EspectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+		
+		Terreno terreno = new Aire(1,2);
+		Espectro gengar = new Espectro(terreno);
+		
+		assertFalse(gengar.puedeUbicarseSobreRecursoNatural());
+		
 	}
 	
 	@Test

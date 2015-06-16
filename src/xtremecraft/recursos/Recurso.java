@@ -20,7 +20,9 @@ public abstract class Recurso {
 	public int explotar(int i) {
 		
 		if (i > this.cantidadDeRecurso){
+			
 			i = this.cantidadDeRecurso;
+			
 		}
 		
 		this.cantidadDeRecurso-=i;

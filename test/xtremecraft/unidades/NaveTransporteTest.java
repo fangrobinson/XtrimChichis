@@ -1,6 +1,7 @@
 package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -17,6 +18,15 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(terreno);
 		
 		assertEquals(taxiVolador.getVida(),150);
+	}
+	
+	@Test
+	public void NaveTransportePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+
+		Terreno terreno = new Aire(1,2);
+		NaveTransporte taxiVolador = new NaveTransporte(terreno);
+		
+		assertFalse(taxiVolador.puedeUbicarseSobreRecursoNatural());
 	}
 	
 	@Test

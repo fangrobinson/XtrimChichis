@@ -5,8 +5,9 @@ import xtremecraft.unidades.UnidadAerea;
 
 public class NaveCiencia extends UnidadAerea{
 	
-	private int energia;
-	private int aumentoDeEnergiaEnTurno;
+	private int energiaMax = 200;
+	private int energia = 50;
+	private int aumentoDeEnergiaEnTurno = 10;
 	
 	public NaveCiencia(Terreno terreno){
 		
@@ -14,8 +15,6 @@ public class NaveCiencia extends UnidadAerea{
 		this.vitalidad = new BarraDeVitalidad(200);
 		this.danio = new Danio(0,0);
 		this.vision = 10;
-		this.energia = 50;
-		this.aumentoDeEnergiaEnTurno = 10;
 		this.tiempoConstruccion = 10;
 		
 	}
@@ -28,9 +27,31 @@ public class NaveCiencia extends UnidadAerea{
 	
 	public void aumentarEnergiaEnTurno(){
 		
-		if((this.energia+this.aumentoDeEnergiaEnTurno)<=200){
-			this.energia+=this.aumentoDeEnergiaEnTurno;
+		if( (this.energia + this.aumentoDeEnergiaEnTurno) >= this.energiaMax ){
+			
+			this.energia = this.energiaMax;
+			
+		}else{
+			
+			this.energia += this.aumentoDeEnergiaEnTurno;
+			
 		}
+	}
+	
+	public void atacar(Atacable atacado){
+		
+		
+		
+	}
+	
+	public void ataqueEMP(){
+	
+		
+	}
+	
+	public void ataqueRadiacion(Atacable atacado){
+		
+		
 		
 	}
 	

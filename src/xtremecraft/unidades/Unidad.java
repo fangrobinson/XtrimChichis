@@ -12,10 +12,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	boolean estaElevado;
 	
 	protected Unidad(Terreno terreno){
+		
 		if(terreno.estaOcupada()){
 			throw new IllegalArgumentException();
 		}
 		actualizarUbicacion(terreno);
+		
 	}
 	
     public void recibirDanio(int daño){
@@ -24,29 +26,26 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
         	
     }
     
+    
     public void atacar (Atacable atacado){
+    	
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
     		atacado.recibirDanio(this.danio.devolverDanio(atacadoUbicado.estaElevado()));
-    		/*if (atacadoUbicado.estaElevado()){
-    			atacado.recibirDanio(this.danio.devolverDaño("aire"));
-    		}else{
-    			atacado.recibirDanio(this.danio.devolverDaño("tierra"));
-    		}*/			
     	}
     	
     }
     
-    private boolean puedoAtacar(Ubicable atacado) {
+    protected boolean puedoAtacar(Ubicable atacado) {
     	
     	Coordenada ubicacionAtacante = this.getUbicacionActual();
     	Coordenada ubicacionAtacado = atacado.getUbicacionActual();
     	double distancia = ubicacionAtacante.distancia(ubicacionAtacado);
-    	
 		if (distancia <= this.getRadioVision()){
 			return true;
 		}
 		return false;
+		
 	}
 
 	public int getVida(){
@@ -62,6 +61,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     }
     
     public int tiempoConstruccion(){
+    	
     	return this.tiempoConstruccion;
     }
     
@@ -79,7 +79,15 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	}
     
     public boolean estaElevado(){
+    	
     	return this.estaElevado;
+    	
+    }
+    
+    public boolean puedeUbicarseSobreRecursoNatural(){
+    	
+    	return false;
+    	
     }
 
 }

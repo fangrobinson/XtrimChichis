@@ -1,6 +1,7 @@
 package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -17,6 +18,15 @@ public class MarineTest {
 		Marine miniSamus = new Marine(unaCelda);
 
 		assertEquals(miniSamus.getVida(),40);
+	}
+	
+	@Test
+	public void marinePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+
+		Terreno unaCelda=new Tierra(1,1);
+		Marine miniSamus = new Marine(unaCelda);
+		
+		assertFalse(miniSamus.puedeUbicarseSobreRecursoNatural());
 	}
 	
 	@Test

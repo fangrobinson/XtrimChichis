@@ -9,6 +9,8 @@ public interface Ubicable {
 	
 	public void actualizarUbicacion(Terreno terreno);
 	
+	public boolean puedeUbicarseSobreRecursoNatural();
+	
 	public boolean puedeUbicarseEnTierra();
 	
 	public boolean puedeUbicarseEnAire();
