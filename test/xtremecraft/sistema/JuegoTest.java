@@ -4,28 +4,43 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
+
+import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 
 public class JuegoTest {
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void CrearJuegoConCantJugadoresNegativoDaError(){
-		new Juego(-1);	
-	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearJuegoConCantJugadoresCeroDaError(){
-		new Juego(0);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		new Juego(jugadores);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearJuegoConCantJugadoresUnoDaError(){
-		new Juego(1);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno = new Tierra(1,1);
+	    Jugador ninioRata = new Jugador("Bart", terreno);
+		jugadores.add(ninioRata);
+	    
+		new Juego(jugadores);
 	}
 	
 	@Test
 	public void creoUnJuegoElTiempoEsCero(){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
 		int tiempo = juego.tiempo();
 		
 		assertEquals(tiempo, 0);
@@ -33,7 +48,15 @@ public class JuegoTest {
 	
 	@Test
 	public void pasoElTiempoYTiempoAvanza(){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
 		
 		juego.pasarTiempo();
 		int tiempo = juego.tiempo();
@@ -43,7 +66,16 @@ public class JuegoTest {
 	
 	@Test
 	public void creoUnJuegoYPuedoConocerQuienEmpieza (){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
+		
 		Jugador jug = null;
 		
 		jug= juego.quienJuega();
@@ -53,7 +85,16 @@ public class JuegoTest {
 	
 	@Test
 	public void avanzoUnTurnoYVeoQueElJugadorCambio (){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
+		
 		Jugador jug = null;
 		Jugador jug2 = null;
 		
@@ -66,7 +107,16 @@ public class JuegoTest {
 	
 	@Test
 	public void enUnJuegoDeDosJugadoresSePuedeVerQueLaRondaVuelveAEmpezarDespuesDePasar2Turnos (){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
+		
 		Jugador jug = null;
 		Jugador jug2 = null;
 		
@@ -80,7 +130,16 @@ public class JuegoTest {
 	
 	@Test
 	public void enUnJuegoDeDosJugadoresSePuedeVerQueNoSeRepiteElJugador (){
-		Juego juego = new Juego(2);
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		Terreno terreno1 = new Tierra(1,1);
+		Terreno terreno2 = new Tierra (1,2);
+	    Jugador ninioRata = new Jugador("Bart", terreno1);
+	    Jugador noob = new Jugador("Jose", terreno2);
+		jugadores.add(ninioRata);
+		jugadores.add(noob);
+	
+		Juego juego = new Juego(jugadores);
+		
 		Jugador jug = null;
 		Jugador jug2 = null;
 		

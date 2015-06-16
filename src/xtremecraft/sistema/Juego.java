@@ -3,7 +3,6 @@ package xtremecraft.sistema;
 import java.util.ArrayList;
 
 import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.Tierra;
 
 public class Juego {
 	private int tiempo;
@@ -11,19 +10,15 @@ public class Juego {
 	private Mapa mapa;
 	private ArrayList<Jugador> jugadores;
 	
-	public Juego(int cant_jug){
-		if (cant_jug <= 1){
+	public Juego(ArrayList<Jugador> jugadores){
+		if (jugadores.size() <= 1){
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}
 		this.tiempo = 0;
-		this.cant_jug = cant_jug;
+		this.cant_jug = jugadores.size();
 		this.mapa = new Mapa(cant_jug);	
-		this.jugadores = new ArrayList<Jugador>();
+		this.jugadores = jugadores;
 		
-		
-		for (int i = 0; i<cant_jug; i = i + 1){
-			this.jugadores.add(new Jugador("Pepe", new Tierra(0,0)));
-		}
 	}
 	
 	public void pasarTiempo(){
