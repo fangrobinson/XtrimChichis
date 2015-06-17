@@ -6,6 +6,7 @@ import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.ConstructorDeEdificios;
 import xtremecraft.edificios.Edificio;
 import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -69,33 +70,33 @@ public class Terran{
 		
 	}
 	
-	public Unidad crearMarine(Edificio unEdificio, Mapa mapa){
+	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaUnidad("Marine",this,unEdificio,mapa);
-		
-	}
-	
-	public Unidad crearGoliat(Edificio unEdificio, Mapa mapa){
-		
-		return ConstructorDeUnidades.nuevaUnidad("Goliat",this,unEdificio,mapa);
+		return ConstructorDeUnidades.nuevaUnidad(this,unaBarraca,mapa);
 		
 	}
 	
-	public Unidad crearEspectro(Edificio unEdificio, Mapa mapa){
+	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaUnidad("Espectro",this,unEdificio,mapa);
-		
-	}
-	
-	public Unidad crearNaveCiencia(Edificio unEdificio, Mapa mapa){
-		
-		return ConstructorDeUnidades.nuevaUnidad("Nave Ciencia",this,unEdificio,mapa);
+		return ConstructorDeUnidades.nuevaUnidad(this,unaFabrica,mapa);
 		
 	}
 	
-	public Unidad crearNaveTransporte(Edificio unEdificio, Mapa mapa){
+	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaUnidad("Nave Transporte",this,unEdificio,mapa);
+		return ConstructorDeUnidades.nuevoEspectro(this,puerto,mapa);
+		
+	}
+	
+	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
+		
+		return ConstructorDeUnidades.nuevaNaveCiencia(this,puerto,mapa);
+		
+	}
+	
+	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
+		
+		return ConstructorDeUnidades.nuevaNaveTransporte(this,puerto,mapa);
 		
 	}
 	

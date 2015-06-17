@@ -79,6 +79,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	
     }
     
+    public boolean elevar(){
+    	
+    	return false;
+    	
+    }
+    
     public boolean puedeUbicarseSobreRecursoNatural(){
     	
     	return false;

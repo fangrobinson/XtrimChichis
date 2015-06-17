@@ -17,4 +17,5 @@ public interface Ubicable {
 	
 	public boolean estaElevado();
 
+	public boolean elevar();
 }

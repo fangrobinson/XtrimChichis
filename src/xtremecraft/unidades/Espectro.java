@@ -9,5 +9,12 @@ public class Espectro extends UnidadAerea{
 		this.vision = 7;
 		this.tiempoConstruccion = 8;
 	}
+	
+	public boolean elevar(){
+		
+		this.estaElevado = true;
+		return true;
+		
+	}
 
 }

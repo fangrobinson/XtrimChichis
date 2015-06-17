@@ -36,21 +36,12 @@ public class NaveCiencia extends UnidadAerea{
 		}
 	}
 	
-	public void atacar(Atacable atacado){
+	public boolean elevar(){
 		
-		
-		
-	}
-	
-	public void ataqueEMP(){
-	
+		this.estaElevado = true;
+		return true;
 		
 	}
 	
-	public void ataqueRadiacion(Atacable atacado){
-		
-		
-		
-	}
-	
+
 }

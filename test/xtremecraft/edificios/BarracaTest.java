@@ -94,9 +94,8 @@ public class BarracaTest {
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 
 		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(3,4);
 		Barraca unaBarraca = construirNuevaBarraca(tierra1);
-		Marine nuevoMarine = unaBarraca.entrenarMarine(tierra2);
+		Marine nuevoMarine = unaBarraca.entrenarMarine();
 		
 		assertEquals(nuevoMarine.getVida(),40);
 		

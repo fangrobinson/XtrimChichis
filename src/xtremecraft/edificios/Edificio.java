@@ -77,6 +77,12 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 		
 	}
 	
+	public boolean elevar(){
+		
+		return false;
+		
+	}
+	
 	public void pasarTiempo(){
 		//revisar modelado de paso del tiempo
 		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;

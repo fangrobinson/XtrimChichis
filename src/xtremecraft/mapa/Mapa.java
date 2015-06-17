@@ -80,7 +80,7 @@ public class Mapa {
 		
 		if(!this.ubicarCapaInferior(ubicable, celda )){
 			if(!this.ubicarCapaSuperior(ubicable, celda )) return false;
-			else ubicable.actualizarUbicacion(celda.getCapaInferior());
+			else ubicable.actualizarUbicacion(celda.getCapaSuperior());
 		}
 		else ubicable.actualizarUbicacion(celda.getCapaInferior());
 		return true;

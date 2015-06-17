@@ -8,7 +8,7 @@ public abstract class UnidadAerea extends Unidad{
 	}
 	
 	public boolean puedeUbicarseEnTierra() {
-		return true;
+		return false;
 	}
 
 	public boolean puedeUbicarseEnAire() {
