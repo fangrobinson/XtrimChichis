@@ -12,10 +12,11 @@ public class Terran{
 	
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
-
+	private boolean estaViva;
 
 	public Terran(Terreno terreno){
 		
+		this.estaViva = true;
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		
@@ -79,6 +80,13 @@ public class Terran{
 	public boolean tieneFabricas() {
 		//ARREGLAR CON LO NUEVO DEL ITERADOR
 		return true;
+		
+	}
+
+
+	public boolean estaViva() {
+		
+		return this.estaViva;
 		
 	}
 
