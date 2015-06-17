@@ -9,18 +9,18 @@ public abstract class ConstructorDeEdificios {
 	
 	public static boolean nuevoEdificio(String tipoDeEdificio,Terran razaTerran, Terreno unTerreno){
 		
+		Edificio nuevaEdificacion = null;
 		
 		if( tipoDeEdificio == "Barraca" ){
 			
-			 Barraca nuevoEdificio = new Barraca(unTerreno);
-			 razaTerran.agregarBarraca(nuevoEdificio);
+			nuevaEdificacion = new Barraca(unTerreno);
+			
 		}
 		
 		if( tipoDeEdificio == "Fabrica" ){
 			
 			if(razaTerran.tieneBarracas()){
-				Fabrica nuevoEdificio = new Fabrica(unTerreno);
-				razaTerran.agregarFabrica(nuevoEdificio);
+				nuevaEdificacion = new Fabrica(unTerreno);
 			}else{
 				throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
 			}		
@@ -30,8 +30,7 @@ public abstract class ConstructorDeEdificios {
 		if( tipoDeEdificio == "Puerto Estelar" ){
 			
 			if(razaTerran.tieneFabricas()){
-				PuertoEstelar nuevoEdificio = new PuertoEstelar(unTerreno);
-				razaTerran.agregarPuertoEstelar(nuevoEdificio);
+				nuevaEdificacion = new PuertoEstelar(unTerreno);
 			}else{
 				throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
 			}
@@ -41,8 +40,7 @@ public abstract class ConstructorDeEdificios {
 		if( tipoDeEdificio == "Recolector de Mineral" ){
 			
 			if(unTerreno.tieneMineral()){
-				RecolectorDeMineral nuevoEdificio = new RecolectorDeMineral(unTerreno);
-				razaTerran.agregarEdificioRecolector(nuevoEdificio);
+				nuevaEdificacion = new RecolectorDeMineral(unTerreno);
 			}else{
 				throw new IllegalArgumentException("No se puede contruir una recolector de mineral sobre un terreno sin mineral.");
 			}
@@ -52,8 +50,7 @@ public abstract class ConstructorDeEdificios {
 		if( tipoDeEdificio == "Recolector de Gas Vespeno" ){
 			
 			if(unTerreno.tieneGasVespeno()){
-				RecolectorDeGasVespeno nuevoEdificio = new RecolectorDeGasVespeno(unTerreno);
-				razaTerran.agregarEdificioRecolector(nuevoEdificio);
+				nuevaEdificacion = new RecolectorDeGasVespeno(unTerreno);
 			}else{
 				throw new IllegalArgumentException("No se puede contruir una refineria sobre un terreno sin gas vespeno.");
 			}
@@ -62,23 +59,16 @@ public abstract class ConstructorDeEdificios {
 		
 		if( tipoDeEdificio == "Deposito de Suministros" ){
 			
-			DepositoDeSuministros nuevoEdificio = new DepositoDeSuministros(unTerreno);
-			razaTerran.agregarDepositoDeSuministros(nuevoEdificio);
-		}
-		else{
-			int nuevoEdificio = 0;
-			throw new IllegalArgumentException("El tipo de edificio que busca crear no existe");
-		}
-		
-		Ubicable nuevoEdificio = (Ubicable)nuevoEdificio;
-		if(unTerreno.ubicar(nuevoEdificio)){
-			
-			return true;
+			nuevaEdificacion = new DepositoDeSuministros(unTerreno);
 			
 		}
+
 		
-		return false;
-	
+		razaTerran.agregarEdificio(nuevaEdificacion);
+		
+		Ubicable nuevoEdificio = (Ubicable)nuevaEdificacion;
+		
+		return unTerreno.ubicar(nuevoEdificio);
 		
 	}
 }

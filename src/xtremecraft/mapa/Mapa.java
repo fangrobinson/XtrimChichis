@@ -4,10 +4,6 @@ import java.util.TreeMap;
 
 import xtremecraft.unidades.Ubicable;
 
-//import xtremecraft.interfaces.Ubicable;
-//import xtremecraft.mapa.EstrategiaUbicacion;
-//import xtremecraft.recursos.MinaDeMinerales;
-//import xtremecraft.unidades.Unidad;
 
 public class Mapa {
 	
@@ -103,7 +99,6 @@ public class Mapa {
 		return true;
 	}
 	
-	//NOTA: tal vez este metodo deberia ser privado. De esa forma el mapa se encarga de ocupar la celda.
 	public Celda getCeldaEnFilaColumna(int fila, int columna){
 		return this.mapaAlto.get(fila).get(columna);
 	}
