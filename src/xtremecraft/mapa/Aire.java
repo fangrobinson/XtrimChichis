@@ -21,7 +21,7 @@ public class Aire extends Terreno {
     		return false;
     	}
     	if (ubicable.puedeUbicarseEnAire()){
-    		this.unidad = ubicable;
+    		this.ubicable = ubicable;
     		this.ocupada = true;
     		ubicable.actualizarUbicacion(this);
     		return true;

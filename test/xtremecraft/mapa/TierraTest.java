@@ -50,7 +50,7 @@ public class TierraTest {
 		Unidad goliat= new Goliat(terreno);	
 	
 		terreno.ubicar(goliat);
-		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
+		Unidad unidad = (Unidad) terreno.getUbicableEnTerreno();
 		int vida = unidad.getVida();
 		
 		assertEquals(vida,125);

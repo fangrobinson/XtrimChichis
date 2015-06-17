@@ -54,7 +54,7 @@ public class Tierra extends Terreno {
     		return false;
     	}
     	if (ubicable.puedeUbicarseEnTierra()){
-    		this.unidad = ubicable;
+    		this.ubicable = ubicable;
     		this.ocupada = true;
     		ubicable.actualizarUbicacion(this);
     		return true;

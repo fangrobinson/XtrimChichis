@@ -4,6 +4,9 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
+
 
 
 
@@ -13,7 +16,9 @@ public class TerranTest {
 	//A continuacion, una chanchada, hay que corregir cosas y eso.
 	@Test
 	public void testNuevoTerranDevuelveInstanciaDeTerranConEstadoInicialRazaViva(){
-		Terran razaTerran = new Terran();
+		
+		Terreno tierra = new Tierra(1,2);
+		Terran razaTerran = new Terran(tierra);
 		assertFalse(razaTerran.estaViva());
 		
 	}
