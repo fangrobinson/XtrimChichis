@@ -1,19 +1,17 @@
 package xtremecraft.raza;
 
-import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
-import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
-
-
-
-
 public class TerranTest {
 	
-	
+	@Test
+	public void test(){
+		
+	}
 	//A continuacion, una chanchada, hay que corregir cosas y eso.
+	/*
 	@Test
 	public void testNuevoTerranDevuelveInstanciaDeTerranConEstadoInicialRazaViva(){
 		
@@ -23,7 +21,7 @@ public class TerranTest {
 		
 	}
 	
-	/*
+	
 	@Test
 	public void agregarRecolectorDeMineralGuardaInstanciaDelEdificioRecolectorDeMineral(){
 		

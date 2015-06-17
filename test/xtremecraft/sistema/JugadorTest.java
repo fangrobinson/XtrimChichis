@@ -2,7 +2,8 @@ package xtremecraft.sistema;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class JugadorTest {
 	
@@ -12,10 +13,10 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void alCrearseUnJugadorElMismoNoEstaEnJuego(){
+	public void alCrearseUnJugadorElMismoEstaEnJuego(){
 		Jugador jugador = new Jugador("Juan");
 		boolean juega = jugador.estaEnJuego();
 		
-		assertFalse(juega);
+		assertTrue(juega);
 	}
 }
