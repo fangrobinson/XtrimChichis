@@ -18,7 +18,7 @@ public class RecolectorDeGasVespeno extends Recolector {
 
 	public void pasarTiempo(){
 		//revisar modelado de paso del tiempo
-		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion) this.tiempoDeConstruccionActual += 1;
+		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;
 		else this.reservas += this.volcan.explotar(this.aumentoDeReservaEnTurno);
 		
 	}

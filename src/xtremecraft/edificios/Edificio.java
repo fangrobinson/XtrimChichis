@@ -37,9 +37,15 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 		
 	}
 	
+	public boolean estaEnConstruccion(){
+		
+		return this.tiempoDeConstruccionActual < this.tiempoConstruccion;
+		
+	}
+	
 	public void recibirDanio(int valorDanio){
 		
-		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
+		if(this.estaEnConstruccion()){
 			//revisar modelado de paso del tiempo
 			this.tiempoDeConstruccionActual -= 1;
 		}else{
@@ -49,9 +55,6 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 
 	public void actualizarUbicacion(Terreno terreno){
 		
-		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
-			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
-		}
 		this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
 		
 	}
@@ -76,7 +79,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 	
 	public void pasarTiempo(){
 		//revisar modelado de paso del tiempo
-		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion) this.tiempoDeConstruccionActual += 1;
+		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;
 		
 	}
 	

@@ -1,110 +1,202 @@
 package xtremecraft.raza;
 
-//import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import xtremecraft.edificios.DepositoDeSuministros;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
+import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
+import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.recursos.VolcanGasVespeno;
 
 public class TerranTest {
 	
 	@Test
-	public void test(){
-		
-	}
-	//A continuacion, una chanchada, hay que corregir cosas y eso.
-	/*
-	@Test
-	public void testNuevoTerranDevuelveInstanciaDeTerranConEstadoInicialRazaViva(){
+	public void estaVivaDevuelveTrueAlCrearLaRaza(){
 		
 		Terran razaTerran = new Terran();
-		assertFalse(razaTerran.estaViva());
 		
-	}
-	
-	
-	@Test
-	public void agregarRecolectorDeMineralGuardaInstanciaDelEdificioRecolectorDeMineral(){
-		
-		Terran razaTerran = new Terran();
-		MinaDeMinerales nodoMineral = new MinaDeMinerales(2);
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(razaTerran, nodoMineral, tierra);
-		RecolectorDeMineral centroMineral= razaTerran.getListaDeRecolectoresDeMineralConstruidos().remove(0);
-		
-		assertEquals(centroMineral,nuevoCentroMineral);
+		assertTrue(razaTerran.estaViva());
 		
 	}
 	
 	@Test
-	public void agregarUnidadGuardaInstanciaDeLaUnidadCreada(){
+	public void tieneBarracasDeberiaDevolverFalseSiNoSeCrearonBarracas(){
 		
 		Terran razaTerran = new Terran();
-		Terreno tierra =new Tierra(2,3);
-		Goliat nuevaUnidadGoliat = new Goliat(tierra);
-		razaTerran. agregarUnidad(nuevaUnidadGoliat);
-		Unidad unidadGoliat= razaTerran.getListaDeUnidadesCreadas().remove(0);
 		
-		assertEquals(unidadGoliat.getVida(),125);
+		assertFalse(razaTerran.tieneBarracas());
+			
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearEdificioLanzaExcepcionSiSeIntentaCrearUnEdificioEnUnaCeldaOcupada(){
 		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		
+		razaTerran.crearBarraca(unTerreno);
+		razaTerran.crearBarraca(unTerreno);
 		
 	}
 	
 	@Test
-	public void agregarRecolectorDeGasVespenoGuardaInstanciaDelEdificioRecolectorDeGasVespeno(){
+	public void tieneBarracasDeberiaDevolverTrueSiSeCrearonBarracas(){
 		
 		Terran razaTerran = new Terran();
-		VolcanGasVespeno volcanDeGasVespeno = new VolcanGasVespeno(200);
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(razaTerran,volcanDeGasVespeno,tierra);
-		RecolectorDeGasVespeno refineriaTerranConstruida = razaTerran.getListaDeRecolectoresDeGasVespenoConstruidos().remove(0);
+		Terreno unTerreno = new Tierra(1,2);
 		
-		assertEquals(nuevaRefineria,refineriaTerranConstruida);
+		razaTerran.crearBarraca(unTerreno);
+		
+		assertTrue(razaTerran.tieneBarracas());
+	
+	}
+	
+	@Test
+	public void tieneFabricasDeberiaDevolverTrueSiSeCrearonFabricas(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		Terreno otroTerreno = new Tierra(10,10);
+		
+		razaTerran.crearBarraca(unTerreno);
+		razaTerran.crearFabrica(otroTerreno);
+		
+		assertTrue(razaTerran.tieneFabricas());
+			
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearFabricaLanzaExcepcionSiSeIntenaCrearFabricaCuandoNoHayBarracas(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		
+		razaTerran.crearFabrica(unTerreno);
+			
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearPuertoEstelarLanzaExcepcionSiSeIntenaCrearPuertoCuandoNoHayFabricas(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		
+		razaTerran.crearPuertoEstelar(unTerreno);
+			
+	}
+	
+	@Test
+	public void crearCentroRecolectorDeMineralCreaNuevoCentroMineral(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		MinaDeMinerales mina = new MinaDeMinerales(30);
+		unTerreno.agregarRecursoNatural(mina);
+		
+		RecolectorDeMineral centroMineral = (RecolectorDeMineral)razaTerran.crearRecolectorDeMineral(unTerreno);
+		
+		//Dejo el centroMineral en estado construido:
+		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+		for(int turno=0;turno<4;turno++) centroMineral.pasarTiempo();
+		
+		assertEquals(centroMineral.getReservas(),0);
+		
+		centroMineral.pasarTiempo();
+		
+		assertEquals(centroMineral.getReservas(),10);
 		
 	}
 	
 	@Test
-	public void agregarBarracaGuardaInstanciaDelEdificioCreadorDeUnidades(){
+	public void crearCentroRecolectorDeGasVespenoCreaNuevoCentroMineral(){
 		
 		Terran razaTerran = new Terran();
-		Terreno tierra = new Tierra(1,2);
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,tierra);
-		Barraca barracaConstruida = razaTerran.getListaDeBarracasConstruidas().remove(0);
+		Terreno unTerreno = new Tierra(1,2);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
+		unTerreno.agregarRecursoNatural(volcan);
 		
-		assertEquals(barraca,barracaConstruida);
+		RecolectorDeGasVespeno refineria = (RecolectorDeGasVespeno)razaTerran.crearRecolectorDeGasVespeno(unTerreno);
+		
+		//Dejo refineria en estado construido:
+		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+		for(int turno=0;turno<6;turno++) refineria.pasarTiempo();
+		
+		assertEquals(refineria.getReservas(),0);
+		
+		refineria.pasarTiempo();
+		
+		assertEquals(refineria.getReservas(),10);
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		
+		razaTerran.crearRecolectorDeMineral(unTerreno);
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoConUnRecursoQueNoSeaMineral(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
+		unTerreno.agregarRecursoNatural(volcan);
+		
+		razaTerran.crearRecolectorDeMineral(unTerreno);
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		
+		razaTerran.crearRecolectorDeGasVespeno(unTerreno);
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinGasVespeno(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		MinaDeMinerales mina = new MinaDeMinerales(3);
+		
+		unTerreno.agregarRecursoNatural(mina);
+		
+		razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
 	}
 	
 	@Test
-	public void agregarFabricaGuardaInstanciaDeLaFabrica(){
-		
+	public void crearDepositoDeSuministrosCreaNuevoDepositoDeSuministros(){
+
 		Terran razaTerran = new Terran();
-		Terreno unaTierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,unaTierra);
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,otraTierra);
+		Terreno unTerreno = new Tierra(1,2);
+		DepositoDeSuministros deposito = (DepositoDeSuministros)razaTerran.crearDepositoDeSuministros(unTerreno);
 		
-		Fabrica fabricaConstruida = razaTerran.getListaDeFabricasConstruidas().remove(0);
+		//Dejo deposito en estado construido:
+		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+		for(int turno=0;turno<6;turno++) deposito.pasarTiempo();
 		
-		assertEquals(fabrica,fabricaConstruida);
+		assertEquals(deposito.tiempoConstruccion(),6);
+		assertEquals(deposito.getVida(),100);
+		
 	}
 	
-	@Test
-	public void agregarPuertoEstelarGuardaInstanciaDelPuertoYBorraFabricaBaseDeLaListaDeFabricasCreadas(){
-		
-		Terran razaTerran = new Terran();
-		Terreno tierraUno = new Tierra(1,2);
-		Terreno tierraDos = new Tierra(3,4);
-		Terreno tierraTres = new Tierra(5,6);
-		@SuppressWarnings("unused")
-		Barraca barraca = Barraca.nuevaBarraca(razaTerran,tierraUno);
-		@SuppressWarnings("unused")
-		Fabrica fabrica = Fabrica.nuevaFabrica(razaTerran,tierraDos);
-		PuertoEstelar puerto = PuertoEstelar.nuevoPuertoEstelar(razaTerran,tierraTres);
-		
-		PuertoEstelar puertoConstruido = razaTerran.getListaDePuertosEstelaresConstruidos().remove(0);
-		
-		assertEquals(puerto,puertoConstruido);
 	
-	}
-	*/
+	
 }

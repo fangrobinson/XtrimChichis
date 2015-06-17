@@ -42,7 +42,7 @@ public abstract class ConstructorDeEdificios {
 			if(unTerreno.tieneMineral()){
 				nuevaEdificacion = new RecolectorDeMineral(unTerreno);
 			}else{
-				throw new IllegalArgumentException("No se puede contruir una recolector de mineral sobre un terreno sin mineral.");
+				throw new IllegalArgumentException("No se puede contruir un recolector de mineral sobre un terreno sin mineral.");
 			}
 			
 		}

@@ -17,7 +17,7 @@ public class DepositoDeSuministros extends Edificio{
 	
 	public boolean puedeUbicarseEnTierra() {
 		
-		return false;
+		return true;
 		
 	}
 

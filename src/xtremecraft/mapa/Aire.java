@@ -8,12 +8,16 @@ import xtremecraft.unidades.Ubicable;
 public class Aire extends Terreno {
 		
     public Aire(int fila, int columna){
+    	
 		super(fila, columna);
+		
 	}
     
 	
 	public boolean ocuparConRecursoNatural(Recurso recursoNatural){
+		
 		return false;
+		
 	}
 
     public boolean ubicar(Ubicable ubicable){
@@ -30,7 +34,9 @@ public class Aire extends Terreno {
     }
 
 	public boolean estaElevado() {
+		
 		return true;
+		
 	}
 
 
@@ -46,5 +52,7 @@ public class Aire extends Terreno {
 		throw new IllegalArgumentException("No hay recursos en terrenos aereos.");
 		
 	}
+
+
 }
 
