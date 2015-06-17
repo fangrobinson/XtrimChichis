@@ -1,13 +1,12 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Ubicable;
 
 public abstract class ConstructorDeEdificios {
 	
 	
-	public static Edificio nuevoEdificio(String tipoDeEdificio,Terran razaTerran, Terreno unTerreno){
+	public static Edificio nuevoEdificio(String tipoDeEdificio, Terreno unTerreno){
 		
 		Edificio nuevaEdificacion = null;
 	
@@ -19,21 +18,13 @@ public abstract class ConstructorDeEdificios {
 		
 		if( tipoDeEdificio == "Fabrica" ){
 			
-			if(razaTerran.tieneBarracas()){
-				nuevaEdificacion = new Fabrica(unTerreno);
-			}else{
-				throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
-			}		
+			nuevaEdificacion = new Fabrica(unTerreno);
 			
 		}
 		
 		if( tipoDeEdificio == "Puerto Estelar" ){
 			
-			if(razaTerran.tieneFabricas()){
-				nuevaEdificacion = new PuertoEstelar(unTerreno);
-			}else{
-				throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
-			}
+			nuevaEdificacion = new PuertoEstelar(unTerreno);
 			
 		}
 		
@@ -65,8 +56,6 @@ public abstract class ConstructorDeEdificios {
 
 		ubicarEdificioEnTerreno(nuevaEdificacion, unTerreno);
 		
-		razaTerran.agregarEdificio(nuevaEdificacion);
-		
 		return nuevaEdificacion;
 		
 	}
@@ -75,7 +64,7 @@ public abstract class ConstructorDeEdificios {
 		
 		Ubicable nuevoEdificio = (Ubicable)unEdificio;
 		
-		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("No se pudo crear el edificio");
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("No se pudo crear el edificio en el Terreno indicado");
 		
 	}
 }

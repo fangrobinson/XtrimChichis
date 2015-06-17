@@ -36,37 +36,54 @@ public class Terran{
 	
 	public Edificio crearBarraca(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Barraca",this,unTerreno);
+		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Barraca",unTerreno);
+		this.agregarEdificio(nuevoEdificio);
+		return nuevoEdificio;
 		
 	}
 	
 	public Edificio crearFabrica(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Fabrica",this,unTerreno);
-		
+		if(this.tieneBarracas()){
+			Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Fabrica",unTerreno);
+			this.agregarEdificio(nuevoEdificio);
+			return nuevoEdificio;
+		}else throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
 	}
 	
 	public Edificio crearPuertoEstelar(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Puerto Estelar",this,unTerreno);
-		
+		if(this.tieneFabricas()){
+			Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Puerto Estelar",unTerreno);
+			this.agregarEdificio(nuevoEdificio);
+			return nuevoEdificio;
+		}else{
+			throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
+		}
+	
 	}
 	
 	public Edificio crearRecolectorDeMineral(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Recolector de Mineral",this,unTerreno);
+		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Recolector de Mineral",unTerreno);
+		this.agregarEdificio(nuevoEdificio);
+		return nuevoEdificio;
 		
 	}
 	
 	public Edificio crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Recolector de Gas Vespeno",this,unTerreno);
+		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Recolector de Gas Vespeno",unTerreno);
+		this.agregarEdificio(nuevoEdificio);
+		return nuevoEdificio;
 		
 	}
 	
 	public Edificio crearDepositoDeSuministros(Terreno unTerreno){
 		
-		return ConstructorDeEdificios.nuevoEdificio("Deposito de Suministros",this,unTerreno);
+		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Deposito de Suministros",unTerreno);
+		this.agregarEdificio(nuevoEdificio);
+		return nuevoEdificio;
 		
 	}
 	

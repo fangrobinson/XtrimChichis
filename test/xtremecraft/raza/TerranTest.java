@@ -110,7 +110,7 @@ public class TerranTest {
 		
 		//Dejo el centroMineral en estado construido:
 		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
-		for(int turno=0;turno<4;turno++) centroMineral.pasarTiempo();
+		for(int turno=0;turno<3;turno++) centroMineral.pasarTiempo();
 		
 		assertEquals(centroMineral.getReservas(),0);
 		
@@ -132,7 +132,7 @@ public class TerranTest {
 		
 		//Dejo refineria en estado construido:
 		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
-		for(int turno=0;turno<6;turno++) refineria.pasarTiempo();
+		for(int turno=0;turno<5;turno++) refineria.pasarTiempo();
 		
 		assertEquals(refineria.getReservas(),0);
 		

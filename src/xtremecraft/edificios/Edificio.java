@@ -21,7 +21,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 		this.coordenadas = new Coordenada(unTerreno.fila(),unTerreno.columna());
 		this.estaElevado = unTerreno.estaElevado();
 		this.vida = new BarraDeVitalidad(vida);
-		this.tiempoDeConstruccionActual = 0;
+		this.tiempoDeConstruccionActual = 1;
 	
 	}
 	
@@ -85,7 +85,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 	
 	public void pasarTiempo(){
 		//revisar modelado de paso del tiempo
-		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;
+		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 2;
 		
 	}
 	
