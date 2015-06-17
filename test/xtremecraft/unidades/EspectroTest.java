@@ -14,8 +14,7 @@ public class EspectroTest {
 	@Test
 	public void EspectroInicializadoConVidaCompleta(){
 
-		Terreno terreno = new Aire(1,2);
-		Espectro gengar = new Espectro(terreno);
+		Espectro gengar = new Espectro();
 		
 		assertEquals(gengar.getVida(),120);
 	}
@@ -23,8 +22,7 @@ public class EspectroTest {
 	@Test
 	public void EspectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
-		Terreno terreno = new Aire(1,2);
-		Espectro gengar = new Espectro(terreno);
+		Espectro gengar = new Espectro();
 		
 		assertFalse(gengar.puedeUbicarseSobreRecursoNatural());
 		
@@ -33,8 +31,7 @@ public class EspectroTest {
 	@Test
 	public void EspectroGetVisionDevuelveRadioDeVisionDelEspectro(){
 
-		Terreno terreno = new Aire(1,2);
-		Espectro gengar = new Espectro(terreno);
+		Espectro gengar = new Espectro();
 		
 		assertEquals(gengar.getRadioVision(),7);
 	}
@@ -42,10 +39,13 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorAireLeSacaVeinteDeVida(){
 
-		Terreno unaterreno = new Aire(1,3);
-		Terreno otraterreno = new Aire(1,4);
-		Espectro gengar = new Espectro(unaterreno);
-		Espectro misdreavus = new Espectro(otraterreno);
+		Terreno aire = new Aire(1,2);
+		Terreno tierra = new Tierra(2,3);
+		Espectro gengar = new Espectro();
+		Espectro misdreavus = new Espectro();
+		
+		gengar.actualizarUbicacion(tierra);
+		misdreavus.actualizarUbicacion(aire);
 		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),100);
@@ -54,10 +54,13 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraLeSacaOchoDeVida(){
 
-		Terreno unaterreno=new Aire(1,2);
-		Terreno otraterreno=new Tierra(2,3);
-		Espectro gengar = new Espectro(unaterreno);
-		Espectro misdreavus = new Espectro(otraterreno);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Espectro gengar = new Espectro();
+		Espectro misdreavus = new Espectro();
+		
+		gengar.actualizarUbicacion(tierra1);
+		misdreavus.actualizarUbicacion(tierra2);
 		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),112);
@@ -67,10 +70,13 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
-		Terreno unaterreno=new Aire(1,4);
-		Terreno otraterreno=new Tierra(10,10);
-		Espectro gengar = new Espectro(unaterreno);
-		Espectro misdreavus = new Espectro(otraterreno);
+		Terreno unTerreno = new Aire(1,4);
+		Terreno otroTerreno = new Tierra(10,10);
+		Espectro gengar = new Espectro();
+		Espectro misdreavus = new Espectro();
+		
+		gengar.actualizarUbicacion(unTerreno);
+		misdreavus.actualizarUbicacion(otroTerreno);
 		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.devolverValor(),120);
@@ -82,8 +88,11 @@ public class EspectroTest {
 
 		Terreno unTerreno = new Aire(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
-		Espectro gengar = new Espectro(unTerreno);
-		Espectro misdreavus = new Espectro(otroTerreno);
+		Espectro gengar = new Espectro();
+		Espectro misdreavus = new Espectro();
+		
+		gengar.actualizarUbicacion(unTerreno);
+		misdreavus.actualizarUbicacion(otroTerreno);
 		
 		for (int i = 0; i < 16; i++){
 			gengar.atacar(misdreavus);
@@ -93,28 +102,26 @@ public class EspectroTest {
 	}
 	
 
-	@Test(expected = IllegalArgumentException.class)
-	public void siIntentoCrearUnaUnidadEnunTerrenoOcupadaSeLanzaExcepcion(){
-		
-		Terreno unTerreno = new Aire(1,1);
-		Espectro unEspectro = new Espectro(unTerreno);
-		unTerreno.ubicar(unEspectro);
-		@SuppressWarnings("unused")
-		Espectro otroEspectro = new Espectro(unTerreno);
-		
-	}	
+	
 	
 	@Test
-	public void moverAterrenoCambiaLasCoordenadasActualesDeLaUnidad(){
+	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
 		Terreno unTerreno=new Aire(1,4);
-		Terreno otroTerreno=new Aire(2,3);
-		Espectro unEspectro = new Espectro(unTerreno);
-		unEspectro.actualizarUbicacion(otroTerreno);
-
-		assertEquals(unEspectro.getUbicacionActual().columna(),3);
-		assertEquals(unEspectro.getUbicacionActual().fila(),2);
 		
+		Espectro unEspectro = new Espectro();
+		
+		unEspectro.actualizarUbicacion(unTerreno);
+
+		assertEquals(unEspectro.getUbicacionActual().fila(),1);
+		assertEquals(unEspectro.getUbicacionActual().columna(),4);
+		
+		Terreno otroTerreno = new Tierra(3,2);
+		
+		unEspectro.actualizarUbicacion(otroTerreno);
+		
+		assertEquals(unEspectro.getUbicacionActual().fila(),3);
+		assertEquals(unEspectro.getUbicacionActual().columna(),2);
 		
 	}
 

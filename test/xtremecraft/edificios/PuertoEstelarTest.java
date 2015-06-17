@@ -93,9 +93,8 @@ public class PuertoEstelarTest {
 	public void crearEspectroDevuelveUnaNuevaUnidadEspectro(){
 		
 		Terreno unTerreno = new Tierra(5,6);
-		Terreno otroTerreno = new Tierra(1,3);
 		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
-		Espectro unEspectro = puertoEstelar.crearEspectro(otroTerreno);
+		Espectro unEspectro = puertoEstelar.crearEspectro();
 		
 		assertEquals(unEspectro.getVida(),120);
 		
@@ -105,9 +104,8 @@ public class PuertoEstelarTest {
 	public void crearNaveCienciaDevuelveNuevaUnidadNaveCiencia(){
 	
 		Terreno unTerreno = new Tierra(5,6);
-		Terreno otroTerreno = new Tierra(1,3);
 		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
-		NaveCiencia nave = puertoEstelar.crearNaveCiencia(otroTerreno);
+		NaveCiencia nave = puertoEstelar.crearNaveCiencia();
 		
 		assertEquals(nave.getVida(),200);
 		
@@ -117,9 +115,8 @@ public class PuertoEstelarTest {
 	public void crearNaveTransporteCreaNuevaUnidadNaveTransporte(){
 		
 		Terreno unTerreno = new Tierra(5,6);
-		Terreno otroTerreno = new Tierra(1,3);
 		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(unTerreno);
-		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(otroTerreno);
+		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte();
 		
 		assertEquals(naveTransporte.getVida(),150);
 		

@@ -5,16 +5,12 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
-import xtremecraft.mapa.Aire;
-import xtremecraft.mapa.Terreno;
-
 public class NaveCienciaTest {
 	
 	@Test
 	public void naveCienciaSeInicializaConBarraDeVidaCompleta(){
 		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		assertEquals(naveCiencia.getVida(),200);
 	
@@ -22,9 +18,8 @@ public class NaveCienciaTest {
 	
 	@Test
 	public void naveCienciaPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
-		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+	
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		assertFalse(naveCiencia.puedeUbicarseSobreRecursoNatural());
 	
@@ -33,8 +28,7 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaSeInicializaConRadioDeVision(){
 		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		assertEquals(naveCiencia.getRadioVision(),10);
 	
@@ -43,8 +37,7 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaSeInicializaConEnergia(){
 		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		assertEquals(naveCiencia.getEnergia(),50);
 	
@@ -53,8 +46,7 @@ public class NaveCienciaTest {
 	@Test
 	public void aumentarEnergiaEnTurnoAumentaNivelDeEnergia(){
 		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		naveCiencia.aumentarEnergiaEnTurno();
 		
@@ -70,8 +62,7 @@ public class NaveCienciaTest {
 	@Test
 	public void aumentarEnergiaEnTurnoSiEnergiaEsMayorOIgualADoscientosNoAumentaNivelDeEnergia(){
 		
-		Terreno terreno = new Aire(1,2);
-		NaveCiencia naveCiencia = new NaveCiencia(terreno);
+		NaveCiencia naveCiencia = new NaveCiencia();
 		
 		for(int i=0;i<15;i++){
 			naveCiencia.aumentarEnergiaEnTurno();

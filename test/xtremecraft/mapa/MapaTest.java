@@ -41,8 +41,7 @@ public class MapaTest {
 	public void ubicarCapaInferiorUnGoliatDevuelveTrue(){
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Terreno tierra = celda.getCapaInferior();
-		Goliat goliat = new Goliat(tierra);
+		Goliat goliat = new Goliat();
 		
 		boolean bool = celda.ubicarCapaInferior(goliat);
 		
@@ -53,8 +52,7 @@ public class MapaTest {
 	public void ubicarCapaSuperiorUnGoliatDevuelveFalse(){
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Terreno tierra = celda.getCapaInferior();
-		Goliat goliat = new Goliat(tierra);
+		Goliat goliat = new Goliat();
 		
 		boolean bool = celda.ubicarCapaSuperior(goliat);
 		

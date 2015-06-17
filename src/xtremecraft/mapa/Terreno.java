@@ -3,7 +3,7 @@ package xtremecraft.mapa;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
-public abstract class Terreno {
+public abstract class Terreno{
 	
 	protected Coordenada coordenada;
 	protected boolean ocupada;
@@ -15,7 +15,7 @@ public abstract class Terreno {
 		this.ocupada = false;
 	}
 	
-	public boolean estaOcupada(){
+	public boolean estaOcupado(){
 		
 		return this.ocupada;
 		

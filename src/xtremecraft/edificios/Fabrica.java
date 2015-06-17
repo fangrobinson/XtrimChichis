@@ -16,12 +16,12 @@ public class Fabrica extends Edificio{
 	}
 	
 	
-	public Goliat entrenarGoliat(Terreno unTerreno){
+	public Goliat entrenarGoliat(){
 		
 		if(this.tiempoDeConstruccionActual < this.tiempoConstruccion){
 			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
 		}
-		return new Goliat(unTerreno);
+		return new Goliat();
 		
 	}
 	

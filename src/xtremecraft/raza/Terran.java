@@ -14,9 +14,9 @@ public class Terran{
 	
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
-	private boolean estaViva;
+	private boolean estaViva = true;
 
-	public Terran(Terreno terreno){
+	public Terran(){
 		
 		this.estaViva = true;
 		this.unidades = new ArrayList<Unidad>();

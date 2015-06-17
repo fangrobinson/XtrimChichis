@@ -7,10 +7,10 @@ import xtremecraft.unidades.Ubicable;
 public abstract class ConstructorDeEdificios {
 	
 	
-	public static boolean nuevoEdificio(String tipoDeEdificio,Terran razaTerran, Terreno unTerreno){
+	public static Edificio nuevoEdificio(String tipoDeEdificio,Terran razaTerran, Terreno unTerreno){
 		
 		Edificio nuevaEdificacion = null;
-		
+	
 		if( tipoDeEdificio == "Barraca" ){
 			
 			nuevaEdificacion = new Barraca(unTerreno);
@@ -63,12 +63,19 @@ public abstract class ConstructorDeEdificios {
 			
 		}
 
+		ubicarEdificioEnTerreno(nuevaEdificacion, unTerreno);
 		
 		razaTerran.agregarEdificio(nuevaEdificacion);
 		
-		Ubicable nuevoEdificio = (Ubicable)nuevaEdificacion;
+		return nuevaEdificacion;
 		
-		return unTerreno.ubicar(nuevoEdificio);
+	}
+	
+	private static void ubicarEdificioEnTerreno(Edificio unEdificio, Terreno unTerreno){
+		
+		Ubicable nuevoEdificio = (Ubicable)unEdificio;
+		
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("No se pudo crear el edificio");
 		
 	}
 }

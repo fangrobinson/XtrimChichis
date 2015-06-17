@@ -90,10 +90,9 @@ public class FabricaTest {
 	@Test
 	public void entrenarGoliatDevuelveNuevaUnidadGoliat(){
 		 
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(3,4);
-		Fabrica fabrica = construirNuevaFabrica(tierra1);
-		Goliat unGoliat = fabrica.entrenarGoliat(tierra2);
+		Terreno tierra = new Tierra(1,2);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
+		Goliat unGoliat = fabrica.entrenarGoliat();
 		
 		assertEquals(unGoliat.getVida(),125);
 		

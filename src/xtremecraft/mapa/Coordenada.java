@@ -1,5 +1,7 @@
 package xtremecraft.mapa;
 
+import java.util.ArrayList;
+
 public class Coordenada {
 	
 	private int columna;
@@ -45,6 +47,20 @@ public class Coordenada {
 		
 		this.columna = x;
 				
+	}
+
+	public ArrayList<Coordenada> getCoordenadasAdyacentes(Coordenada coordenadaActual) {
+		
+		ArrayList<Coordenada> coordenadasAdyacentes = new ArrayList<Coordenada>();
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila(),coordenadaActual.columna() - 1));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila(),coordenadaActual.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna()));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna()));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna() - 1));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna() - 1));
+		return coordenadasAdyacentes;
 	}
 
 	

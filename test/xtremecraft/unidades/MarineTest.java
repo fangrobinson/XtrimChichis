@@ -14,39 +14,41 @@ public class MarineTest {
 	@Test
 	public void testMarineInicializadoConVidaCompleta(){
 
-		Terreno unaCelda=new Tierra(1,1);
-		Marine miniSamus = new Marine(unaCelda);
+		Marine miniSamus = new Marine();
 
 		assertEquals(miniSamus.getVida(),40);
+		
 	}
 	
 	@Test
 	public void marinePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Terreno unaCelda=new Tierra(1,1);
-		Marine miniSamus = new Marine(unaCelda);
+		Marine miniSamus = new Marine();
 		
 		assertFalse(miniSamus.puedeUbicarseSobreRecursoNatural());
+		
 	}
 	
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
 
-		Terreno unTerreno = new Tierra(1,1);
-		Marine miniSamus = new Marine(unTerreno);
+		Marine miniSamus = new Marine();
 
 		assertEquals(miniSamus.getRadioVision(),7);
+		
 	}
 	
 	
 	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 
-		Terreno unTerreno = new Tierra(1,2);
-		Terreno otroTerreno = new Aire(1,3);
-		Marine miniSamus = new Marine(unTerreno);
-		Espectro miniMasterChief = new Espectro(otroTerreno);
+		Terreno tierra = new Tierra(1,2);
+		Terreno aire = new Aire(1,3);
+		Marine miniSamus = new Marine();
+		Espectro miniMasterChief = new Espectro();
 		
+		miniSamus.actualizarUbicacion(tierra);
+		miniMasterChief.actualizarUbicacion(aire);
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(), 114);
@@ -55,11 +57,14 @@ public class MarineTest {
 	@Test
 	public void siUnMarineAtacaAOtroPorTierraLeSacaSeisDeVida(){
 
-		Terreno unTerreno = new Tierra(1,2);
-		Terreno otroTerreno = new Tierra(1,3);
-		Marine miniSamus = new Marine(unTerreno);
-		Marine miniMasterChief = new Marine(otroTerreno);
+
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(1,3);
+		Marine miniSamus = new Marine();
+		Marine miniMasterChief = new Marine();
 		
+		miniSamus.actualizarUbicacion(tierra1);
+		miniMasterChief.actualizarUbicacion(tierra2);
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(), 34);
@@ -68,38 +73,35 @@ public class MarineTest {
 	@Test
 	public void siUnMarineAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
-		Terreno unTerreno = new Tierra(1,2);
-		Terreno otroTerreno = new Tierra(1,10);
-		Marine miniSamus = new Marine(unTerreno);
-		Marine miniMasterChief = new Marine(otroTerreno);
+		Terreno tierra1 = new Tierra(1,1);
+		Terreno tierra2 = new Tierra(40,10);
+		Marine miniSamus = new Marine();
+		Marine miniMasterChief = new Marine();
 		
+		miniSamus.actualizarUbicacion(tierra1);
+		miniMasterChief.actualizarUbicacion(tierra2);
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(),40);
 	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void siIntentoCrearUnaUnidadEnunTerrenoOcupadaSeLanzaExcepcion(){
 
-		Terreno unTerreno=new Tierra(1,1);
-		Marine miniSamus = new Marine(unTerreno);
-		unTerreno.ubicar(miniSamus);
-		@SuppressWarnings("unused")
-		Marine miniMasterChief = new Marine(unTerreno);
-		
-	}
 	
 	@Test
-	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){
+	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 
-		Terreno unTerreno = new Tierra(1,1);
-		Terreno otroTerreno = new Tierra(1,2);
-		Marine miniSamus = new Marine(unTerreno);
-		miniSamus.actualizarUbicacion(otroTerreno);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(1,10);
+		Marine miniSamus = new Marine();
 		
-		assertEquals(miniSamus.getUbicacionActual().columna(),2);
+		miniSamus.actualizarUbicacion(tierra1);
+		
 		assertEquals(miniSamus.getUbicacionActual().fila(),1);
+		assertEquals(miniSamus.getUbicacionActual().columna(),2);
 		
+		miniSamus.actualizarUbicacion(tierra2);
+		
+		assertEquals(miniSamus.getUbicacionActual().fila(),1);
+		assertEquals(miniSamus.getUbicacionActual().columna(),10);
 		
 	}
 	

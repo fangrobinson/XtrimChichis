@@ -14,8 +14,7 @@ public class GoliatTest {
 	@Test
 	public void goliatInicializadoConVidaCompleta(){
 
-		Terreno celda=new Tierra(1,2);
-		Goliat tanque1 = new Goliat(celda);
+		Goliat tanque1 = new Goliat();
 		
 		assertEquals(tanque1.getVida(),125);
 	}
@@ -23,8 +22,7 @@ public class GoliatTest {
 	@Test
 	public void goliatPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Terreno celda=new Tierra(1,2);
-		Goliat tanque1 = new Goliat(celda);
+		Goliat tanque1 = new Goliat();
 		
 		assertFalse(tanque1.puedeUbicarseSobreRecursoNatural());
 	}
@@ -32,8 +30,7 @@ public class GoliatTest {
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
 
-		Terreno celda=new Tierra(1,2);
-		Goliat tanque1 = new Goliat(celda);
+		Goliat tanque1 = new Goliat();
 		
 		assertEquals(tanque1.getRadioVision(),8);
 	}
@@ -41,10 +38,13 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAUnEspectroPorAireLeSacaDiezDeVida(){
 
-		Terreno unaCelda=new Tierra(1,3);
-		Terreno otraCelda=new Aire(1,4);
-		Goliat tanque1 = new Goliat(unaCelda);
-		Espectro tanque2 = new Espectro(otraCelda);
+		Terreno tierra = new Tierra(1,3);
+		Terreno aire = new Aire(1,4);
+		Goliat tanque1 = new Goliat();
+		Espectro tanque2 = new Espectro();
+		
+		tanque1.actualizarUbicacion(tierra);
+		tanque2.actualizarUbicacion(aire);
 		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.devolverValor(),110);
@@ -53,10 +53,13 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraLeSacaDoceDeVida(){
 
-		Terreno unaCelda=new Tierra(1,2);
-		Terreno otraCelda=new Tierra(2,3);
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Goliat tanque1 = new Goliat();
+		Goliat tanque2 = new Goliat();
+		
+		tanque1.actualizarUbicacion(tierra1);
+		tanque2.actualizarUbicacion(tierra2);
 		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.devolverValor(),113);
@@ -66,10 +69,13 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
-		Terreno unaCelda=new Tierra(1,4);
-		Terreno otraCelda=new Tierra(10,10);
-		Goliat tanque1 = new Goliat(unaCelda);
-		Goliat tanque2 = new Goliat(otraCelda);
+		Terreno tierra = new Tierra(1,4);
+		Terreno aire = new Aire(10,10);
+		Goliat tanque1 = new Goliat();
+		Goliat tanque2 = new Goliat();
+		
+		tanque1.actualizarUbicacion(tierra);
+		tanque2.actualizarUbicacion(aire);
 		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.devolverValor(),125);
@@ -79,11 +85,13 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 
-		Terreno unTerreno = new Tierra(1,1);
-		Terreno otroTerreno = new Tierra(1,2);
-		Goliat tanque1 = new Goliat(unTerreno);
-		Goliat tanque2 = new Goliat(otroTerreno);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Goliat tanque1 = new Goliat();
+		Goliat tanque2 = new Goliat();
 		
+		tanque1.actualizarUbicacion(tierra1);
+		tanque2.actualizarUbicacion(tierra2);
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2);
 		}
@@ -91,29 +99,23 @@ public class GoliatTest {
 		assertEquals(tanque2.vitalidad.devolverValor(), 0);
 	}
 	
-
-	@Test(expected = IllegalArgumentException.class)
-	public void siIntentoCrearUnaUnidadEnunTerrenoOcupadaSeLanzaExcepcion(){
-		
-		Terreno unTerreno = new Tierra(1,1);
-		Goliat unGoliat = new Goliat(unTerreno);
-		unTerreno.ubicar(unGoliat);
-		@SuppressWarnings("unused")
-		Goliat otroGoliat = new Goliat(unTerreno);
-		
-	}	
 	
 	@Test
 	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terreno unaCelda=new Tierra(1,4);
-		Terreno otraCelda=new Tierra(2,3);
-		Goliat unGoliat = new Goliat(unaCelda);
-		unGoliat.actualizarUbicacion(otraCelda);
-
-		assertEquals(unGoliat.getUbicacionActual().columna(),3);
-		assertEquals(unGoliat.getUbicacionActual().fila(),2);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Goliat tanque1 = new Goliat();
 		
+		tanque1.actualizarUbicacion(tierra1);
+
+		assertEquals(tanque1.getUbicacionActual().fila(),1);
+		assertEquals(tanque1.getUbicacionActual().columna(),2);
+		
+		tanque1.actualizarUbicacion(tierra2);
+		
+		assertEquals(tanque1.getUbicacionActual().fila(),2);
+		assertEquals(tanque1.getUbicacionActual().columna(),3);
 		
 	}
 

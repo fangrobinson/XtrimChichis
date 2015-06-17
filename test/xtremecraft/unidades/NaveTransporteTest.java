@@ -14,8 +14,7 @@ public class NaveTransporteTest {
 	@Test
 	public void NaveTransporteInicializadoConVidaCompleta(){
 
-		Terreno terreno = new Aire(1,2);
-		NaveTransporte taxiVolador = new NaveTransporte(terreno);
+		NaveTransporte taxiVolador = new NaveTransporte();
 		
 		assertEquals(taxiVolador.getVida(),150);
 	}
@@ -23,8 +22,7 @@ public class NaveTransporteTest {
 	@Test
 	public void NaveTransportePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Terreno terreno = new Aire(1,2);
-		NaveTransporte taxiVolador = new NaveTransporte(terreno);
+		NaveTransporte taxiVolador = new NaveTransporte();
 		
 		assertFalse(taxiVolador.puedeUbicarseSobreRecursoNatural());
 	}
@@ -32,8 +30,7 @@ public class NaveTransporteTest {
 	@Test
 	public void NaveTransporteGetVisionDevuelveRadioDeVisionDeLaNaveTransporte(){
 
-		Terreno terreno = new Aire(1,2);
-		NaveTransporte taxiVolador = new NaveTransporte(terreno);
+		NaveTransporte taxiVolador = new NaveTransporte();
 		
 		assertEquals(taxiVolador.getRadioVision(),8);
 	}
@@ -41,10 +38,13 @@ public class NaveTransporteTest {
 	@Test
 	public void siUnaNaveTransporteAtacaAOtroPorAireLeSacaCeroDeVida(){
 
-		Terreno unaterreno = new Aire(1,3);
-		Terreno otraterreno = new Aire(1,4);
-		NaveTransporte taxiVolador = new NaveTransporte(unaterreno);
-		NaveTransporte remisVolador = new NaveTransporte(otraterreno);
+		Terreno aire1 = new Aire(1,3);
+		Terreno aire2 = new Aire(1,4);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		NaveTransporte remisVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(aire1);
+		remisVolador.actualizarUbicacion(aire2);
 		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
@@ -53,36 +53,35 @@ public class NaveTransporteTest {
 	@Test
 	public void siUnaNaveTransporteAtacaAOtroPorTierraLeSacaCeroDeVida(){
 
-		Terreno unaterreno=new Aire(1,2);
-		Terreno otraterreno=new Tierra(2,3);
-		NaveTransporte taxiVolador = new NaveTransporte(unaterreno);
-		NaveTransporte remisVolador = new NaveTransporte(otraterreno);
+		Terreno aire = new Aire(1,2);
+		Terreno tierra = new Tierra(2,3);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		NaveTransporte remisVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(aire);
+		remisVolador.actualizarUbicacion(tierra);
 		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
 	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void siIntentoCrearUnaUnidadEnunTerrenoOcupadaSeLanzaExcepcion(){
 		
-		Terreno unTerreno = new Aire(1,1);
-		NaveTransporte unaNaveTransporte = new NaveTransporte(unTerreno);
-		unTerreno.ubicar(unaNaveTransporte);
-		@SuppressWarnings("unused")
-		NaveTransporte otraNaveTransporte = new NaveTransporte(unTerreno);
-		
-	}	
 	
 	@Test
-	public void moverAterrenoCambiaLasCoordenadasActualesDeLaUnidad(){
+	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terreno unTerreno = new Aire(1,4);
-		Terreno otroTerreno = new Aire(2,3);
-		NaveTransporte unaNaveTransporte = new NaveTransporte(unTerreno);
-		unaNaveTransporte.actualizarUbicacion(otroTerreno);
+		Terreno aire = new Aire(1,2);
+		Terreno tierra = new Tierra(2,3);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(aire);
 
-		assertEquals(unaNaveTransporte.getUbicacionActual().columna(),3);
-		assertEquals(unaNaveTransporte.getUbicacionActual().fila(),2);
+		assertEquals(taxiVolador.getUbicacionActual().fila(),1);
+		assertEquals(taxiVolador.getUbicacionActual().columna(),2);
+		
+		taxiVolador.actualizarUbicacion(tierra);
+
+		assertEquals(taxiVolador.getUbicacionActual().fila(),2);
+		assertEquals(taxiVolador.getUbicacionActual().columna(),3);
 		
 		
 	}

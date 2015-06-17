@@ -1,5 +1,6 @@
 package xtremecraft.mapa;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import xtremecraft.unidades.Ubicable;
@@ -48,48 +49,6 @@ public class Mapa {
 	}
 	
 	//Ya no hay mas islas voladoras
-	/*
-	private Terreno obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores) {
-		int primer_corte_ancho = 3 *decidirAncho(cant_jugadores)/8;
-		int primer_corte_alto = 3 *decidirAlto(cant_jugadores)/8;
-		int segundo_corte_ancho = 5 *decidirAncho(cant_jugadores)/8;
-		int segundo_corte_alto = 5 *decidirAlto(cant_jugadores)/8;
-		if (fila < (primer_corte_alto) || fila > (segundo_corte_alto)){
-			if (columna < (primer_corte_ancho) || columna > (segundo_corte_ancho)) {
-				return new Tierra(fila,columna);
-			}
-		}
-		return new Aire(fila,columna);
-	}*/
-	
-	
-	//No estaba pedido :(
-	/*
-	private void ubicarBases(int cant_jugadores) {
-		EstrategiaUbicacion estrategia = new EstrategiaUbicacion();
-		EstrategiaCuadrante estrategiaParticular;
-		int jugadores_ubicados = 0;
-		int ancho;
-		int alto;
-		int posicionRandom = 0;
-		int cant_recursos = 5000;
-	
-		while (jugadores_ubicados < cant_jugadores) {
-			if (jugadores_ubicados % 4 == 0) {
-				posicionRandom = estrategia.posicionRandom(jugadores_ubicados);
-			}
-			
-			estrategiaParticular = estrategia.conseguirEstrategiaParaCuadrante(jugadores_ubicados, this.alto, this.ancho);
-			
-			// Repetir esto para agregar mas recursos
-			ancho = estrategiaParticular.getAncho(posicionRandom);
-			alto = estrategiaParticular.getAlto(posicionRandom);
-			this.mapaAlto.get(alto).get(ancho).ocuparConRecursoNatural(new MinaDeMinerales(cant_recursos));
-			// Falta agregar Bases todavia no implementadas
-			jugadores_ubicados = jugadores_ubicados + 1;
-		}
-
-	}*/
 	
 	public boolean tieneAire() {
 		return true;
@@ -100,25 +59,54 @@ public class Mapa {
 	}
 	
 	public Celda getCeldaEnFilaColumna(int fila, int columna){
+		
 		return this.mapaAlto.get(fila).get(columna);
+		
 	}
 	
-	public boolean ubicarCapaInferior(Ubicable ubicable, int fila, int columna){
-		Celda celda = getCeldaEnFilaColumna(fila, columna);
+	private boolean ubicarCapaInferior(Ubicable ubicable, Celda celda ){
+		
 		return celda.ubicarCapaInferior(ubicable);
+		
 	}
 	
-	public boolean ubicarCapaSuperior(Ubicable ubicable, int fila, int columna){
-		Celda celda = getCeldaEnFilaColumna(fila, columna);
+	private boolean ubicarCapaSuperior(Ubicable ubicable, Celda celda ){
+		
 		return celda.ubicarCapaSuperior(ubicable);
+		
 	}
 	
-	/*
-	public boolean colocarUnidad(Ubicable unaUnidad,int fila, int columna){
+	public boolean ubicar(Ubicable ubicable, Celda celda ){
 		
-		Celda celda= this.getCeldaEnFilaColumna(columna, fila);
-		return celda.ubicar(unaUnidad);
+		if(!this.ubicarCapaInferior(ubicable, celda )){
+			if(!this.ubicarCapaSuperior(ubicable, celda )) return false;
+			else ubicable.actualizarUbicacion(celda.getCapaInferior());
+		}
+		else ubicable.actualizarUbicacion(celda.getCapaInferior());
+		return true;
 		
-	}*/
+	}
 	
+	public ArrayList<Celda> obtenerCeldasAdyacentesAlUbicable(Ubicable unUbicable){
+		
+		Coordenada coordenadaActual = unUbicable.getUbicacionActual();
+		ArrayList<Celda> listaDeCeldasAdyacentes = new ArrayList<Celda>();
+		ArrayList<Coordenada> coordenadasAdyacentes = coordenadaActual.getCoordenadasAdyacentes(coordenadaActual);
+		
+		for(int i=0;i<coordenadasAdyacentes.size();i++){
+			Coordenada unaCoordenada = coordenadasAdyacentes.get(i);
+			if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
+				listaDeCeldasAdyacentes.add(this.getCeldaEnFilaColumna(unaCoordenada.fila(),unaCoordenada.columna()));
+			}
+		}	
+		return listaDeCeldasAdyacentes;
+		
+	}
+
+	private boolean coordenadaEstaDentroDelMapa(Coordenada unaCoordenada) {
+		
+		boolean filaEstaDentroDelMapa = unaCoordenada.fila()>0 && unaCoordenada.fila()<this.ancho;
+		boolean columnaEstaDentroDelMapa = unaCoordenada.columna()>0 && unaCoordenada.columna()<this.alto;
+		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
+	}
 }

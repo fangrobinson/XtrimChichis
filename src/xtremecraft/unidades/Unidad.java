@@ -11,13 +11,8 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
 	int tiempoConstruccion;
 	boolean estaElevado;
 	
-	protected Unidad(Terreno terreno){
-		
-		if(terreno.estaOcupada()){
-			throw new IllegalArgumentException();
-		}
-		actualizarUbicacion(terreno);
-		
+	protected Unidad(){
+
 	}
 	
     public void recibirDanio(int daño){

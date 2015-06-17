@@ -1,12 +1,10 @@
 package xtremecraft.unidades;
 
-import xtremecraft.mapa.Terreno;
-
 
 public abstract class UnidadAerea extends Unidad{
 
-	protected UnidadAerea(Terreno terreno) {
-		super(terreno);
+	protected UnidadAerea() {
+		
 	}
 	
 	public boolean puedeUbicarseEnTierra() {

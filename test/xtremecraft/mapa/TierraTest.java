@@ -18,7 +18,7 @@ public class TierraTest {
 		
 		Terreno terreno = new Tierra(1,1);
 		
-		assertFalse(terreno.estaOcupada());
+		assertFalse(terreno.estaOcupado());
 		
 	}
 	
@@ -36,10 +36,10 @@ public class TierraTest {
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
 		Terreno terreno=new Tierra(1,1);
-		Unidad goliat= new Goliat(terreno);
+		Unidad goliat= new Goliat();
 		terreno.ubicar(goliat);
 		
-		assertTrue(terreno.estaOcupada());
+		assertTrue(terreno.estaOcupado());
 		
 	}
 	
@@ -47,7 +47,7 @@ public class TierraTest {
 	public void ocuparTerrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
 		Terreno terreno=new Tierra(1,1);
-		Unidad goliat= new Goliat(terreno);	
+		Unidad goliat= new Goliat();	
 	
 		terreno.ubicar(goliat);
 		Unidad unidad = (Unidad) terreno.getUbicableEnTerreno();
