@@ -14,7 +14,7 @@ public class RecolectorDeMineralTest {
 	public RecolectorDeMineral construirNuevoRecolectorDeMineral(Terreno tierra){
 		
 		RecolectorDeMineral recolector = new RecolectorDeMineral(tierra);
-		for(int i=0;i<recolector.tiempoConstruccion;i++){
+		for(int i=0;i<recolector.tiempoConstruccion - 1;i++){
 			recolector.pasarTiempo();
 		}
 		return recolector;

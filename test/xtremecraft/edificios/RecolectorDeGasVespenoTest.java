@@ -14,7 +14,7 @@ public class RecolectorDeGasVespenoTest {
 	public RecolectorDeGasVespeno construirNuevoRecolectorDeGasVespeno(Terreno tierra){
 		
 		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
-		for(int i=0;i<refineria.tiempoConstruccion;i++){
+		for(int i=0;i<refineria.tiempoConstruccion - 1;i++){
 			refineria.pasarTiempo();
 		}
 		return refineria;
@@ -22,7 +22,7 @@ public class RecolectorDeGasVespenoTest {
 
 	
 	@Test
-	public void nuevaRecolectorDeGasVespenoIniciaConReservaNula(){
+	public void nuevoRecolectorDeGasVespenoIniciaConReservaNula(){
 		
 		Terreno tierra = new Tierra(1,2);
 		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
