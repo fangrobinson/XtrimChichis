@@ -13,26 +13,23 @@ public class PartidaTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearPartidaConCantJugadoresCeroDaError(){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		ArrayList<String> jugadores = new ArrayList<String>();
 		new Partida(jugadores);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearPartidaConCantJugadoresUnoDaError(){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-		jugadores.add(ninioRata);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
 	    
 		new Partida(jugadores);
 	}
 	
 	@Test
 	public void creoUnaPartidaElTiempoEsCero(){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		int tiempo = partida.tiempo();
@@ -42,11 +39,9 @@ public class PartidaTest {
 	
 	@Test
 	public void pasoElTiempoYTiempoAvanza(){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		
@@ -58,11 +53,9 @@ public class PartidaTest {
 	
 	@Test
 	public void creoUnaPartidaYPuedoConocerQuienEmpieza (){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		
@@ -75,11 +68,9 @@ public class PartidaTest {
 	
 	@Test
 	public void avanzoUnTurnoYVeoQueElJugadorCambio (){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		
@@ -95,11 +86,9 @@ public class PartidaTest {
 	
 	@Test
 	public void enUnaPartidaDeDosJugadoresSePuedeVerQueLaRondaVuelveAEmpezarDespuesDePasar2Turnos (){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		
@@ -116,11 +105,9 @@ public class PartidaTest {
 	
 	@Test
 	public void enUnaPartidaDeDosJugadoresSePuedeVerQueNoSeRepiteElJugador (){
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	    Jugador ninioRata = new Jugador("Bart");
-	    Jugador noob = new Jugador("Jose");
-		jugadores.add(ninioRata);
-		jugadores.add(noob);
+		ArrayList<String> jugadores = new ArrayList<String>();
+		jugadores.add("ninioRata");
+		jugadores.add("noob");
 	
 		Partida partida = new Partida(jugadores);
 		

@@ -10,14 +10,19 @@ public class Partida {
 	private Mapa mapa;
 	private ArrayList<Jugador> jugadores;
 	
-	public Partida(ArrayList<Jugador> jugadores){
-		if (jugadores.size() <= 1){
+	public Partida(ArrayList<String> nombresJugadores){
+		if (nombresJugadores.size() <= 1){
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}
 		this.tiempo = 0;
-		this.cant_jug = jugadores.size();
-		this.mapa = new Mapa(cant_jug);	
-		this.jugadores = jugadores;
+		this.cant_jug = nombresJugadores.size();
+		this.mapa = new Mapa(cant_jug);
+		this.jugadores = new ArrayList<Jugador>();
+		
+		for (int i = 0; i < nombresJugadores.size(); i++){
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i));
+			jugadores.add(jugadorNuevo);
+		}
 		
 	}
 	
