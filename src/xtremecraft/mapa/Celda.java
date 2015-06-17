@@ -36,11 +36,11 @@ public class Celda {
     	return this.inferior.columna();
     }
     
-    public Ubicable getUnidadEnInferior(){
-    	return this.inferior.getUnidadEnTerreno();
+    public Ubicable getUbicableEnInferior(){
+    	return this.inferior.getUbicableEnTerreno();
     }
     
-    public Ubicable getUnidadEnSuperior(){
-    	return this.superior.getUnidadEnTerreno();
+    public Ubicable getUbicableEnSuperior(){
+    	return this.superior.getUbicableEnTerreno();
     }
 }

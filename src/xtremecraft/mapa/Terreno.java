@@ -7,7 +7,7 @@ public abstract class Terreno {
 	
 	protected Coordenada coordenada;
 	protected boolean ocupada;
-	protected Ubicable unidad;
+	protected Ubicable ubicable;
 	protected Recurso recurso;
 	
 	public Terreno(int fila, int columna){
@@ -21,9 +21,9 @@ public abstract class Terreno {
 		
 	}
 		
-	public Ubicable getUnidadEnTerreno(){
+	public Ubicable getUbicableEnTerreno(){
 		
-		return this.unidad;
+		return this.ubicable;
 		
 	}
 	

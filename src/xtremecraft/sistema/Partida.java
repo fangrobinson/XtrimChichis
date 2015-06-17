@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import xtremecraft.mapa.Mapa;
 
-public class Juego {
+public class Partida {
 	private int tiempo;
 	private int cant_jug;
 	private Mapa mapa;
 	private ArrayList<Jugador> jugadores;
 	
-	public Juego(ArrayList<Jugador> jugadores){
+	public Partida(ArrayList<Jugador> jugadores){
 		if (jugadores.size() <= 1){
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}

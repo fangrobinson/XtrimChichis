@@ -1,18 +1,17 @@
 package xtremecraft.sistema;
 
-import xtremecraft.mapa.Terreno;
 import xtremecraft.raza.Terran;
 
 public class Jugador {
 	String nombre;
 	Terran nacion;
 	
-	public Jugador (String nombre, Terreno terreno) throws NombreMuyCortoException{
+	public Jugador (String nombre) throws NombreMuyCortoException{
 		if (nombre.length() < 4){
 			throw new NombreMuyCortoException();
 		}
 		this.nombre = nombre;
-		this.nacion = new Terran(terreno);
+		this.nacion = new Terran();
 	}
 
 	public boolean estaEnJuego(){
