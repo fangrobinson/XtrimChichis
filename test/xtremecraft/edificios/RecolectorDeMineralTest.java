@@ -4,6 +4,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.recursos.MinaDeMinerales;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -18,6 +19,30 @@ public class RecolectorDeMineralTest {
 			recolector.pasarTiempo();
 		}
 		return recolector;
+	}
+	
+	@Test
+	public void estaEnContruccionDeberiaDevolverTrueAlCrearElRecolectorDeMineral(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		RecolectorDeMineral recolector = new RecolectorDeMineral(tierra);
+		
+		assertTrue(recolector.estaEnConstruccion());
+		
+	}
+	
+	@Test
+	public void recolectorEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelRecolectorDeMineral(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		RecolectorDeMineral recolector = construirNuevoRecolectorDeMineral(tierra);
+		
+		assertFalse(recolector.estaEnConstruccion());
+		
 	}
 
 	

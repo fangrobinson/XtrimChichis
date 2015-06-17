@@ -2,6 +2,7 @@ package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -18,6 +19,42 @@ public class FabricaTest {
 			fabrica.pasarTiempo();
 		}
 		return fabrica;
+	}
+	
+	@Test
+	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaFabrica(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
+		
+		assertTrue(fabrica.estaEnConstruccion());
+		
+	}
+	
+	@Test
+	public void fabricaEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDeLaFabrica(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = construirNuevaFabrica(tierra);
+		
+		assertFalse(fabrica.estaEnConstruccion());
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void siFabricaNoEstaConstruidaYSeIntentaEntrenarUnGoliatSeLanzaExcepcion(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Fabrica fabrica = new Fabrica(tierra);
+		
+		fabrica.entrenarGoliat();
+		
 	}
 	
 	@Test

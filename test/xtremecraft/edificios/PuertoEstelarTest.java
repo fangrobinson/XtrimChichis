@@ -2,6 +2,7 @@ package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -20,6 +21,42 @@ public class PuertoEstelarTest {
 			puerto.pasarTiempo();
 		}
 		return puerto;
+	}
+	
+	@Test
+	public void estaEnContruccionDeberiaDevolverTrueAlCrearElPuerto(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(tierra);
+		
+		assertTrue(puertoEstelar.estaEnConstruccion());
+		
+	}
+
+	@Test
+	public void puertoEstelarEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelPuerto(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		PuertoEstelar puertoEstelar = construirNuevoPuertoEstelar(tierra);
+		
+		assertFalse(puertoEstelar.estaEnConstruccion());
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void siPuertNoEstaConstruidoYSeIntentaCrearUnidadSeLanzaExcepcion(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		PuertoEstelar puerto = new PuertoEstelar(tierra);
+		
+		puerto.crearEspectro();
+		
 	}
 
 	@Test

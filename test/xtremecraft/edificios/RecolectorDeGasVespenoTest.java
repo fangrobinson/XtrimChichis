@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -19,6 +20,31 @@ public class RecolectorDeGasVespenoTest {
 		}
 		return refineria;
 	}
+	
+	@Test
+	public void estaEnContruccionDeberiaDevolverTrueAlCrearElRecolectorDeGasVespeno(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		RecolectorDeGasVespeno refineria = new RecolectorDeGasVespeno(tierra);
+		
+		assertTrue(refineria.estaEnConstruccion());
+		
+	}
+	
+	@Test
+	public void recolectorEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelRecolectorDeGasVespeno(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		
+		assertFalse(refineria.estaEnConstruccion());
+		
+	}
+
 
 	
 	@Test

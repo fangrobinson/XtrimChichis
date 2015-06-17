@@ -2,6 +2,7 @@ package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -18,6 +19,42 @@ public class BarracaTest {
 			unaBarraca.pasarTiempo();
 		}
 		return unaBarraca;
+		
+	}
+	
+	@Test
+	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaBarraca(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = new Barraca(tierra);
+		
+		assertTrue(unaBarraca.estaEnConstruccion());
+		
+	}
+	
+	@Test
+	public void barracaEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDeLaBarraca(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
+		
+		assertFalse(unaBarraca.estaEnConstruccion());
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void siBarracaNoEstaConstruidaYSeIntentaEntrenarUnMarineSeLanzaExcepcion(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = new Barraca(tierra);
+		
+		unaBarraca.entrenarMarine();
 		
 	}
 
@@ -93,8 +130,8 @@ public class BarracaTest {
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 
-		Terreno tierra1 = new Tierra(1,2);
-		Barraca unaBarraca = construirNuevaBarraca(tierra1);
+		Terreno tierra = new Tierra(1,2);
+		Barraca unaBarraca = construirNuevaBarraca(tierra);
 		Marine nuevoMarine = unaBarraca.entrenarMarine();
 		
 		assertEquals(nuevoMarine.getVida(),40);
