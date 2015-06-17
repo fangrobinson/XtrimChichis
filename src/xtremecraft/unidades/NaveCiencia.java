@@ -10,6 +10,8 @@ public class NaveCiencia extends UnidadAerea{
 	
 	public NaveCiencia(){
 		
+		super();
+		
 		this.vitalidad = new BarraDeVitalidad(200);
 		this.danio = new Danio(0,0);
 		this.vision = 10;

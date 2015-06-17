@@ -41,5 +41,10 @@ public class BarraDeVitalidad {
 		return this.vidaMax;
 		
 	}
+	
+	public void curarPorTurno(int porcentaje){
+		int valor = this.vidaMax * porcentaje / 100;
+		this.regenerar(valor);
+	}
 
 }

@@ -4,7 +4,7 @@ package xtremecraft.unidades;
 public abstract class UnidadTerrestre extends Unidad {
 	
 	protected UnidadTerrestre() {
-		
+		super();
 	}
 
 	public boolean puedeUbicarseEnTierra() {

@@ -4,6 +4,7 @@ package xtremecraft.unidades;
 public class Espectro extends UnidadAerea{
 
 	public Espectro() {
+		super();
 		this.vitalidad = new BarraDeVitalidad(120);
 		this.danio = new Danio (20,8);
 		this.vision = 7;

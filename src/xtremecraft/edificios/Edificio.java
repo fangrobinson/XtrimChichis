@@ -2,6 +2,7 @@ package xtremecraft.edificios;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
@@ -88,5 +89,9 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
 		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 2;
 		
 	}
+	
+    public boolean pertenezcoAEstaRaza(Terran terran){
+    	return terran.posee(this);
+    }
 	
 }

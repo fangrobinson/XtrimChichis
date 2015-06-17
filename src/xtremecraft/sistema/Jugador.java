@@ -1,6 +1,7 @@
 package xtremecraft.sistema;
 
 import xtremecraft.raza.Terran;
+import xtremecraft.unidades.Ubicable;
 
 public class Jugador {
 	String nombre;
@@ -16,6 +17,10 @@ public class Jugador {
 
 	public boolean estaEnJuego(){
 		return this.nacion.estaViva();
+	}
+	
+	public boolean esDeMiPropiedad(Ubicable ubicable){
+		return this.nacion.esDeMiPropiedad(ubicable);
 	}
 	
 }

@@ -11,6 +11,7 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.unidades.ConstructorDeUnidades;
+import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.Unidad;
 
 
@@ -157,11 +158,19 @@ public class Terran{
 		return iter.arregloTiene(barraca);
 		
 	}
-	
-	/*public void ActualizarEdificios(){
-		
-		
-		
-	}*/
 
+	public boolean esDeMiPropiedad(Ubicable ubicable) {
+		return ubicable.pertenezcoAEstaRaza(this);
+	}
+
+	public boolean posee(Edificio edif){
+		IteradorConocidos iter = new IteradorConocidos(this.edificios);
+		return iter.arregloPosee(edif);
+	}
+
+	public boolean posee(Unidad unid){
+		IteradorConocidos iter = new IteradorConocidos(this.unidades);
+		return iter.arregloPosee(unid);
+	}
+	
 }

@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 
 public interface Ubicable {
 	
@@ -18,4 +19,7 @@ public interface Ubicable {
 	public boolean estaElevado();
 
 	public boolean elevar();
+	
+	public boolean pertenezcoAEstaRaza(Terran terran);
+	
 }

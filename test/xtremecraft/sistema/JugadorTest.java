@@ -2,7 +2,8 @@ package xtremecraft.sistema;
 
 import org.junit.Test;
 
-//import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class JugadorTest {
@@ -19,4 +20,16 @@ public class JugadorTest {
 		
 		assertTrue(juega);
 	}
+	/*
+	@Test
+	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceElEdificioOUnidad (){
+		boolean bool = true;
+		assertFalse();
+	}
+	
+	@Test
+	public void esDeMiPropiedadDevuelveTrueSiLePerteneceElEdificioOUnidad (){
+		boolean bool = false;
+		assertTrue();
+	}*/
 }

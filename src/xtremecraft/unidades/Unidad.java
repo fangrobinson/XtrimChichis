@@ -2,17 +2,22 @@ package xtremecraft.unidades;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.raza.Terran;
+import xtremecraft.sistema.Actualizable;
 
-public abstract class Unidad implements Atacable, Defendible, Ubicable{
+public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualizable{
 	BarraDeVitalidad vitalidad;
 	Danio danio;
 	int vision;
 	Coordenada coordenadas;
 	int tiempoConstruccion;
 	boolean estaElevado;
+	boolean puedeAtacar;
+	boolean puedeMoverse;
 	
 	protected Unidad(){
-
+		this.puedeAtacar = true;
+		this.puedeMoverse = true;
 	}
 	
     public void recibirDanio(int daño){
@@ -32,7 +37,9 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     }
     
     protected boolean puedoAtacar(Ubicable atacado) {
-    	
+    	if (!this.puedeAtacar){
+    		return false;
+    	}
     	Coordenada ubicacionAtacante = this.getUbicacionActual();
     	Coordenada ubicacionAtacado = atacado.getUbicacionActual();
     	double distancia = ubicacionAtacante.distancia(ubicacionAtacado);
@@ -90,5 +97,23 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable{
     	return false;
     	
     }
+    
+    public boolean puedeRealizarAccion(){
+    	return this.puedeAtacar || this.puedeMoverse;
+    }
+    
+    public void pasarTiempo(){
+    	if (this.puedeAtacar){
+    		this.vitalidad.curarPorTurno(1);
+    	}
+    	if (this.puedeMoverse){
+    		this.vitalidad.curarPorTurno(1);
+    	}
+    	this.puedeAtacar = true;
+    	this.puedeMoverse = true;
+    }
 
+    public boolean pertenezcoAEstaRaza(Terran terran){
+    	return terran.posee(this);
+    }
 }
