@@ -8,67 +8,61 @@ import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.raza.Terran;
 
 public abstract class ConstructorDeUnidades {
 	
-	public static Unidad nuevaUnidad(Terran razaTerran,Barraca unaBarraca, Mapa mapa){
+	public static Unidad nuevaUnidad(Barraca unaBarraca, Mapa mapa){
 		
 		Unidad nuevaUnidad = null;
 				
 		nuevaUnidad = unaBarraca.entrenarMarine();
-		ubicarUnidadEnElMapa(mapa,unaBarraca,nuevaUnidad);
-		razaTerran.agregarUnidad(nuevaUnidad);		
+		ubicarUnidadEnElMapa(mapa,unaBarraca,nuevaUnidad);	
 		
 		return nuevaUnidad;
 		
 			
 	}
 
-	public static Unidad nuevaUnidad(Terran razaTerran,Fabrica unaFabrica, Mapa mapa){
+	public static Unidad nuevaUnidad(Fabrica unaFabrica, Mapa mapa){
 		
 		Unidad nuevaUnidad = null;
 
 		nuevaUnidad = unaFabrica.entrenarGoliat();
-		ubicarUnidadEnElMapa(mapa,unaFabrica,nuevaUnidad);
-		razaTerran.agregarUnidad(nuevaUnidad);		
+		ubicarUnidadEnElMapa(mapa,unaFabrica,nuevaUnidad);		
 		
 		return nuevaUnidad;
 		
 			
 	}
 	
-	public static Unidad nuevaNaveTransporte(Terran razaTerran,PuertoEstelar puerto, Mapa mapa) {
+	public static Unidad nuevaNaveTransporte(PuertoEstelar puerto, Mapa mapa) {
 		
 		Unidad nuevaUnidad = null;
 
 		nuevaUnidad = puerto.crearNaveTransporte();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
-		razaTerran.agregarUnidad(nuevaUnidad);		
 		
 		return nuevaUnidad;
 		
 	}
 
-	public static Unidad nuevoEspectro(Terran razaTerran, PuertoEstelar puerto,Mapa mapa) {
+	public static Unidad nuevoEspectro( PuertoEstelar puerto,Mapa mapa) {
 		
 		Unidad nuevaUnidad = null;
 
 		nuevaUnidad = puerto.crearEspectro();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
-		razaTerran.agregarUnidad(nuevaUnidad);		
-		
+
 		return nuevaUnidad;
 		
 	}
 
-	public static Unidad nuevaNaveCiencia(Terran razaTerran, PuertoEstelar puerto,Mapa mapa) {
+	public static Unidad nuevaNaveCiencia(PuertoEstelar puerto,Mapa mapa) {
 		
 		Unidad nuevaUnidad = null;
 
 		nuevaUnidad = puerto.crearNaveCiencia();
-		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
-		razaTerran.agregarUnidad(nuevaUnidad);		
+		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);	
 		
 		return nuevaUnidad;
 		

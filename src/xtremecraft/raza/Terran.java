@@ -72,31 +72,41 @@ public class Terran{
 	
 	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaUnidad(this,unaBarraca,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaBarraca,mapa);
+		this.agregarUnidad(nuevaUnidad);
+		return nuevaUnidad;
 		
 	}
 	
 	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaUnidad(this,unaFabrica,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaFabrica,mapa);
+		this.agregarUnidad(nuevaUnidad);
+		return nuevaUnidad;
 		
 	}
 	
 	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevoEspectro(this,puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(puerto,mapa);
+		this.agregarUnidad(nuevaUnidad);
+		return nuevaUnidad;
 		
 	}
 	
 	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaNaveCiencia(this,puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(puerto,mapa);
+		this.agregarUnidad(nuevaUnidad);
+		return nuevaUnidad;
 		
 	}
 	
 	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
 		
-		return ConstructorDeUnidades.nuevaNaveTransporte(this,puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(puerto,mapa);
+		this.agregarUnidad(nuevaUnidad);
+		return nuevaUnidad;
 		
 	}
 	
