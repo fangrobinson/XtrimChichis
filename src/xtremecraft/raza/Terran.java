@@ -7,6 +7,8 @@ import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.Recolector;
+import xtremecraft.mapa.Terreno;
+
 import xtremecraft.unidades.Unidad;
 
 
@@ -19,21 +21,24 @@ public class Terran{
 	private ArrayList<Fabrica> fabricas;
 	private ArrayList<PuertoEstelar> puertosEstelares;
 	private ArrayList<DepositoDeSuministros> depositosDeSuministros;
+
+	public Terran(Terreno terreno){
 		
-	public Terran(){
-		
-		this.estaViva=true;
 		this.unidades = new ArrayList<Unidad>();
 		this.recolectores = new ArrayList<Recolector>();
 		this.barracas = new ArrayList<Barraca>();
 		this.fabricas = new ArrayList<Fabrica>();
 		this.puertosEstelares = new ArrayList<PuertoEstelar>();
+		this.depositosDeSuministros = new ArrayList<DepositoDeSuministros>();
+		
+		this.depositosDeSuministros.add(new DepositoDeSuministros(terreno));
+		
 					
 	}
 
 	public boolean estaViva() {
 		
-		return this.estaViva;
+		return (this.depositosDeSuministros.size() != 0);
 		
 	}
 	
