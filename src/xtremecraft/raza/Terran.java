@@ -2,11 +2,12 @@ package xtremecraft.raza;
 
 import java.util.ArrayList;
 
-
+import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.ConstructorDeEdificios;
 import xtremecraft.edificios.Edificio;
+import xtremecraft.edificios.Fabrica;
 import xtremecraft.mapa.Terreno;
-
+import xtremecraft.mapa.Tierra;
 import xtremecraft.unidades.Unidad;
 
 
@@ -81,14 +82,19 @@ public class Terran{
 	}
 	
 	public boolean tieneBarracas() {
-		//ARREGLAR CON LO NUEVO DEL ITERADOR
-		return true;
+		IteradorConocidos iter = new IteradorConocidos(this.edificios);
+		Terreno terreno = new Tierra(1,1);
+		Barraca barraca = new Barraca(terreno);
+		return iter.arregloTiene(barraca);
+		
 		
 	}
 
 	public boolean tieneFabricas() {
-		//ARREGLAR CON LO NUEVO DEL ITERADOR
-		return true;
+		IteradorConocidos iter = new IteradorConocidos(this.edificios);
+		Terreno terreno = new Tierra(1,1);
+		Fabrica barraca = new Fabrica(terreno);
+		return iter.arregloTiene(barraca);
 		
 	}
 

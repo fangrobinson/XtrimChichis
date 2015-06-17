@@ -1,10 +1,6 @@
 package xtremecraft.sistema;
 
+@SuppressWarnings("serial")
 public class NombreMuyCortoException extends RuntimeException {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 }
