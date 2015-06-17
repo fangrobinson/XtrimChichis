@@ -101,12 +101,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public boolean puedeRealizarAccion(){
     	return this.puedeAtacar || this.puedeMoverse;
     }
-    
+    //faltan pruebas de supuesto
     public void pasarTiempo(){
     	if (this.puedeAtacar){
     		this.vitalidad.curarPorTurno(1);
     	}
-    	if (this.puedeMoverse){
+    	if(this.puedeMoverse && this.puedeAtacar){
     		this.vitalidad.curarPorTurno(1);
     	}
     	this.puedeAtacar = true;

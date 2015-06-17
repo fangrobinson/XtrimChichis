@@ -93,5 +93,10 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable {
     public boolean pertenezcoAEstaRaza(Terran terran){
     	return terran.posee(this);
     }
+    
+	
+	public int tiempoContruccion(){
+		return this.tiempoConstruccion;
+	}
 	
 }

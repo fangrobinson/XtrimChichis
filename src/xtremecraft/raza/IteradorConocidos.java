@@ -26,14 +26,17 @@ public class IteradorConocidos {
 		return cant;
 	}
 	
-	public boolean arregloTiene(Object instancia){
+	public boolean arregloTiene(Edificio edificio){
 		boolean bool = false;
 		int i = 0;
 		Object obj = null;
 		while (i < this.lista.size()){
 			obj = this.lista.get(i);
-			if (obj.getClass() == instancia.getClass()){
-				bool = true;
+			if (obj.getClass() == edificio.getClass()){
+				Edificio edif = (Edificio) obj;
+				if(!edif.estaEnConstruccion()){
+					bool = true;
+				}
 			}
 			i++;
 		}

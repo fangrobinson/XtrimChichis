@@ -4,7 +4,13 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Ubicable;
 
 public abstract class ConstructorDeEdificios {
-	
+	/*
+	public Edificio nuevoEdificio(Class barraca, Terreno unTerreno){
+		Barraca unaBarraca = new Barraca(unTerreno);
+		ubicarEdificioEnTerreno(unaBarraca, unTerreno);
+		return unaBarraca;
+	}
+	*/
 	
 	public static Edificio nuevoEdificio(String tipoDeEdificio, Terreno unTerreno){
 		

@@ -22,5 +22,23 @@ public class Jugador {
 	public boolean esDeMiPropiedad(Ubicable ubicable){
 		return this.nacion.esDeMiPropiedad(ubicable);
 	}
+	/*
+	public crearBarraca();
 	
+	public crearFabrica();
+	
+	public crearPuertoEstelar();
+	
+	public crearRecolectorDeGasVespeno();
+	
+	public crearRecolectorDeMineral();
+	
+	public crearMarine();
+	
+	public crearGoliat();
+	
+	public crearEspectro();
+	
+	public crearNaveCiencia();
+	*/
 }

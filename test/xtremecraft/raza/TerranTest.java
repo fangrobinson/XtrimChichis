@@ -53,19 +53,20 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void tieneBarracasDeberiaDevolverTrueSiSeCrearonBarracas(){
+	public void tieneBarracasDeberiaNoDevolverTrueSiSeCrearonBarracasPeroNoFueronCreadas(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
 		
 		razaTerran.crearBarraca(unTerreno);
 		
-		assertTrue(razaTerran.tieneBarracas());
+		assertFalse(razaTerran.tieneBarracas());
 	
 	}
-	
+	//No se puede crear Fabrica sin Barraca
+	/*
 	@Test
-	public void tieneFabricasDeberiaDevolverTrueSiSeCrearonFabricas(){
+	public void tieneFabricasNoDeberiaDevolverTrueSiSeCrearonFabricasPeroNoEstaConstruida(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
@@ -74,9 +75,10 @@ public class TerranTest {
 		razaTerran.crearBarraca(unTerreno);
 		razaTerran.crearFabrica(otroTerreno);
 		
-		assertTrue(razaTerran.tieneFabricas());
+		assertFalse(razaTerran.tieneFabricas());
 			
 	}
+	*/
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void crearFabricaLanzaExcepcionSiSeIntenaCrearFabricaCuandoNoHayBarracas(){
