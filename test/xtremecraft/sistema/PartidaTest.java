@@ -11,13 +11,13 @@ import org.junit.Test;
 public class PartidaTest {
 	
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = CantidadDeJugadoresMenorAUnoException.class)
 	public void CrearPartidaConCantJugadoresCeroDaError(){
 		ArrayList<String> jugadores = new ArrayList<String>();
 		new Partida(jugadores);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = CantidadDeJugadoresMenorAUnoException.class)
 	public void CrearPartidaConCantJugadoresUnoDaError(){
 		ArrayList<String> jugadores = new ArrayList<String>();
 		jugadores.add("ninioRata");

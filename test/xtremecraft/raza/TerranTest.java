@@ -80,7 +80,7 @@ public class TerranTest {
 	}
 	*/
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RazaNoTieneBarracasException.class)
 	public void crearFabricaLanzaExcepcionSiSeIntenaCrearFabricaCuandoNoHayBarracas(){
 		
 		Terran razaTerran = new Terran();
@@ -90,7 +90,7 @@ public class TerranTest {
 			
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RazaNoTieneFabricasException.class)
 	public void crearPuertoEstelarLanzaExcepcionSiSeIntenaCrearPuertoCuandoNoHayFabricas(){
 		
 		Terran razaTerran = new Terran();

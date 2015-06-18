@@ -6,7 +6,7 @@ public class VolcanGasVespeno extends Recurso{
 		
 		super();
 		if(volumenGasVespeno<=0){
-			throw new IllegalArgumentException("El volumen de Gas Vespeno contenido en un volcan debe ser un numero entero positivo.");
+			throw new VolumenGasVespenoNegativoException();
 		}
 		this.cantidadDeRecurso = volumenGasVespeno;
 	}

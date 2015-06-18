@@ -6,7 +6,7 @@ public class MinaDeMinerales extends Recurso{
 		
 		super();
 		if(numeroDeCristales<=0){
-			throw new IllegalArgumentException("La cantidad de minerales en un nodo mineral debe ser un numero entero positivo.");
+			throw new NumeroDeCristalesNegativoException();
 		}
 		this.cantidadDeRecurso=numeroDeCristales;
 		

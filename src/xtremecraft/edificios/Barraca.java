@@ -20,7 +20,7 @@ public class Barraca extends Edificio{
 	public Marine entrenarMarine(){
 		
 		if(this.estaEnConstruccion()){
-			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+			throw new EdificioEnConstruccionException();
 		}
 		return new Marine();
 		

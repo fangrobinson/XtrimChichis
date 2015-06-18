@@ -20,7 +20,7 @@ public class PuertoEstelar extends Edificio{
 	public Espectro crearEspectro(){
 		
 		if(this.estaEnConstruccion()){
-			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+			throw new EdificioEnConstruccionException();
 		}
 		return new Espectro();
 		
@@ -30,7 +30,7 @@ public class PuertoEstelar extends Edificio{
 	public NaveCiencia crearNaveCiencia(){
 		
 		if(this.estaEnConstruccion()){
-			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+			throw new EdificioEnConstruccionException();
 		}
 		return new NaveCiencia();
 		

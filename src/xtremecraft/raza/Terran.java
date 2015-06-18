@@ -49,7 +49,7 @@ public class Terran{
 			Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Fabrica",unTerreno);
 			this.agregarEdificio(nuevoEdificio);
 			return nuevoEdificio;
-		}else throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
+		}else throw new RazaNoTieneBarracasException();
 	}
 	
 	public Edificio crearPuertoEstelar(Terreno unTerreno){
@@ -59,7 +59,7 @@ public class Terran{
 			this.agregarEdificio(nuevoEdificio);
 			return nuevoEdificio;
 		}else{
-			throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
+			throw new RazaNoTieneFabricasException();
 		}
 	
 	}

@@ -47,7 +47,7 @@ public class PuertoEstelarTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = EdificioEnConstruccionException.class)
 	public void siPuertNoEstaConstruidoYSeIntentaCrearUnidadSeLanzaExcepcion(){
 		
 		int fila = 1;

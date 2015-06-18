@@ -12,7 +12,7 @@ public class Partida {
 	
 	public Partida(ArrayList<String> nombresJugadores){
 		if (nombresJugadores.size() <= 1){
-			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
+			throw new CantidadDeJugadoresMenorAUnoException();
 		}
 		this.tiempo = 0;
 		this.cant_jug = nombresJugadores.size();

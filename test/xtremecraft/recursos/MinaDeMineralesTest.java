@@ -15,7 +15,7 @@ public class MinaDeMineralesTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NumeroDeCristalesNegativoException.class)
 	public void minaInicializadaConNumeroDeCristalesNegativoLanzaExcepcion(){
 		
 			new MinaDeMinerales(-1);

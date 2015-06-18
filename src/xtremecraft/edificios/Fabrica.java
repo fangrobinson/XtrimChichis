@@ -19,7 +19,7 @@ public class Fabrica extends Edificio{
 	public Goliat entrenarGoliat(){
 		
 		if(this.estaEnConstruccion()){
-			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
+			throw new EdificioEnConstruccionException();
 		}
 		return new Goliat();
 		
