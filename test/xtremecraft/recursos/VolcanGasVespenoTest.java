@@ -25,23 +25,6 @@ public class VolcanGasVespenoTest {
 	}
 	
 	@Test
-	public void tieneMineralDevuelveFalse(){
-		
-		VolcanGasVespeno volcan = new VolcanGasVespeno(100);
-		
-		assertFalse(volcan.tieneMineral());
-	}
-	
-	
-	@Test
-	public void tieneGasVespenoDevuelveTrue(){
-		
-		VolcanGasVespeno volcan=new VolcanGasVespeno(100);
-		
-		assertTrue(volcan.tieneGasVespeno());
-	}
-	
-	@Test
 	public void volcanSeInicializaComoNoExplotado(){
 		
 		VolcanGasVespeno volcan=new VolcanGasVespeno(100);

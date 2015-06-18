@@ -23,24 +23,6 @@ public class MinaDeMineralesTest {
 	}
 	
 	@Test
-	public void tieneMineralDevuelveTrue(){
-		
-		MinaDeMinerales mina=new MinaDeMinerales(4);
-		
-		assertTrue(mina.tieneMineral());
-	}
-	
-	
-	@Test
-	public void tieneGasVespenoDevuelveFalse(){
-		
-		MinaDeMinerales mina=new MinaDeMinerales(4);
-		
-		assertFalse(mina.tieneGasVespeno());
-	}
-
-
-	@Test
 	public void minaInicializadaComoNoExplotado(){
 		
 		MinaDeMinerales mina=new MinaDeMinerales(4);

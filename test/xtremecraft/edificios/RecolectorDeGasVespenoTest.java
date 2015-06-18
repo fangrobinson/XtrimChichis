@@ -12,8 +12,11 @@ import xtremecraft.recursos.VolcanGasVespeno;
 
 public class RecolectorDeGasVespenoTest {
 	
-	public RecolectorDeGasVespeno construirNuevoRecolectorDeGasVespeno(Terreno tierra){
+	public RecolectorDeGasVespeno construirNuevoRecolectorDeGasVespeno(int fila, int columna){
 		
+		Terreno tierra = new Tierra(fila,columna);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
+		tierra.agregarRecursoNatural(volcan);
 		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(tierra);
 		for(int i=0;i<refineria.tiempoConstruccion - 1;i++){
 			refineria.pasarTiempo();
@@ -27,6 +30,8 @@ public class RecolectorDeGasVespenoTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
+		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
+		tierra.agregarRecursoNatural(volcan);
 		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(tierra);
 		
 		assertTrue(refineria.estaEnConstruccion());
@@ -36,10 +41,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void recolectorEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelRecolectorDeGasVespeno(){
 		
-		int fila = 1;
-		int columna = 2;
-		Terreno tierra = new Tierra(fila,columna);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		assertFalse(refineria.estaEnConstruccion());
 		
@@ -50,8 +52,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void nuevoRecolectorDeGasVespenoIniciaConReservaNula(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		assertEquals(refineria.getReservas(),0);
 		
@@ -60,8 +61,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		assertTrue(refineria.puedeUbicarseSobreRecursoNatural());
 		
@@ -70,10 +70,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void testPasarTiempoAumentaLaCantidadDeReservasEnElEdificioRecolector(){
 
-		Terreno tierra = new Tierra(1,2);
-		VolcanGasVespeno volcan = new VolcanGasVespeno(20);
-		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		refineria.pasarTiempo();
 		
@@ -84,8 +81,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		assertEquals(refineria.getUbicacionActual().columna(),2);
 		assertEquals(refineria.getUbicacionActual().fila(),1);
@@ -95,8 +91,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
 		assertEquals(refineria.getVida(),100);
 		
@@ -105,8 +100,7 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(tierra);
+		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		int valorDanio = 30;
 		
 		refineria.recibirDanio(valorDanio);

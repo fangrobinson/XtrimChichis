@@ -12,13 +12,17 @@ import org.junit.Test;
 
 public class RecolectorDeMineralTest {
 	
-	public RecolectorDeMineral construirNuevoRecolectorDeMineral(Terreno tierra){
+	public RecolectorDeMineral construirNuevoRecolectorDeMineral(int fila, int columna){
 		
+		Terreno tierra = new Tierra(fila,columna);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
+		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
 		for(int i=0;i<recolector.tiempoConstruccion - 1;i++){
 			recolector.pasarTiempo();
 		}
 		return recolector;
+		
 	}
 	
 	@Test
@@ -27,6 +31,9 @@ public class RecolectorDeMineralTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
+		tierra.agregarRecursoNatural(nuevoNodoMineral);
+		
 		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
 		
 		assertTrue(recolector.estaEnConstruccion());
@@ -36,10 +43,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void recolectorEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelRecolectorDeMineral(){
 		
-		int fila = 1;
-		int columna = 2;
-		Terreno tierra = new Tierra(fila,columna);
-		RecolectorDeMineral recolector = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral recolector = construirNuevoRecolectorDeMineral(1,2);
 		
 		assertFalse(recolector.estaEnConstruccion());
 		
@@ -49,8 +53,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void testNuevoRecolectorDeMineralIniciaConReservaNula(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
 		assertEquals(centroMineralTerran.getReservas(),0);
 		
@@ -59,8 +62,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
 		assertTrue(centroMineralTerran.puedeUbicarseSobreRecursoNatural());
 		
@@ -69,10 +71,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void testPasarTiempoAumentaLaCantidadDeReservasEnElEdificioRecolector(){
 		
-		Terreno tierra = new Tierra(1,2);
-		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
-		tierra.agregarRecursoNatural(nuevoNodoMineral);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
 		centroMineralTerran.pasarTiempo();
 		
@@ -84,8 +83,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void edificioGetUbicacionActualDevuelveCoordenadasDelEdificioEnElMapa(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
 		assertEquals(centroMineralTerran.getUbicacionActual().columna(),2);
 		assertEquals(centroMineralTerran.getUbicacionActual().fila(),1);
@@ -95,8 +93,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
 		assertEquals(centroMineralTerran.getVida(),100);
 		
@@ -105,8 +102,7 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
-		Terreno tierra = new Tierra(1,2);
-		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(tierra);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		int valorDanio = 30;
 		
 		centroMineralTerran.recibirDanio(valorDanio);
