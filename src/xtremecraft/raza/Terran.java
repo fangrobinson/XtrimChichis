@@ -3,10 +3,12 @@ package xtremecraft.raza;
 import java.util.ArrayList;
 
 import xtremecraft.edificios.Barraca;
-import xtremecraft.edificios.ConstructorDeEdificios;
+import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Edificio;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -35,9 +37,12 @@ public class Terran{
 		
 	}
 	
+	//TODO: refactoring codigo repetido
 	public Edificio crearBarraca(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Barraca",unTerreno);
+		Edificio nuevoEdificio = new Barraca(unTerreno);
+		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);
 		return nuevoEdificio;
 		
@@ -46,7 +51,9 @@ public class Terran{
 	public Edificio crearFabrica(Terreno unTerreno){
 		
 		if(this.tieneBarracas()){
-			Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Fabrica",unTerreno);
+			Edificio nuevoEdificio = new Fabrica(unTerreno);
+			//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+			if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 			this.agregarEdificio(nuevoEdificio);
 			return nuevoEdificio;
 		}else throw new IllegalArgumentException("No se puede contruir una fabrica si no se contruyo al menos una Barraca.");
@@ -55,7 +62,9 @@ public class Terran{
 	public Edificio crearPuertoEstelar(Terreno unTerreno){
 		
 		if(this.tieneFabricas()){
-			Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Puerto Estelar",unTerreno);
+			Edificio nuevoEdificio = new PuertoEstelar(unTerreno);
+			//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+			if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 			this.agregarEdificio(nuevoEdificio);
 			return nuevoEdificio;
 		}else{
@@ -66,7 +75,9 @@ public class Terran{
 	
 	public Edificio crearRecolectorDeMineral(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Recolector de Mineral",unTerreno);
+		Edificio nuevoEdificio = new RecolectorDeMineral(unTerreno);
+		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);
 		return nuevoEdificio;
 		
@@ -74,7 +85,9 @@ public class Terran{
 	
 	public Edificio crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Recolector de Gas Vespeno",unTerreno);
+		Edificio nuevoEdificio = new RecolectorDeGasVespeno(unTerreno);
+		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);
 		return nuevoEdificio;
 		
@@ -82,7 +95,9 @@ public class Terran{
 	
 	public Edificio crearDepositoDeSuministros(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = ConstructorDeEdificios.nuevoEdificio("Deposito de Suministros",unTerreno);
+		Edificio nuevoEdificio = new DepositoDeSuministros(unTerreno);
+		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
+		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);
 		return nuevoEdificio;
 		
