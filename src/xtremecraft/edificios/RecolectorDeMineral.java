@@ -1,5 +1,6 @@
 package xtremecraft.edificios;
 
+import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.mapa.Terreno;
 
 public class RecolectorDeMineral extends Recolector{
@@ -19,7 +20,7 @@ public class RecolectorDeMineral extends Recolector{
 		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
 			//TODO: crear excepcion especifica para este caso:
-			throw new IllegalArgumentException("No se puede crear extractor de mineral en terreno sin mineral");
+			throw new NoHayRecursoException();
 		}	
 		return nuevoRecolector;
 		

@@ -59,8 +59,7 @@ public abstract class ConstructorDeUnidades {
 			Celda unaCelda = celdasAdyacentesAlEdificio.remove(0);
 			unidadEstaUbicada = mapa.ubicar(nuevaUnidad, unaCelda);
 		}
-		// TODO: arreglar con excepcion especifica
-		if(!unidadEstaUbicada) throw new IllegalArgumentException("Unidad no pudo ser creada.");
+		if(!unidadEstaUbicada) throw new UbicacionNoValidaException();
 	}
 
 }

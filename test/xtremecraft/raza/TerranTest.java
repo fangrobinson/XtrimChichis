@@ -17,8 +17,10 @@ import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
+import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 public class TerranTest {
@@ -41,7 +43,7 @@ public class TerranTest {
 			
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = UbicacionNoValidaException.class)
 	public void crearEdificioLanzaExcepcionSiSeIntentaCrearUnEdificioEnUnaCeldaOcupada(){
 		
 		Terran razaTerran = new Terran();
@@ -107,7 +109,7 @@ public class TerranTest {
 		RecolectorDeMineral centroMineral = (RecolectorDeMineral)razaTerran.crearRecolectorDeMineral(unTerreno);
 		
 		//Dejo el centroMineral en estado construido:
-		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
 		for(int turno=0;turno<3;turno++) centroMineral.pasarTiempo();
 		
 		assertEquals(centroMineral.getReservas(),0);
@@ -129,7 +131,7 @@ public class TerranTest {
 		RecolectorDeGasVespeno refineria = (RecolectorDeGasVespeno)razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
 		//Dejo refineria en estado construido:
-		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
 		for(int turno=0; turno<5 ;turno++) refineria.pasarTiempo();
 		
 		assertEquals(refineria.getReservas(),0);
@@ -140,7 +142,7 @@ public class TerranTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
 		
 		Terran razaTerran = new Terran();
@@ -151,7 +153,7 @@ public class TerranTest {
 	}
 	
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoConUnRecursoQueNoSeaMineral(){
 		
 		Terran razaTerran = new Terran();
@@ -163,7 +165,7 @@ public class TerranTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
 		
 		Terran razaTerran = new Terran();
@@ -173,7 +175,7 @@ public class TerranTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinGasVespeno(){
 		
 		Terran razaTerran = new Terran();

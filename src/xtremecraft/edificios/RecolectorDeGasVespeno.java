@@ -1,5 +1,6 @@
 package xtremecraft.edificios;
 
+import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.mapa.Terreno;
 
 public class RecolectorDeGasVespeno extends Recolector {
@@ -18,8 +19,7 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 		RecolectorDeGasVespeno nuevoRecolector = new RecolectorDeGasVespeno(unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
-			//TODO: crear excepcion especifica para este caso:
-			throw new IllegalArgumentException("No se puede crear refineria en terreno sin gas vespeno");
+			throw new NoHayRecursoException();
 		}	
 		return nuevoRecolector;
 		
