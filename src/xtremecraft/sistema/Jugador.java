@@ -22,6 +22,8 @@ public class Jugador {
 	public boolean esDeMiPropiedad(Ubicable ubicable){
 		return this.nacion.esDeMiPropiedad(ubicable);
 	}
+	
+	//TODO: implementar los metodos de creacion de unidades y edificios.
 	/*
 	public crearBarraca();
 	

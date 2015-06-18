@@ -4,9 +4,9 @@ public class Danio {
 	int aire;
 	int tierra;
 
-	public Danio(int dañoAire, int dañoTierra){
-		this.aire = dañoAire;
-		this.tierra = dañoTierra;
+	public Danio(int danioAire, int danioTierra){
+		this.aire = danioAire;
+		this.tierra = danioTierra;
 	}
 	
 	public int devolverDanio(boolean estaElevado){
