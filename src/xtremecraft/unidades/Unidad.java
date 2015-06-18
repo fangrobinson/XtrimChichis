@@ -6,6 +6,7 @@ import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 
 public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualizable{
+	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
 	int vision;
@@ -20,10 +21,10 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
 		this.puedeMoverse = true;
 	}
 	
-    public void recibirDanio(int daño){
+    public void recibirDanio(int danio){
     	
-        vitalidad.recibirAtaque(daño);
-        	
+        vitalidad.recibirAtaque(danio);
+    
     }
     
     
@@ -37,6 +38,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     }
     
     protected boolean puedoAtacar(Ubicable atacado) {
+    	
     	if (!this.puedeAtacar){
     		return false;
     	}
@@ -99,10 +101,13 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     }
     
     public boolean puedeRealizarAccion(){
+    	
     	return this.puedeAtacar || this.puedeMoverse;
+    
     }
     //faltan pruebas de supuesto
     public void pasarTiempo(){
+    	
     	if (this.puedeAtacar){
     		this.vitalidad.curarPorTurno(1);
     	}
@@ -111,9 +116,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     	}
     	this.puedeAtacar = true;
     	this.puedeMoverse = true;
+    	
     }
 
     public boolean pertenezcoAEstaRaza(Terran terran){
+    
     	return terran.posee(this);
+    
     }
 }

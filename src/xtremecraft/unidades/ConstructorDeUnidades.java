@@ -12,62 +12,44 @@ import xtremecraft.mapa.Mapa;
 public abstract class ConstructorDeUnidades {
 	
 	public static Unidad nuevaUnidad(Barraca unaBarraca, Mapa mapa){
-		
-		Unidad nuevaUnidad = null;
-				
-		nuevaUnidad = unaBarraca.entrenarMarine();
+	
+		Unidad nuevaUnidad = unaBarraca.entrenarMarine();
 		ubicarUnidadEnElMapa(mapa,unaBarraca,nuevaUnidad);	
 		
-		return nuevaUnidad;
-		
-			
+		return nuevaUnidad;	
 	}
 
 	public static Unidad nuevaUnidad(Fabrica unaFabrica, Mapa mapa){
 		
-		Unidad nuevaUnidad = null;
-
-		nuevaUnidad = unaFabrica.entrenarGoliat();
+		Unidad nuevaUnidad = unaFabrica.entrenarGoliat();
 		ubicarUnidadEnElMapa(mapa,unaFabrica,nuevaUnidad);		
 		
 		return nuevaUnidad;
-		
-			
 	}
 	
 	public static Unidad nuevaNaveTransporte(PuertoEstelar puerto, Mapa mapa) {
 		
-		Unidad nuevaUnidad = null;
-
-		nuevaUnidad = puerto.crearNaveTransporte();
+		Unidad nuevaUnidad = puerto.crearNaveTransporte();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
 		
 		return nuevaUnidad;
-		
 	}
 
 	public static Unidad nuevoEspectro( PuertoEstelar puerto,Mapa mapa) {
-		
-		Unidad nuevaUnidad = null;
 
-		nuevaUnidad = puerto.crearEspectro();
+		Unidad nuevaUnidad = puerto.crearEspectro();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
 
 		return nuevaUnidad;
-		
 	}
 
 	public static Unidad nuevaNaveCiencia(PuertoEstelar puerto,Mapa mapa) {
-		
-		Unidad nuevaUnidad = null;
 
-		nuevaUnidad = puerto.crearNaveCiencia();
+		Unidad nuevaUnidad = puerto.crearNaveCiencia();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);	
 		
-		return nuevaUnidad;
-		
+		return nuevaUnidad;	
 	}
-	
 	
 	private static void ubicarUnidadEnElMapa(Mapa mapa,Edificio unEdificio,Unidad nuevaUnidad){
 		
@@ -77,7 +59,8 @@ public abstract class ConstructorDeUnidades {
 			Celda unaCelda = celdasAdyacentesAlEdificio.remove(0);
 			unidadEstaUbicada = mapa.ubicar(nuevaUnidad, unaCelda);
 		}
+		// TODO: arreglar con excepcion especifica
 		if(!unidadEstaUbicada) throw new IllegalArgumentException("Unidad no pudo ser creada.");
 	}
-	
+
 }
