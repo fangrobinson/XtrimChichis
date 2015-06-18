@@ -53,7 +53,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void tieneBarracasDeberiaNoDevolverTrueSiSeCrearonBarracasPeroNoFueronCreadas(){
+	public void tieneBarracasDeberiaDevolverFalseSiSeCrearonBarracasPeroNoTerminoLaConstruccion(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
@@ -63,10 +63,9 @@ public class TerranTest {
 		assertFalse(razaTerran.tieneBarracas());
 	
 	}
-	//No se puede crear Fabrica sin Barraca
-	/*
-	@Test
-	public void tieneFabricasNoDeberiaDevolverTrueSiSeCrearonFabricasPeroNoEstaConstruida(){
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void siIntentoCrearUnaFabricaPeroLaBarracaNoHayNingunaBarracaEnEstadoConstruidoSeLanzaExcepcion(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
@@ -74,11 +73,8 @@ public class TerranTest {
 		
 		razaTerran.crearBarraca(unTerreno);
 		razaTerran.crearFabrica(otroTerreno);
-		
-		assertFalse(razaTerran.tieneFabricas());
 			
 	}
-	*/
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void crearFabricaLanzaExcepcionSiSeIntenaCrearFabricaCuandoNoHayBarracas(){
@@ -123,7 +119,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void crearCentroRecolectorDeGasVespenoCreaNuevoCentroMineral(){
+	public void crearCentroRecolectorDeGasVespenoCreaNuevaRefineria(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
@@ -153,6 +149,7 @@ public class TerranTest {
 		razaTerran.crearRecolectorDeMineral(unTerreno);
 		
 	}
+	
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoConUnRecursoQueNoSeaMineral(){

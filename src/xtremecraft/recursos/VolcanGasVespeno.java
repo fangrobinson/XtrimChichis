@@ -1,5 +1,7 @@
 package xtremecraft.recursos;
 
+import xtremecraft.edificios.Recolector;
+
 public class VolcanGasVespeno extends Recurso{
 	
 	public VolcanGasVespeno(int volumenGasVespeno){
@@ -22,12 +24,10 @@ public class VolcanGasVespeno extends Recurso{
 		
 	}
 	
-	public boolean tieneGasVespeno(){
+	public boolean puedeSerExtraidoPor(Recolector nuevoRecolector) {
 		
-		return true;
+		return nuevoRecolector.puedeExtraerGasVespeno();
 		
 	}
-	
-	
 
 }

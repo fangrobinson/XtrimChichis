@@ -1,5 +1,7 @@
 package xtremecraft.recursos;
 
+import xtremecraft.edificios.Recolector;
+
 public class MinaDeMinerales extends Recurso{
 	
 	public MinaDeMinerales(int numeroDeCristales){
@@ -25,9 +27,10 @@ public class MinaDeMinerales extends Recurso{
 		
 	}
 
-	public boolean tieneMineral(){
+	
+	public boolean puedeSerExtraidoPor(Recolector nuevoRecolector) {
 		
-		return true;
+		return nuevoRecolector.puedeExtraerMineral();
 		
 	}
 

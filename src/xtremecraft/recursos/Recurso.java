@@ -1,5 +1,7 @@
 package xtremecraft.recursos;
 
+import xtremecraft.edificios.Recolector;
+
 public abstract class Recurso {
 	
 	protected boolean esExplotado;
@@ -30,17 +32,7 @@ public abstract class Recurso {
 		return i;
 		
 	}
-	
-	public boolean tieneMineral(){
-		
-		return false;
-		
-	}
 
-	
-	public boolean tieneGasVespeno(){
-		
-		return false;
-		
-	}
+	public abstract boolean puedeSerExtraidoPor(Recolector nuevoRecolector);
+
 }

@@ -75,7 +75,7 @@ public class Terran{
 	
 	public Edificio crearRecolectorDeMineral(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = new RecolectorDeMineral(unTerreno);
+		Edificio nuevoEdificio = RecolectorDeMineral.nuevoRecolectorDeMineral(unTerreno);
 		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
 		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);
@@ -85,7 +85,7 @@ public class Terran{
 	
 	public Edificio crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = new RecolectorDeGasVespeno(unTerreno);
+		Edificio nuevoEdificio = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(unTerreno);
 		//TODO: crear excepcion adecuada para este caso no se puede ubicar edificio
 		if(!unTerreno.ubicar(nuevoEdificio)) throw new IllegalArgumentException("Edificio no pudo ser creado en la ubicacion indicada");
 		this.agregarEdificio(nuevoEdificio);

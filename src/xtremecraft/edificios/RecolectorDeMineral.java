@@ -1,46 +1,34 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.recursos.Recurso;
 
 public class RecolectorDeMineral extends Recolector{
 
-	private Recurso minaDeMinerales;
 	private static int tiempoDeConstruccion = 4;
 
-	public RecolectorDeMineral(Terreno terreno) {
+	private RecolectorDeMineral(Terreno terreno) {
 		
 		super(terreno);
-		this.minaDeMinerales = terreno.getRecurso();
+		this.recurso = terreno.getRecurso();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 	
 	}
 	
-	public void pasarTiempo(){
-		//revisar modelado de paso del tiempo
-		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;
-		else this.reservas += this.minaDeMinerales.explotar(this.aumentoDeReservaEnTurno);
+	public static RecolectorDeMineral nuevoRecolectorDeMineral(Terreno unTerreno){
+		
+		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(unTerreno);
+		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
+			//TODO: crear excepcion especifica para este caso:
+			throw new IllegalArgumentException("No se puede crear extractor de mineral en terreno sin mineral");
+		}	
+		return nuevoRecolector;
 		
 	}
 
-	public boolean puedeUbicarseEnTierra() {
+	public boolean puedeExtraerMineral(){
 		
 		return true;
 		
 	}
-
-	
-	public boolean puedeUbicarseEnAire() {
-		
-		return false;
-		
-	}
-	
-	public boolean puedeUbicarseSobreRecursoNatural() {
-	
-		return true;
-		
-	}
-	
 
 }
