@@ -63,17 +63,4 @@ public abstract class Terreno{
 
 	public abstract boolean agregarRecursoNatural(Recurso unRecurso);
 
-	public boolean tieneMineral() {
-		
-		if(!this.tieneRecursos()) return false;
-		return this.recurso.tieneMineral();
-		
-	}
-
-	public boolean tieneGasVespeno() {
-		
-		if(!this.tieneRecursos()) return false;
-		return this.recurso.tieneGasVespeno();
-		
-	}
 }

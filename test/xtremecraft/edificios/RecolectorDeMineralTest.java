@@ -14,7 +14,7 @@ public class RecolectorDeMineralTest {
 	
 	public RecolectorDeMineral construirNuevoRecolectorDeMineral(Terreno tierra){
 		
-		RecolectorDeMineral recolector = new RecolectorDeMineral(tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
 		for(int i=0;i<recolector.tiempoConstruccion - 1;i++){
 			recolector.pasarTiempo();
 		}
@@ -27,7 +27,7 @@ public class RecolectorDeMineralTest {
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		RecolectorDeMineral recolector = new RecolectorDeMineral(tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
 		
 		assertTrue(recolector.estaEnConstruccion());
 		
