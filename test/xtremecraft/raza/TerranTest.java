@@ -64,7 +64,7 @@ public class TerranTest {
 	
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RazaNoTieneBarracasException.class)
 	public void siIntentoCrearUnaFabricaPeroLaBarracaNoHayNingunaBarracaEnEstadoConstruidoSeLanzaExcepcion(){
 		
 		Terran razaTerran = new Terran();
