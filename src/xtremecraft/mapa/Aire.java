@@ -49,7 +49,7 @@ public class Aire extends Terreno {
 
 	public Recurso getRecurso() {
 		
-		throw new IllegalArgumentException("No hay recursos en terrenos aereos.");
+		throw new NoHayRecursoException();
 		
 	}
 

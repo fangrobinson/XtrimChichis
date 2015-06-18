@@ -45,7 +45,7 @@ public class FabricaTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = EdificioEnConstruccionException.class)
 	public void siFabricaNoEstaConstruidaYSeIntentaEntrenarUnGoliatSeLanzaExcepcion(){
 		
 		int fila = 1;

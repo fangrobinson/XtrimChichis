@@ -17,7 +17,7 @@ public class VolcanGasVespenoTest {
 		
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = VolumenGasVespenoNegativoException.class)
 	public void volcanSeInicializaConVolumenNegativoDeGasVespenoLanzaExcepcion(){
 		
 			new VolcanGasVespeno(-1);
