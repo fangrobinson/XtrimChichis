@@ -14,13 +14,13 @@ public class IteradorUnidades {
 		this.listaUnidades = lista;
 	}
 	
-	public int cuantosHayDe(Unidad unidad){
+	public int cuantosHayDe(@SuppressWarnings("rawtypes") Class unidadClass){
 		int i = 0;
 		int cant = 0;
 		Unidad unidadActual = null;
 		while(i < this.listaUnidades.size()){
 			unidadActual = this.listaUnidades.get(i);
-			if (unidadActual.getClass() == unidad.getClass()){
+			if (unidadActual.getClass() == unidadClass){
 				if(unidadActual.estaEnConstruccion()){
 					cant++;
 				}	

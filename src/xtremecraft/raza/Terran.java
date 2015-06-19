@@ -11,7 +11,6 @@ import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
@@ -188,8 +187,8 @@ public class Terran implements Actualizable{
 	public void pasarTiempo() {
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(new Tierra(1,2));
-		this.poblacionMaxima = poblacionInicial + iter.cuantosHayConstruidos(deposito)*DepositoDeSuministros.getIncrementoPoblacion();
+		//DepositoDeSuministros deposito = new DepositoDeSuministros(new Tierra(1,2));
+		this.poblacionMaxima = poblacionInicial + iter.cuantosHayConstruidos(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
 		
 		
 	}

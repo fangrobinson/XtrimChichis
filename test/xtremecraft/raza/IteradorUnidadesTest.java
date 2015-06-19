@@ -17,9 +17,7 @@ public class IteradorUnidadesTest {
 		ArrayList<Unidad> unidades = new ArrayList<Unidad>();
 		IteradorUnidades iter = new IteradorUnidades(unidades);
 		
-		Marine marine = new Marine();
-		
-		assertEquals(iter.cuantosHayDe(marine), 0);
+		assertEquals(iter.cuantosHayDe(Marine.class), 0);
 		
 	}
 	
@@ -32,7 +30,7 @@ public class IteradorUnidadesTest {
 		Marine marine = new Marine();
 		for(int i=0;i<marine.tiempoConstruccion();i++)	marine.pasarTiempo();
 		
-		assertEquals(iter.cuantosHayDe(marine), 0);
+		assertEquals(iter.cuantosHayDe(Marine.class), 0);
 		
 	}
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Edificio;
 import xtremecraft.edificios.Fabrica;
-import xtremecraft.mapa.Tierra;
 
 public class IteradorEdificios {
 	
@@ -17,13 +16,13 @@ public class IteradorEdificios {
 	}
 	//TODO: ver como se hace para pasar una clase por parametro sin tener una instancia de esa clase
 	
-	public int cuantosHayConstruidos(Edificio edificio) {
+	public int cuantosHayConstruidos(@SuppressWarnings("rawtypes") Class edificio) {
 		
 		int cant = 0;
 		Edificio edificioActual = null;
 		for(int posicion=0;posicion<this.listaEdificios.size();posicion++){
 			edificioActual = this.listaEdificios.get(posicion);
-			if (edificioActual.getClass() == edificio.getClass()){
+			if (edificioActual.getClass() == edificio){
 					cant++;
 			}	
 			posicion++;
@@ -52,10 +51,10 @@ public class IteradorEdificios {
 	public Barraca getBarraca(){
 		
 		Edificio edificioActual = null;
-		Barraca unaBarraca = new Barraca(new Tierra(1,2));
+		
 		for(int posicion = 0; posicion < this.listaEdificios.size(); posicion++){
 			edificioActual = this.listaEdificios.get(posicion);
-			if (edificioActual.getClass() == unaBarraca.getClass()){
+			if (edificioActual.getClass() == Barraca.class){
 				Barraca barraca = (Barraca) edificioActual;
 				if(!barraca.estaEnConstruccion()){
 					return barraca;
@@ -68,13 +67,12 @@ public class IteradorEdificios {
 	
 	public Fabrica getFabrica(){
 		
-		Object obj = null;
-		Barraca unaBarraca = new Barraca(new Tierra(1,2));
-		Fabrica unaFabrica = new Fabrica(unaBarraca,new Tierra(3,3));
+		Edificio EdificioActual = null;
+
 		for(int posicion = 0; posicion < this.listaEdificios.size(); posicion++){
-			obj = this.listaEdificios.get(posicion);
-			if (obj.getClass() == unaFabrica.getClass()){
-				Fabrica fabrica = (Fabrica) obj;
+			EdificioActual = this.listaEdificios.get(posicion);
+			if (EdificioActual.getClass() == Fabrica.class){
+				Fabrica fabrica = (Fabrica)EdificioActual;
 				if(!fabrica.estaEnConstruccion()){
 					return fabrica;
 				}

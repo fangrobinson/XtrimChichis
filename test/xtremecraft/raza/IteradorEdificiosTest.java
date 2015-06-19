@@ -18,9 +18,8 @@ public class IteradorEdificiosTest {
 		
 		ArrayList<Edificio> array = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(array);
-		Barraca barraca = new Barraca(new Tierra(1,2));
 		
-		assertEquals(iter.cuantosHayConstruidos(barraca), 0);
+		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 0);
 		
 	}
 	
@@ -29,9 +28,8 @@ public class IteradorEdificiosTest {
 		
 		ArrayList<Edificio> array = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(array);
-		Barraca barraca = new Barraca(new Tierra(1,2));
 		
-		assertEquals(iter.cuantosHayConstruidos(barraca), 0);
+		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 0);
 		
 	}
 	
@@ -55,7 +53,7 @@ public class IteradorEdificiosTest {
 		Barraca barraca = new Barraca(new Tierra(1,2));
 		edificios.add(barraca);
 		
-		assertEquals(iter.cuantosHayConstruidos(barraca), 1);
+		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 1);
 		
 	}
 
