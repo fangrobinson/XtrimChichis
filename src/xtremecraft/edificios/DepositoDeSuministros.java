@@ -6,6 +6,7 @@ public class DepositoDeSuministros extends Edificio{
 
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 6;
+	private static int incrementoPoblacion = 5;
 	
 	public DepositoDeSuministros(Terreno unTerreno) {
 		
@@ -14,13 +15,17 @@ public class DepositoDeSuministros extends Edificio{
 		
 	}
 
+	public static int getIncrementoPoblacion(){
+		
+		return incrementoPoblacion;
+		
+	}
 	
 	public boolean puedeUbicarseEnTierra() {
 		
 		return true;
 		
 	}
-
 	
 	public boolean puedeUbicarseEnAire() {
 		

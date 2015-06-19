@@ -1,17 +1,19 @@
 package xtremecraft.unidades;
 
+import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 
-public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualizable{
+public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualizable,Construible{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
 	int vision;
 	Coordenada coordenadas;
 	int tiempoConstruccion;
+	int tiempoConstruccionActual;
 	boolean estaElevado;
 	boolean puedeAtacar;
 	boolean puedeMoverse;
@@ -21,12 +23,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
 		this.puedeMoverse = true;
 	}
 	
+	//TODO: manejar excepciones UnidadEnConstruccion!!
     public void recibirDanio(int danio){
     	
         vitalidad.recibirAtaque(danio);
     
     }
-    
     
     public void atacar (Atacable atacado){
     	
@@ -69,6 +71,11 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     	return this.tiempoConstruccion;
     }
     
+    public boolean estaEnConstruccion(){
+    	
+    	return this.tiempoConstruccion > this.tiempoConstruccionActual;
+    	
+    }
     public Coordenada getUbicacionActual(){
     	
     	return this.coordenadas;
@@ -108,14 +115,16 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     //faltan pruebas de supuesto
     public void pasarTiempo(){
     	
-    	if (this.puedeAtacar){
-    		this.vitalidad.curarPorTurno(1);
-    	}
-    	if(this.puedeMoverse && this.puedeAtacar){
-    		this.vitalidad.curarPorTurno(1);
-    	}
-    	this.puedeAtacar = true;
-    	this.puedeMoverse = true;
+    	if(!this.estaEnConstruccion()){
+    		if (this.puedeAtacar){
+    			this.vitalidad.curarPorTurno(1);
+    		}
+    		if(this.puedeMoverse && this.puedeAtacar){
+    			this.vitalidad.curarPorTurno(1);
+    		}
+    		this.puedeAtacar = true;
+    		this.puedeMoverse = true;
+    	}else this.tiempoConstruccion += 1;
     	
     }
 

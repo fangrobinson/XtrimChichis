@@ -8,7 +8,7 @@ public class Fabrica extends Edificio{
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 12;
 	
-	public Fabrica(Terreno terreno){
+	public Fabrica(Barraca unaBarraca, Terreno terreno){
 		
 		super(terreno,vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;

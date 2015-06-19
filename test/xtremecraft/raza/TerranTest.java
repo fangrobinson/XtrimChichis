@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
-import xtremecraft.edificios.Edificio;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
@@ -35,12 +34,12 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void tieneBarracasDeberiaDevolverFalseSiNoSeCrearonBarracas(){
+	public void razaSeInicializaConUnaPoblacionMaxima(){
 		
 		Terran razaTerran = new Terran();
 		
-		assertFalse(razaTerran.tieneBarracas());
-			
+		assertEquals(razaTerran.getPoblacionMaxima(),5);
+		
 	}
 	
 	@Test(expected = UbicacionNoValidaException.class)
@@ -52,18 +51,6 @@ public class TerranTest {
 		razaTerran.crearBarraca(unTerreno);
 		razaTerran.crearBarraca(unTerreno);
 		
-	}
-	
-	@Test
-	public void tieneBarracasDeberiaDevolverFalseSiSeCrearonBarracasPeroNoTerminoLaConstruccion(){
-		
-		Terran razaTerran = new Terran();
-		Terreno unTerreno = new Tierra(1,2);
-		
-		razaTerran.crearBarraca(unTerreno);
-		
-		assertFalse(razaTerran.tieneBarracas());
-	
 	}
 	
 	@Test(expected = RazaNoTieneBarracasException.class)
@@ -106,7 +93,7 @@ public class TerranTest {
 		MinaDeMinerales mina = new MinaDeMinerales(30);
 		unTerreno.agregarRecursoNatural(mina);
 		
-		RecolectorDeMineral centroMineral = (RecolectorDeMineral)razaTerran.crearRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral centroMineral = razaTerran.crearRecolectorDeMineral(unTerreno);
 		
 		//Dejo el centroMineral en estado construido:
 		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
@@ -128,7 +115,7 @@ public class TerranTest {
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		unTerreno.agregarRecursoNatural(volcan);
 		
-		RecolectorDeGasVespeno refineria = (RecolectorDeGasVespeno)razaTerran.crearRecolectorDeGasVespeno(unTerreno);
+		RecolectorDeGasVespeno refineria = razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
 		//Dejo refineria en estado construido:
 		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
@@ -193,7 +180,7 @@ public class TerranTest {
 
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
-		DepositoDeSuministros deposito = (DepositoDeSuministros)razaTerran.crearDepositoDeSuministros(unTerreno);
+		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
 		
 		//Dejo deposito en estado construido:
 		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
@@ -204,6 +191,19 @@ public class TerranTest {
 		
 	}
 	
+	
+	@Test
+	public void construirDepositoDeSuministrosAumentaLaCantidadMaximaDePoblacionPermitida(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
+		for(int turno=0;turno<6;turno++) deposito.pasarTiempo();
+		razaTerran.pasarTiempo();
+		assertEquals(razaTerran.getPoblacionMaxima(),10);
+		
+	}
+	
 	@Test
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
 		
@@ -211,7 +211,7 @@ public class TerranTest {
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
-		Barraca unaBarraca = (Barraca)razaTerran.crearBarraca(unTerreno);
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
 		
 		Unidad unMarine = razaTerran.crearMarine(unaBarraca, mapa);
@@ -231,9 +231,9 @@ public class TerranTest {
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno otroTerreno = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
-		Edificio unaBarraca = razaTerran.crearBarraca(unTerreno);
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
-		Fabrica fabrica = (Fabrica) razaTerran.crearFabrica(otroTerreno);
+		Fabrica fabrica = razaTerran.crearFabrica(otroTerreno);
 		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
 		
 		Unidad unGoliat = razaTerran.crearGoliat(fabrica, mapa);
@@ -255,11 +255,11 @@ public class TerranTest {
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
-		Edificio unaBarraca = razaTerran.crearBarraca(terreno1);
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
-		Edificio fabrica = razaTerran.crearFabrica(terreno2);
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
 		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
-		PuertoEstelar puerto = (PuertoEstelar)razaTerran.crearPuertoEstelar(terreno3);
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
 		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
 		
 		Unidad unEspectro = razaTerran.crearEspectro(puerto, mapa);
@@ -280,11 +280,11 @@ public class TerranTest {
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
-		Edificio unaBarraca = razaTerran.crearBarraca(terreno1);
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
-		Edificio fabrica = razaTerran.crearFabrica(terreno2);
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
 		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
-		PuertoEstelar puerto = (PuertoEstelar)razaTerran.crearPuertoEstelar(terreno3);
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
 		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
 		
 		Unidad naveCiencia = razaTerran.crearNaveCiencia(puerto, mapa);
@@ -306,11 +306,11 @@ public class TerranTest {
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
-		Edificio unaBarraca = razaTerran.crearBarraca(terreno1);
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
-		Edificio fabrica = razaTerran.crearFabrica(terreno2);
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
 		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
-		PuertoEstelar puerto = (PuertoEstelar)razaTerran.crearPuertoEstelar(terreno3);
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
 		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
 		
 		Unidad naveTransporte = razaTerran.crearNaveTransporte(puerto, mapa);

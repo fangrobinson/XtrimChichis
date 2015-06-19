@@ -10,7 +10,7 @@ public class PuertoEstelar extends Edificio{
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 10;
 	
-	public PuertoEstelar(Terreno terreno){
+	public PuertoEstelar(Fabrica unaFabrica, Terreno terreno){
 		
 		super(terreno,vida);
 		this.tiempoConstruccion = tiempoDeConstruccion;

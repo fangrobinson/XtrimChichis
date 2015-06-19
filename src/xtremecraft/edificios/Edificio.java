@@ -9,7 +9,7 @@ import xtremecraft.unidades.BarraDeVitalidad;
 import xtremecraft.unidades.Ubicable;
 
 
-public abstract class Edificio implements Ubicable,Atacable,Actualizable {
+public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible{
 	
 	protected BarraDeVitalidad vida;
 	protected Coordenada coordenadas;

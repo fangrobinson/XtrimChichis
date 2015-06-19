@@ -12,20 +12,24 @@ import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 
-public class Terran{
+public class Terran implements Actualizable{
 	
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
 	private boolean estaViva;
+	private int poblacionMaxima;
+	private int poblacionInicial = 5;
 
 	public Terran(){
-
+		
+		this.poblacionMaxima = poblacionInicial;
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.estaViva = true;
@@ -38,63 +42,74 @@ public class Terran{
 		
 	}
 	
+	public int getPoblacionMaxima(){
+		
+		return this.poblacionMaxima;
+		
+	}
+	
 	//TODO: refactoring codigo repetido
-	public Edificio crearBarraca(Terreno unTerreno){
+	public Barraca crearBarraca(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = new Barraca(unTerreno);
-		if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-		this.agregarEdificio(nuevoEdificio);
-		return nuevoEdificio;
-		
-	}
-	
-	public Edificio crearFabrica(Terreno unTerreno){
-		
-		if(this.tieneBarracas()){
-			Edificio nuevoEdificio = new Fabrica(unTerreno);
-			if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-			this.agregarEdificio(nuevoEdificio);
-			return nuevoEdificio;
-		}else throw new RazaNoTieneBarracasException();
-	}
-	
-	public Edificio crearPuertoEstelar(Terreno unTerreno){
-		
-		if(this.tieneFabricas()){
-			Edificio nuevoEdificio = new PuertoEstelar(unTerreno);
-			if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-			this.agregarEdificio(nuevoEdificio);
-			return nuevoEdificio;
-		}else{
-			throw new RazaNoTieneFabricasException();
-		}
-	
-	}
-	
-	public Edificio crearRecolectorDeMineral(Terreno unTerreno){
-		
-		Edificio nuevoEdificio = RecolectorDeMineral.nuevoRecolectorDeMineral(unTerreno);
-		if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-		this.agregarEdificio(nuevoEdificio);
-		return nuevoEdificio;
+		Barraca nuevaBarraca = new Barraca(unTerreno);
+		if(!unTerreno.ubicar(nuevaBarraca)) throw new UbicacionNoValidaException();
+		this.agregarEdificio(nuevaBarraca);
+		return nuevaBarraca;
 		
 	}
 	
-	public Edificio crearRecolectorDeGasVespeno(Terreno unTerreno){
+	public Fabrica crearFabrica(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(unTerreno);
-		if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-		this.agregarEdificio(nuevoEdificio);
-		return nuevoEdificio;
+		//TODO: pasar validacion al edificio pasando por parametro una barraca
+		IteradorEdificios iter = new IteradorEdificios(this.edificios);
+		Barraca unaBarraca = iter.getBarraca();
+		Fabrica nuevaFabrica = new Fabrica(unaBarraca,unTerreno);
+		if(!unTerreno.ubicar(nuevaFabrica)) throw new UbicacionNoValidaException();
+			this.agregarEdificio(nuevaFabrica);
+			return nuevaFabrica;
+			
+	}
+		
+
+
+	
+	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
+		
+		//TODO: pasar validacion al edificio pasando por parametro una fabrica
+		IteradorEdificios iter = new IteradorEdificios(this.edificios);
+		Fabrica unaFabrica = iter.getFabrica();
+		PuertoEstelar nuevoPuerto = new PuertoEstelar(unaFabrica,unTerreno);
+		if(!unTerreno.ubicar(nuevoPuerto)) throw new UbicacionNoValidaException();
+		this.agregarEdificio(nuevoPuerto);
+		return nuevoPuerto;
+		
+	
+	}
+	
+	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
+		
+		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(unTerreno);
+		if(!unTerreno.ubicar(nuevoCentroMineral)) throw new UbicacionNoValidaException();
+		this.agregarEdificio(nuevoCentroMineral);
+		return nuevoCentroMineral;
 		
 	}
 	
-	public Edificio crearDepositoDeSuministros(Terreno unTerreno){
+	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		Edificio nuevoEdificio = new DepositoDeSuministros(unTerreno);
-		if(!unTerreno.ubicar(nuevoEdificio)) throw new UbicacionNoValidaException();
-		this.agregarEdificio(nuevoEdificio);
-		return nuevoEdificio;
+		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(unTerreno);
+		if(!unTerreno.ubicar(nuevaRefineria)) throw new UbicacionNoValidaException();
+		this.agregarEdificio(nuevaRefineria);
+		return nuevaRefineria;
+		
+	}
+	
+	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
+		
+		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(unTerreno);
+		if(!unTerreno.ubicar(nuevoDeposito)) throw new UbicacionNoValidaException();
+		this.agregarEdificio(nuevoDeposito);
+		return nuevoDeposito;
 		
 	}
 	
@@ -149,38 +164,34 @@ public class Terran{
 		this.unidades.add(nuevaUnidad);
 		
 	}
-	
-	public boolean tieneBarracas() {
-		
-		IteradorConocidos iter = new IteradorConocidos(this.edificios);
-		Terreno terreno = new Tierra(1,1);
-		Barraca barraca = new Barraca(terreno);
-		return iter.arregloTiene(barraca);
-		
-		
-	}
-
-	public boolean tieneFabricas() {
-		
-		IteradorConocidos iter = new IteradorConocidos(this.edificios);
-		Terreno terreno = new Tierra(1,1);
-		Fabrica barraca = new Fabrica(terreno);
-		return iter.arregloTiene(barraca);
-		
-	}
 
 	public boolean esDeMiPropiedad(Ubicable ubicable) {
+		
 		return ubicable.pertenezcoAEstaRaza(this);
+		
 	}
 
-	public boolean posee(Edificio edif){
-		IteradorConocidos iter = new IteradorConocidos(this.edificios);
-		return iter.arregloPosee(edif);
+	public boolean posee(Edificio edificio){
+		
+		IteradorEdificios iter = new IteradorEdificios(this.edificios);
+		return iter.arregloPosee(edificio);
+		
 	}
 
-	public boolean posee(Unidad unid){
-		IteradorConocidos iter = new IteradorConocidos(this.unidades);
-		return iter.arregloPosee(unid);
+	public boolean posee(Unidad unidad){
+		
+		IteradorUnidades iter = new IteradorUnidades(this.unidades);
+		return iter.arregloPosee(unidad);
+		
+	}
+
+	public void pasarTiempo() {
+		
+		IteradorEdificios iter = new IteradorEdificios(this.edificios);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(new Tierra(1,2));
+		this.poblacionMaxima = poblacionInicial + iter.cuantosHayConstruidos(deposito)*DepositoDeSuministros.getIncrementoPoblacion();
+		
+		
 	}
 	
 }
