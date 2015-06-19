@@ -34,7 +34,7 @@ public class NaveCiencia extends UnidadAerea{
 	
 	public boolean estaVivo(){
 		
-		return (this.energia == 0) && (this.vitalidad.devolverValor() == 0);
+		return (this.energia != 0) && (this.vitalidad.devolverValor() != 0);
 		
 	}
 	
