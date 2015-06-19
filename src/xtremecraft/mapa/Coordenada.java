@@ -49,18 +49,28 @@ public class Coordenada {
 				
 	}
 
-	public ArrayList<Coordenada> getCoordenadasAdyacentes(Coordenada coordenadaActual) {
+	public ArrayList<Coordenada> getCoordenadasAdyacentes() {
 		
 		ArrayList<Coordenada> coordenadasAdyacentes = new ArrayList<Coordenada>();
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila(),coordenadaActual.columna() - 1));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila(),coordenadaActual.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna()));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna()));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() + 1,coordenadaActual.columna() - 1));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(coordenadaActual.fila() - 1,coordenadaActual.columna() - 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() - 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna()));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna()));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna() - 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() + 1));
+		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() - 1));
 		return coordenadasAdyacentes;
+		
+	}
+
+	//TODO: codear esto (?)
+	public ArrayList<Coordenada> getCoordenadasEnRadio(int radio) {
+		
+		ArrayList<Coordenada> coordenadasEnRadio = new ArrayList<Coordenada>();
+	
+		return coordenadasEnRadio;
+
 	}
 
 	

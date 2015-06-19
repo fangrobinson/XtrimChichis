@@ -9,8 +9,21 @@ import org.junit.Test;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Marine;
 
 public class FabricaTest {
+	
+	@Test
+	public void seInicializaConEstadoVivo(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(3,3);
+		Barraca barraca = new Barraca(tierra1);
+		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		
+		assertTrue(fabrica.estaVivo());
+		
+	}
 
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaFabrica(){
@@ -131,6 +144,25 @@ public class FabricaTest {
 		Goliat unGoliat = fabrica.entrenarGoliat();
 		
 		assertEquals(unGoliat.getVida(),125);
+		
+	}
+	
+	@Test
+	public void siUnaFabricaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(3,3);
+		Terreno tierra3 = new Tierra(4,4);
+		Barraca barraca = new Barraca(tierra1);
+		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		Marine miniSamus = new Marine();
+		int cantidadDeAtaquesAFabrica = 17;
+		
+		miniSamus.actualizarUbicacion(tierra3);
+		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
+		for(int i=0;i<cantidadDeAtaquesAFabrica;i++) miniSamus.atacar(fabrica);
+		
+		assertFalse(fabrica.estaVivo());		
 		
 	}
 

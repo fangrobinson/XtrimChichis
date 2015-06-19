@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,15 +13,25 @@ import xtremecraft.mapa.Tierra;
 public class NaveTransporteTest {
 	
 	@Test
-	public void NaveTransporteInicializadoConVidaCompleta(){
+	public void naveTransporteInicializadoConVidaCompleta(){
 
 		NaveTransporte taxiVolador = new NaveTransporte();
 		
 		assertEquals(taxiVolador.getVida(),150);
+		
 	}
 	
 	@Test
-	public void NaveTransportePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+	public void naveTransporteInicializadoConEstadoVivo(){
+
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		assertTrue(taxiVolador.estaVivo());
+		
+	}
+	
+	@Test
+	public void naveTransportePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
 		NaveTransporte taxiVolador = new NaveTransporte();
 		
@@ -63,6 +74,7 @@ public class NaveTransporteTest {
 		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
+		
 	}
 		
 	
@@ -83,7 +95,24 @@ public class NaveTransporteTest {
 		assertEquals(taxiVolador.getUbicacionActual().fila(),2);
 		assertEquals(taxiVolador.getUbicacionActual().columna(),3);
 		
+	}
+	
+	@Test
+	public void siUnaNaveEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+
+		Terreno aire = new Aire(1,3);
+		Terreno tierra = new Tierra(1,4);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		Goliat unGoliat = new Goliat();
+		int cantidadDeAtaques = 15;
+		
+		taxiVolador.actualizarUbicacion(aire);
+		unGoliat.actualizarUbicacion(tierra);
+		for(int i=0;i<cantidadDeAtaques;i++) unGoliat.atacar(taxiVolador);
+		
+		assertFalse(taxiVolador.estaVivo());
 		
 	}
+
 
 }

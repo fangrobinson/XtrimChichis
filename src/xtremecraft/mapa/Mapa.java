@@ -3,6 +3,7 @@ package xtremecraft.mapa;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import xtremecraft.mapa.Celda;
 import xtremecraft.unidades.Ubicable;
 
 
@@ -91,7 +92,7 @@ public class Mapa {
 		
 		Coordenada coordenadaActual = unUbicable.getUbicacionActual();
 		ArrayList<Celda> listaDeCeldasAdyacentes = new ArrayList<Celda>();
-		ArrayList<Coordenada> coordenadasAdyacentes = coordenadaActual.getCoordenadasAdyacentes(coordenadaActual);
+		ArrayList<Coordenada> coordenadasAdyacentes = coordenadaActual.getCoordenadasAdyacentes();
 		
 		for(int i=0;i<coordenadasAdyacentes.size();i++){
 			Coordenada unaCoordenada = coordenadasAdyacentes.get(i);
@@ -110,4 +111,21 @@ public class Mapa {
 		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
 		
 	}
+
+	public ArrayList<Celda> obtenerCeldasEnRadio(Ubicable unUbicable, int radio) {
+		
+		Coordenada coordenadaActual = unUbicable.getUbicacionActual();
+		ArrayList<Celda> listaDeCeldasEnRadio = new ArrayList<Celda>();
+		ArrayList<Coordenada> coordenadasEnRadio = coordenadaActual.getCoordenadasEnRadio(radio);
+		
+		for(int i=0;i<coordenadasEnRadio.size();i++){
+			Coordenada unaCoordenada = coordenadasEnRadio.get(i);
+			if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
+				listaDeCeldasEnRadio.add(this.getCeldaEnFilaColumna(unaCoordenada.fila(),unaCoordenada.columna()));
+			}
+		}	
+		return listaDeCeldasEnRadio;
+		
+	}
+	
 }

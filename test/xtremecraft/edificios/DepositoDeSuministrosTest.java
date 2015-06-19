@@ -2,11 +2,13 @@ package xtremecraft.edificios;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.unidades.Marine;
 
 public class DepositoDeSuministrosTest {
 	
@@ -17,6 +19,18 @@ public class DepositoDeSuministrosTest {
 			deposito.pasarTiempo();
 		}
 		return deposito;
+		
+	}
+	
+	@Test
+	public void depositoSeInicializaConEstadoVivo(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		assertTrue(deposito.estaVivo());		
 		
 	}
 	
@@ -86,6 +100,21 @@ public class DepositoDeSuministrosTest {
 		
 	}
 	
-
+	@Test
+	public void siUnDepositoEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+		
+		Terreno tierra = new Tierra(3,2);
+		Terreno otraTierra = new Tierra(1,2);
+		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		Marine miniSamus = new Marine();
+		int cantidadDeAtaquesADeposito = 17;
+		
+		miniSamus.actualizarUbicacion(tierra);
+		deposito.actualizarUbicacion(otraTierra);
+		for(int i=0;i<cantidadDeAtaquesADeposito;i++) miniSamus.atacar(deposito);
+		
+		assertFalse(deposito.estaVivo());		
+		
+	}
 
 }

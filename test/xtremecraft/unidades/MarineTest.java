@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -17,6 +18,15 @@ public class MarineTest {
 		Marine miniSamus = new Marine();
 
 		assertEquals(miniSamus.getVida(),40);
+		
+	}
+	
+	@Test
+	public void testMarineInicializadoConEstadoVivo(){
+
+		Marine miniSamus = new Marine();
+
+		assertTrue(miniSamus.estaVivo());
 		
 	}
 	
@@ -38,7 +48,6 @@ public class MarineTest {
 		
 	}
 	
-	
 	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 
@@ -52,6 +61,7 @@ public class MarineTest {
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.devolverValor(), 114);
+		
 	}
 	
 	@Test
@@ -102,6 +112,23 @@ public class MarineTest {
 		
 		assertEquals(miniSamus.getUbicacionActual().fila(),1);
 		assertEquals(miniSamus.getUbicacionActual().columna(),10);
+		
+	}
+	
+	@Test
+	public void siUnMarineAtacaAOtroHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(1,3);
+		Marine miniSamus = new Marine();
+		Marine miniMasterChief = new Marine();
+		int cantidadDeAtaques = 7;
+		
+		miniSamus.actualizarUbicacion(tierra1);
+		miniMasterChief.actualizarUbicacion(tierra2);
+		for(int i=0;i<cantidadDeAtaques;i++) miniSamus.atacar(miniMasterChief);
+		
+		assertFalse(miniMasterChief.estaVivo());
 		
 	}
 	

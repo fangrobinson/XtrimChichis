@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -14,6 +15,15 @@ public class NaveCienciaTest {
 		
 		assertEquals(naveCiencia.getVida(),200);
 	
+	}
+	
+	@Test
+	public void naveCienciaInicializadoConEstadoVivo(){
+
+		NaveCiencia naveCiencia = new NaveCiencia();
+		
+		assertTrue(naveCiencia.estaVivo());
+		
 	}
 	
 	@Test
@@ -58,7 +68,6 @@ public class NaveCienciaTest {
 	
 	}
 	
-	
 	@Test
 	public void aumentarEnergiaEnTurnoSiEnergiaEsMayorOIgualADoscientosNoAumentaNivelDeEnergia(){
 		
@@ -75,7 +84,5 @@ public class NaveCienciaTest {
 		assertEquals(naveCiencia.getEnergia(),200);
 	
 	}
-	
-	
 	
 }

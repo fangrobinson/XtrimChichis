@@ -16,6 +16,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	protected int tiempoConstruccion;
 	protected int tiempoDeConstruccionActual;
 	protected boolean estaElevado;
+	private boolean estaVivo;
 
 	public Edificio(Terreno unTerreno,int vida){
 		
@@ -23,6 +24,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		this.estaElevado = unTerreno.estaElevado();
 		this.vida = new BarraDeVitalidad(vida);
 		this.tiempoDeConstruccionActual = 1;
+		this.estaVivo = true;
 	
 	}
 	
@@ -45,13 +47,14 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	}
 	
 	public void recibirDanio(int valorDanio){
-		
+		//TODO: corregir el modelado del tiempo.
 		if(this.estaEnConstruccion()){
-			//revisar modelado de paso del tiempo
 			this.tiempoDeConstruccionActual -= 1;
 		}else{
 			this.vida.recibirAtaque(valorDanio);
 		}
+		if(this.vida.devolverValor() == 0) this.estaVivo =false;
+		
 	}
 
 	public void actualizarUbicacion(Terreno terreno){
@@ -99,6 +102,18 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	public int tiempoContruccion(){
 		
 		return this.tiempoConstruccion;
+		
+	}
+	
+	public boolean recibirDanioMisilEMP(){
+		
+		return false;
+		
+	}
+	
+	public boolean estaVivo(){
+		
+		return this.estaVivo;
 		
 	}
 	

@@ -14,7 +14,7 @@ import xtremecraft.unidades.Goliat;
 
 
 public class MapaTest {
-
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearMapaConCantJugadoresNegativoDaError(){
 		
@@ -95,4 +95,32 @@ public class MapaTest {
 		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna+1)));
 		
 	}
+	
+	/*@Test
+	public void obtenerCeldasEnRadioDevuelveListaCeldasADistanciaRadio(){
+		
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = new Terran();
+		int fila =14;
+		int columna =16;
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		
+		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
+		
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna+1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna-1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna+1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna-1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna-1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna+1)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+2,columna)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-2,columna)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna+2)));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna-2)));
+		
+	}*/
+	
 }

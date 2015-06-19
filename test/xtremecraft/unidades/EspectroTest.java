@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ import xtremecraft.mapa.Tierra;
 public class EspectroTest {
 	
 	@Test
-	public void EspectroInicializadoConVidaCompleta(){
+	public void espectroInicializadoConVidaCompleta(){
 
 		Espectro gengar = new Espectro();
 		
@@ -20,7 +21,16 @@ public class EspectroTest {
 	}
 	
 	@Test
-	public void EspectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
+	public void espectroInicializadoConEstadoVivo(){
+
+		Espectro gengar = new Espectro();
+		
+		assertTrue(gengar.estaVivo());
+		
+	}
+	
+	@Test
+	public void espectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
 		Espectro gengar = new Espectro();
 		
@@ -29,7 +39,7 @@ public class EspectroTest {
 	}
 	
 	@Test
-	public void EspectroGetVisionDevuelveRadioDeVisionDelEspectro(){
+	public void espectroGetVisionDevuelveRadioDeVisionDelEspectro(){
 
 		Espectro gengar = new Espectro();
 		
@@ -101,9 +111,25 @@ public class EspectroTest {
 		assertEquals(misdreavus.vitalidad.devolverValor(), 0);
 	}
 	
+	@Test
+	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloPasaAEstadoNoVivo(){
 
-	
-	
+		Terreno unTerreno = new Aire(1,1);
+		Terreno otroTerreno = new Tierra(1,2);
+		Espectro gengar = new Espectro();
+		Espectro misdreavus = new Espectro();
+		
+		gengar.actualizarUbicacion(unTerreno);
+		misdreavus.actualizarUbicacion(otroTerreno);
+		
+		for (int i = 0; i < 16; i++){
+			gengar.atacar(misdreavus);
+		}
+		
+		assertFalse(misdreavus.estaVivo());
+		
+	}
+		
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		

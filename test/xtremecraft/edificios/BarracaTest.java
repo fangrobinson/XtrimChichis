@@ -13,6 +13,18 @@ import xtremecraft.unidades.Marine;
 public class BarracaTest {
 	
 	@Test
+	public void barracaSeInicializaConEstadoVivo(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		Barraca unaBarraca = new Barraca(tierra);
+		
+		assertTrue(unaBarraca.estaVivo());
+		
+	}
+	
+	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaBarraca(){
 		
 		int fila = 1;
@@ -118,4 +130,19 @@ public class BarracaTest {
 		
 	}
 	
+	@Test
+	public void siUnaBarracaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+		
+		Terreno tierra = new Tierra(3,2);
+		Barraca unaBarraca = construirNuevaBarraca(1,2);
+		Marine miniSamus = new Marine();
+		int cantidadDeAtaquesABarraca = 17;
+		
+		miniSamus.actualizarUbicacion(tierra);
+		for(int i=0;i<cantidadDeAtaquesABarraca;i++) miniSamus.atacar(unaBarraca);
+		
+		assertFalse(unaBarraca.estaVivo());		
+		
+	}
+
 }

@@ -3,6 +3,7 @@ package xtremecraft.edificios;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.unidades.Marine;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -22,6 +23,21 @@ public class RecolectorDeMineralTest {
 			recolector.pasarTiempo();
 		}
 		return recolector;
+		
+	}
+	
+	@Test
+	public void recolectorSeIniciaConEstadoVivo(){
+		
+		int fila = 1;
+		int columna = 2;
+		Terreno tierra = new Tierra(fila,columna);
+		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
+		tierra.agregarRecursoNatural(nuevoNodoMineral);
+		
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
+		
+		assertTrue(recolector.estaVivo());
 		
 	}
 	
@@ -113,5 +129,19 @@ public class RecolectorDeMineralTest {
 		
 	}
 
+	@Test
+	public void siUnRecolectorEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
+		
+		Terreno tierra = new Tierra(3,2);
+		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
+		Marine miniSamus = new Marine();
+		int cantidadDeAtaquesARecolector = 17;
+		
+		miniSamus.actualizarUbicacion(tierra);
+		for(int i=0;i<cantidadDeAtaquesARecolector;i++) miniSamus.atacar(centroMineralTerran);
+		
+		assertFalse(centroMineralTerran.estaVivo());		
+		
+	}
 
 }

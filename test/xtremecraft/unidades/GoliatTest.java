@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -17,6 +18,16 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat();
 		
 		assertEquals(tanque1.getVida(),125);
+		
+	}
+	
+	@Test
+	public void goliatInicializadoConEstadoVivo(){
+
+		Goliat tanque1 = new Goliat();
+		
+		assertTrue(tanque1.estaVivo());
+		
 	}
 	
 	@Test
@@ -99,6 +110,23 @@ public class GoliatTest {
 		assertEquals(tanque2.vitalidad.devolverValor(), 0);
 	}
 	
+	@Test
+	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloPasaAEstadoNoVivo(){
+
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Goliat tanque1 = new Goliat();
+		Goliat tanque2 = new Goliat();
+		
+		tanque1.actualizarUbicacion(tierra1);
+		tanque2.actualizarUbicacion(tierra2);
+		for (int i = 0; i < 11; i++){
+			tanque1.atacar(tanque2);
+		}
+		
+		assertFalse(tanque2.estaVivo());
+		
+	}
 	
 	@Test
 	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){

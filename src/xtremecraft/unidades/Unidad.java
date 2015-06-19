@@ -17,12 +17,14 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
 	boolean estaElevado;
 	boolean puedeAtacar;
 	boolean puedeMoverse;
+	boolean estaViva;
 	int suministro;
 	
 	protected Unidad(){
 		
 		this.puedeAtacar = true;
 		this.puedeMoverse = true;
+		this.estaViva = true;
 		this.tiempoConstruccionActual = 1;
 		
 	}
@@ -31,6 +33,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public void recibirDanio(int danio){
     	
         vitalidad.recibirAtaque(danio);
+        if(this.vitalidad.devolverValor() == 0) this.estaViva = false;
     
     }
     
@@ -127,22 +130,37 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     //faltan pruebas de supuesto
     public void pasarTiempo(){
     	
-    	if(!this.estaEnConstruccion()){
-    		if (this.puedeAtacar){
-    			this.vitalidad.curarPorTurno(1);
-    		}
-    		if(this.puedeMoverse && this.puedeAtacar){
-    			this.vitalidad.curarPorTurno(1);
-    		}
-    		this.puedeAtacar = true;
-    		this.puedeMoverse = true;
-    	}else this.tiempoConstruccionActual += 1;
+    	if(this.estaVivo()){
+    		if(!this.estaEnConstruccion()){
+    			if (this.puedeAtacar){
+    				this.vitalidad.curarPorTurno(1);
+    			}
+    			if(this.puedeMoverse && this.puedeAtacar){
+    				this.vitalidad.curarPorTurno(1);
+    			}
+    			this.puedeAtacar = true;
+    			this.puedeMoverse = true;
+    		}else this.tiempoConstruccionActual += 1;
+    	}
     	
     }
 
-    public boolean pertenezcoAEstaRaza(Terran terran){
+    public boolean estaVivo() {
+		
+		return this.estaViva;
+		
+	}
+
+	public boolean pertenezcoAEstaRaza(Terran terran){
     
     	return terran.posee(this);
     
     }
+    
+    public boolean recibirDanioMisilEMP(){
+    	
+    	return false;
+    	
+    }
+    
 }
