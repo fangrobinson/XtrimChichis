@@ -55,7 +55,7 @@ public abstract class ConstructorDeUnidades {
 		
 		boolean unidadEstaUbicada = false;
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unEdificio);
-		while( !celdasAdyacentesAlEdificio.isEmpty() || !unidadEstaUbicada ){
+		while(!( celdasAdyacentesAlEdificio.isEmpty() || unidadEstaUbicada ) ){
 			Celda unaCelda = celdasAdyacentesAlEdificio.remove(0);
 			unidadEstaUbicada = mapa.ubicar(nuevaUnidad, unaCelda);
 		}

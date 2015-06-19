@@ -105,8 +105,9 @@ public class Mapa {
 
 	private boolean coordenadaEstaDentroDelMapa(Coordenada unaCoordenada) {
 		
-		boolean filaEstaDentroDelMapa = unaCoordenada.fila()>0 && unaCoordenada.fila()<this.ancho;
-		boolean columnaEstaDentroDelMapa = unaCoordenada.columna()>0 && unaCoordenada.columna()<this.alto;
+		boolean filaEstaDentroDelMapa = unaCoordenada.fila()>=0 && unaCoordenada.fila()<this.ancho;
+		boolean columnaEstaDentroDelMapa = unaCoordenada.columna()>=0 && unaCoordenada.columna()<this.alto;
 		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
+		
 	}
 }

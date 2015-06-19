@@ -115,6 +115,7 @@ public class Terran implements Actualizable{
 	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaBarraca,mapa);
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -123,6 +124,7 @@ public class Terran implements Actualizable{
 	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaFabrica,mapa);
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -131,6 +133,7 @@ public class Terran implements Actualizable{
 	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(puerto,mapa);
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -139,14 +142,16 @@ public class Terran implements Actualizable{
 	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(puerto,mapa);
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
 	}
-	
+
 	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(puerto,mapa);
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -183,13 +188,23 @@ public class Terran implements Actualizable{
 		return iter.arregloPosee(unidad);
 		
 	}
+	
+	private int poblacionActual() {
+		
+		int poblacionOcupada = 0;
+		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
+			poblacionOcupada += this.unidades.get(posicionActual).getPoblacionOcupada();
+		}
+		return poblacionOcupada;
+		
+	}
 
 	public void pasarTiempo() {
 		
-		IteradorEdificios iter = new IteradorEdificios(this.edificios);
-		//DepositoDeSuministros deposito = new DepositoDeSuministros(new Tierra(1,2));
-		this.poblacionMaxima = poblacionInicial + iter.cuantosHayConstruidos(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
-		
+		IteradorEdificios iterEdificios = new IteradorEdificios(this.edificios);
+		this.poblacionMaxima = poblacionInicial + iterEdificios.cuantosHayConstruidos(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
+		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++) this.unidades.get(posicionActual).pasarTiempo();
+		for(int posicionActual = 0; posicionActual < this.edificios.size(); posicionActual++) this.edificios.get(posicionActual).pasarTiempo();
 		
 	}
 	

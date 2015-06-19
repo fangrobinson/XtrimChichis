@@ -34,13 +34,13 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void razaSeInicializaConUnaPoblacionMaxima(){
+	public void razaSeInicializaConCantidadDeSuministroEquivalenteAUnDepositoDeSuministros(){
 		
 		Terran razaTerran = new Terran();
 		
-		assertEquals(razaTerran.getPoblacionMaxima(),5);
+		assertEquals(razaTerran.getPoblacionMaxima(),DepositoDeSuministros.getIncrementoPoblacion());
 		
-	}
+	}	
 	
 	@Test(expected = UbicacionNoValidaException.class)
 	public void crearEdificioLanzaExcepcionSiSeIntentaCrearUnEdificioEnUnaCeldaOcupada(){
@@ -94,9 +94,7 @@ public class TerranTest {
 		unTerreno.agregarRecursoNatural(mina);
 		
 		RecolectorDeMineral centroMineral = razaTerran.crearRecolectorDeMineral(unTerreno);
-		
-		//Dejo el centroMineral en estado construido:
-		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
+
 		for(int turno=0;turno<3;turno++) centroMineral.pasarTiempo();
 		
 		assertEquals(centroMineral.getReservas(),0);
@@ -117,8 +115,6 @@ public class TerranTest {
 		
 		RecolectorDeGasVespeno refineria = razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
-		//Dejo refineria en estado construido:
-		//TODO:Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
 		for(int turno=0; turno<5 ;turno++) refineria.pasarTiempo();
 		
 		assertEquals(refineria.getReservas(),0);
@@ -191,13 +187,13 @@ public class TerranTest {
 		
 	}
 	
-	
 	@Test
 	public void construirDepositoDeSuministrosAumentaLaCantidadMaximaDePoblacionPermitida(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);
 		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
+		
 		for(int turno=0;turno<6;turno++) deposito.pasarTiempo();
 		razaTerran.pasarTiempo();
 		assertEquals(razaTerran.getPoblacionMaxima(),10);
@@ -206,19 +202,18 @@ public class TerranTest {
 	
 	@Test
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
-		
-		
+	
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
-		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
 		
 		Unidad unMarine = razaTerran.crearMarine(unaBarraca, mapa);
 		
 		assertEquals(unMarine.getVida(),40);
 		assertEquals(unMarine.getRadioVision(),7);
-		assertEquals(unMarine.getUbicacionActual().fila(),1);
+		assertEquals(unMarine.getUbicacionActual().fila(),2);
 		assertEquals(unMarine.getUbicacionActual().columna(),2);
 		assertFalse(unMarine.estaElevado());
 		
@@ -232,15 +227,15 @@ public class TerranTest {
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno otroTerreno = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
-		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
-		Fabrica fabrica = razaTerran.crearFabrica(otroTerreno);
-		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
 		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Fabrica fabrica = razaTerran.crearFabrica(otroTerreno);
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
 		Unidad unGoliat = razaTerran.crearGoliat(fabrica, mapa);
 		
 		assertEquals(unGoliat.getVida(),125);
 		assertEquals(unGoliat.getRadioVision(),8);
-		assertEquals(unGoliat.getUbicacionActual().fila(),4);
+		assertEquals(unGoliat.getUbicacionActual().fila(),5);
 		assertEquals(unGoliat.getUbicacionActual().columna(),5);
 		assertFalse(unGoliat.estaElevado());
 		
@@ -256,17 +251,18 @@ public class TerranTest {
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
-		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
 		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
-		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
 		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
-		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad unEspectro = razaTerran.crearEspectro(puerto, mapa);
 		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
 		assertEquals(unEspectro.getVida(),120);
 		assertEquals(unEspectro.getRadioVision(),7);
-		assertEquals(unEspectro.getUbicacionActual().fila(),8);
+		assertEquals(unEspectro.getUbicacionActual().fila(),9);
 		assertEquals(unEspectro.getUbicacionActual().columna(),7);
 		assertTrue(unEspectro.estaElevado());
 		
@@ -281,20 +277,20 @@ public class TerranTest {
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
-		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
 		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
-		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
 		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
-		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad naveCiencia = razaTerran.crearNaveCiencia(puerto, mapa);
 		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
 		assertEquals(naveCiencia.getVida(),200);
 		assertEquals(naveCiencia.getRadioVision(),10);
-		assertEquals(naveCiencia.getUbicacionActual().fila(),8);
+		assertEquals(naveCiencia.getUbicacionActual().fila(),9);
 		assertEquals(naveCiencia.getUbicacionActual().columna(),7);
 		assertTrue(naveCiencia.estaElevado());
-		
 		
 	}
 	
@@ -307,22 +303,79 @@ public class TerranTest {
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
-		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
 		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
-		for(int turno=0;turno<12;turno++) fabrica.pasarTiempo();
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
 		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
-		for(int turno=0;turno<10;turno++) puerto.pasarTiempo();
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad naveTransporte = razaTerran.crearNaveTransporte(puerto, mapa);
 		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
 		assertEquals(naveTransporte.getVida(),150);
 		assertEquals(naveTransporte.getRadioVision(),8);
-		assertEquals(naveTransporte.getUbicacionActual().fila(),8);
+		assertEquals(naveTransporte.getUbicacionActual().fila(),9);
 		assertEquals(naveTransporte.getUbicacionActual().columna(),7);
 		assertTrue(naveTransporte.estaElevado());
 		
 	}
 	
+	@Test(expected = CantidadDeSuministroInsuficienteException.class)
+	public void siIntentoCrearUnaUnidadYNoTengoSuministrosSuificientesSeLanzaExcepcion(){
+		
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
+				
+		for(int i=0;i<razaTerran.getPoblacionMaxima()+1;i++){
+			razaTerran.crearMarine(unaBarraca, mapa);
+		}
+		
+	}
+	
+
+	@Test
+	public void pasarTiempoActualizaTodasLosEstadosDeTodosLosEdificiosCreados(){
+		
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = new Tierra(1,2);
+		Terreno otroTerreno = new Tierra(4,4);
+		MinaDeMinerales mina = new MinaDeMinerales(30);
+		unTerreno.agregarRecursoNatural(mina);
+		
+		RecolectorDeMineral centroMineral = razaTerran.crearRecolectorDeMineral(unTerreno);
+		Barraca unaBarraca = razaTerran.crearBarraca(otroTerreno);
+
+		for(int turno=0;turno<centroMineral.tiempoConstruccion();turno++) razaTerran.pasarTiempo();
+			
+		assertFalse(centroMineral.estaEnConstruccion());
+		assertTrue(unaBarraca.estaEnConstruccion());
+		
+		int tiempoRestante = unaBarraca.tiempoConstruccion() - centroMineral.tiempoConstruccion();
+		
+		for(int turno=0;turno<tiempoRestante;turno++) razaTerran.pasarTiempo();
+		
+		assertFalse(centroMineral.estaEnConstruccion());
+		assertFalse(unaBarraca.estaEnConstruccion());
+		
+	}
+	
+	@Test
+	public void pasarTiempoActualizaTodasLosEstadosDeTodasLasUnidadesCreadas(){
+
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = new Terran();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Unidad unMarine = razaTerran.crearMarine(unaBarraca, mapa);
+		for(int turno=0;turno<unMarine.tiempoConstruccion();turno++) razaTerran.pasarTiempo();
+		
+		assertFalse(unMarine.estaEnConstruccion());
+		
+	}
 	
 	
 }

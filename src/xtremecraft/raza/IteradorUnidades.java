@@ -15,17 +15,16 @@ public class IteradorUnidades {
 	}
 	
 	public int cuantosHayDe(@SuppressWarnings("rawtypes") Class unidadClass){
-		int i = 0;
+		
 		int cant = 0;
 		Unidad unidadActual = null;
-		while(i < this.listaUnidades.size()){
-			unidadActual = this.listaUnidades.get(i);
+		for(int posicion = 0; posicion < this.listaUnidades.size(); posicion++){
+			unidadActual = this.listaUnidades.get(posicion);
 			if (unidadActual.getClass() == unidadClass){
 				if(unidadActual.estaEnConstruccion()){
 					cant++;
 				}	
 			}
-			i++;
 		}
 		return cant;
 	}
@@ -33,14 +32,12 @@ public class IteradorUnidades {
 	public boolean arregloPosee(Unidad unidad) {
 		
 		boolean bool = false;
-		int i = 0;
 		Unidad obj = null;
-		while (i < this.listaUnidades.size()){
-			obj = (Unidad) this.listaUnidades.get(i);
+		for(int posicion = 0; posicion < this.listaUnidades.size(); posicion++){
+			obj = (Unidad) this.listaUnidades.get(posicion);
 			if (obj == unidad){
 				bool = true;
 			}
-			i++;
 		}
 		return bool;
 	}

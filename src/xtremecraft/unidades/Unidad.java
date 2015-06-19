@@ -17,10 +17,14 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
 	boolean estaElevado;
 	boolean puedeAtacar;
 	boolean puedeMoverse;
+	int suministro;
 	
 	protected Unidad(){
+		
 		this.puedeAtacar = true;
 		this.puedeMoverse = true;
+		this.tiempoConstruccionActual = 1;
+		
 	}
 	
 	//TODO: manejar excepciones UnidadEnConstruccion!!
@@ -39,7 +43,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     	
     }
     
-    protected boolean puedoAtacar(Ubicable atacado) {
+    protected boolean puedoAtacar(Ubicable atacado){
     	
     	if (!this.puedeAtacar){
     		return false;
@@ -69,6 +73,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public int tiempoConstruccion(){
     	
     	return this.tiempoConstruccion;
+    	
     }
     
     public boolean estaEnConstruccion(){
@@ -76,6 +81,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     	return this.tiempoConstruccion > this.tiempoConstruccionActual;
     	
     }
+    
     public Coordenada getUbicacionActual(){
     	
     	return this.coordenadas;
@@ -98,6 +104,12 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public boolean elevar(){
     	
     	return false;
+    	
+    }
+    
+    public int getPoblacionOcupada(){
+    	
+    	return this.suministro;
     	
     }
     
@@ -124,7 +136,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     		}
     		this.puedeAtacar = true;
     		this.puedeMoverse = true;
-    	}else this.tiempoConstruccion += 1;
+    	}else this.tiempoConstruccionActual += 1;
     	
     }
 

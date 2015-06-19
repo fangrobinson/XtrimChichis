@@ -111,7 +111,7 @@ public class BarracaTest {
 		
 		Terreno tierra = new Tierra(fila,columna);
 		Barraca unaBarraca = new Barraca(tierra);
-		for(int i=0;i<unaBarraca.tiempoConstruccion;i++){
+		for(int i=0;i<unaBarraca.tiempoConstruccion();i++){
 			unaBarraca.pasarTiempo();
 		}
 		return unaBarraca;
