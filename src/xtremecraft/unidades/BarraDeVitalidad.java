@@ -7,6 +7,10 @@ public class BarraDeVitalidad {
      
      public BarraDeVitalidad(int vida){
     	 
+    	 if (vida < 0){
+    		 throw new VidaNegativaException();
+    	 }
+    	 
     	 this.vida = vida;
     	 this.vidaMax = vida;
     	 

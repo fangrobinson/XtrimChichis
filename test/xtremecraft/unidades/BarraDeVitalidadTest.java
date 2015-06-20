@@ -4,10 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import xtremecraft.edificios.EdificioEnConstruccionException;
+
 
 
 public class BarraDeVitalidadTest {
 
+	@SuppressWarnings("unused")
+	@Test(expected = VidaNegativaException.class)
+	public void alIntentarCrearseUnaBarraDeVitalidadConVidaNegativaSeLanzaVidaNegativaException(){
+		BarraDeVitalidad vida = new BarraDeVitalidad(-40);
+	}
+	
 	@Test
 	public void alRecibirUnAtaqueLaVidaPasaAOcho(){
 		BarraDeVitalidad vida = new BarraDeVitalidad(10);
