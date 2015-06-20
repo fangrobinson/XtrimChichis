@@ -4,12 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import xtremecraft.edificios.EdificioEnConstruccionException;
-
 
 
 public class BarraDeVitalidadTest {
 
+	@SuppressWarnings("unused")
+	@Test(expected = VidaNulaException.class)
+	public void alIntentarCrearseUnaBarraDeVitalidadConVidaNulaSeLanzaVidaNulaException(){
+		BarraDeVitalidad vida = new BarraDeVitalidad(0);
+	}
+	
 	@SuppressWarnings("unused")
 	@Test(expected = VidaNegativaException.class)
 	public void alIntentarCrearseUnaBarraDeVitalidadConVidaNegativaSeLanzaVidaNegativaException(){
@@ -24,8 +28,7 @@ public class BarraDeVitalidadTest {
 		
 	}
 	
-	@Test
-	
+	@Test	
 	public void alRecibirUnAtaqueMayorAlDeLaVidaEstaPasaACero(){
 		BarraDeVitalidad vida = new BarraDeVitalidad(10);
 		vida.recibirAtaque(11);
@@ -34,7 +37,8 @@ public class BarraDeVitalidadTest {
 	
 	@Test
 	public void alRecibirUnAtaqueCuandoLaVidaYaEsCeroEstaNoSeModifica(){
-		BarraDeVitalidad vida = new BarraDeVitalidad(0);
+		BarraDeVitalidad vida = new BarraDeVitalidad(40);
+		vida.recibirAtaque(40);
 		vida.recibirAtaque(40);
 		assertEquals(vida.devolverValor(), 0);
 	}
