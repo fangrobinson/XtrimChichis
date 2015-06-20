@@ -9,7 +9,6 @@ public class Barraca extends Edificio{
 	public static int vida = 100;
 	public static int tiempoDeConstruccion = 12;
 	
-	
 	public Barraca(Terreno unTerreno){
 		
 		super(unTerreno,vida);
@@ -26,7 +25,6 @@ public class Barraca extends Edificio{
 		
 	}
 
-
 	public boolean puedeUbicarseEnTierra() {
 
 		return true;
@@ -38,7 +36,6 @@ public class Barraca extends Edificio{
 		return false;
 		
 	}
-
 
 	public boolean puedeUbicarseSobreRecursoNatural() {
 		

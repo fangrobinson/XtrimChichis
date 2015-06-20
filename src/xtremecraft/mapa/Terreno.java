@@ -63,4 +63,11 @@ public abstract class Terreno{
 
 	public abstract boolean agregarRecursoNatural(Recurso unRecurso);
 
+	public void desocupar() {
+		
+		this.ubicable = null;
+		this.ocupada = false;
+		
+	}
+
 }

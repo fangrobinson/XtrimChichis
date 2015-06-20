@@ -43,4 +43,16 @@ public class Celda {
     public Ubicable getUbicableEnSuperior(){
     	return this.superior.getUbicableEnTerreno();
     }
+
+	public void liberarCapaSuperior() {
+		
+		this.superior.desocupar();
+		
+	}
+
+	public void liberarCapaInferior() {
+		
+		this.inferior.desocupar();
+		
+	}
 }

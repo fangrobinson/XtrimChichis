@@ -33,7 +33,9 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public void recibirDanio(int danio){
     	
         vitalidad.recibirAtaque(danio);
-        if(this.vitalidad.devolverValor() == 0) this.estaViva = false;
+        if(this.vitalidad.devolverValor() == 0){
+        	this.estaViva = false;
+        }
     
     }
     
@@ -157,10 +159,10 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     
     }
     
-    public boolean recibirDanioMisilEMP(){
+    /*public boolean recibirDanioMisilEMP(){
     	
     	return false;
     	
-    }
+    }*/
     
 }

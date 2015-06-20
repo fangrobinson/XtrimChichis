@@ -111,7 +111,8 @@ public class Mapa {
 		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
 		
 	}
-
+	
+	/*
 	public ArrayList<Celda> obtenerCeldasEnRadio(Ubicable unUbicable, int radio) {
 		
 		Coordenada coordenadaActual = unUbicable.getUbicacionActual();
@@ -125,6 +126,16 @@ public class Mapa {
 			}
 		}	
 		return listaDeCeldasEnRadio;
+		
+	}*/
+
+	public void liberarEspacioCorrespondienteA(Ubicable ubicable) {
+		
+		int fila = ubicable.getUbicacionActual().fila();
+		int columna = ubicable.getUbicacionActual().columna();
+		Celda celda = this.getCeldaEnFilaColumna(fila,columna);
+		if(ubicable.estaElevado()) celda.liberarCapaSuperior();
+		else celda.liberarCapaInferior();
 		
 	}
 	

@@ -59,6 +59,7 @@ public class MapaTest {
 		boolean bool = celda.ubicarCapaInferior(goliat);
 		
 		assertTrue(bool);
+		
 	}
 	
 	@Test 
@@ -71,6 +72,7 @@ public class MapaTest {
 		boolean bool = celda.ubicarCapaSuperior(goliat);
 		
 		assertFalse(bool);
+		
 	}
 	
 	@Test
@@ -93,6 +95,24 @@ public class MapaTest {
 		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna-1)));
 		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna-1)));
 		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna+1)));
+		
+	}
+	
+	@Test
+	public void liberarEspacioCorrespondienteADejaLiberaElEspacioOcupadoPorElUbicable(){
+		
+		Mapa mapa = new Mapa(2);
+		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
+		Goliat goliat = new Goliat();
+		
+		celda.ubicarCapaInferior(goliat);
+		goliat.actualizarUbicacion(celda.getCapaInferior());
+		
+		assertTrue(celda.getCapaInferior().estaOcupado());
+		
+		mapa.liberarEspacioCorrespondienteA(goliat);
+		
+		assertFalse(celda.getCapaInferior().estaOcupado());
 		
 	}
 	

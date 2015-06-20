@@ -53,7 +53,9 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		}else{
 			this.vida.recibirAtaque(valorDanio);
 		}
-		if(this.vida.devolverValor() == 0) this.estaVivo =false;
+		if(this.vida.devolverValor() == 0){
+			this.estaVivo = false;
+		}
 		
 	}
 

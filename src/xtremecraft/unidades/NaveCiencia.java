@@ -1,9 +1,5 @@
 package xtremecraft.unidades;
 
-import java.util.ArrayList;
-
-import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.Celda;
 import xtremecraft.unidades.UnidadAerea;
 
 public class NaveCiencia extends UnidadAerea{
@@ -11,9 +7,9 @@ public class NaveCiencia extends UnidadAerea{
 	private int energiaMax = 200;
 	private int energia = 50;
 	private int aumentoDeEnergiaEnTurno = 10;
-	private int radioMisilEMP = 3;
-	private int costoMisilEMP = 100;
-	private int costoRadiacion = 100;
+	//private int radioMisilEMP = 3;
+	//private int costoMisilEMP = 100;
+	//private int costoRadiacion = 100;
 	
 	public NaveCiencia(){
 		
@@ -34,7 +30,7 @@ public class NaveCiencia extends UnidadAerea{
 	
 	public boolean estaVivo(){
 		
-		return (this.energia != 0) && (this.vitalidad.devolverValor() != 0);
+		return (this.vitalidad.devolverValor() != 0);
 		
 	}
 	
@@ -69,7 +65,7 @@ public class NaveCiencia extends UnidadAerea{
 	
 	//TODO: repensar este metodo el casteo esta MAL un Ubicable
 	//no necesariamente es un Atacable
-	public void atacarConMisilEMP(Mapa mapa,NaveCiencia nave){
+	/*public void atacarConMisilEMP(Mapa mapa,NaveCiencia nave){
 		
 		this.energia -= this.costoMisilEMP;
 		nave.recibirDanioMisilEMP();
@@ -89,7 +85,8 @@ public class NaveCiencia extends UnidadAerea{
 	public void atacarConRadiacion(Mapa mapa,Unidad unidad){
 		
 		this.energia -= this.costoRadiacion;
-		unidad.recibirDanio(unidad.danio.devolverDanio(this.estaElevado));
+		unidad.recibirDanio(mapa,unidad.danio.devolverDanio(this.estaElevado));
+		mapa.liberarEspacioCorrespondienteA(unidad);
 		//TODO: atacar a las celdas a distancia 1 de la unidad.
 	}
 	
@@ -99,5 +96,5 @@ public class NaveCiencia extends UnidadAerea{
 		return true;
 		
 	}
-	
+	*/
 }
