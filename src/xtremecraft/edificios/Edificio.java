@@ -14,16 +14,19 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	protected BarraDeVitalidad vida;
 	protected Coordenada coordenadas;
 	protected int tiempoConstruccion;
-	protected int tiempoDeConstruccionActual;
+	protected int turnosConstruccionPasados;
 	protected boolean estaElevado;
-	private boolean estaVivo;
+	protected boolean estaVivo;
+	protected boolean estaEnConstruccion;
 
 	public Edificio(Terreno unTerreno,int vida){
 		
 		this.coordenadas = new Coordenada(unTerreno.fila(),unTerreno.columna());
 		this.estaElevado = unTerreno.estaElevado();
 		this.vida = new BarraDeVitalidad(vida);
-		this.tiempoDeConstruccionActual = 1;
+		this.vida.recibirAtaque(vida);
+		this.turnosConstruccionPasados = 0;
+		this.estaEnConstruccion = true;
 		this.estaVivo = true;
 	
 	}
@@ -42,21 +45,22 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	
 	public boolean estaEnConstruccion(){
 		
-		return this.tiempoDeConstruccionActual < this.tiempoConstruccion;
+		return this.estaEnConstruccion;
 		
 	}
 	
 	public void recibirDanio(int valorDanio){
-		//TODO: corregir el modelado del tiempo.
-		if(this.estaEnConstruccion()){
-			this.tiempoDeConstruccionActual -= 1;
-		}else{
-			this.vida.recibirAtaque(valorDanio);
+		//TODO: Implementar logica de danio recibido que resta turnos.
+		if(this.estaEnConstruccion){
+			int turnosARestar = valorDanio % (this.vidaMax()/this.tiempoConstruccion);
+			this.turnosConstruccionPasados -= turnosARestar;
+		}
+		else{
+			this.vida.recibirAtaque(valorDanio);	
 		}
 		if(this.vida.devolverValor() == 0){
 			this.estaVivo = false;
 		}
-		
 	}
 
 	public void actualizarUbicacion(Terreno terreno){
@@ -90,9 +94,23 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	}
 	
 	public void pasarTiempo(){
-		//revisar modelado de paso del tiempo
-		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 2;
-		
+		if (this.estaEnConstruccion()){
+			this.turnosConstruccionPasados += 1;
+			if (this.turnosConstruccionPasados >= this.tiempoConstruccion){
+				this.estaEnConstruccion = false;
+				this.vida.curarPorTurno(100);
+			}
+			/*
+			double porcentaje = 100 / this.tiempoConstruccion;
+			this.vida.curarPorTurno(porcentaje);
+			
+			if (this.vida.devolverValor() >= this.vidaMax()){
+				this.estaEnConstruccion = false;
+			}*/
+		}
+		else{
+			this.vida.curarPorTurno(1);
+		}
 	}
 	
     public boolean pertenezcoAEstaRaza(Terran terran){
@@ -100,13 +118,15 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
     	return terran.posee(this);
     	
     }
-	
+	//Esta repetido o_O
+    /*
 	public int tiempoContruccion(){
 		
 		return this.tiempoConstruccion;
 		
 	}
-	
+	*/
+    
 	public boolean recibirDanioMisilEMP(){
 		
 		return false;

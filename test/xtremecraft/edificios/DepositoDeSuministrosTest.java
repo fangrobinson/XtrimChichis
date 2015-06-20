@@ -91,12 +91,13 @@ public class DepositoDeSuministrosTest {
 		Terreno tierra = new Tierra(fila,columna);
 		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		int valorDanio = 30;
+		int vidaEsperada = deposito.vidaMax() - valorDanio;
 		
 		deposito.recibirDanio(valorDanio);
-		assertEquals(deposito.getVida(),70);
-		
+		assertEquals(deposito.getVida(), vidaEsperada);
+		vidaEsperada -= valorDanio;
 		deposito.recibirDanio(valorDanio);
-		assertEquals(deposito.getVida(),40);
+		assertEquals(deposito.getVida(), vidaEsperada);
 		
 	}
 	

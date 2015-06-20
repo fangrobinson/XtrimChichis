@@ -69,7 +69,7 @@ public class BarracaTest {
 	}
 	
 	@Test
-	public void puedeUbicarseSobreRecursoNaturalDevuelveTrue(){
+	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		
@@ -81,8 +81,8 @@ public class BarracaTest {
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
-		
-		assertEquals(unaBarraca.getVida(),100);
+		int vidaEsperada = unaBarraca.vidaMax();
+		assertEquals(unaBarraca.getVida(), vidaEsperada);
 		
 	}
 	
@@ -100,12 +100,15 @@ public class BarracaTest {
 		
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		int valorDanio = 30;
+		int vidaEsperada = unaBarraca.vidaMax() - valorDanio;
 		
 		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),70);
+		assertEquals(unaBarraca.getVida(), vidaEsperada);
+		
+		vidaEsperada -= valorDanio;
 		
 		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(),40);
+		assertEquals(unaBarraca.getVida(), vidaEsperada);
 		
 	}
 	

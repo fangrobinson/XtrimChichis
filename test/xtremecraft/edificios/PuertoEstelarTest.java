@@ -132,10 +132,11 @@ public class PuertoEstelarTest {
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		int vidaEsperada = puertoEstelar.vidaMax();
 		
-		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
+		for (int tiempo=0; tiempo<puertoEstelar.tiempoConstruccion(); tiempo++) puertoEstelar.pasarTiempo();
 		
-		assertEquals(puertoEstelar.getVida(),100);
+		assertEquals(puertoEstelar.getVida(), vidaEsperada);
 		
 	}
 	

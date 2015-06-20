@@ -19,7 +19,7 @@ public class RecolectorDeMineralTest {
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(tierra);
-		for(int i=0;i<recolector.tiempoConstruccion - 1;i++){
+		for(int i=0; i<recolector.tiempoConstruccion; i++){
 			recolector.pasarTiempo();
 		}
 		return recolector;

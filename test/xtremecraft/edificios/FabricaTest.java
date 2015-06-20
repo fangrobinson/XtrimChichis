@@ -45,7 +45,7 @@ public class FabricaTest {
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
 		
-		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
+		for (int tiempo=0; tiempo<fabrica.tiempoConstruccion(); tiempo++) fabrica.pasarTiempo();
 		
 		assertFalse(fabrica.estaEnConstruccion());
 		
@@ -107,10 +107,12 @@ public class FabricaTest {
 		Terreno tierra2 = new Tierra(3,3);
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		int vida = fabrica.vidaMax();
 		
-		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
 		
-		assertEquals(fabrica.getVida(),100);
+		for (int tiempo=0; tiempo<fabrica.tiempoConstruccion(); tiempo++) fabrica.pasarTiempo();
+		
+		assertEquals(fabrica.getVida(), vida);
 		
 	}
 	
@@ -122,13 +124,15 @@ public class FabricaTest {
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
 		int valorDanio = 30;
+		int vidaEsperada = fabrica.vidaMax() - valorDanio;
 		
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
 		fabrica.recibirDanio(valorDanio);
-		assertEquals(fabrica.getVida(),70);
+		assertEquals(fabrica.getVida(), vidaEsperada);
 		
+		vidaEsperada = vidaEsperada - valorDanio;
 		fabrica.recibirDanio(valorDanio);
-		assertEquals(fabrica.getVida(),40);
+		assertEquals(fabrica.getVida(), vidaEsperada);
 		
 	}
 

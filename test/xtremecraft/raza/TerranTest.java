@@ -95,7 +95,7 @@ public class TerranTest {
 		
 		RecolectorDeMineral centroMineral = razaTerran.crearRecolectorDeMineral(unTerreno);
 
-		for(int turno=0;turno<3;turno++) centroMineral.pasarTiempo();
+		for(int turno=0; turno < centroMineral.tiempoConstruccion(); turno++) centroMineral.pasarTiempo();
 		
 		assertEquals(centroMineral.getReservas(),0);
 		
@@ -115,7 +115,7 @@ public class TerranTest {
 		
 		RecolectorDeGasVespeno refineria = razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
-		for(int turno=0; turno<5 ;turno++) refineria.pasarTiempo();
+		for(int turno=0; turno < refineria.tiempoConstruccion() ;turno++) refineria.pasarTiempo();
 		
 		assertEquals(refineria.getReservas(),0);
 		

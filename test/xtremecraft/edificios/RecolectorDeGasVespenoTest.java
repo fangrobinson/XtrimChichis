@@ -19,7 +19,7 @@ public class RecolectorDeGasVespenoTest {
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
 		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(tierra);
-		for(int i=0;i<refineria.tiempoConstruccion - 1;i++){
+		for(int i=0; i < refineria.tiempoConstruccion; i++){
 			refineria.pasarTiempo();
 		}
 		return refineria;
@@ -108,7 +108,7 @@ public class RecolectorDeGasVespenoTest {
 		
 		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		
-		assertEquals(refineria.getVida(),100);
+		assertEquals(refineria.getVida(), refineria.vidaMax());
 		
 	}
 	
@@ -117,12 +117,14 @@ public class RecolectorDeGasVespenoTest {
 
 		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
 		int valorDanio = 30;
+		int vidaEsperada = refineria.vidaMax() - valorDanio;
 		
 		refineria.recibirDanio(valorDanio);
-		assertEquals(refineria.getVida(),70);
+		assertEquals(refineria.getVida(), vidaEsperada);
 		
+		vidaEsperada = refineria.vidaMax() - (valorDanio * 2) ;
 		refineria.recibirDanio(valorDanio);
-		assertEquals(refineria.getVida(),40);
+		assertEquals(refineria.getVida(), vidaEsperada);
 		
 	}
 	

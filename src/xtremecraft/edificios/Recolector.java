@@ -14,7 +14,7 @@ public abstract class Recolector extends Edificio implements Actualizable{
 	
 	protected Recolector(Terreno terreno){
 		
-		super(terreno,vida);
+		super(terreno, vida);
 		this.reservas=0;
 		this.aumentoDeReservaEnTurno=10;
 	
@@ -27,10 +27,22 @@ public abstract class Recolector extends Edificio implements Actualizable{
 	}
 
 	public void pasarTiempo(){
-		//revisar modelado de paso del tiempo
-		if(this.estaEnConstruccion()) this.tiempoDeConstruccionActual += 1;
-		else this.reservas += this.recurso.explotar(this.aumentoDeReservaEnTurno);
-		
+		if (!super.estaEnConstruccion){
+			this.reservas += this.recurso.explotar(this.aumentoDeReservaEnTurno);
+		}
+		super.pasarTiempo();
+		/*
+		if (this.estaEnConstruccion()){
+			double porcentaje = 100 / this.tiempoConstruccion;
+			super.vida.curarPorTurno(porcentaje);
+			if (super.vida.devolverValor() == this.vidaMax()){
+				super.estaEnConstruccion = false;
+			}
+		}
+		else{
+			super.vida.curarPorTurno(1);
+			this.reservas += this.recurso.explotar(this.aumentoDeReservaEnTurno);
+		}*/
 	}
 	
 
