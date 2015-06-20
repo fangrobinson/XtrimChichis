@@ -185,7 +185,7 @@ public class Terran implements Actualizable{
 	public boolean posee(Unidad unidad){
 		
 		IteradorUnidades iter = new IteradorUnidades(this.unidades);
-		return iter.arregloPosee(unidad);
+		return iter.elementoPertenece(unidad);
 		
 	}
 	

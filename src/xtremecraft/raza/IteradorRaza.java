@@ -37,18 +37,37 @@ abstract public class IteradorRaza<T extends Construible> {
 		return cant;
 	}
     
-    @SuppressWarnings("unchecked")
-	public T nextDe(@SuppressWarnings("rawtypes") Class unidadClass){
-    	
+	public T nextDe(@SuppressWarnings("rawtypes") Class unidadClass){	
     	for (int posicion = this.indice; posicion < this.elementosRaza.size(); posicion++){
-    		Construible construibleActual = this.elementosRaza.get(posicion);
+    		T construibleActual = this.elementosRaza.get(posicion);
     		if (construibleActual.getClass() == unidadClass){
     			this.indice = posicion++;
-    			return (T) construibleActual;
+    			return construibleActual;
     		}
     	}
         this.indice = this.elementosRaza.size();
         return null;
     }
+	
+	public boolean tiene(@SuppressWarnings("rawtypes") Class unidadClass){
+	
+		return (!(this.cuantosHayDe(unidadClass) == 0));
+	}
 
+	public boolean tieneCreados(@SuppressWarnings("rawtypes") Class unidadClass){
+		
+		return (!(this.cuantosHayCreadosDe(unidadClass) == 0));
+	}
+	
+	public boolean elementoPertenece(T elemento){
+		
+		for(int posicion = 0; posicion < this.elementosRaza.size(); posicion++){
+			T construibleActual = this.elementosRaza.get(posicion);
+    		if (construibleActual == elemento){
+    			return true;
+    		}
+    	}
+		return false;
+	}
+	
 }
