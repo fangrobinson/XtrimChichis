@@ -264,7 +264,7 @@ public class TerranTest {
 		assertEquals(unEspectro.getRadioVision(),7);
 		assertEquals(unEspectro.getUbicacionActual().fila(),9);
 		assertEquals(unEspectro.getUbicacionActual().columna(),7);
-		assertTrue(unEspectro.estaElevado());
+		assertFalse(unEspectro.estaElevado());
 		
 	}
 	
@@ -290,7 +290,7 @@ public class TerranTest {
 		assertEquals(naveCiencia.getRadioVision(),10);
 		assertEquals(naveCiencia.getUbicacionActual().fila(),9);
 		assertEquals(naveCiencia.getUbicacionActual().columna(),7);
-		assertTrue(naveCiencia.estaElevado());
+		assertFalse(naveCiencia.estaElevado());
 		
 	}
 	
@@ -315,7 +315,7 @@ public class TerranTest {
 		assertEquals(naveTransporte.getRadioVision(),8);
 		assertEquals(naveTransporte.getUbicacionActual().fila(),9);
 		assertEquals(naveTransporte.getUbicacionActual().columna(),7);
-		assertTrue(naveTransporte.estaElevado());
+		assertFalse(naveTransporte.estaElevado());
 		
 	}
 	

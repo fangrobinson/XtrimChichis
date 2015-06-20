@@ -113,6 +113,30 @@ public class NaveTransporteTest {
 		assertFalse(taxiVolador.estaVivo());
 		
 	}
-
+	
+	@Test
+	public void actualizarTransportarNuevaUnidadDevuelveTrueSiNoSuperaLaCapacidadMaxima(){
+		
+		NaveTransporte taxiVolador = new NaveTransporte();
+		Goliat unGoliat = new Goliat();
+		
+		assertTrue(taxiVolador.transportarNuevaUnidad(unGoliat));
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionActualizaLasUbicacionesDeLasUnidadesQueTransporta(){
+		
+		Terreno aire = new Aire(1,3);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		Goliat unGoliat = new Goliat();
+		
+		taxiVolador.transportarNuevaUnidad(unGoliat);
+		taxiVolador.actualizarUbicacion(aire);
+		
+		assertEquals(unGoliat.getUbicacionActual().fila(),1);
+		assertEquals(unGoliat.getUbicacionActual().columna(),3);
+		
+	}
 
 }
