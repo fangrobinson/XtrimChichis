@@ -94,9 +94,6 @@ public class DepositoDeSuministrosTest {
 		int vidaEsperada = deposito.vidaMax() - valorDanio;
 		
 		deposito.recibirDanio(valorDanio);
-		
-		assertEquals(deposito.getVida(), vidaEsperada);
-		
 		vidaEsperada -= valorDanio;
 		deposito.recibirDanio(valorDanio);
 		

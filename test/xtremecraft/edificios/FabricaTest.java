@@ -128,9 +128,6 @@ public class FabricaTest {
 		
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
 		fabrica.recibirDanio(valorDanio);
-		
-		assertEquals(fabrica.getVida(), vidaEsperada);
-		
 		vidaEsperada = vidaEsperada - valorDanio;
 		fabrica.recibirDanio(valorDanio);
 		

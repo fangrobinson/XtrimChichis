@@ -101,14 +101,12 @@ public class BarracaTest {
 		
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		int valorDanio = 30;
+		
 		int vidaEsperada = unaBarraca.vidaMax() - valorDanio;
-		
 		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(), vidaEsperada);
-		
 		vidaEsperada -= valorDanio;
-		
 		unaBarraca.recibirDanio(valorDanio);
+		
 		assertEquals(unaBarraca.getVida(), vidaEsperada);
 		
 	}
