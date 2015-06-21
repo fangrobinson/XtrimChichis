@@ -162,10 +162,10 @@ public class NaveTransporteTest {
 		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3,5).getCapaInferior();
 		Terreno tierra3 = mapa.getCeldaEnFilaColumna(4,5).getCapaInferior();
 		Terreno tierra4 = mapa.getCeldaEnFilaColumna(5,5).getCapaInferior();
-		Terreno tierra5 = mapa.getCeldaEnFilaColumna(4,5).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(5,4).getCapaInferior();
 		Terreno tierra6 = mapa.getCeldaEnFilaColumna(5,3).getCapaInferior();
 		Terreno tierra7 = mapa.getCeldaEnFilaColumna(4,3).getCapaInferior();
-		Terreno tierra8 = mapa.getCeldaEnFilaColumna(3,3).getCapaInferior();
+		Terreno tierra8 = mapa.getCeldaEnFilaColumna(3,3).getCapaInferior();	
 		Goliat goliat0 = new Goliat();
 		Goliat goliat1 = new Goliat();
 		Goliat goliat2 = new Goliat();
@@ -188,7 +188,6 @@ public class NaveTransporteTest {
 		goliat8.actualizarUbicacion(tierra8);
 		taxiVolador.actualizarUbicacion(aire);
 		goliat0.subirANaveDeTransporte(taxiVolador);
-		taxiVolador.bajarUnidad(mapa, goliat0);
 		
 		assertFalse(taxiVolador.bajarUnidad(mapa, goliat0));
 		
