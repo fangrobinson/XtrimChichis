@@ -17,7 +17,7 @@ abstract public class IteradorRaza<T extends Construible> {
 		for(int posicion = 0; posicion < this.elementosRaza.size(); posicion++){
 			Construible construibleActual = this.elementosRaza.get(posicion);
 			if (construibleActual.getClass() == unidadClass){
-				if(construibleActual.estaEnConstruccion()){
+				if(!construibleActual.estaEnConstruccion()){
 					cant++;
 				}	
 			}
@@ -40,7 +40,7 @@ abstract public class IteradorRaza<T extends Construible> {
 	public T nextDe(@SuppressWarnings("rawtypes") Class unidadClass){	
     	for (int posicion = this.indice; posicion < this.elementosRaza.size(); posicion++){
     		T construibleActual = this.elementosRaza.get(posicion);
-    		if (construibleActual.getClass() == unidadClass){
+    		if (construibleActual.getClass() == unidadClass && !(construibleActual.estaEnConstruccion())){
     			this.indice = posicion++;
     			return construibleActual;
     		}
