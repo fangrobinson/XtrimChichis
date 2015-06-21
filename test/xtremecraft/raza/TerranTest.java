@@ -54,7 +54,7 @@ public class TerranTest {
 	}
 	
 	@Test(expected = RazaNoTieneBarracasException.class)
-	public void siIntentoCrearUnaFabricaPeroLaBarracaNoHayNingunaBarracaEnEstadoConstruidoSeLanzaExcepcion(){
+	public void siIntentoCrearUnaFabricaPeroNoHayNingunaBarracaEnEstadoConstruidoSeLanzaExcepcion(){
 		
 		Terran razaTerran = new Terran();
 		Terreno unTerreno = new Tierra(1,2);

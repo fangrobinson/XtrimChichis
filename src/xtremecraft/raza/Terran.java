@@ -178,7 +178,7 @@ public class Terran implements Actualizable{
 	public boolean posee(Edificio edificio){
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
-		return iter.arregloPosee(edificio);
+		return iter.elementoPertenece(edificio);
 		
 	}
 
@@ -203,7 +203,7 @@ public class Terran implements Actualizable{
 		//TODO: resolver que hacemos con las unidades/edificios muertos para ver como acutalizamos el mapa.
 		//posible solucion guardarlos y hacer un getter para que el mapa pueda pedirlos y removerlos.
 		IteradorEdificios iterEdificios = new IteradorEdificios(this.edificios);
-		this.poblacionMaxima = poblacionInicial + iterEdificios.cuantosHayConstruidos(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
+		this.poblacionMaxima = poblacionInicial + iterEdificios.cuantosHayCreadosDe(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
 			Unidad unidadActual = this.unidades.get(posicionActual);
 			if(!unidadActual.estaVivo()) this.unidades.remove(unidadActual);
