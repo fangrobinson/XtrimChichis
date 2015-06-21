@@ -35,7 +35,8 @@ public class EstrategiaRecorridoDeCoordenadas{
 	public void cambiarDireccionDeMovimiento(Coordenada coordenadaOrigen){
 		
 		this.coordenadaInicio = coordenadaOrigen;
-		direccionActual += 1;
+		if((direccionActual+1) > (direccionesDeMovimiento-1))direccionActual = 0;
+		else direccionActual += 1;
 		
 	}
 	

@@ -54,23 +54,13 @@ public class Coordenada {
 		int cantidadDeDireccionesVisitadas = 1;
 		ArrayList<Coordenada> coordenadasAdyacentes = new ArrayList<Coordenada>();
 		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
-		Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
-		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()<=cantidadDeDireccionesVisitadas){
+		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()>=cantidadDeDireccionesVisitadas){
+			Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
+			coordenadasAdyacentes.add(nuevaCoordenada);
 			estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
 			cantidadDeDireccionesVisitadas += 1;
-			nuevaCoordenada = estrategiaDeAvance.avanzar();
-			coordenadasAdyacentes.add(nuevaCoordenada);
 		}
 		return coordenadasAdyacentes;
-		/*coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() - 1));
-		coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna()));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna()));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna() - 1));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() + 1));
-		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() - 1));
-		return coordenadasAdyacentes;*/
 		
 	}
 
@@ -79,11 +69,10 @@ public class Coordenada {
 		int cantidadDeDireccionesVisitadas = 1;
 		ArrayList<Coordenada> coordenadasEnRadio = new ArrayList<Coordenada>();
 		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
-		Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
-		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()<=cantidadDeDireccionesVisitadas){
+		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()>=cantidadDeDireccionesVisitadas){
+			Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
 			if(this.distancia(nuevaCoordenada)<=radio){
 				coordenadasEnRadio.add(nuevaCoordenada);
-				nuevaCoordenada = estrategiaDeAvance.avanzar();
 			}else{
 				estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
 				cantidadDeDireccionesVisitadas += 1;
