@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -148,6 +149,48 @@ public class NaveTransporteTest {
 		taxiVolador.transportarNuevaUnidad(unGoliat);
 		
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
+		
+	}
+	
+	@Test
+	public void bajarNaveDevuelveFalseSiTodasSiTodosLosLugaresAlrededorDeLaNaveEstanOcupados(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(4,4).getCapaSuperior();
+		Terreno tierra0 = mapa.getCeldaEnFilaColumna(4,4).getCapaInferior();
+		Terreno tierra1 = mapa.getCeldaEnFilaColumna(3,4).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3,5).getCapaInferior();
+		Terreno tierra3 = mapa.getCeldaEnFilaColumna(4,5).getCapaInferior();
+		Terreno tierra4 = mapa.getCeldaEnFilaColumna(5,5).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(4,5).getCapaInferior();
+		Terreno tierra6 = mapa.getCeldaEnFilaColumna(5,3).getCapaInferior();
+		Terreno tierra7 = mapa.getCeldaEnFilaColumna(4,3).getCapaInferior();
+		Terreno tierra8 = mapa.getCeldaEnFilaColumna(3,3).getCapaInferior();
+		Goliat goliat0 = new Goliat();
+		Goliat goliat1 = new Goliat();
+		Goliat goliat2 = new Goliat();
+		Goliat goliat3 = new Goliat();
+		Goliat goliat4 = new Goliat();
+		Goliat goliat5 = new Goliat();
+		Goliat goliat6 = new Goliat();
+		Goliat goliat7 = new Goliat();
+		Goliat goliat8 = new Goliat();
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		goliat0.actualizarUbicacion(tierra0);
+		goliat1.actualizarUbicacion(tierra1);
+		goliat2.actualizarUbicacion(tierra2);
+		goliat3.actualizarUbicacion(tierra3);
+		goliat4.actualizarUbicacion(tierra4);
+		goliat5.actualizarUbicacion(tierra5);
+		goliat6.actualizarUbicacion(tierra6);
+		goliat7.actualizarUbicacion(tierra7);
+		goliat8.actualizarUbicacion(tierra8);
+		taxiVolador.actualizarUbicacion(aire);
+		goliat0.subirANaveDeTransporte(taxiVolador);
+		taxiVolador.bajarUnidad(mapa, goliat0);
+		
+		assertFalse(taxiVolador.bajarUnidad(mapa, goliat0));
 		
 	}
 	

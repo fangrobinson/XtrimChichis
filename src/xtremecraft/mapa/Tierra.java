@@ -49,10 +49,11 @@ public class Tierra extends Terreno {
 		return this.tieneRecursos;
 		
 	}
-    
+	
     public boolean ubicar(Ubicable ubicable){
     	
-    	if((this.ocupada)||(this.tieneRecursos()&&(!ubicable.puedeUbicarseSobreRecursoNatural()))){
+    	boolean hayMineralYUbicableNoEsRecolector = this.tieneRecursos()&& (!ubicable.puedeUbicarseSobreRecursoNatural());
+    	if( (this.ocupada) || hayMineralYUbicableNoEsRecolector ){
     		return false;
     	}
     	if (ubicable.puedeUbicarseEnTierra()){

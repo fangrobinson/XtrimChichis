@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import java.util.ArrayList;
 
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 
@@ -53,8 +54,12 @@ public class NaveTransporte extends UnidadAerea {
 	
 	public boolean bajarUnidad(Mapa mapa,Unidad unaUnidad){
 		
-		return true;
-		
+		ArrayList<Celda> celdasAdyacentes = mapa.obtenerCeldasAdyacentesAlUbicable(this);
+		for(int posicion=0;posicion<celdasAdyacentes.size();posicion++){
+			Celda celdaActual = celdasAdyacentes.get(posicion);
+			if(mapa.ubicar(unaUnidad,celdaActual)) return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<Unidad> getUnidadesTransportadas(){

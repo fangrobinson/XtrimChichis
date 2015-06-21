@@ -80,7 +80,9 @@ public class Mapa {
 	public boolean ubicar(Ubicable ubicable, Celda celda ){
 		
 		if(!this.ubicarCapaInferior(ubicable, celda )){
-			if(!this.ubicarCapaSuperior(ubicable, celda )) return false;
+			if(!this.ubicarCapaSuperior(ubicable, celda )){
+				return false;
+			}
 			else ubicable.actualizarUbicacion(celda.getCapaSuperior());
 		}
 		else ubicable.actualizarUbicacion(celda.getCapaInferior());
