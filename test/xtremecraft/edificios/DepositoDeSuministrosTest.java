@@ -15,7 +15,7 @@ public class DepositoDeSuministrosTest {
 	public DepositoDeSuministros construirNuevoDeposito(Terreno tierra){
 		
 		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
-		for(int i=0;i<deposito.tiempoConstruccion;i++){
+		for(int i=0; i<deposito.tiempoConstruccion; i++){
 			deposito.pasarTiempo();
 		}
 		return deposito;
@@ -42,8 +42,8 @@ public class DepositoDeSuministrosTest {
 		Terreno tierra = new Tierra(fila,columna);
 		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
-		assertEquals(deposito.getUbicacionActual().fila(),1);
-		assertEquals(deposito.getUbicacionActual().columna(),2);
+		assertEquals(deposito.getUbicacionActual().fila(), fila);
+		assertEquals(deposito.getUbicacionActual().columna(), columna);
 		
 	}
 	
@@ -67,7 +67,7 @@ public class DepositoDeSuministrosTest {
 		Terreno tierra = new Tierra(fila,columna);
 		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
 		
-		assertEquals(deposito.getVida(),100);
+		assertEquals(deposito.getVida(), deposito.vidaMax());
 		
 	}
 	
@@ -94,9 +94,12 @@ public class DepositoDeSuministrosTest {
 		int vidaEsperada = deposito.vidaMax() - valorDanio;
 		
 		deposito.recibirDanio(valorDanio);
+		
 		assertEquals(deposito.getVida(), vidaEsperada);
+		
 		vidaEsperada -= valorDanio;
 		deposito.recibirDanio(valorDanio);
+		
 		assertEquals(deposito.getVida(), vidaEsperada);
 		
 	}

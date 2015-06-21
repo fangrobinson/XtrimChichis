@@ -91,7 +91,7 @@ public class RecolectorDeMineralTest {
 		
 		centroMineralTerran.pasarTiempo();
 		
-		assertEquals(centroMineralTerran.getReservas(),10);
+		assertEquals(centroMineralTerran.getReservas(), centroMineralTerran.aumentoDeReservaEnTurno);
 		
 		
 	}
@@ -111,7 +111,7 @@ public class RecolectorDeMineralTest {
 		
 		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		
-		assertEquals(centroMineralTerran.getVida(),100);
+		assertEquals(centroMineralTerran.getVida(), centroMineralTerran.vidaMax());
 		
 	}
 	
@@ -120,12 +120,16 @@ public class RecolectorDeMineralTest {
 		
 		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
 		int valorDanio = 30;
+		int vidaEsperada = centroMineralTerran.vidaMax() - valorDanio;
 		
 		centroMineralTerran.recibirDanio(valorDanio);
-		assertEquals(centroMineralTerran.getVida(),70);
+		
+		assertEquals(centroMineralTerran.getVida(), vidaEsperada);
 		
 		centroMineralTerran.recibirDanio(valorDanio);
-		assertEquals(centroMineralTerran.getVida(),40);
+		vidaEsperada -= valorDanio;
+		
+		assertEquals(centroMineralTerran.getVida(), vidaEsperada);
 		
 	}
 

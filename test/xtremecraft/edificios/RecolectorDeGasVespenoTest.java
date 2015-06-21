@@ -89,7 +89,7 @@ public class RecolectorDeGasVespenoTest {
 		
 		refineria.pasarTiempo();
 		
-		assertEquals(refineria.getReservas(),10);
+		assertEquals(refineria.getReservas(), refineria.aumentoDeReservaEnTurno);
 			
 	}
 	
