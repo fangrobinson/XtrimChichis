@@ -14,11 +14,4 @@ public class Espectro extends UnidadAerea{
 		
 	}
 	
-	public boolean elevar(){
-		
-		this.estaElevado = true;
-		return true;
-		
-	}
-
 }

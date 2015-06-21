@@ -58,7 +58,7 @@ public class GoliatTest {
 		tanque2.actualizarUbicacion(aire);
 		tanque1.atacar(tanque2);
 		
-		assertEquals(tanque2.vitalidad.devolverValor(),110);
+		assertEquals(tanque2.vitalidad.getValor(),110);
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class GoliatTest {
 		tanque2.actualizarUbicacion(tierra2);
 		tanque1.atacar(tanque2);
 		
-		assertEquals(tanque2.vitalidad.devolverValor(),113);
+		assertEquals(tanque2.vitalidad.getValor(),113);
 	}
 	
 	
@@ -89,7 +89,7 @@ public class GoliatTest {
 		tanque2.actualizarUbicacion(aire);
 		tanque1.atacar(tanque2);
 		
-		assertEquals(tanque2.vitalidad.devolverValor(),125);
+		assertEquals(tanque2.vitalidad.getValor(),125);
 	}
 	
 	
@@ -107,7 +107,7 @@ public class GoliatTest {
 			tanque1.atacar(tanque2);
 		}
 		
-		assertEquals(tanque2.vitalidad.devolverValor(), 0);
+		assertEquals(tanque2.vitalidad.getValor(), 0);
 	}
 	
 	@Test

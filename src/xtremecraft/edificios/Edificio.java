@@ -11,18 +11,16 @@ import xtremecraft.unidades.Ubicable;
 
 public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible{
 	
+	protected Terreno terrenoActual;
 	protected BarraDeVitalidad vida;
-	protected Coordenada coordenadas;
 	protected int tiempoConstruccion;
 	protected int turnosConstruccionPasados;
-	protected boolean estaElevado;
 	protected boolean estaVivo;
 	protected boolean estaEnConstruccion;
 
 	public Edificio(Terreno unTerreno,int vida){
 		
-		this.coordenadas = new Coordenada(unTerreno.fila(),unTerreno.columna());
-		this.estaElevado = unTerreno.estaElevado();
+		this.terrenoActual = unTerreno;
 		this.vida = new BarraDeVitalidad(vida);
 		this.vida.recibirAtaque(vida);
 		this.turnosConstruccionPasados = 0;
@@ -33,13 +31,13 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	
 	public Coordenada getUbicacionActual(){
 		
-		return this.coordenadas;
+		return this.terrenoActual.getUbicacionActual();
 		
 	}
 	
 	public int getVida(){
 		
-		return this.vida.devolverValor();
+		return this.vida.getValor();
 		
 	}
 	
@@ -58,14 +56,16 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		else{
 			this.vida.recibirAtaque(valorDanio);	
 		}
-		if(this.vida.devolverValor() == 0){
+		if(this.vida.getValor() == 0){
 			this.estaVivo = false;
 		}
 	}
 
-	public void actualizarUbicacion(Terreno terreno){
+	public void actualizarUbicacion(Terreno unTerreno){
 		
-		this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
+		this.terrenoActual.desocupar();
+		this.terrenoActual = unTerreno;
+		terrenoActual.ubicar(this);
 		
 	}
 	
@@ -100,13 +100,6 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 				this.estaEnConstruccion = false;
 				this.vida.curarPorTurno(100);
 			}
-			/*
-			double porcentaje = 100 / this.tiempoConstruccion;
-			this.vida.curarPorTurno(porcentaje);
-			
-			if (this.vida.devolverValor() >= this.vidaMax()){
-				this.estaEnConstruccion = false;
-			}*/
 		}
 		else{
 			this.vida.curarPorTurno(1);
@@ -118,15 +111,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
     	return terran.posee(this);
     	
     }
-	//Esta repetido o_O
-    /*
-	public int tiempoContruccion(){
-		
-		return this.tiempoConstruccion;
-		
-	}
-	*/
-    
+
 	public boolean recibirDanioMisilEMP(){
 		
 		return false;

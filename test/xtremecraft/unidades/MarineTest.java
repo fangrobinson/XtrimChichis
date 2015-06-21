@@ -60,7 +60,7 @@ public class MarineTest {
 		miniMasterChief.actualizarUbicacion(aire);
 		miniSamus.atacar(miniMasterChief);
 		
-		assertEquals(miniMasterChief.vitalidad.devolverValor(), 114);
+		assertEquals(miniMasterChief.vitalidad.getValor(), 114);
 		
 	}
 	
@@ -77,7 +77,7 @@ public class MarineTest {
 		miniMasterChief.actualizarUbicacion(tierra2);
 		miniSamus.atacar(miniMasterChief);
 		
-		assertEquals(miniMasterChief.vitalidad.devolverValor(), 34);
+		assertEquals(miniMasterChief.vitalidad.getValor(), 34);
 	}
 	
 	@Test
@@ -92,7 +92,7 @@ public class MarineTest {
 		miniMasterChief.actualizarUbicacion(tierra2);
 		miniSamus.atacar(miniMasterChief);
 		
-		assertEquals(miniMasterChief.vitalidad.devolverValor(),40);
+		assertEquals(miniMasterChief.vitalidad.getValor(),40);
 	}
 
 	

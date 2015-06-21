@@ -24,7 +24,7 @@ public class BarraDeVitalidadTest {
 	public void alRecibirUnAtaqueLaVidaPasaAOcho(){
 		BarraDeVitalidad vida = new BarraDeVitalidad(10);
 		vida.recibirAtaque(2);
-		assertEquals(vida.devolverValor(),8);
+		assertEquals(vida.getValor(),8);
 		
 	}
 	
@@ -32,7 +32,7 @@ public class BarraDeVitalidadTest {
 	public void alRecibirUnAtaqueMayorAlDeLaVidaEstaPasaACero(){
 		BarraDeVitalidad vida = new BarraDeVitalidad(10);
 		vida.recibirAtaque(11);
-		assertEquals(vida.devolverValor(), 0);
+		assertEquals(vida.getValor(), 0);
 	}
 	
 	@Test
@@ -40,7 +40,7 @@ public class BarraDeVitalidadTest {
 		BarraDeVitalidad vida = new BarraDeVitalidad(40);
 		vida.recibirAtaque(40);
 		vida.recibirAtaque(40);
-		assertEquals(vida.devolverValor(), 0);
+		assertEquals(vida.getValor(), 0);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class BarraDeVitalidadTest {
 		vida.recibirAtaque(danio);
 		vida.regenerar(curacion);
 		
-		assertEquals(vida.devolverValor(), valorEsperado);
+		assertEquals(vida.getValor(), valorEsperado);
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ public class BarraDeVitalidadTest {
 		vida.recibirAtaque(danio);
 		vida.regenerar(curacion);
 		
-		assertEquals(vida.devolverValor(), valorEsperado);
+		assertEquals(vida.getValor(), valorEsperado);
 	}
 	
 }

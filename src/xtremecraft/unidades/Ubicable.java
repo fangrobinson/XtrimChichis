@@ -8,18 +8,16 @@ public interface Ubicable {
 	
 	public Coordenada getUbicacionActual();
 	
-	public void actualizarUbicacion(Terreno terreno);
-	
+	public void actualizarUbicacion(Terreno unTerreno);
+		
 	public boolean puedeUbicarseSobreRecursoNatural();
+	
+	public boolean pertenezcoAEstaRaza(Terran terran);
 	
 	public boolean puedeUbicarseEnTierra();
 	
 	public boolean puedeUbicarseEnAire();
 	
 	public boolean estaElevado();
-
-	public boolean elevar();
-	
-	public boolean pertenezcoAEstaRaza(Terran terran);
 	
 }

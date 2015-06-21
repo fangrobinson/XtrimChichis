@@ -135,7 +135,6 @@ public class TerranTest {
 		
 	}
 	
-	
 	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoConUnRecursoQueNoSeaMineral(){
 		
@@ -199,7 +198,7 @@ public class TerranTest {
 		assertEquals(razaTerran.getPoblacionMaxima(),10);
 		
 	}
-	
+	//TODO: emprolijar estos tests. Mas de 1 assert x test.
 	@Test
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
 	

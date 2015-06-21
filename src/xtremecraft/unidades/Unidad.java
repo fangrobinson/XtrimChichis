@@ -6,25 +6,26 @@ import xtremecraft.mapa.Coordenada;
 import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 
-public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualizable,Construible{
+public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
 	int vision;
-	Coordenada coordenadas;
 	int tiempoConstruccion;
 	int tiempoConstruccionActual;
-	boolean estaElevado;
 	boolean puedeAtacar;
 	boolean puedeMoverse;
 	boolean estaViva;
+	boolean estaUbicada;
 	int suministro;
+	protected Terreno terrenoActual;
 	
 	protected Unidad(){
 		
 		this.puedeAtacar = true;
 		this.puedeMoverse = true;
 		this.estaViva = true;
+		this.estaUbicada = false;
 		this.tiempoConstruccionActual = 1;
 		
 	}
@@ -33,7 +34,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     public void recibirDanio(int danio){
     	
         vitalidad.recibirAtaque(danio);
-        if(this.vitalidad.devolverValor() == 0){
+        if(this.vitalidad.getValor() == 0){
         	this.estaViva = false;
         }
     
@@ -43,13 +44,13 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     	
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
-    		atacado.recibirDanio(this.danio.devolverDanio(atacadoUbicado.estaElevado()));
-    	}
-    	
+			atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
+		}
+		
     }
     
     protected boolean puedoAtacar(Ubicable atacado){
-    	
+    		
     	if (!this.puedeAtacar){
     		return false;
     	}
@@ -65,7 +66,7 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
 
 	public int getVida(){
     	
-    	return this.vitalidad.devolverValor();
+    	return this.vitalidad.getValor();
     	
     }
     
@@ -89,20 +90,39 @@ public abstract class Unidad implements Atacable, Defendible, Ubicable, Actualiz
     
     public Coordenada getUbicacionActual(){
     	
-    	return this.coordenadas;
+    	return this.terrenoActual.getCoordenada();
     	
     }
     
-    public void actualizarUbicacion(Terreno terreno) {
+    public Terreno getTerrenoActual(){
     	
-    	this.coordenadas = new Coordenada(terreno.fila(),terreno.columna());
-    	this.estaElevado = terreno.estaElevado();
+    	return this.terrenoActual;
+    	
+    }
+
+    public void actualizarUbicacion(Terreno terreno) {
+    	//TODO: Validacion transporte distancia para marine y goliat.
+    	//TODO: validar que una unidad terrestre no se pueda ubicar en una celda aerea(?)(consultar).
+    	//opcion solo le mostramos al jugador los terrenos validos cuando selecciona la celda de destino.
+    	if(this.estaUbicada){
+    		this.terrenoActual.desocupar();
+    	}
+    	this.terrenoActual = terreno;
+    	terrenoActual.ubicar(this);
+		this.estaUbicada = true;
 		
+	}
+    
+    public void actualizarUbicacion(NaveTransporte naveTransporte) {
+    	 
+    	this.terrenoActual.desocupar();
+    	this.terrenoActual = naveTransporte.getTerrenoActual();
+    	
 	}
     
     public boolean estaElevado(){
     	
-    	return this.estaElevado;
+    	return this.terrenoActual.estaElevado();
     	
     }
     

@@ -70,4 +70,10 @@ public abstract class Terreno{
 		
 	}
 
+	public Coordenada getUbicacionActual() {
+		
+		return this.coordenada;
+		
+	}
+
 }

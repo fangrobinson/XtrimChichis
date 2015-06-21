@@ -64,14 +64,11 @@ public class Terran implements Actualizable{
 		Barraca unaBarraca = iter.getBarraca();
 		Fabrica nuevaFabrica = new Fabrica(unaBarraca,unTerreno);
 		if(!unTerreno.ubicar(nuevaFabrica)) throw new UbicacionNoValidaException();
-			this.agregarEdificio(nuevaFabrica);
-			return nuevaFabrica;
+		this.agregarEdificio(nuevaFabrica);
+		return nuevaFabrica;
 			
 	}
 		
-
-
-	
 	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
 		
 		//TODO: pasar validacion al edificio pasando por parametro una fabrica
@@ -81,7 +78,6 @@ public class Terran implements Actualizable{
 		if(!unTerreno.ubicar(nuevoPuerto)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevoPuerto);
 		return nuevoPuerto;
-		
 	
 	}
 	

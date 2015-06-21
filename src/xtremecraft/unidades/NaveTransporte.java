@@ -2,7 +2,7 @@ package xtremecraft.unidades;
 
 import java.util.ArrayList;
 
-import xtremecraft.mapa.Coordenada;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 
 public class NaveTransporte extends UnidadAerea {
@@ -22,11 +22,11 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 	
-	//TODO: actualizar coordenadas de la unidad en el mapa.
 	public boolean transportarNuevaUnidad(Unidad unaUnidad){
-		
+		//TODO: validar que la nave esta en el rango de vision de la unidad
 		if(unidadesTransportadas.size() < capacidadMaxima){
 			unidadesTransportadas.add(unaUnidad);
+			unaUnidad.actualizarUbicacion(this);
 			return true;
 		}
 		return false;
@@ -35,12 +35,31 @@ public class NaveTransporte extends UnidadAerea {
 	
 	public void actualizarUbicacion(Terreno terreno){
 		
-		this.estaElevado = terreno.estaElevado();
-		Coordenada nuevaUbicacion = new Coordenada(terreno.getCoordenada().fila(),terreno.getCoordenada().columna());
-		this.coordenadas = nuevaUbicacion;
-		for(int pos=0;pos<this.unidadesTransportadas.size();pos++){
-			this.unidadesTransportadas.get(pos).actualizarUbicacion(terreno);
+		if(!this.estaUbicada){
+			this.terrenoActual = terreno;
+			this.estaUbicada = true;
 		}
+		else{
+			this.terrenoActual.desocupar();
+			this.terrenoActual = terreno;
+			this.terrenoActual.ubicar(this);
+			for(int pos=0;pos<this.unidadesTransportadas.size();pos++){
+				this.unidadesTransportadas.get(pos).actualizarUbicacion(this);
+			}
+		}
+		
 	 }
+	
+	public boolean bajarUnidad(Mapa mapa,Unidad unaUnidad){
+		
+		return true;
+		
+	}
+	
+	public ArrayList<Unidad> getUnidadesTransportadas(){
+		
+		return this.unidadesTransportadas;
+		
+	}
 
 }

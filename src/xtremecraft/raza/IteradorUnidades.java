@@ -9,6 +9,7 @@ public class IteradorUnidades extends IteradorRaza<Unidad> {
 	public IteradorUnidades(ArrayList<Unidad> lista){
 		
 		this.elementosRaza = lista;
+		
 	}
 	
 

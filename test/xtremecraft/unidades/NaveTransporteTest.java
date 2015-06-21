@@ -58,7 +58,7 @@ public class NaveTransporteTest {
 		remisVolador.actualizarUbicacion(aire2);
 		remisVolador.atacar(taxiVolador);
 		
-		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
+		assertEquals(taxiVolador.vitalidad.getValor(),150);
 	}
 
 	@Test
@@ -73,27 +73,20 @@ public class NaveTransporteTest {
 		remisVolador.actualizarUbicacion(tierra);
 		remisVolador.atacar(taxiVolador);
 		
-		assertEquals(taxiVolador.vitalidad.devolverValor(),150);
+		assertEquals(taxiVolador.vitalidad.getValor(),150);
 		
 	}
-		
 	
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
 		Terreno aire = new Aire(1,2);
-		Terreno tierra = new Tierra(2,3);
 		NaveTransporte taxiVolador = new NaveTransporte();
 		
 		taxiVolador.actualizarUbicacion(aire);
 
 		assertEquals(taxiVolador.getUbicacionActual().fila(),1);
 		assertEquals(taxiVolador.getUbicacionActual().columna(),2);
-		
-		taxiVolador.actualizarUbicacion(tierra);
-
-		assertEquals(taxiVolador.getUbicacionActual().fila(),2);
-		assertEquals(taxiVolador.getUbicacionActual().columna(),3);
 		
 	}
 	
@@ -115,27 +108,51 @@ public class NaveTransporteTest {
 	}
 	
 	@Test
-	public void actualizarTransportarNuevaUnidadDevuelveTrueSiNoSuperaLaCapacidadMaxima(){
+	public void transportarNuevaUnidadDevuelveTrueSiNoSuperaLaCapacidadMaxima(){
 		
+		Terreno aire = new Aire(1,3);
+		Terreno tierra = new Tierra(4,4);
 		NaveTransporte taxiVolador = new NaveTransporte();
 		Goliat unGoliat = new Goliat();
 		
-		assertTrue(taxiVolador.transportarNuevaUnidad(unGoliat));
+		taxiVolador.actualizarUbicacion(aire);
+		unGoliat.actualizarUbicacion(tierra);
+		
+		assertTrue( taxiVolador.transportarNuevaUnidad(unGoliat));
 		
 	}
 	
 	@Test
-	public void actualizarUbicacionActualizaLasUbicacionesDeLasUnidadesQueTransporta(){
+	public void transportarUnidadActualizaLaUbicacionDeLaUnidadQueTransporta(){
 		
 		Terreno aire = new Aire(1,3);
+		Terreno tierra = new Tierra(4,4);
 		NaveTransporte taxiVolador = new NaveTransporte();
 		Goliat unGoliat = new Goliat();
 		
-		taxiVolador.transportarNuevaUnidad(unGoliat);
 		taxiVolador.actualizarUbicacion(aire);
+		unGoliat.actualizarUbicacion(tierra);
+		taxiVolador.transportarNuevaUnidad(unGoliat);
 		
-		assertEquals(unGoliat.getUbicacionActual().fila(),1);
-		assertEquals(unGoliat.getUbicacionActual().columna(),3);
+		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionActualizaLaUbicacionDeLasUnidadesQueTransporta(){
+		
+		Terreno aire1 = new Aire(1,3);
+		Terreno aire2 = new Tierra(5,8);
+		Terreno tierra = new Tierra(4,4);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		Goliat unGoliat = new Goliat();
+		
+		taxiVolador.actualizarUbicacion(aire1);
+		unGoliat.actualizarUbicacion(tierra);
+		taxiVolador.transportarNuevaUnidad(unGoliat);
+		taxiVolador.actualizarUbicacion(aire2);
+		
+		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
 		
 	}
 

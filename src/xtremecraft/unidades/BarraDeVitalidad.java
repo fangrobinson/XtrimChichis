@@ -29,7 +29,7 @@ public class BarraDeVitalidad {
 		
 	}
 
-	public int devolverValor() {
+	public int getValor() {
 		
 		return this.vida;
 		

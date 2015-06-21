@@ -14,7 +14,6 @@ public class IteradorEdificios {
 		
 		this.listaEdificios = lista;
 	}
-	//TODO: ver como se hace para pasar una clase por parametro sin tener una instancia de esa clase
 	
 	public int cuantosHayConstruidos(@SuppressWarnings("rawtypes") Class edificio) {
 		
@@ -117,6 +116,4 @@ public class IteradorEdificios {
 		
 	}
 
-
-	
 }

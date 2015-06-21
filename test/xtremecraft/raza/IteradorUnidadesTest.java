@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.Unidad;
+import xtremecraft.raza.IteradorUnidades;
 
 public class IteradorUnidadesTest {
 	
@@ -20,6 +21,7 @@ public class IteradorUnidadesTest {
 		assertEquals(iter.cuantosHayDe(Marine.class), 0);
 		
 	}
+	
 	
 	@Test
 	public void cuantosHayDeConArregloDeEdificiosConstruidosOSinConstruirDevuelveEsaCantidad(){

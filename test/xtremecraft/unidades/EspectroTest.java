@@ -58,7 +58,7 @@ public class EspectroTest {
 		misdreavus.actualizarUbicacion(aire);
 		gengar.atacar(misdreavus);
 		
-		assertEquals(misdreavus.vitalidad.devolverValor(),100);
+		assertEquals(misdreavus.vitalidad.getValor(),100);
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class EspectroTest {
 		misdreavus.actualizarUbicacion(tierra2);
 		gengar.atacar(misdreavus);
 		
-		assertEquals(misdreavus.vitalidad.devolverValor(),112);
+		assertEquals(misdreavus.vitalidad.getValor(),112);
 	}
 	
 	
@@ -89,7 +89,7 @@ public class EspectroTest {
 		misdreavus.actualizarUbicacion(otroTerreno);
 		gengar.atacar(misdreavus);
 		
-		assertEquals(misdreavus.vitalidad.devolverValor(),120);
+		assertEquals(misdreavus.vitalidad.getValor(),120);
 	}
 	
 	
@@ -108,7 +108,7 @@ public class EspectroTest {
 			gengar.atacar(misdreavus);
 		}
 		
-		assertEquals(misdreavus.vitalidad.devolverValor(), 0);
+		assertEquals(misdreavus.vitalidad.getValor(), 0);
 	}
 	
 	@Test

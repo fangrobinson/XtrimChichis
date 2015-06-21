@@ -86,15 +86,17 @@ public class MapaTest {
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unaBarraca);
+		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
 		
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna+1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna+1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna+1)));
+		assertTrue(celdasAdyacentesAlEdificio.containsAll(celdasObtenidasDesdeElMapa));
 		
 	}
 	
@@ -128,18 +130,6 @@ public class MapaTest {
 		
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
 		
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna+1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna+1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna-1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-1,columna+1)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+2,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila-2,columna)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna+2)));
-		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila,columna-2)));
 		
 	}*/
 	

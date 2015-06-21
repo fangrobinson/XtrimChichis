@@ -9,7 +9,7 @@ public class Danio {
 		this.tierra = danioTierra;
 	}
 	
-	public int devolverDanio(boolean estaElevado){
+	public int getDanio(boolean estaElevado){
 		if(estaElevado){
 			return this.aire;
 		}

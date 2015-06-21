@@ -1,7 +1,6 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-//import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
 public class Barraca extends Edificio{
