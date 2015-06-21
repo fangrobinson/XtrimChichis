@@ -7,12 +7,12 @@ public class Jugador {
 	String nombre;
 	Terran nacion;
 	
-	public Jugador (String nombre) throws NombreMuyCortoException{
+	public Jugador (String nombre, int fila, int columna) throws NombreMuyCortoException{
 		if (nombre.length() < 4){
 			throw new NombreMuyCortoException();
 		}
 		this.nombre = nombre;
-		this.nacion = new Terran();
+		this.nacion = new Terran(fila, columna);
 	}
 
 	public boolean estaEnJuego(){
