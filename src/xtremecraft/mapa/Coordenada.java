@@ -51,8 +51,18 @@ public class Coordenada {
 
 	public ArrayList<Coordenada> getCoordenadasAdyacentes() {
 		
+		int cantidadDeDireccionesVisitadas = 1;
 		ArrayList<Coordenada> coordenadasAdyacentes = new ArrayList<Coordenada>();
-		coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() - 1));
+		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
+		Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
+		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()<=cantidadDeDireccionesVisitadas){
+			estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
+			cantidadDeDireccionesVisitadas += 1;
+			nuevaCoordenada = estrategiaDeAvance.avanzar();
+			coordenadasAdyacentes.add(nuevaCoordenada);
+		}
+		return coordenadasAdyacentes;
+		/*coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() - 1));
 		coordenadasAdyacentes.add(new Coordenada(this.fila(),this.columna() + 1));
 		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna()));
 		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna()));
@@ -60,18 +70,27 @@ public class Coordenada {
 		coordenadasAdyacentes.add(new Coordenada(this.fila() + 1,this.columna() - 1));
 		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() + 1));
 		coordenadasAdyacentes.add(new Coordenada(this.fila() - 1,this.columna() - 1));
-		return coordenadasAdyacentes;
+		return coordenadasAdyacentes;*/
 		
 	}
 
-	//TODO: codear esto (?)
 	public ArrayList<Coordenada> getCoordenadasEnRadio(int radio) {
 		
+		int cantidadDeDireccionesVisitadas = 1;
 		ArrayList<Coordenada> coordenadasEnRadio = new ArrayList<Coordenada>();
-	
+		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
+		Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
+		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()<=cantidadDeDireccionesVisitadas){
+			if(this.distancia(nuevaCoordenada)<=radio){
+				coordenadasEnRadio.add(nuevaCoordenada);
+				nuevaCoordenada = estrategiaDeAvance.avanzar();
+			}else{
+				estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
+				cantidadDeDireccionesVisitadas += 1;
+			}
+		}
 		return coordenadasEnRadio;
 
 	}
-
 	
 }

@@ -156,16 +156,18 @@ public class NaveTransporteTest {
 	public void bajarNaveDevuelveFalseSiTodasSiTodosLosLugaresAlrededorDeLaNaveEstanOcupados(){
 		
 		Mapa mapa = new Mapa(2);
-		Terreno aire = mapa.getCeldaEnFilaColumna(4,4).getCapaSuperior();
-		Terreno tierra0 = mapa.getCeldaEnFilaColumna(4,4).getCapaInferior();
-		Terreno tierra1 = mapa.getCeldaEnFilaColumna(3,4).getCapaInferior();
-		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3,5).getCapaInferior();
-		Terreno tierra3 = mapa.getCeldaEnFilaColumna(4,5).getCapaInferior();
-		Terreno tierra4 = mapa.getCeldaEnFilaColumna(5,5).getCapaInferior();
-		Terreno tierra5 = mapa.getCeldaEnFilaColumna(5,4).getCapaInferior();
-		Terreno tierra6 = mapa.getCeldaEnFilaColumna(5,3).getCapaInferior();
-		Terreno tierra7 = mapa.getCeldaEnFilaColumna(4,3).getCapaInferior();
-		Terreno tierra8 = mapa.getCeldaEnFilaColumna(3,3).getCapaInferior();	
+		int fila = 4;
+		int columna = 4;
+		Terreno aire = mapa.getCeldaEnFilaColumna(fila,columna).getCapaSuperior();
+		Terreno tierra0 = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
+		Terreno tierra1 = mapa.getCeldaEnFilaColumna(fila-1,columna).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(fila+1,columna).getCapaInferior();
+		Terreno tierra3 = mapa.getCeldaEnFilaColumna(fila,columna-1).getCapaInferior();
+		Terreno tierra4 = mapa.getCeldaEnFilaColumna(fila,columna+1).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(fila+1,columna+1).getCapaInferior();
+		Terreno tierra6 = mapa.getCeldaEnFilaColumna(fila-1,columna-1).getCapaInferior();
+		Terreno tierra7 = mapa.getCeldaEnFilaColumna(fila+1,columna-1).getCapaInferior();
+		Terreno tierra8 = mapa.getCeldaEnFilaColumna(fila-1,columna+1).getCapaInferior();	
 		Goliat goliat0 = new Goliat();
 		Goliat goliat1 = new Goliat();
 		Goliat goliat2 = new Goliat();

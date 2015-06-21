@@ -114,7 +114,6 @@ public class Mapa {
 		
 	}
 	
-	/*
 	public ArrayList<Celda> obtenerCeldasEnRadio(Ubicable unUbicable, int radio) {
 		
 		Coordenada coordenadaActual = unUbicable.getUbicacionActual();
@@ -129,7 +128,7 @@ public class Mapa {
 		}	
 		return listaDeCeldasEnRadio;
 		
-	}*/
+	}
 
 	public void liberarEspacioCorrespondienteA(Ubicable ubicable) {
 		
@@ -140,5 +139,5 @@ public class Mapa {
 		else celda.liberarCapaInferior();
 		
 	}
-	
+
 }

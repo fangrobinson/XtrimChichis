@@ -84,9 +84,9 @@ public class MapaTest {
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
-		
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unaBarraca);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
+		
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+1));
@@ -96,7 +96,7 @@ public class MapaTest {
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
 		
-		assertTrue(celdasAdyacentesAlEdificio.containsAll(celdasObtenidasDesdeElMapa));
+		assertTrue(celdasAdyacentesAlEdificio.contains(mapa.getCeldaEnFilaColumna(fila+1,columna)));
 		
 	}
 	
@@ -118,19 +118,29 @@ public class MapaTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	public void obtenerCeldasEnRadioDevuelveListaCeldasADistanciaRadio(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran();
+		Terran razaTerran = new Terran(1, 2);
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,1);
+		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
-		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
 		
+		assertTrue(celdasEnRadio.containsAll(celdasObtenidasDesdeElMapa));
 		
-	}*/
+	}
 	
 }
