@@ -19,7 +19,7 @@ public class IteradorEdificiosTest {
 		ArrayList<Edificio> array = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(array);
 		
-		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 0);
+		assertEquals(iter.cuantosHayCreadosDe(Barraca.class), 0);
 		
 	}
 	
@@ -29,7 +29,7 @@ public class IteradorEdificiosTest {
 		ArrayList<Edificio> array = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(array);
 		
-		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 0);
+		assertEquals(iter.cuantosHayCreadosDe(Barraca.class), 0);
 		
 	}
 	
@@ -38,9 +38,7 @@ public class IteradorEdificiosTest {
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(edificios);
 		
-		Barraca barraca = new Barraca(new Tierra(1,2));
-		
-		assertEquals(iter.cuantosHayDe(barraca), 0);
+		assertEquals(iter.cuantosHayDe(Barraca.class), 0);
 		
 	}
 	
@@ -51,24 +49,25 @@ public class IteradorEdificiosTest {
 		IteradorEdificios iter = new IteradorEdificios(edificios);
 		
 		Barraca barraca = new Barraca(new Tierra(1,2));
+		for(int i=0;i<barraca.tiempoConstruccion();i++)	barraca.pasarTiempo();
 		edificios.add(barraca);
 		
-		assertEquals(iter.cuantosHayConstruidos(Barraca.class), 1);
+		assertEquals(iter.cuantosHayCreadosDe(Barraca.class), 1);
 		
 	}
 
 	@Test
-	public void arregloTieneBarracaConArregloVacioDaFalse(){
+	public void elementoPerteneceConBarracaConArregloVacioDaFalse(){
 		
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(edificios);
 		
-		assertFalse(iter.arregloTiene(new Barraca(new Tierra(1,1))));
+		assertFalse(iter.elementoPertenece(new Barraca(new Tierra(1,1))));
 		
 	}
 	
 	@Test
-	public void arregloTieneBarracaConArregloDeUnaBarracaSinConstruirDaFalse(){
+	public void tieneCreadosBarracaConArregloDeUnaBarracaSinConstruirDaFalse(){
 		
 		Tierra tierra = new Tierra(1,1);
 		Barraca unaBarraca = new Barraca(tierra);
@@ -77,12 +76,12 @@ public class IteradorEdificiosTest {
 		edificios.add(unaBarraca);
 		
 		IteradorEdificios iter = new IteradorEdificios(edificios);
-		assertFalse(iter.arregloTiene(unaBarraca));
+		assertFalse(iter.tieneCreados(Barraca.class));
 		
 	}
 	
 	@Test
-	public void arregloTieneBarracaConArregloDeUnaBarracaConstruidaDevuelveTrue(){
+	public void elementoPerteneceBarracaConArregloDeUnaBarracaConstruidaDevuelveTrue(){
 		
 		Tierra tierra = new Tierra(1,1);
 		Barraca unaBarraca = new Barraca(tierra);
@@ -92,7 +91,21 @@ public class IteradorEdificiosTest {
 		edificios.add(unaBarraca);
 		
 		IteradorEdificios iter = new IteradorEdificios(edificios);
-		assertTrue(iter.arregloTiene(unaBarraca));
+		assertTrue(iter.elementoPertenece(unaBarraca));
+		
+	}
+	
+	@Test
+	public void elementoPerteneceBarracaConArregloDeUnaBarracaNoConstruidaDevuelveTrue(){
+		
+		Tierra tierra = new Tierra(1,1);
+		Barraca unaBarraca = new Barraca(tierra);
+		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
+		
+		edificios.add(unaBarraca);
+		
+		IteradorEdificios iter = new IteradorEdificios(edificios);
+		assertTrue(iter.elementoPertenece(unaBarraca));
 		
 	}
 	

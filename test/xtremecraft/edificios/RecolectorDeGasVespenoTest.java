@@ -89,7 +89,7 @@ public class RecolectorDeGasVespenoTest {
 		
 		refineria.pasarTiempo();
 		
-		assertEquals(refineria.getReservas(),10);
+		assertEquals(refineria.getReservas(), refineria.aumentoDeReservaEnTurno);
 			
 	}
 	
@@ -120,10 +120,9 @@ public class RecolectorDeGasVespenoTest {
 		int vidaEsperada = refineria.vidaMax() - valorDanio;
 		
 		refineria.recibirDanio(valorDanio);
-		assertEquals(refineria.getVida(), vidaEsperada);
-		
 		vidaEsperada = refineria.vidaMax() - (valorDanio * 2) ;
 		refineria.recibirDanio(valorDanio);
+		
 		assertEquals(refineria.getVida(), vidaEsperada);
 		
 	}

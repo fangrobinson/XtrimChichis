@@ -19,8 +19,10 @@ public class Partida {
 		this.mapa = new Mapa(cant_jug);
 		this.jugadores = new ArrayList<Jugador>();
 		
+		//TODO:que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
+		
 		for (int i = 0; i < nombresJugadores.size(); i++){
-			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i));
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i), 1,1);
 			jugadores.add(jugadorNuevo);
 		}
 		

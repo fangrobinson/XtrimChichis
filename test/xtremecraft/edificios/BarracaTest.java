@@ -60,11 +60,12 @@ public class BarracaTest {
 	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
+		int fila = 1;
+		int columna = 2;
+		Barraca unaBarraca = construirNuevaBarraca(fila, columna);
 		
-		Barraca unaBarraca = construirNuevaBarraca(1,2);
-		
-		assertEquals(unaBarraca.getUbicacionActual().fila(),1);
-		assertEquals(unaBarraca.getUbicacionActual().columna(),2);
+		assertEquals(unaBarraca.getUbicacionActual().fila(), fila);
+		assertEquals(unaBarraca.getUbicacionActual().columna(), columna);
 		
 	}
 	
@@ -100,14 +101,12 @@ public class BarracaTest {
 		
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		int valorDanio = 30;
+		
 		int vidaEsperada = unaBarraca.vidaMax() - valorDanio;
-		
 		unaBarraca.recibirDanio(valorDanio);
-		assertEquals(unaBarraca.getVida(), vidaEsperada);
-		
 		vidaEsperada -= valorDanio;
-		
 		unaBarraca.recibirDanio(valorDanio);
+		
 		assertEquals(unaBarraca.getVida(), vidaEsperada);
 		
 	}
@@ -118,7 +117,7 @@ public class BarracaTest {
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		Marine nuevoMarine = unaBarraca.entrenarMarine();
 		
-		assertEquals(nuevoMarine.getVida(),40);
+		assertEquals(nuevoMarine.getVida(), 40);
 		
 	}
 	
@@ -126,7 +125,7 @@ public class BarracaTest {
 		
 		Terreno tierra = new Tierra(fila,columna);
 		Barraca unaBarraca = new Barraca(tierra);
-		for(int i=0;i<unaBarraca.tiempoConstruccion();i++){
+		for(int i=0; i<unaBarraca.tiempoConstruccion(); i++){
 			unaBarraca.pasarTiempo();
 		}
 		return unaBarraca;

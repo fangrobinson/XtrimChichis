@@ -23,6 +23,7 @@ public class PuertoEstelarTest {
 		Terreno tierra3 = new Tierra(4,4);
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		
 		assertTrue(puertoEstelar.estaVivo());
@@ -37,6 +38,7 @@ public class PuertoEstelarTest {
 		Terreno tierra3 = new Tierra(4,4);
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		
 		assertTrue(puertoEstelar.estaEnConstruccion());
@@ -67,6 +69,7 @@ public class PuertoEstelarTest {
 		Terreno tierra3 = new Tierra(4,4);
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		
 		puertoEstelar.crearEspectro();
@@ -81,10 +84,11 @@ public class PuertoEstelarTest {
 		Terreno tierra3 = new Tierra(4,4);
 		Barraca barraca = new Barraca(tierra1);
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		
-		assertEquals(puertoEstelar.getUbicacionActual().fila(),4);
-		assertEquals(puertoEstelar.getUbicacionActual().columna(),4);
+		assertEquals(puertoEstelar.getUbicacionActual().fila(), 4);
+		assertEquals(puertoEstelar.getUbicacionActual().columna(), 4);
 		
 	}
 	
@@ -113,13 +117,11 @@ public class PuertoEstelarTest {
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		
-		assertEquals(puertoEstelar.getUbicacionActual().fila(),4);
-		assertEquals(puertoEstelar.getUbicacionActual().columna(),4);
 		
 		puertoEstelar.actualizarUbicacion(tierra4);
 		
-		assertEquals(puertoEstelar.getUbicacionActual().fila(),5);
-		assertEquals(puertoEstelar.getUbicacionActual().columna(),7);
+		assertEquals(puertoEstelar.getUbicacionActual().fila(), 5);
+		assertEquals(puertoEstelar.getUbicacionActual().columna(), 7);
 		
 	}
 	
@@ -150,16 +152,15 @@ public class PuertoEstelarTest {
 		Fabrica fabrica = new Fabrica(barraca,tierra2);
 		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
 		int valorDanio = 30;
+		int vidaEsperada = puertoEstelar.vidaMax() - valorDanio;
 		
 
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
 		puertoEstelar.recibirDanio(valorDanio);
-		
-		assertEquals(puertoEstelar.getVida(),70);
-		
 		puertoEstelar.recibirDanio(valorDanio);
+		vidaEsperada -= valorDanio;
 		
-		assertEquals(puertoEstelar.getVida(),40);
+		assertEquals(puertoEstelar.getVida(), vidaEsperada);
 		
 	}
 	

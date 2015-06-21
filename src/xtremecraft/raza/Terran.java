@@ -11,6 +11,7 @@ import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
@@ -19,25 +20,28 @@ import xtremecraft.unidades.Unidad;
 
 
 public class Terran implements Actualizable{
-	
+
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
-	private boolean estaViva;
-	private int poblacionMaxima;
-	private int poblacionInicial = 5;
-
-	public Terran(){
+    private int poblacionMaxima;
+	
+	public Terran(int fila, int columna){
 		
-		this.poblacionMaxima = poblacionInicial;
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
-		this.estaViva = true;
-					
+		this.poblacionMaxima = 5;
+		
+		DepositoDeSuministros baseInicial = new DepositoDeSuministros(new Tierra(fila, columna));
+		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
+		
+		this.edificios.add(baseInicial);
 	}
 
 	public boolean estaViva(){
 		
-		return this.estaViva;
+		IteradorEdificios iter = new IteradorEdificios(edificios);
+		return (iter.tieneCreados(DepositoDeSuministros.class));
+		
 		
 	}
 	
@@ -174,7 +178,7 @@ public class Terran implements Actualizable{
 	public boolean posee(Edificio edificio){
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
-		return iter.arregloPosee(edificio);
+		return iter.elementoPertenece(edificio);
 		
 	}
 
@@ -199,7 +203,7 @@ public class Terran implements Actualizable{
 		//TODO: resolver que hacemos con las unidades/edificios muertos para ver como acutalizamos el mapa.
 		//posible solucion guardarlos y hacer un getter para que el mapa pueda pedirlos y removerlos.
 		IteradorEdificios iterEdificios = new IteradorEdificios(this.edificios);
-		this.poblacionMaxima = poblacionInicial + iterEdificios.cuantosHayConstruidos(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
+		this.poblacionMaxima = iterEdificios.cuantosHayCreadosDe(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
 			Unidad unidadActual = this.unidades.get(posicionActual);
 			if(!unidadActual.estaVivo()) this.unidades.remove(unidadActual);

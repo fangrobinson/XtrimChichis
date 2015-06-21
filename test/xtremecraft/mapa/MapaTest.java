@@ -79,7 +79,7 @@ public class MapaTest {
 	public void obtenerCeldasAdyacentesAlUbicableDevuelveListaCeldasAlrededorDelUbicable(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran();
+		Terran razaTerran = new Terran(1,1);
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();

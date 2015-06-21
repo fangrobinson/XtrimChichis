@@ -10,12 +10,12 @@ public class JugadorTest {
 	
 	@Test(expected = NombreMuyCortoException.class)
 	public void siSeIntentaCrearUnJugadorConUnNombreMuyCortoSeLanzaNombreMuyCortoException(){
-		new Jugador("Ana");
+		new Jugador("Ana",1,1);
 	}
 	
 	@Test
 	public void alCrearseUnJugadorElMismoEstaEnJuego(){
-		Jugador jugador = new Jugador("Juan");
+		Jugador jugador = new Jugador("Juan",1,1);
 		boolean juega = jugador.estaEnJuego();
 		
 		assertTrue(juega);
@@ -24,7 +24,7 @@ public class JugadorTest {
 	@Test
 	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceElEdificioOUnidad (){
 		boolean bool = true;
-		Jugador juan = new Jugador("Juan");
+		Jugador juan = new Jugador("Juan",1,1);
 		Marine marine = new Marine();
 		
 		bool = juan.esDeMiPropiedad(marine);
