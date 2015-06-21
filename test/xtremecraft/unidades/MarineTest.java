@@ -97,24 +97,69 @@ public class MarineTest {
 
 	
 	@Test
-	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
+	public void actualizarUbicacionIgualaLasCoordenadasDeLaUnidadALasDelTerreno(){
 
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(1,10);
+		Terreno tierra = new Tierra(1,2);
 		Marine miniSamus = new Marine();
 		
-		miniSamus.actualizarUbicacion(tierra1);
+		miniSamus.actualizarUbicacion(tierra);
 		
-		assertEquals(miniSamus.getUbicacionActual().fila(),1);
-		assertEquals(miniSamus.getUbicacionActual().columna(),2);
-		
-		miniSamus.actualizarUbicacion(tierra2);
-		
-		assertEquals(miniSamus.getUbicacionActual().fila(),1);
-		assertEquals(miniSamus.getUbicacionActual().columna(),10);
+		assertEquals(miniSamus.getUbicacionActual(),tierra.getUbicacionActual());
 		
 	}
 	
+	@Test
+	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Marine miniSamus = new Marine();
+		
+		miniSamus.actualizarUbicacion(tierra1);
+		miniSamus.actualizarUbicacion(tierra2);
+
+		assertFalse(tierra1.estaOcupado());
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionOcupaElNuevoTerreno(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Marine miniSamus = new Marine();
+		
+		miniSamus.actualizarUbicacion(tierra1);
+		miniSamus.actualizarUbicacion(tierra2);
+
+		assertTrue(tierra2.estaOcupado());
+		
+	}
+	
+	@Test(expected = UbicacionNoValidaException.class)
+	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno tierraDestino = new Tierra(20,20);
+		Marine miniSamus = new Marine();
+		
+		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.actualizarUbicacion(tierraDestino);
+		
+	}
+	
+	@Test(expected = UbicacionNoValidaException.class)
+	public void siLaUnidadTrataDeUbicarseEnUnTerrenoAereoSeLanzaExcepcion(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno aireDestino = new Aire(1,1);
+		Marine miniSamus = new Marine();
+		
+		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.actualizarUbicacion(aireDestino);
+		
+	}
+		
 	@Test
 	public void siUnMarineAtacaAOtroHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 
@@ -130,6 +175,21 @@ public class MarineTest {
 		
 		assertFalse(miniMasterChief.estaVivo());
 		
+	}
+	
+	@Test
+	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno otraTierra = new Tierra(3,4);
+		Marine miniSamus = new Marine();
+		NaveTransporte nave = new NaveTransporte();
+		
+		miniSamus.actualizarUbicacion(tierra);
+		nave.actualizarUbicacion(otraTierra);
+		
+		assertTrue(miniSamus.subirANaveDeTransporte(nave));
+				
 	}
 	
 }

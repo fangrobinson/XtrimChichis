@@ -85,8 +85,21 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(aire);
 
-		assertEquals(taxiVolador.getUbicacionActual().fila(),1);
-		assertEquals(taxiVolador.getUbicacionActual().columna(),2);
+		assertEquals(taxiVolador.getUbicacionActual(),aire.getUbicacionActual());
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
+		
+		Terreno aire = new Aire(1,2);
+		Terreno tierra = new Tierra(2,3);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(aire);
+		taxiVolador.actualizarUbicacion(tierra);
+
+		assertFalse(aire.estaOcupado());
 		
 	}
 	
@@ -153,6 +166,18 @@ public class NaveTransporteTest {
 		taxiVolador.actualizarUbicacion(aire2);
 		
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
+		
+	}
+	
+	@Test(expected = UbicacionNoValidaException.class)
+	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
+
+		Terreno aire = new Aire(1,2);
+		Terreno aireDestino = new Aire(40,40);
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(aire);
+		taxiVolador.actualizarUbicacion(aireDestino);
 		
 	}
 

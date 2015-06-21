@@ -22,11 +22,11 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 	
-	public boolean transportarNuevaUnidad(Unidad unaUnidad){
-		//TODO: validar que la nave esta en el rango de vision de la unidad
+	public boolean transportarNuevaUnidad(Unidad unidad){
+
 		if(unidadesTransportadas.size() < capacidadMaxima){
-			unidadesTransportadas.add(unaUnidad);
-			unaUnidad.actualizarUbicacion(this);
+			unidadesTransportadas.add(unidad);
+			unidad.actualizarUbicacion(this);
 			return true;
 		}
 		return false;
@@ -40,6 +40,7 @@ public class NaveTransporte extends UnidadAerea {
 			this.estaUbicada = true;
 		}
 		else{
+			if(!this.puedoVer(terreno.getCoordenada())) throw new UbicacionNoValidaException();
 			this.terrenoActual.desocupar();
 			this.terrenoActual = terreno;
 			this.terrenoActual.ubicar(this);

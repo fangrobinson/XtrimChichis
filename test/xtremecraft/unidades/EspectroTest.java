@@ -138,17 +138,52 @@ public class EspectroTest {
 		Espectro unEspectro = new Espectro();
 		
 		unEspectro.actualizarUbicacion(unTerreno);
+		
+		assertEquals(unEspectro.getUbicacionActual(),unTerreno.getUbicacionActual());
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Espectro unEspectro = new Espectro();
+		
+		unEspectro.actualizarUbicacion(tierra1);
+		unEspectro.actualizarUbicacion(tierra2);
 
-		assertEquals(unEspectro.getUbicacionActual().fila(),1);
-		assertEquals(unEspectro.getUbicacionActual().columna(),4);
+		assertFalse(tierra1.estaOcupado());
 		
-		Terreno otroTerreno = new Tierra(3,2);
+	}
+	
+	@Test
+	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
-		unEspectro.actualizarUbicacion(otroTerreno);
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Espectro unEspectro = new Espectro();
 		
-		assertEquals(unEspectro.getUbicacionActual().fila(),3);
-		assertEquals(unEspectro.getUbicacionActual().columna(),2);
+		unEspectro.actualizarUbicacion(tierra1);
+		unEspectro.actualizarUbicacion(tierra2);
+
+		assertTrue(tierra2.estaOcupado());
 		
+	}
+	
+	@Test
+	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno otraTierra = new Tierra(3,4);
+		Espectro gengar = new Espectro();
+		NaveTransporte nave = new NaveTransporte();
+		
+		gengar.actualizarUbicacion(tierra);
+		nave.actualizarUbicacion(otraTierra);
+		
+		assertTrue(gengar.subirANaveDeTransporte(nave));
+				
 	}
 
 }

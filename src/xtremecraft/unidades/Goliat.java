@@ -11,7 +11,8 @@ public class Goliat extends UnidadTerrestre {
 		this.vision = 8;
 		this.tiempoConstruccion = 6;
 		this.suministro = 2;
+		this.distanciaTransporte = 2;
 		
-	}	
-	
+	}
+
 }

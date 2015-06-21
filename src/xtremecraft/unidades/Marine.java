@@ -12,6 +12,7 @@ public class Marine extends UnidadTerrestre{
 		this.vision = 7;
 		this.tiempoConstruccion = 3;
 		this.suministro = 1;
+		this.distanciaTransporte = 1;
 		
 	}
 

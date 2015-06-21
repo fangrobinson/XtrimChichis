@@ -129,23 +129,85 @@ public class GoliatTest {
 	}
 	
 	@Test
-	public void moverACeldaCambiaLasCoordenadasActualesDeLaUnidad(){
+	public void actualizarUbicacionIgualaLasCoordenadasDeLaUnidadALasDelTerreno(){
+		
+		Terreno tierra = new Tierra(1,2);
+		Goliat tanque = new Goliat();
+		
+		tanque.actualizarUbicacion(tierra);
+
+		
+		assertEquals(tanque.getUbicacionActual(),tierra.getUbicacionActual());
+		
+	}
+	
+	@Test
+	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque1 = new Goliat();
+		Goliat tanque = new Goliat();
 		
-		tanque1.actualizarUbicacion(tierra1);
+		tanque.actualizarUbicacion(tierra1);
+		tanque.actualizarUbicacion(tierra2);
 
-		assertEquals(tanque1.getUbicacionActual().fila(),1);
-		assertEquals(tanque1.getUbicacionActual().columna(),2);
-		
-		tanque1.actualizarUbicacion(tierra2);
-		
-		assertEquals(tanque1.getUbicacionActual().fila(),2);
-		assertEquals(tanque1.getUbicacionActual().columna(),3);
+		assertFalse(tierra1.estaOcupado());
 		
 	}
+	
+	@Test
+	public void actualizarUbicacionOcupaElNuevoTerreno(){
+		
+		Terreno tierra1 = new Tierra(1,2);
+		Terreno tierra2 = new Tierra(2,3);
+		Goliat tanque = new Goliat();
+		
+		tanque.actualizarUbicacion(tierra1);
+		tanque.actualizarUbicacion(tierra2);
 
+		assertTrue(tierra2.estaOcupado());
+		
+	}
+	
+	@Test(expected = UbicacionNoValidaException.class)
+	public void siLaUnidadTrataDeUbicarseEnUnTerrenoAereoSeLanzaExcepcion(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno aireDestino = new Aire(1,1);
+		Goliat tanque = new Goliat();
+		
+		tanque.actualizarUbicacion(tierra);
+		tanque.actualizarUbicacion(aireDestino);
+		
+	}
+		
+	@Test(expected = UbicacionNoValidaException.class)
+	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno tierraDestino = new Tierra(20,20);
+		Goliat tanque = new Goliat();
+		
+		tanque.actualizarUbicacion(tierra);
+		tanque.actualizarUbicacion(tierraDestino);
+		
+	}
+	
+
+	@Test
+	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+
+		Terreno tierra = new Tierra(1,2);
+		Terreno otraTierra = new Tierra(3,4);
+		Goliat tanque = new Goliat();
+		NaveTransporte nave = new NaveTransporte();
+		
+		tanque.actualizarUbicacion(tierra);
+		nave.actualizarUbicacion(otraTierra);
+		
+		assertTrue(tanque.subirANaveDeTransporte(nave));
+				
+	}
+	
 }
 

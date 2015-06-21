@@ -54,15 +54,18 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	if (!this.puedeAtacar){
     		return false;
     	}
-    	Coordenada ubicacionAtacante = this.getUbicacionActual();
-    	Coordenada ubicacionAtacado = atacado.getUbicacionActual();
-    	double distancia = ubicacionAtacante.distancia(ubicacionAtacado);
-		if (distancia <= this.getRadioVision()){
-			return true;
-		}
-		return false;
+    	
+		return this.puedoVer(atacado.getUbicacionActual());
 		
 	}
+    
+    protected boolean puedoVer(Coordenada unaCoordenada){
+    	
+    	Coordenada miUbicacion = this.getUbicacionActual();
+    	double distancia = miUbicacion.distancia(unaCoordenada);
+    	return distancia <= this.getRadioVision();
+    	
+    }
 
 	public int getVida(){
     	
@@ -99,12 +102,19 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return this.terrenoActual;
     	
     }
+    
 
+    public void actualizarUbicacion(NaveTransporte naveTransporte) {
+    	 
+    	this.terrenoActual.desocupar();
+    	this.terrenoActual = naveTransporte.getTerrenoActual();
+    	
+	}
+    
     public void actualizarUbicacion(Terreno terreno) {
-    	//TODO: Validacion transporte distancia para marine y goliat.
-    	//TODO: validar que una unidad terrestre no se pueda ubicar en una celda aerea(?)(consultar).
-    	//opcion solo le mostramos al jugador los terrenos validos cuando selecciona la celda de destino.
+
     	if(this.estaUbicada){
+    		if(!this.puedoVer(terreno.getCoordenada())) throw new UbicacionNoValidaException();
     		this.terrenoActual.desocupar();
     	}
     	this.terrenoActual = terreno;
@@ -113,11 +123,13 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		
 	}
     
-    public void actualizarUbicacion(NaveTransporte naveTransporte) {
-    	 
-    	this.terrenoActual.desocupar();
-    	this.terrenoActual = naveTransporte.getTerrenoActual();
-    	
+	
+	public boolean subirANaveDeTransporte(NaveTransporte unaNave) {
+		
+		if(this.puedoVer(unaNave.getUbicacionActual())){
+			return unaNave.transportarNuevaUnidad(this);
+		}
+		return false;
 	}
     
     public boolean estaElevado(){
@@ -178,7 +190,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return terran.posee(this);
     
     }
-    
+	
     /*public boolean recibirDanioMisilEMP(){
     	
     	return false;
