@@ -12,6 +12,7 @@ public class RecolectorDeGasVespeno extends Recolector {
 	private RecolectorDeGasVespeno(Terran raza, Terreno terreno){
 		
 		super(terreno);
+		this.raza = raza;
 		this.cobrar(raza);
 		this.recurso = terreno.getRecurso();
 		this.tiempoConstruccion = tiempoDeConstruccion; 
@@ -38,6 +39,13 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 	public void cobrar(Terran raza){
 		raza.quitarMinerales(this.minerales);
+	}
+	
+	public void pasarTiempo(){
+		if (!super.estaEnConstruccion){
+			this.raza.juntarGas(this.recurso.explotar(this.aumentoDeReservaEnTurno));
+		}
+		super.pasarTiempo();
 	}
 	
 }
