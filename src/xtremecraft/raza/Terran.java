@@ -119,6 +119,10 @@ public class Terran implements Actualizable{
 	
 	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
 		
+		if(!this.esDeMiPropiedad(unaBarraca)){
+			throw new BarracaNoEsDeLaRazaException();
+		}
+		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaBarraca,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
@@ -127,6 +131,10 @@ public class Terran implements Actualizable{
 	}
 	
 	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
+		
+		if(!this.esDeMiPropiedad(unaFabrica)){
+			throw new FabricaNoEsDeLaRazaException();
+		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaFabrica,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
@@ -137,6 +145,10 @@ public class Terran implements Actualizable{
 	
 	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
 		
+		if(!this.esDeMiPropiedad(puerto)){
+			throw new PuertoEstelarNoEsDeLaRazaException();
+		}
+		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(this, puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
@@ -145,6 +157,10 @@ public class Terran implements Actualizable{
 	}
 	
 	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
+		
+		if(!this.esDeMiPropiedad(puerto)){
+			throw new PuertoEstelarNoEsDeLaRazaException();
+		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(this, puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
@@ -155,6 +171,10 @@ public class Terran implements Actualizable{
 
 	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
 		
+		if(!this.esDeMiPropiedad(puerto)){
+			throw new PuertoEstelarNoEsDeLaRazaException();
+		}
+		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(this, puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
 		this.agregarUnidad(nuevaUnidad);
@@ -162,13 +182,13 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public void agregarEdificio(Edificio nuevoEdificio){
+	private void agregarEdificio(Edificio nuevoEdificio){
 		
 		this.edificios.add(nuevoEdificio);
 		
 	}
 	
-	public void agregarUnidad(Unidad nuevaUnidad){
+	private void agregarUnidad(Unidad nuevaUnidad){
 		
 		this.unidades.add(nuevaUnidad);
 		

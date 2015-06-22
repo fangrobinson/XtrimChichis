@@ -220,6 +220,98 @@ public class TerranTest {
 		assertEquals(razaTerran.getPoblacionMaxima(),10);
 		
 	}
+	
+	@Test (expected = BarracaNoEsDeLaRazaException.class)
+	public void crearMarineConBarracaNoPropiaLanzaBarracaNoEsDeLaRazaException(){
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranValida();
+		Terran razaTerran2 = crearRazaTerranValida();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		
+		@SuppressWarnings("unused")
+		Unidad unMarine = razaTerran2.crearMarine(unaBarraca, mapa);
+	}
+	
+	@Test(expected = FabricaNoEsDeLaRazaException.class)
+	public void crearGoliatConFabricaNoPropiaLanzaFabricaNoEsDeLaRazaException(){
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranValida();
+		Terran razaTerran2 = crearRazaTerranValida();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Terreno otroTerreno = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Fabrica fabrica = razaTerran.crearFabrica(otroTerreno);
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
+		@SuppressWarnings("unused")
+		Unidad unGoliat = razaTerran2.crearGoliat(fabrica, mapa);
+	}
+	
+	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
+	public void crearEspectroConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranValida();
+		Terran razaTerran2 = crearRazaTerranValida();
+		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
+		
+		@SuppressWarnings("unused")
+		Unidad unEspectro = razaTerran2.crearEspectro(puerto, mapa);
+	}
+	
+	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
+	public void crearNaveCienciaConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranValida();
+		Terran razaTerran2 = crearRazaTerranValida();
+		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
+		
+		@SuppressWarnings("unused")
+		Unidad naveCiencia = razaTerran2.crearNaveCiencia(puerto, mapa);
+	}
+	
+	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
+	public void crearNaveDeTransporteConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranValida();
+		Terran razaTerran2 = crearRazaTerranValida();
+		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(terreno1);
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Fabrica fabrica = razaTerran.crearFabrica(terreno2);
+		for(int turno=0;turno<fabrica.tiempoConstruccion();turno++) fabrica.pasarTiempo();
+		PuertoEstelar puerto = razaTerran.crearPuertoEstelar(terreno3);
+		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
+		
+		@SuppressWarnings("unused")
+		Unidad naveTransporte = razaTerran2.crearNaveTransporte(puerto, mapa);
+		
+	}
+	
+	
+	
 	//TODO: emprolijar estos tests. Mas de 1 assert x test.
 	@Test
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
