@@ -1,5 +1,6 @@
 package xtremecraft.unidades;
 
+//TODO: Arreglar pruebas Arrange Act Assert
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,13 +11,33 @@ import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.raza.Terran;
 
 public class NaveCienciaTest {
+	
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
+	@Test (expected = RecursosInsuficientesException.class)
+	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
+
+		Tierra tierra = new Tierra(15,15);
+		Terran nacion = new Terran(tierra);
+		
+		new NaveCiencia(nacion);
+	}
 	
 	@Test
 	public void naveCienciaSeInicializaConBarraDeVidaCompleta(){
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		assertEquals(naveCiencia.getVida(),200);
 	
@@ -25,7 +46,8 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaInicializadoConEstadoVivo(){
 
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		assertTrue(naveCiencia.estaVivo());
 		
@@ -34,7 +56,8 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 	
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		assertFalse(naveCiencia.puedeUbicarseSobreRecursoNatural());
 	
@@ -43,7 +66,8 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaSeInicializaConRadioDeVision(){
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		assertEquals(naveCiencia.getRadioVision(),10);
 	
@@ -52,7 +76,8 @@ public class NaveCienciaTest {
 	@Test
 	public void naveCienciaSeInicializaConEnergia(){
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		assertEquals(naveCiencia.getEnergia(),50);
 	
@@ -61,7 +86,8 @@ public class NaveCienciaTest {
 	@Test
 	public void aumentarEnergiaEnTurnoAumentaNivelDeEnergia(){
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.aumentarEnergiaEnTurno();
 		
@@ -76,7 +102,8 @@ public class NaveCienciaTest {
 	@Test
 	public void aumentarEnergiaEnTurnoSiEnergiaEsMayorOIgualADoscientosNoAumentaNivelDeEnergia(){
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		Terran nacion = crearRazaTerranValida();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		for(int i=0;i<15;i++){
 			naveCiencia.aumentarEnergiaEnTurno();
@@ -93,9 +120,10 @@ public class NaveCienciaTest {
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno=new Aire(1,4);
 		
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.actualizarUbicacion(unTerreno);
 		
@@ -106,9 +134,10 @@ public class NaveCienciaTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.actualizarUbicacion(tierra1);
 		naveCiencia.actualizarUbicacion(tierra2);
@@ -120,9 +149,10 @@ public class NaveCienciaTest {
 	@Test
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.actualizarUbicacion(tierra1);
 		naveCiencia.actualizarUbicacion(tierra2);
@@ -134,9 +164,10 @@ public class NaveCienciaTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno aire = new Aire(1,2);
 		Terreno aireDestino = new Aire(20,20);
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.actualizarUbicacion(aire);
 		naveCiencia.actualizarUbicacion(aireDestino);
@@ -146,10 +177,11 @@ public class NaveCienciaTest {
 	@Test
 	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
 		Terreno otraTierra = new Tierra(3,4);
-		NaveCiencia naveCiencia = new NaveCiencia();
-		NaveTransporte nave = new NaveTransporte();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
+		NaveTransporte nave = new NaveTransporte(nacion);
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
@@ -161,11 +193,12 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPLeQuitaLaEnergiaAOtraUnidadMagica(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno otroAire = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		naveCienciaAtacada.actualizarUbicacion(otroAire);
@@ -178,13 +211,14 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPSiHayUnaUnidadNoMagicaEnElRadioDeImpactoNoRecibeDanio(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno otroAire = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
-		Goliat goliatEnRadioDeImpacto = new Goliat();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
+		Goliat goliatEnRadioDeImpacto = new Goliat(nacion);
 		int vidaInicialGoliat = goliatEnRadioDeImpacto.getVida();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
@@ -199,13 +233,14 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioDeImpactoPierdeSuEnergia(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
 		Terreno aire3 = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
-		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia(nacion);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire1);
 		naveCienciaAtacada.actualizarUbicacion(aire2);
@@ -219,11 +254,12 @@ public class NaveCienciaTest {
 	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
 	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioPeroNoEnElMismoTerrenoQueElAtacadoNoPierdeEnergia(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno aire2 = mapa.getCeldaEnFilaColumna(40,40).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire1);
 		naveCienciaAtacada.actualizarUbicacion(aire2);
@@ -234,13 +270,14 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPSiUnaNaveIntentaLanzarUnMisilFueraDeSuRangoDeVisionSeLanzaUnaExcepcion(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(7,7).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
-		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia(nacion);
 		int energiaInicialNaveEnRadioDeImpacto = naveCienciaEnRadioDeImpacto.getEnergia();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire1);
@@ -255,11 +292,12 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPLeSacaEnergiaALaNaveAtacante(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire1);
@@ -273,11 +311,12 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConRadiacionLeSacaEnergiaALaNaveAtacante(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		Goliat goliatAtacado = new Goliat();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		Goliat goliatAtacado = new Goliat(nacion);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
@@ -291,11 +330,12 @@ public class NaveCienciaTest {
 	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
 	public void siSeIntentaAtacarConRadiacionAUnaUnidadFueraDelRangoDeVisionSeLanzaExcepcion(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(20,20).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		Goliat goliatAtacado = new Goliat();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		Goliat goliatAtacado = new Goliat(nacion);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		goliatAtacado.actualizarUbicacion(tierra);
@@ -306,9 +346,10 @@ public class NaveCienciaTest {
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
@@ -322,11 +363,12 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConRadiacionHaceQueLaUnidadAtacadaMueraDespuesDePasarUnTiempo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		Goliat goliatAtacado = new Goliat();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		Goliat goliatAtacado = new Goliat(nacion);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
@@ -342,13 +384,14 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConRadiacionHaceQueLasUnidadesADistanciaMenorOIgualAUnoDeLaAfectadaRecibanDanio(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno otraTierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia();
-		Goliat goliatAtacado = new Goliat();
-		Goliat goliatIrradiado = new Goliat();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
+		Goliat goliatAtacado = new Goliat(nacion);
+		Goliat goliatIrradiado = new Goliat(nacion);
 		int vidaInicialIrradiado = goliatIrradiado.getVida();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
@@ -366,9 +409,10 @@ public class NaveCienciaTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveCiencia naveCiencia = new NaveCiencia();
+		NaveCiencia naveCiencia = new NaveCiencia(nacion);
 		int vidaInicial = naveCiencia.getVida();
 		
 		naveCiencia.actualizarUbicacion(tierra);

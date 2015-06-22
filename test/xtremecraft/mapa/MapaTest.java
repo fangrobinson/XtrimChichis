@@ -15,6 +15,14 @@ import xtremecraft.unidades.Goliat;
 
 public class MapaTest {
 	
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void CrearMapaConCantJugadoresNegativoDaError(){
 		
@@ -52,9 +60,10 @@ public class MapaTest {
 	@Test 
 	public void ubicarCapaInferiorUnGoliatDevuelveTrue(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat();
+		Goliat goliat = new Goliat(nacion);
 		
 		boolean bool = celda.ubicarCapaInferior(goliat);
 		
@@ -65,9 +74,10 @@ public class MapaTest {
 	@Test 
 	public void ubicarCapaSuperiorUnGoliatDevuelveFalse(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat();
+		Goliat goliat = new Goliat(nacion);
 		
 		boolean bool = celda.ubicarCapaSuperior(goliat);
 		
@@ -79,7 +89,7 @@ public class MapaTest {
 	public void obtenerCeldasAdyacentesAlUbicableDevuelveListaCeldasAlrededorDelUbicable(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();;
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
@@ -103,9 +113,10 @@ public class MapaTest {
 	@Test
 	public void liberarEspacioCorrespondienteADejaLiberaElEspacioOcupadoPorElUbicable(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat();
+		Goliat goliat = new Goliat(nacion);
 		
 		celda.ubicarCapaInferior(goliat);
 		goliat.actualizarUbicacion(celda.getCapaInferior());
@@ -122,11 +133,11 @@ public class MapaTest {
 	public void obtenerCeldasEnRadioDevuelveListaCeldasADistanciaRadio(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1, 2);
+		Terran nacion = crearRazaTerranValida();
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		Barraca unaBarraca = nacion.crearBarraca(unTerreno);
 		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,1);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		

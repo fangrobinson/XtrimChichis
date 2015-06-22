@@ -32,7 +32,7 @@ public class Terran implements Actualizable{
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
-		this.minerales = 0;
+		this.minerales = 100; //Debe cobrarse el primer deposito de suministros.
 		this.gas = 0;
 		//TODO: - Rob : No se quien lo hizo, pero creo que ahora simplemente esta poniendo un Deposito en el mapa, 
 		// pero ni siquiera es de la raza, porque no lo agrega a la lista, ni nada.
@@ -248,4 +248,11 @@ public class Terran implements Actualizable{
 		}
 	}
 	
+	public int getMinerales(){
+		return this.minerales;
+	}
+	
+	public int getGasVespeno(){
+		return this.gas;
+	}
 }

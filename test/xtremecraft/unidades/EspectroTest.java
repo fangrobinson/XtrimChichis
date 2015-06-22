@@ -10,20 +10,33 @@ import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 
 public class EspectroTest {
-	/*
+
 	public Terran crearRazaTerranValida(){
 		Tierra tierra = new Tierra(15,15);
 		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
 		return razaTerran;
 	}
-	*/
+	
+	@Test (expected = RecursosInsuficientesException.class)
+	public void espectroCreadoParaRazaSinRecursosLanzaExcepcion(){
+
+		Tierra tierra = new Tierra(15,15);
+		Terran nacion = new Terran(tierra);
+		
+		new Espectro(nacion);
+	}
+	
 	@Test
 	public void espectroInicializadoConVidaCompleta(){
 
-		Espectro gengar = new Espectro();
+		Terran nacion = crearRazaTerranValida();
+		Espectro gengar = new Espectro(nacion);
 		
 		assertEquals(gengar.getVida(),120);
 	}
@@ -31,7 +44,8 @@ public class EspectroTest {
 	@Test
 	public void espectroInicializadoConEstadoVivo(){
 
-		Espectro gengar = new Espectro();
+		Terran nacion = crearRazaTerranValida();
+		Espectro gengar = new Espectro(nacion);
 		
 		assertTrue(gengar.estaVivo());
 		
@@ -40,7 +54,8 @@ public class EspectroTest {
 	@Test
 	public void espectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
-		Espectro gengar = new Espectro();
+		Terran nacion = crearRazaTerranValida();
+		Espectro gengar = new Espectro(nacion);
 		
 		assertFalse(gengar.puedeUbicarseSobreRecursoNatural());
 		
@@ -49,7 +64,8 @@ public class EspectroTest {
 	@Test
 	public void espectroGetVisionDevuelveRadioDeVisionDelEspectro(){
 
-		Espectro gengar = new Espectro();
+		Terran nacion = crearRazaTerranValida();
+		Espectro gengar = new Espectro(nacion);
 		
 		assertEquals(gengar.getRadioVision(),7);
 	}
@@ -57,10 +73,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorAireLeSacaVeinteDeVida(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno aire = new Aire(1,2);
 		Terreno tierra = new Tierra(2,3);
-		Espectro gengar = new Espectro();
-		Espectro misdreavus = new Espectro();
+		Espectro gengar = new Espectro(nacion);
+		Espectro misdreavus = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(tierra);
 		misdreavus.actualizarUbicacion(aire);
@@ -72,10 +89,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraLeSacaOchoDeVida(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro gengar = new Espectro();
-		Espectro misdreavus = new Espectro();
+		Espectro gengar = new Espectro(nacion);
+		Espectro misdreavus = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(tierra1);
 		misdreavus.actualizarUbicacion(tierra2);
@@ -88,10 +106,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno = new Aire(1,4);
 		Terreno otroTerreno = new Tierra(10,10);
-		Espectro gengar = new Espectro();
-		Espectro misdreavus = new Espectro();
+		Espectro gengar = new Espectro(nacion);
+		Espectro misdreavus = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -104,10 +123,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno = new Aire(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
-		Espectro gengar = new Espectro();
-		Espectro misdreavus = new Espectro();
+		Espectro gengar = new Espectro(nacion);
+		Espectro misdreavus = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -122,10 +142,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloPasaAEstadoNoVivo(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno = new Aire(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
-		Espectro gengar = new Espectro();
-		Espectro misdreavus = new Espectro();
+		Espectro gengar = new Espectro(nacion);
+		Espectro misdreavus = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -141,9 +162,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno=new Aire(1,4);
 		
-		Espectro unEspectro = new Espectro();
+		Espectro unEspectro = new Espectro(nacion);
 		
 		unEspectro.actualizarUbicacion(unTerreno);
 		
@@ -154,9 +176,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro unEspectro = new Espectro();
+		Espectro unEspectro = new Espectro(nacion);
 		
 		unEspectro.actualizarUbicacion(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
@@ -168,9 +191,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro unEspectro = new Espectro();
+		Espectro unEspectro = new Espectro(nacion);
 		
 		unEspectro.actualizarUbicacion(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
@@ -182,10 +206,11 @@ public class EspectroTest {
 	@Test
 	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
 		Terreno otraTierra = new Tierra(3,4);
-		Espectro gengar = new Espectro();
-		NaveTransporte nave = new NaveTransporte();
+		Espectro gengar = new Espectro(nacion);
+		NaveTransporte nave = new NaveTransporte(nacion);
 		
 		gengar.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
@@ -197,9 +222,10 @@ public class EspectroTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Espectro gengar = new Espectro();
+		Espectro gengar = new Espectro(nacion);
 		int vidaInicial = gengar.getVida();
 		
 		gengar.actualizarUbicacion(tierra);
@@ -215,9 +241,10 @@ public class EspectroTest {
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Espectro gengar = new Espectro();
+		Espectro gengar = new Espectro(nacion);
 		
 		gengar.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
@@ -228,6 +255,7 @@ public class EspectroTest {
 		
 	}
 
+	//TODO: Que paso aca?
 	/*
 	@Test
 	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
