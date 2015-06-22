@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
@@ -17,32 +18,32 @@ public class PuertoEstelar extends Edificio{
 		
 	}
 	
-	public Espectro crearEspectro(){
+	public Espectro crearEspectro(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Espectro();
+		return new Espectro(raza);
 		
 	}
 	
 
-	public NaveCiencia crearNaveCiencia(){
+	public NaveCiencia crearNaveCiencia(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new NaveCiencia();
+		return new NaveCiencia(raza);
 		
 	}
 	
 
-	public NaveTransporte crearNaveTransporte(){
+	public NaveTransporte crearNaveTransporte(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
 		}
-		return new NaveTransporte();
+		return new NaveTransporte(raza);
 		
 	}
 

@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
 public class Barraca extends Edificio{
@@ -15,12 +16,12 @@ public class Barraca extends Edificio{
 
 	}
 	
-	public Marine entrenarMarine(){
+	public Marine entrenarMarine(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Marine();
+		return new Marine(raza);
 		
 	}
 

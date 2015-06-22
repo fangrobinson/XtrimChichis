@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
 
 public class Fabrica extends Edificio{
@@ -16,12 +17,12 @@ public class Fabrica extends Edificio{
 	}
 	
 	
-	public Goliat entrenarGoliat(){
+	public Goliat entrenarGoliat(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Goliat();
+		return new Goliat(raza);
 		
 	}
 	
