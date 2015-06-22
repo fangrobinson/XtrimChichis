@@ -9,6 +9,8 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
+import xtremecraft.unidades.Atacable;
+import xtremecraft.unidades.Defendible;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
@@ -36,6 +38,19 @@ public class Jugador {
 	}
 	
 
+	public void atacar(Defendible atacante, Atacable atacado){
+		
+		Ubicable atacanteUbicado = (Ubicable) atacante;
+		
+		if (!this.esDeMiPropiedad(atacanteUbicado)){
+			throw new ElAtacanteNoEsDelJugadorException();
+		}
+		
+		atacante.atacar(atacado);
+	}
+	
+	//metodos de creacion
+	
 	public Barraca crearBarraca(Terreno unTerreno){
 		return this.nacion.crearBarraca(unTerreno);
 	}

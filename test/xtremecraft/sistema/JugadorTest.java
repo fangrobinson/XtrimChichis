@@ -58,7 +58,7 @@ public class JugadorTest {
 		assertFalse(bool);
 	}
 	
-	/*@Test
+    @Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad (){
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
@@ -68,6 +68,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Juan",tierra);		
 		jugador.nacion.juntarMinerales(2000);
 		Barraca barraca = jugador.crearBarraca(tierra2);
+		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
 		
         Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
 		
@@ -78,7 +79,7 @@ public class JugadorTest {
 		bool = jugador.esDeMiPropiedad(marine);
 		
 		assertTrue(bool);
-	}*/
+	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceElEdificio (){
@@ -92,6 +93,46 @@ public class JugadorTest {
 		bool = jugador.esDeMiPropiedad(barraca);
 		
 		assertTrue(bool);
+	}
+	
+	@Test (expected = ElAtacanteNoEsDelJugadorException.class)
+	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia (){
+		Tierra tierra = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Tierra tierra3 = new Tierra(1,3);
+		Tierra tierra4 = new Tierra(1,4);
+		Mapa unMapa = new Mapa(2);
+		
+		Jugador jugador = new Jugador("Juan",tierra);	
+		jugador.nacion.juntarMinerales(2000);
+		
+		Barraca barraca = jugador.crearBarraca(tierra2);
+		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
+		
+        Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
+		
+		unMapa.ubicar(barraca, celda);
+		
+		Marine marine = jugador.crearMarine(barraca, unMapa);
+		for(int turno=0;turno<marine.tiempoConstruccion();turno++) marine.pasarTiempo();
+		
+		
+		Jugador jugador2 = new Jugador("Juan",tierra3);	
+		jugador2.nacion.juntarMinerales(2000);
+		
+		Barraca barraca2 = jugador2.crearBarraca(tierra4);
+		for(int turno=0;turno<barraca2.tiempoConstruccion();turno++) barraca2.pasarTiempo();
+		
+        Celda celda2 = unMapa.getCeldaEnFilaColumna(1, 3);
+		
+		unMapa.ubicar(barraca, celda2);
+		
+		Marine marine2 = jugador.crearMarine(barraca2, unMapa);
+		for(int turno=0;turno<marine2.tiempoConstruccion();turno++) marine2.pasarTiempo();
+		
+		
+		jugador.atacar(marine2, marine);
+		
 	}
 	
 	
