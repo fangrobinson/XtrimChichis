@@ -9,9 +9,16 @@ import org.junit.Test;
 import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.Terran;
 
 public class EspectroTest {
-	
+	/*
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		return razaTerran;
+	}
+	*/
 	@Test
 	public void espectroInicializadoConVidaCompleta(){
 

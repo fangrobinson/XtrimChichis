@@ -1,5 +1,6 @@
 package xtremecraft.sistema;
 
+import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Ubicable;
 
@@ -7,12 +8,12 @@ public class Jugador {
 	String nombre;
 	Terran nacion;
 	
-	public Jugador (String nombre, int fila, int columna) throws NombreMuyCortoException{
+	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
 		if (nombre.length() < 4){
 			throw new NombreMuyCortoException();
 		}
 		this.nombre = nombre;
-		this.nacion = new Terran(fila, columna);
+		this.nacion = new Terran(tierra);
 	}
 
 	public boolean estaEnJuego(){

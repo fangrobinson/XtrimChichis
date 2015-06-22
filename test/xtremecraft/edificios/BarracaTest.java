@@ -8,9 +8,16 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
 public class BarracaTest {
+	
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		return razaTerran;
+	}
 	
 	@Test
 	public void barracaSeInicializaConEstadoVivo(){

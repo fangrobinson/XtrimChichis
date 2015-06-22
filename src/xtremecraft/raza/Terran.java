@@ -24,14 +24,19 @@ public class Terran implements Actualizable{
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
     private int poblacionMaxima;
+    private int minerales;
+    private int gas;
 	
-	public Terran(int fila, int columna){
+	public Terran(Tierra terreno){
 		
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
-		
-		DepositoDeSuministros baseInicial = new DepositoDeSuministros(new Tierra(fila, columna));
+		this.minerales = 0;
+		this.gas = 0;
+		//TODO: - Rob : No se quien lo hizo, pero creo que ahora simplemente esta poniendo un Deposito en el mapa, 
+		// pero ni siquiera es de la raza, porque no lo agrega a la lista, ni nada.
+		DepositoDeSuministros baseInicial = new DepositoDeSuministros(terreno);
 		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
 		
 		this.edificios.add(baseInicial);
@@ -217,14 +222,30 @@ public class Terran implements Actualizable{
 		
 	}
 
+	public void juntarMinerales(int cantidad){
+		this.minerales += cantidad;
+	}
+	
+	public void juntarGas(int cantidad){
+		this.gas += cantidad;
+	}
+	
 	public void quitarMinerales(int cantidad) {
-		// TODO Auto-generated method stub
-		
+		if (cantidad > this.minerales){
+			throw new RecursosInsuficientesException();
+		}
+		else{
+			this.minerales -= cantidad;
+		}
 	}
 	
 	public void quitarGas(int cantidad) {
-		// TODO Auto-generated method stub
-		
+		if (cantidad > this.gas){
+			throw new RecursosInsuficientesException();
+		}
+		else{
+			this.gas -= cantidad;
+		}
 	}
 	
 }
