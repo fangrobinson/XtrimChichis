@@ -6,11 +6,12 @@ import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
+import xtremecraft.unidades.Cobrable;
 import xtremecraft.unidades.Radiacion;
 import xtremecraft.unidades.Ubicable;
 
 
-public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible{
+public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible,Cobrable{
 	
 	protected Terreno terrenoActual;
 	protected BarraDeVitalidad vida;
@@ -18,7 +19,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	protected int turnosConstruccionPasados;
 	protected boolean estaVivo;
 	protected boolean estaEnConstruccion;
-
+	
 	public Edificio(Terreno unTerreno,int vida){
 		
 		this.terrenoActual = unTerreno;

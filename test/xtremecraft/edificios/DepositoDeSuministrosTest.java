@@ -8,13 +8,31 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
 
 public class DepositoDeSuministrosTest {
 	
-	public DepositoDeSuministros construirNuevoDeposito(Terreno tierra){
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
+	@Test(expected = RecursosInsuficientesException.class)
+	public void crearDepositoDeSuministrosConRazaSinRecursosLanzaExcepcion(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		Terreno otraTierra = new Tierra(1,1);
+		new DepositoDeSuministros(razaTerran, otraTierra);
+	}
+	
+	public DepositoDeSuministros construirNuevoDeposito(Terran raza, Terreno tierra){
 		
-		DepositoDeSuministros deposito = new DepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(raza, tierra);
 		for(int i=0; i<deposito.tiempoConstruccion; i++){
 			deposito.pasarTiempo();
 		}
@@ -25,10 +43,12 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void depositoSeInicializaConEstadoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		
 		assertTrue(deposito.estaVivo());		
 		
@@ -37,10 +57,12 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		
 		assertEquals(deposito.getUbicacionActual().fila(), fila);
 		assertEquals(deposito.getUbicacionActual().columna(), columna);
@@ -50,10 +72,12 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		
 		assertFalse(deposito.puedeUbicarseSobreRecursoNatural());
 		
@@ -62,10 +86,12 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		
 		assertEquals(deposito.getVida(), deposito.vidaMax());
 		
@@ -74,10 +100,12 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void edificioEstaElevadoDevuelveFalseParaEdificiosCreadosEnTierra(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		
 		assertFalse(deposito.estaElevado());
 		
@@ -86,10 +114,11 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
 		int valorDanio = 30;
 		int vidaEsperada = deposito.vidaMax() - valorDanio;
 		
@@ -104,10 +133,11 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siUnDepositoEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(3,2);
 		Terreno otraTierra = new Tierra(1,2);
-		DepositoDeSuministros deposito = construirNuevoDeposito(tierra);
-		Marine miniSamus = new Marine();
+		DepositoDeSuministros deposito = construirNuevoDeposito(nacion, tierra);
+		Marine miniSamus = new Marine(nacion);
 		int cantidadDeAtaquesADeposito = 17;
 		
 		miniSamus.actualizarUbicacion(tierra);

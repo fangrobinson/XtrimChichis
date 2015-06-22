@@ -13,13 +13,34 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.raza.Terran;
 
 public class GoliatTest {
 	
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
+	@Test (expected = RecursosInsuficientesException.class)
+	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
+
+		Tierra tierra = new Tierra(15,15);
+		Terran nacion = new Terran(tierra);
+		
+		new Goliat(nacion);
+	}
+	
+	
 	@Test
 	public void goliatInicializadoConVidaCompleta(){
-
-		Goliat tanque1 = new Goliat();
+		
+		Terran nacion = crearRazaTerranValida();
+		Goliat tanque1 = new Goliat(nacion);
 		
 		assertEquals(tanque1.getVida(),125);
 		
@@ -28,7 +49,8 @@ public class GoliatTest {
 	@Test
 	public void goliatInicializadoConEstadoVivo(){
 
-		Goliat tanque1 = new Goliat();
+		Terran nacion = crearRazaTerranValida();
+		Goliat tanque1 = new Goliat(nacion);
 		
 		assertTrue(tanque1.estaVivo());
 		
@@ -37,7 +59,8 @@ public class GoliatTest {
 	@Test
 	public void goliatPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Goliat tanque1 = new Goliat();
+		Terran nacion = crearRazaTerranValida();
+		Goliat tanque1 = new Goliat(nacion);
 		
 		assertFalse(tanque1.puedeUbicarseSobreRecursoNatural());
 	}
@@ -45,7 +68,8 @@ public class GoliatTest {
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
 
-		Goliat tanque1 = new Goliat();
+		Terran nacion = crearRazaTerranValida();
+		Goliat tanque1 = new Goliat(nacion);
 		
 		assertEquals(tanque1.getRadioVision(),8);
 	}
@@ -53,10 +77,11 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAUnEspectroPorAireLeSacaDiezDeVida(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,3);
 		Terreno aire = new Aire(1,4);
-		Goliat tanque1 = new Goliat();
-		Espectro tanque2 = new Espectro();
+		Goliat tanque1 = new Goliat(nacion);
+		Espectro tanque2 = new Espectro(nacion);
 		
 		tanque1.actualizarUbicacion(tierra);
 		tanque2.actualizarUbicacion(aire);
@@ -68,10 +93,11 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraLeSacaDoceDeVida(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque1 = new Goliat();
-		Goliat tanque2 = new Goliat();
+		Goliat tanque1 = new Goliat(nacion);
+		Goliat tanque2 = new Goliat(nacion);
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
@@ -84,10 +110,11 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,4);
 		Terreno aire = new Aire(10,10);
-		Goliat tanque1 = new Goliat();
-		Goliat tanque2 = new Goliat();
+		Goliat tanque1 = new Goliat(nacion);
+		Goliat tanque2 = new Goliat(nacion);
 		
 		tanque1.actualizarUbicacion(tierra);
 		tanque2.actualizarUbicacion(aire);
@@ -100,10 +127,11 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque1 = new Goliat();
-		Goliat tanque2 = new Goliat();
+		Goliat tanque1 = new Goliat(nacion);
+		Goliat tanque2 = new Goliat(nacion);
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
@@ -117,10 +145,11 @@ public class GoliatTest {
 	@Test
 	public void siUnGoliatAtacaAOtroPorTierraHastaMatarloPasaAEstadoNoVivo(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque1 = new Goliat();
-		Goliat tanque2 = new Goliat();
+		Goliat tanque1 = new Goliat(nacion);
+		Goliat tanque2 = new Goliat(nacion);
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
@@ -135,8 +164,9 @@ public class GoliatTest {
 	@Test
 	public void actualizarUbicacionIgualaLasCoordenadasDeLaUnidadALasDelTerreno(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
-		Goliat tanque = new Goliat();
+		Goliat tanque = new Goliat(nacion);
 		
 		tanque.actualizarUbicacion(tierra);
 
@@ -148,9 +178,10 @@ public class GoliatTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque = new Goliat();
+		Goliat tanque = new Goliat(nacion);
 		
 		tanque.actualizarUbicacion(tierra1);
 		tanque.actualizarUbicacion(tierra2);
@@ -162,9 +193,10 @@ public class GoliatTest {
 	@Test
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Goliat tanque = new Goliat();
+		Goliat tanque = new Goliat(nacion);
 		
 		tanque.actualizarUbicacion(tierra1);
 		tanque.actualizarUbicacion(tierra2);
@@ -176,9 +208,10 @@ public class GoliatTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoAereoSeLanzaExcepcion(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
 		Terreno aireDestino = new Aire(1,1);
-		Goliat tanque = new Goliat();
+		Goliat tanque = new Goliat(nacion);
 		
 		tanque.actualizarUbicacion(tierra);
 		tanque.actualizarUbicacion(aireDestino);
@@ -188,9 +221,10 @@ public class GoliatTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
 		Terreno tierraDestino = new Tierra(20,20);
-		Goliat tanque = new Goliat();
+		Goliat tanque = new Goliat(nacion);
 		
 		tanque.actualizarUbicacion(tierra);
 		tanque.actualizarUbicacion(tierraDestino);
@@ -201,10 +235,11 @@ public class GoliatTest {
 	@Test
 	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
 
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,2);
 		Terreno otraTierra = new Tierra(3,4);
-		Goliat tanque = new Goliat();
-		NaveTransporte nave = new NaveTransporte();
+		Goliat tanque = new Goliat(nacion);
+		NaveTransporte nave = new NaveTransporte(nacion);
 		
 		tanque.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
@@ -216,9 +251,10 @@ public class GoliatTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Goliat goliatAtacado = new Goliat();
+		Goliat goliatAtacado = new Goliat(nacion);
 		int vidaInicialGoliat = goliatAtacado.getVida();
 		
 		goliatAtacado.actualizarUbicacion(tierra);
@@ -234,9 +270,10 @@ public class GoliatTest {
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Goliat goliatAtacado = new Goliat();
+		Goliat goliatAtacado = new Goliat(nacion);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
@@ -248,6 +285,7 @@ public class GoliatTest {
 		
 	}
 
+	//TODO: Faltan tests
 	/*
 	@Test
 	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){

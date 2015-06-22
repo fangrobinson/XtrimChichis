@@ -1,6 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
@@ -9,40 +10,43 @@ public class PuertoEstelar extends Edificio{
 	
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 10;
+	private int minerales = 150;
+	private int gas = 100;
 	
-	public PuertoEstelar(Fabrica unaFabrica, Terreno terreno){
+	public PuertoEstelar(Terran raza, Fabrica unaFabrica, Terreno terreno){
 		
 		super(terreno,vida);
+		this.cobrar(raza);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
 	
-	public Espectro crearEspectro(){
+	public Espectro crearEspectro(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Espectro();
+		return new Espectro(raza);
 		
 	}
 	
 
-	public NaveCiencia crearNaveCiencia(){
+	public NaveCiencia crearNaveCiencia(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new NaveCiencia();
+		return new NaveCiencia(raza);
 		
 	}
 	
 
-	public NaveTransporte crearNaveTransporte(){
+	public NaveTransporte crearNaveTransporte(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new IllegalArgumentException("Este edificio se encuentra en contruccion");
 		}
-		return new NaveTransporte();
+		return new NaveTransporte(raza);
 		
 	}
 
@@ -65,6 +69,9 @@ public class PuertoEstelar extends Edificio{
 		
 	}
 
-
+	public void cobrar(Terran raza){
+		raza.quitarMinerales(this.minerales);
+		raza.quitarGas(this.gas);
+	}
 
 }

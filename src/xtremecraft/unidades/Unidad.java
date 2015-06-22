@@ -6,7 +6,7 @@ import xtremecraft.mapa.Coordenada;
 import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 
-public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible{
+public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -162,6 +162,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return this.puedeAtacar || this.puedeMoverse;
     
     }
+    
     //faltan pruebas de supuesto
     public void pasarTiempo(){
     	

@@ -20,9 +20,11 @@ public class Partida {
 		this.jugadores = new ArrayList<Jugador>();
 		
 		//TODO:que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
+		// Perdon??? Raro D: 
+		//TODO: Verdadero: resolver obtenerTerrenoJugador.
 		
 		for (int i = 0; i < nombresJugadores.size(); i++){
-			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i), 1,1);
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i), this.mapa.obtenerTerrenoJugador(i));
 			jugadores.add(jugadorNuevo);
 		}
 		

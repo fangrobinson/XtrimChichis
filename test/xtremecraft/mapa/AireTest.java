@@ -1,8 +1,8 @@
 package xtremecraft.mapa;
 
 import static org.junit.Assert.assertFalse;
-
 import xtremecraft.mapa.Aire;
+import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Unidad;
@@ -23,8 +23,12 @@ public class AireTest {
 	@Test
 	public void aireEstaOcupadaDeberiaDevolverFalseSiTratoDeUbicarUnaUnidadTerrestre(){
 		
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarMinerales(1000);
+		razaTerran.juntarGas(1000);
 		Terreno terreno=new Aire(1,4);
-		Unidad goliat= new Goliat();
+		Unidad goliat= new Goliat(razaTerran);
 		terreno.ubicar(goliat);
 		assertFalse(terreno.estaOcupado());
 		
@@ -50,7 +54,7 @@ public class AireTest {
 		 
 		assertEquals(vida, 40);
 		
-	}*/ //COMPLETAR CUANDO EXISTAN UNIDADES VOLADORAS!!
+	}*/ //TODO:COMPLETAR CUANDO EXISTAN UNIDADES VOLADORAS!!
 	
 	
 	

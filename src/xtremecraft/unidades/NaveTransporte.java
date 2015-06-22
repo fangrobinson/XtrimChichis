@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 
 public class NaveTransporte extends UnidadAerea {
 	
 	ArrayList<Unidad> unidadesTransportadas;
 	static int capacidadMaxima = 8;
+	private int minerales = 100;
+	private int gas = 100;
 	
-	public NaveTransporte() {
+	public NaveTransporte(Terran raza) {
 		
 		super();
+		this.cobrar(raza);
 		this.vitalidad = new BarraDeVitalidad(150);
 		this.danio = new Danio (0,0);
 		this.vision = 8;
@@ -67,5 +71,11 @@ public class NaveTransporte extends UnidadAerea {
 		return this.unidadesTransportadas;
 		
 	}
+
+	public void cobrar(Terran raza){
+		raza.quitarMinerales(this.minerales);
+		raza.quitarGas(this.gas);
+	}
+	
 
 }

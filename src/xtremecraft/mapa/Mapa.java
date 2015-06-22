@@ -141,4 +141,9 @@ public class Mapa {
 		
 	}
 
+	public Tierra obtenerTerrenoJugador(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

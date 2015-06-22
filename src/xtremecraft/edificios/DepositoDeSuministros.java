@@ -1,16 +1,19 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 
 public class DepositoDeSuministros extends Edificio{
 
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 6;
 	private static int incrementoPoblacion = 5;
+	private int minerales = 100;
 	
-	public DepositoDeSuministros(Terreno unTerreno) {
+	public DepositoDeSuministros(Terran raza, Terreno unTerreno) {
 		
 		super(unTerreno, vida);
+		this.cobrar(raza);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
@@ -39,4 +42,7 @@ public class DepositoDeSuministros extends Edificio{
 		
 	}
 
+	public void cobrar(Terran raza){
+		raza.quitarMinerales(this.minerales);
+	}
 }

@@ -8,17 +8,37 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Marine;
+import xtremecraft.raza.RecursosInsuficientesException;
 
 public class BarracaTest {
+
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
+	@Test(expected = RecursosInsuficientesException.class)
+	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		Terreno otraTierra = new Tierra(1,1);
+		new Barraca(razaTerran, otraTierra);
+	}
 	
 	@Test
 	public void barracaSeInicializaConEstadoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		
+		Barraca unaBarraca = new Barraca(nacion, tierra);
 		
 		assertTrue(unaBarraca.estaVivo());
 		
@@ -27,10 +47,11 @@ public class BarracaTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaBarraca(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = new Barraca(nacion, tierra);
 		
 		assertTrue(unaBarraca.estaEnConstruccion());
 		
@@ -40,12 +61,13 @@ public class BarracaTest {
 	@Test(expected = EdificioEnConstruccionException.class)
 	public void siBarracaNoEstaConstruidaYSeIntentaEntrenarUnMarineSeLanzaExcepcion(){
 		
+		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = new Barraca(nacion, tierra);
 		
-		unaBarraca.entrenarMarine();
+		unaBarraca.entrenarMarine(nacion);
 		
 	}
 
@@ -113,9 +135,11 @@ public class BarracaTest {
 	
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
-
+		
+		Terran nacion = crearRazaTerranValida();
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
-		Marine nuevoMarine = unaBarraca.entrenarMarine();
+		
+		Marine nuevoMarine = unaBarraca.entrenarMarine(nacion);
 		
 		assertEquals(nuevoMarine.getVida(), 40);
 		
@@ -123,8 +147,9 @@ public class BarracaTest {
 	
 	public Barraca construirNuevaBarraca(int fila, int columna){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(tierra);
+		Barraca unaBarraca = new Barraca(nacion, tierra);
 		for(int i=0; i<unaBarraca.tiempoConstruccion(); i++){
 			unaBarraca.pasarTiempo();
 		}
@@ -135,9 +160,10 @@ public class BarracaTest {
 	@Test
 	public void siUnaBarracaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(3,2);
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
-		Marine miniSamus = new Marine();
+		Marine miniSamus = new Marine(nacion);
 		int cantidadDeAtaquesABarraca = 17;
 		
 		miniSamus.actualizarUbicacion(tierra);

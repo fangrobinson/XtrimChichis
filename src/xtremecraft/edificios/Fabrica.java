@@ -1,27 +1,30 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
 
 public class Fabrica extends Edificio{
 	
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 12;
+	private int minerales = 150;
 	
-	public Fabrica(Barraca unaBarraca, Terreno terreno){
+	public Fabrica(Terran raza, Barraca unaBarraca, Terreno terreno){
 		
 		super(terreno,vida);
+		this.cobrar(raza);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 
 	}
 	
 	
-	public Goliat entrenarGoliat(){
+	public Goliat entrenarGoliat(Terran raza){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Goliat();
+		return new Goliat(raza);
 		
 	}
 	
@@ -44,6 +47,9 @@ public class Fabrica extends Edificio{
 		return false;
 		
 	}
-
+	
+	public void cobrar(Terran raza){
+		raza.quitarMinerales(this.minerales);
+	}
 	
 }

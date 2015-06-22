@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
@@ -15,16 +17,42 @@ import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelarTest {
 	
+	
+
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
+	@Test(expected = RecursosInsuficientesException.class)
+	public void crearPuertoConRazaSinRecursosLanzaExcepcion(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		Terreno otraTierra = new Tierra(1,1);
+		Tierra tercerTierra = new Tierra (2,2);
+		Tierra cuartaTierra = new Tierra(3,3);
+		
+		razaTerran.juntarMinerales(350);
+		Barraca barraca = new Barraca(razaTerran, otraTierra);
+		Fabrica fabrica = new Fabrica(razaTerran, barraca, tercerTierra);
+		
+		new PuertoEstelar(razaTerran, fabrica, cuartaTierra);
+	}
+	
 	@Test
 	public void puertoSeInicializaConEstadoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
 		
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		assertTrue(puertoEstelar.estaVivo());
 		
@@ -33,13 +61,14 @@ public class PuertoEstelarTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearElPuerto(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
 		
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		assertTrue(puertoEstelar.estaEnConstruccion());
 		
@@ -48,12 +77,13 @@ public class PuertoEstelarTest {
 	@Test
 	public void puertoEstelarEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDelPuerto(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
 		
@@ -64,28 +94,30 @@ public class PuertoEstelarTest {
 	@Test(expected = EdificioEnConstruccionException.class)
 	public void siPuertNoEstaConstruidoYSeIntentaCrearUnidadSeLanzaExcepcion(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
 		
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
-		puertoEstelar.crearEspectro();
+		puertoEstelar.crearEspectro(nacion);
 		
 	}
 
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
 		
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(), 4);
 		assertEquals(puertoEstelar.getUbicacionActual().columna(), 4);
@@ -95,12 +127,13 @@ public class PuertoEstelarTest {
 	@Test
 	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		assertFalse(puertoEstelar.puedeUbicarseSobreRecursoNatural());
 		
@@ -109,13 +142,14 @@ public class PuertoEstelarTest {
 	@Test
 	public void getActualizarUbicacionModificaCoordenadasDelEdificio(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
 		Terreno tierra4 = new Tierra(5,7);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		
 		
 		puertoEstelar.actualizarUbicacion(tierra4);
@@ -128,12 +162,13 @@ public class PuertoEstelarTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		int vidaEsperada = puertoEstelar.vidaMax();
 		
 		for (int tiempo=0; tiempo<puertoEstelar.tiempoConstruccion(); tiempo++) puertoEstelar.pasarTiempo();
@@ -145,12 +180,13 @@ public class PuertoEstelarTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 		int valorDanio = 30;
 		int vidaEsperada = puertoEstelar.vidaMax() - valorDanio;
 		
@@ -167,15 +203,16 @@ public class PuertoEstelarTest {
 	@Test
 	public void crearEspectroDevuelveUnaNuevaUnidadEspectro(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
-		Espectro unEspectro = puertoEstelar.crearEspectro();
+		Espectro unEspectro = puertoEstelar.crearEspectro(nacion);
 		
 		assertEquals(unEspectro.getVida(),120);
 		
@@ -184,15 +221,16 @@ public class PuertoEstelarTest {
 	@Test
 	public void crearNaveCienciaDevuelveNuevaUnidadNaveCiencia(){
 	
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
-		NaveCiencia nave = puertoEstelar.crearNaveCiencia();
+		NaveCiencia nave = puertoEstelar.crearNaveCiencia(nacion);
 		
 		assertEquals(nave.getVida(),200);
 		
@@ -201,15 +239,16 @@ public class PuertoEstelarTest {
 	@Test
 	public void crearNaveTransporteCreaNuevaUnidadNaveTransporte(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
 
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
-		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte();
+		NaveTransporte naveTransporte = puertoEstelar.crearNaveTransporte(nacion);
 		
 		assertEquals(naveTransporte.getVida(),150);
 		
@@ -218,14 +257,15 @@ public class PuertoEstelarTest {
 	@Test
 	public void siUnPuertoEstelarEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
+		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
 		Terreno tierra4 = new Tierra(4,6);
-		Barraca barraca = new Barraca(tierra1);
-		Fabrica fabrica = new Fabrica(barraca,tierra2);
-		PuertoEstelar puertoEstelar = new PuertoEstelar(fabrica,tierra3);
-		Marine miniSamus = new Marine();
+		Barraca barraca = new Barraca(nacion, tierra1);
+		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		PuertoEstelar puertoEstelar = new PuertoEstelar(nacion, fabrica,tierra3);
+		Marine miniSamus = new Marine(nacion);
 		int cantidadDeAtaquesAPuerto = 17;
 
 		miniSamus.actualizarUbicacion(tierra4);

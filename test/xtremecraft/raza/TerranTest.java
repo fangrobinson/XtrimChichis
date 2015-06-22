@@ -24,10 +24,18 @@ import xtremecraft.unidades.Unidad;
 
 public class TerranTest {
 	
+	public Terran crearRazaTerranValida(){
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return razaTerran;
+	}
+	
 	@Test
 	public void estaVivaDevuelveTrueAlCrearLaRaza(){
-		
-		Terran razaTerran = new Terran(1, 1);
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
 		
 		assertTrue(razaTerran.estaViva());
 		
@@ -36,7 +44,8 @@ public class TerranTest {
 	@Test
 	public void razaSeInicializaConCantidadDeSuministroEquivalenteAUnDepositoDeSuministros(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
 		
 		assertEquals(razaTerran.getPoblacionMaxima(),DepositoDeSuministros.getIncrementoPoblacion());
 		
@@ -45,18 +54,18 @@ public class TerranTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void crearEdificioLanzaExcepcionSiSeIntentaCrearUnEdificioEnUnaCeldaOcupada(){
 		
-		Terran razaTerran = new Terran(1,1);
-		Terreno unTerreno = new Tierra(1,2);
+		Terran razaTerran = crearRazaTerranValida();
+		Tierra tierrita = new Tierra (1,1);
 		
-		razaTerran.crearBarraca(unTerreno);
-		razaTerran.crearBarraca(unTerreno);
+		razaTerran.crearBarraca(tierrita);
+		razaTerran.crearBarraca(tierrita);
 		
 	}
 	
 	@Test(expected = RazaNoTieneBarracasException.class)
 	public void siIntentoCrearUnaFabricaPeroNoHayNingunaBarracaEnEstadoConstruidoSeLanzaExcepcion(){
-		
-		Terran razaTerran = new Terran(1,1);
+
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		Terreno otroTerreno = new Tierra(10,10);
 		
@@ -68,7 +77,8 @@ public class TerranTest {
 	@Test(expected = RazaNoTieneBarracasException.class)
 	public void crearFabricaLanzaExcepcionSiSeIntenaCrearFabricaCuandoNoHayBarracas(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
 		Terreno unTerreno = new Tierra(1,2);
 		
 		razaTerran.crearFabrica(unTerreno);
@@ -78,7 +88,8 @@ public class TerranTest {
 	@Test(expected = RazaNoTieneFabricasException.class)
 	public void crearPuertoEstelarLanzaExcepcionSiSeIntenaCrearPuertoCuandoNoHayFabricas(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Tierra tierra = new Tierra(15,15);
+		Terran razaTerran = new Terran(tierra);
 		Terreno unTerreno = new Tierra(1,2);
 		
 		razaTerran.crearPuertoEstelar(unTerreno);
@@ -86,9 +97,9 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void crearCentroRecolectorDeMineralCreaNuevoCentroMineral(){
+	public void crearCentroRecolectorDeMineralCreaNuevoCentroMineralQueRecolecta(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		MinaDeMinerales mina = new MinaDeMinerales(30);
 		unTerreno.agregarRecursoNatural(mina);
@@ -97,18 +108,31 @@ public class TerranTest {
 
 		for(int turno=0; turno < centroMineral.tiempoConstruccion(); turno++) centroMineral.pasarTiempo();
 		
-		assertEquals(centroMineral.getReservas(),0);
-		
 		centroMineral.pasarTiempo();
 		
-		assertEquals(centroMineral.getReservas(),10);
+		assertTrue(razaTerran.getMinerales() > 0);
 		
 	}
 	
 	@Test
-	public void crearCentroRecolectorDeGasVespenoCreaNuevaRefineria(){
+	public void alCrearCentroRecolectorDeMineralLasReservasSonCero(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
+		Terreno unTerreno = new Tierra(1,2);
+		MinaDeMinerales mina = new MinaDeMinerales(30);
+		unTerreno.agregarRecursoNatural(mina);
+		
+		RecolectorDeMineral centroMineral = razaTerran.crearRecolectorDeMineral(unTerreno);
+		int mineralesEsperados = razaTerran.getMinerales();
+		for(int turno=0; turno < centroMineral.tiempoConstruccion(); turno++) centroMineral.pasarTiempo();
+		
+		assertEquals(razaTerran.getMinerales(), mineralesEsperados);
+	}
+	
+	@Test
+	public void crearCentroRecolectorDeGasVespenoCreaNuevaRefineriaQueRecolecta(){
+		
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		unTerreno.agregarRecursoNatural(volcan);
@@ -116,19 +140,17 @@ public class TerranTest {
 		RecolectorDeGasVespeno refineria = razaTerran.crearRecolectorDeGasVespeno(unTerreno);
 		
 		for(int turno=0; turno < refineria.tiempoConstruccion() ;turno++) refineria.pasarTiempo();
-		
-		assertEquals(refineria.getReservas(),0);
-		
+		int cantidadEsperada = razaTerran.getGasVespeno() + 10;
 		refineria.pasarTiempo();
 		
-		assertEquals(refineria.getReservas(),10);
+		assertEquals(razaTerran.getGasVespeno(), cantidadEsperada);
 		
 	}
 	
 	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		
 		razaTerran.crearRecolectorDeMineral(unTerreno);
@@ -138,7 +160,7 @@ public class TerranTest {
 	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeMineralLanzaExcepcionSiSeIntentaCrearSobreTerrenoConUnRecursoQueNoSeaMineral(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		unTerreno.agregarRecursoNatural(volcan);
@@ -150,7 +172,7 @@ public class TerranTest {
 	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinRecursos(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		
 		razaTerran.crearRecolectorDeGasVespeno(unTerreno);
@@ -160,7 +182,7 @@ public class TerranTest {
 	@Test(expected = NoHayRecursoException.class)
 	public void crearCentroRecolectorDeGasVespenoLanzaExcepcionSiSeIntentaCrearSobreTerrenoSinGasVespeno(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		MinaDeMinerales mina = new MinaDeMinerales(3);
 		
@@ -173,7 +195,7 @@ public class TerranTest {
 	@Test
 	public void crearDepositoDeSuministrosCreaNuevoDepositoDeSuministros(){
 
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
 		
@@ -189,7 +211,7 @@ public class TerranTest {
 	@Test
 	public void construirDepositoDeSuministrosAumentaLaCantidadMaximaDePoblacionPermitida(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
 		
@@ -203,7 +225,7 @@ public class TerranTest {
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
 	
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
@@ -222,7 +244,7 @@ public class TerranTest {
 	public void crearGoliatEntrenaUnNuevoGoliatYLoUbicaEnElMapa(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno otroTerreno = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
@@ -245,7 +267,7 @@ public class TerranTest {
 	public void crearEspectroCreaUnNuevoEspectroYLoUbicaEnElMapa(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
@@ -271,7 +293,7 @@ public class TerranTest {
 	public void crearNaveCienciaCreaUnaNuevaNaveYLaUbicaEnElMapa(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
@@ -297,7 +319,7 @@ public class TerranTest {
 	public void crearNaveTransporteCreaUnaNuevaNaveYLaUbicaEnElMapa(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Terreno terreno2 = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		Terreno terreno3 = mapa.getCeldaEnFilaColumna(9,8).getCapaInferior();
@@ -322,7 +344,7 @@ public class TerranTest {
 	public void siIntentoCrearUnaUnidadYNoTengoSuministrosSuificientesSeLanzaExcepcion(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		for(int turno=0;turno<12;turno++) unaBarraca.pasarTiempo();
@@ -337,7 +359,7 @@ public class TerranTest {
 	@Test
 	public void pasarTiempoActualizaTodasLosEstadosDeTodosLosEdificiosCreados(){
 		
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = new Tierra(1,2);
 		Terreno otroTerreno = new Tierra(4,4);
 		MinaDeMinerales mina = new MinaDeMinerales(30);
@@ -364,7 +386,7 @@ public class TerranTest {
 	public void pasarTiempoActualizaTodasLosEstadosDeTodasLasUnidadesCreadas(){
 
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = new Terran(1,1);
+		Terran razaTerran = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
 		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
 		
