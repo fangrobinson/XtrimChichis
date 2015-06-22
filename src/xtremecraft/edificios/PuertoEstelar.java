@@ -10,10 +10,13 @@ public class PuertoEstelar extends Edificio{
 	
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 10;
+	private int minerales = 150;
+	private int gas = 100;
 	
-	public PuertoEstelar(Fabrica unaFabrica, Terreno terreno){
+	public PuertoEstelar(Terran raza, Fabrica unaFabrica, Terreno terreno){
 		
 		super(terreno,vida);
+		this.cobrar(raza);
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
 	}
@@ -66,6 +69,9 @@ public class PuertoEstelar extends Edificio{
 		
 	}
 
-
+	public void cobrar(Terran raza){
+		raza.quitarMinerales(this.minerales);
+		raza.quitarGas(this.gas);
+	}
 
 }

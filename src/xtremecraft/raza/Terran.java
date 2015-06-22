@@ -36,7 +36,7 @@ public class Terran implements Actualizable{
 		this.gas = 0;
 		//TODO: - Rob : No se quien lo hizo, pero creo que ahora simplemente esta poniendo un Deposito en el mapa, 
 		// pero ni siquiera es de la raza, porque no lo agrega a la lista, ni nada.
-		DepositoDeSuministros baseInicial = new DepositoDeSuministros(terreno);
+		DepositoDeSuministros baseInicial = new DepositoDeSuministros(this, terreno);
 		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
 		
 		this.edificios.add(baseInicial);
@@ -59,7 +59,7 @@ public class Terran implements Actualizable{
 	//TODO: refactoring codigo repetido
 	public Barraca crearBarraca(Terreno unTerreno){
 		
-		Barraca nuevaBarraca = new Barraca(unTerreno);
+		Barraca nuevaBarraca = new Barraca(this, unTerreno);
 		if(!unTerreno.ubicar(nuevaBarraca)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevaBarraca);
 		return nuevaBarraca;
@@ -71,7 +71,7 @@ public class Terran implements Actualizable{
 		//TODO: pasar validacion al edificio pasando por parametro una barraca
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
-		Fabrica nuevaFabrica = new Fabrica(unaBarraca,unTerreno);
+		Fabrica nuevaFabrica = new Fabrica(this, unaBarraca,unTerreno);
 		if(!unTerreno.ubicar(nuevaFabrica)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevaFabrica);
 		return nuevaFabrica;
@@ -83,7 +83,7 @@ public class Terran implements Actualizable{
 		//TODO: pasar validacion al edificio pasando por parametro una fabrica
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
-		PuertoEstelar nuevoPuerto = new PuertoEstelar(unaFabrica,unTerreno);
+		PuertoEstelar nuevoPuerto = new PuertoEstelar(this,unaFabrica,unTerreno);
 		if(!unTerreno.ubicar(nuevoPuerto)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevoPuerto);
 		return nuevoPuerto;
@@ -92,7 +92,7 @@ public class Terran implements Actualizable{
 	
 	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
 		
-		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this,unTerreno);
 		if(!unTerreno.ubicar(nuevoCentroMineral)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevoCentroMineral);
 		return nuevoCentroMineral;
@@ -101,7 +101,7 @@ public class Terran implements Actualizable{
 	
 	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(unTerreno);
+		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this, unTerreno);
 		if(!unTerreno.ubicar(nuevaRefineria)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevaRefineria);
 		return nuevaRefineria;
@@ -110,7 +110,7 @@ public class Terran implements Actualizable{
 	
 	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
 		
-		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(unTerreno);
+		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this, unTerreno);
 		if(!unTerreno.ubicar(nuevoDeposito)) throw new UbicacionNoValidaException();
 		this.agregarEdificio(nuevoDeposito);
 		return nuevoDeposito;

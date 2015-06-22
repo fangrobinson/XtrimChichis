@@ -7,7 +7,7 @@ import xtremecraft.sistema.Actualizable;
 
 public abstract class Recolector extends Edificio implements Actualizable{
 	
-	protected int reservas;
+	protected int reservas; // TODO: esto deberia ser de la raza
 	protected int aumentoDeReservaEnTurno;
 	public static int vida = 100;
 	protected Recurso recurso;
@@ -31,18 +31,6 @@ public abstract class Recolector extends Edificio implements Actualizable{
 			this.reservas += this.recurso.explotar(this.aumentoDeReservaEnTurno);
 		}
 		super.pasarTiempo();
-		/*
-		if (this.estaEnConstruccion()){
-			double porcentaje = 100 / this.tiempoConstruccion;
-			super.vida.curarPorTurno(porcentaje);
-			if (super.vida.devolverValor() == this.vidaMax()){
-				super.estaEnConstruccion = false;
-			}
-		}
-		else{
-			super.vida.curarPorTurno(1);
-			this.reservas += this.recurso.explotar(this.aumentoDeReservaEnTurno);
-		}*/
 	}
 	
 
