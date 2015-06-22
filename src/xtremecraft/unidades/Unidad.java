@@ -45,7 +45,8 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	Ubicable atacadoUbicado = (Ubicable) atacado;
     	if (this.puedoAtacar(atacadoUbicado)){
 			atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
-		}
+		} 
+    	//else throw new AtaqueFueraDelRangoDeVisionException(); ???
 		
     }
     
@@ -54,7 +55,6 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	if (!this.puedeAtacar){
     		return false;
     	}
-    	
 		return this.puedoVer(atacado.getUbicacionActual());
 		
 	}
@@ -123,7 +123,6 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		
 	}
     
-	
 	public boolean subirANaveDeTransporte(NaveTransporte unaNave) {
 		
 		if(this.puedoVer(unaNave.getUbicacionActual())){
@@ -161,6 +160,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return this.puedeAtacar || this.puedeMoverse;
     
     }
+    
     //faltan pruebas de supuesto
     public void pasarTiempo(){
     	
@@ -191,10 +191,10 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     
     }
 	
-    /*public boolean recibirDanioMisilEMP(){
+    public boolean recibirDanioMisilEMP(){
     	
     	return false;
     	
-    }*/
+    }
     
 }

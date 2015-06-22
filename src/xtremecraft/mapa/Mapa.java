@@ -126,6 +126,7 @@ public class Mapa {
 				listaDeCeldasEnRadio.add(this.getCeldaEnFilaColumna(unaCoordenada.fila(),unaCoordenada.columna()));
 			}
 		}	
+		//listaDeCeldasEnRadio.add(this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()));
 		return listaDeCeldasEnRadio;
 		
 	}

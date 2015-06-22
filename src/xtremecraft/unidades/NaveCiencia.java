@@ -1,6 +1,10 @@
 package xtremecraft.unidades;
 
 import xtremecraft.raza.Terran;
+import java.util.ArrayList;
+
+import xtremecraft.mapa.Celda;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.unidades.UnidadAerea;
 
 public class NaveCiencia extends UnidadAerea{
@@ -12,6 +16,8 @@ public class NaveCiencia extends UnidadAerea{
 	private int gas = 225; 
 	//private int radioMisilEMP = 3;
 	//private int costoMisilEMP = 100;
+	private int radioMisilEMP = 3;
+	private int costoMisilEMP = 100;
 	//private int costoRadiacion = 100;
 	
 	public NaveCiencia(Terran raza){
@@ -60,38 +66,40 @@ public class NaveCiencia extends UnidadAerea{
 		
 	}
 	
-	//TODO: repensar este metodo el casteo esta MAL un Ubicable
-	//no necesariamente es un Atacable
-	/*public void atacarConMisilEMP(Mapa mapa,NaveCiencia nave){
-		
-		this.energia -= this.costoMisilEMP;
-		nave.recibirDanioMisilEMP();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(nave,this.radioMisilEMP);
-		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
-			Celda celdaActual = celdasAfectadas.get(posicion);
-			if(celdaActual.getCapaSuperior().estaOcupado()){
-				Ubicable unUbicable = celdaActual.getUbicableEnSuperior();
-				Atacable unAtacable = (Atacable)unUbicable;
-				unAtacable.recibirDanioMisilEMP();
-			}
-			
-		}
-			
-	}
-	
-	public void atacarConRadiacion(Mapa mapa,Unidad unidad){
-		
-		this.energia -= this.costoRadiacion;
-		unidad.recibirDanio(mapa,unidad.danio.devolverDanio(this.estaElevado));
-		mapa.liberarEspacioCorrespondienteA(unidad);
-		//TODO: atacar a las celdas a distancia 1 de la unidad.
-	}
-	
 	public boolean recibirDanioMisilEMP() {
 		
 		this.energia = 0;
 		return true;
 		
+	}
+	
+	public void atacarConMisilEMP(Mapa mapa,NaveCiencia naveAtacada){
+		
+		if(!this.puedoAtacar(naveAtacada)) throw new AtaqueFueraDelRangoDeVisionException();
+		this.energia -= this.costoMisilEMP;
+		naveAtacada.recibirDanioMisilEMP();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
+		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
+			Celda celdaActual = celdasAfectadas.get(posicion);
+			if( this.estaElevado() && celdaActual.getCapaSuperior().estaOcupado()){
+				Ubicable unUbicable = celdaActual.getUbicableEnSuperior();
+				Atacable unAtacable = (Atacable)unUbicable;
+				unAtacable.recibirDanioMisilEMP();
+			}if( (!this.estaElevado()) && celdaActual.getCapaInferior().estaOcupado()){
+				Ubicable unUbicable = celdaActual.getUbicableEnInferior();
+				Atacable unAtacable = (Atacable)unUbicable;
+				unAtacable.recibirDanioMisilEMP();
+			}
+		}
+			
+	}
+	
+	/*public void atacarConRadiacion(Mapa mapa,Unidad unidad){
+		
+		this.energia -= this.costoRadiacion;
+		unidad.recibirDanio(mapa,unidad.danio.devolverDanio(this.estaElevado));
+		mapa.liberarEspacioCorrespondienteA(unidad);
+		//TODO: atacar a las celdas a distancia 1 de la unidad.
 	}
 	*/
 
@@ -99,5 +107,6 @@ public class NaveCiencia extends UnidadAerea{
 		raza.quitarMinerales(this.minerales);
 		raza.quitarGas(this.gas);
 	}
+
 	
 }

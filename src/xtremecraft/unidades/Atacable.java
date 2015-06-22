@@ -10,4 +10,6 @@ public interface Atacable {
 	
 	public boolean estaVivo();
 
+	public boolean recibirDanioMisilEMP();
+
 }
