@@ -281,11 +281,11 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		goliatAtacado.actualizarUbicacion(tierra);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		
 		assertTrue(energiaInicialNaveAtacante > naveCienciaAtacante.getEnergia());
@@ -300,10 +300,10 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(20,20).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		goliatAtacado.actualizarUbicacion(tierra);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 				
 	}
@@ -314,10 +314,10 @@ public class NaveCienciaTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCiencia = new NaveCiencia();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		naveCiencia.recibirAtaqueRadiacion(radiacion);
 		
@@ -333,12 +333,12 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		for(int tiempo=0;tiempo<tiempoMuerteUnidad;tiempo++) goliatAtacado.pasarTiempo();
 		
@@ -356,7 +356,6 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
 		Goliat goliatIrradiado = new Goliat();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int vidaInicialIrradiado = goliatIrradiado.getVida();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
@@ -364,6 +363,7 @@ public class NaveCienciaTest {
 		goliatIrradiado.actualizarUbicacion(otraTierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		goliatAtacado.pasarTiempo();
 		
@@ -377,11 +377,11 @@ public class NaveCienciaTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCiencia = new NaveCiencia();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		int vidaInicial = naveCiencia.getVida();
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		naveCiencia.recibirAtaqueRadiacion(radiacion);
 		
