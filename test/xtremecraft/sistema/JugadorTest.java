@@ -58,7 +58,7 @@ public class JugadorTest {
 		assertFalse(bool);
 	}
 	
-	/*@Test
+	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad (){
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
@@ -68,8 +68,9 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Juan",tierra);		
 		jugador.nacion.juntarMinerales(2000);
 		Barraca barraca = jugador.crearBarraca(tierra2);
+		for(int i=0; i<barraca.tiempoConstruccion(); i++) barraca.pasarTiempo();
 		
-        Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
+        	Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
 		
 		unMapa.ubicar(barraca, celda);
 		
@@ -78,7 +79,7 @@ public class JugadorTest {
 		bool = jugador.esDeMiPropiedad(marine);
 		
 		assertTrue(bool);
-	}*/
+	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceElEdificio (){
