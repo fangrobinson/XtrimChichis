@@ -19,6 +19,8 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 	boolean estaUbicada;
 	int suministro;
 	protected Terreno terrenoActual;
+	private Radiacion radiacion;
+	private boolean esRadioactivo;
 	
 	protected Unidad(){
 		
@@ -26,6 +28,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		this.puedeMoverse = true;
 		this.estaViva = true;
 		this.estaUbicada = false;
+		this.esRadioactivo = false;
 		this.tiempoConstruccionActual = 1;
 		
 	}
@@ -103,7 +106,6 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	
     }
     
-
     public void actualizarUbicacion(NaveTransporte naveTransporte) {
     	 
     	this.terrenoActual.desocupar();
@@ -164,16 +166,24 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     public void pasarTiempo(){
     	
     	if(this.estaVivo()){
-    		if(!this.estaEnConstruccion()){
+    		if(this.estaEnConstruccion()){
+    			this.tiempoConstruccionActual += 1;
+    		}
+    		else{
+    			if(this.esRadioactivo){
+    	    		this.radiacion.emitirRadiacion(this);
+    	    	}
     			if (this.puedeAtacar){
     				this.vitalidad.curarPorTurno(1);
+    				this.puedeAtacar = true;
+        			this.puedeMoverse = true;
     			}
     			if(this.puedeMoverse && this.puedeAtacar){
     				this.vitalidad.curarPorTurno(1);
+    				this.puedeAtacar = true;
+        			this.puedeMoverse = true;
     			}
-    			this.puedeAtacar = true;
-    			this.puedeMoverse = true;
-    		}else this.tiempoConstruccionActual += 1;
+    		}
     	}
     	
     }
@@ -195,5 +205,29 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return false;
     	
     }
+    //las unidades que estan alrededor del irradiado reciben radiacion.
+    public boolean recibirDanio(Radiacion radiacion){
+    	
+        vitalidad.recibirAtaque(radiacion.getDanio());
+        if(this.vitalidad.getValor()==0) this.estaViva=false;
+        return true;
+        
+    }
+    
+    public boolean recibirAtaqueRadiacion(Radiacion radiacion){
+    	
+        this.radiacion = radiacion;
+        this.puedeAtacar = false;
+        this.puedeMoverse = false;
+        this.esRadioactivo = true;
+        return this.recibirDanio(radiacion);
+    
+    }
+    
+    public boolean esRadioactivo() {
+		
+		return this.esRadioactivo;
+		
+	}
     
 }

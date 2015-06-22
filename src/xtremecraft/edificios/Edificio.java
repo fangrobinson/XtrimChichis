@@ -6,6 +6,7 @@ import xtremecraft.raza.Terran;
 import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
+import xtremecraft.unidades.Radiacion;
 import xtremecraft.unidades.Ubicable;
 
 
@@ -113,6 +114,12 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
     }
 
 	public boolean recibirDanioMisilEMP(){
+		
+		return false;
+		
+	}
+	
+	public boolean recibirDanio(Radiacion radiacion){
 		
 		return false;
 		

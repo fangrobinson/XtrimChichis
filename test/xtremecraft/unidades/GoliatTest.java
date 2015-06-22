@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -209,5 +210,54 @@ public class GoliatTest {
 				
 	}
 	
+	@Test
+	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Goliat goliatAtacado = new Goliat();
+		int vidaInicialGoliat = goliatAtacado.getVida();
+		
+		goliatAtacado.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		
+		assertEquals((vidaInicialGoliat-Radiacion.danioIrradiado), goliatAtacado.getVida());
+		
+	}
+	
+	@Test
+	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Goliat goliatAtacado = new Goliat();
+		
+		goliatAtacado.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		
+		assertTrue(goliatAtacado.esRadioactivo());
+		
+	}
+
+	/*
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
+	
+	}
+	*/
 }
 
