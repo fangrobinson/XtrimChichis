@@ -231,7 +231,6 @@ public class NaveCienciaTest {
 				
 	}
 	
-
 	@Test
 	public void atacarConMisilEMPSiUnaNaveIntentaLanzarUnMisilFueraDeSuRangoDeVisionSeLanzaUnaExcepcion(){
 		
@@ -251,6 +250,134 @@ public class NaveCienciaTest {
 		
 		assertEquals(naveCienciaEnRadioDeImpacto.getEnergia(),energiaInicialNaveEnRadioDeImpacto);
 				
+	}
+	
+	@Test
+	public void atacarConMisilEMPLeSacaEnergiaALaNaveAtacante(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire1);
+		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+		
+		assertTrue(energiaInicialNaveAtacante > naveCienciaAtacante.getEnergia());
+				
+	}
+	
+	@Test
+	public void atacarConRadiacionLeSacaEnergiaALaNaveAtacante(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		Goliat goliatAtacado = new Goliat();
+		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		goliatAtacado.actualizarUbicacion(tierra);
+		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		
+		assertTrue(energiaInicialNaveAtacante > naveCienciaAtacante.getEnergia());
+				
+	}
+	
+	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
+	public void siSeIntentaAtacarConRadiacionAUnaUnidadFueraDelRangoDeVisionSeLanzaExcepcion(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(20,20).getCapaInferior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		Goliat goliatAtacado = new Goliat();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		goliatAtacado.actualizarUbicacion(tierra);
+		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+				
+	}
+	
+	@Test
+	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveCiencia naveCiencia = new NaveCiencia();
+		
+		naveCiencia.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		naveCiencia.recibirAtaqueRadiacion(radiacion);
+		
+		assertTrue(naveCiencia.esRadioactivo());
+		
+	}
+
+	@Test
+	public void atacarConRadiacionHaceQueLaUnidadAtacadaMueraDespuesDePasarUnTiempo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		Goliat goliatAtacado = new Goliat();
+		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
+		
+		goliatAtacado.actualizarUbicacion(tierra);
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		for(int tiempo=0;tiempo<tiempoMuerteUnidad;tiempo++) goliatAtacado.pasarTiempo();
+		
+		assertEquals(goliatAtacado.getVida(),0);
+				
+	}
+	
+	@Test
+	public void atacarConRadiacionHaceQueLasUnidadesADistanciaMenorOIgualAUnoDeLaAfectadaRecibanDanio(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
+		Terreno otraTierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		Goliat goliatAtacado = new Goliat();
+		Goliat goliatIrradiado = new Goliat();
+		int vidaInicialIrradiado = goliatIrradiado.getVida();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		goliatAtacado.actualizarUbicacion(tierra);
+		goliatIrradiado.actualizarUbicacion(otraTierra);
+		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
+		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		goliatAtacado.pasarTiempo();
+		
+		assertTrue(vidaInicialIrradiado > goliatIrradiado.getVida());
+				
+	}
+	
+	@Test
+	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveCiencia naveCiencia = new NaveCiencia();
+		int vidaInicial = naveCiencia.getVida();
+		
+		naveCiencia.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		naveCiencia.recibirAtaqueRadiacion(radiacion);
+		
+		assertEquals((vidaInicial-Radiacion.danioIrradiado), naveCiencia.getVida());
+		
 	}
 	
 }

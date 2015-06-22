@@ -224,5 +224,55 @@ public class NaveTransporteTest {
 		taxiVolador.actualizarUbicacion(aireDestino);
 		
 	}
+	
+	@Test
+	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveTransporte taxiVolador = new NaveTransporte();
+		int vidaInicial = taxiVolador.getVida();
+		
+		taxiVolador.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		taxiVolador.recibirAtaqueRadiacion(radiacion);
+		
+		assertEquals((vidaInicial-Radiacion.danioIrradiado), taxiVolador.getVida());
+		
+	}
+	
+	@Test
+	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		NaveTransporte taxiVolador = new NaveTransporte();
+		
+		taxiVolador.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		taxiVolador.recibirAtaqueRadiacion(radiacion);
+		
+		assertTrue(taxiVolador.esRadioactivo());
+		
+	}
+
+	/*
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
+	
+	}
+	*/
 
 }

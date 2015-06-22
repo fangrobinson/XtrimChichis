@@ -18,7 +18,7 @@ public class NaveCiencia extends UnidadAerea{
 	//private int costoMisilEMP = 100;
 	private int radioMisilEMP = 3;
 	private int costoMisilEMP = 100;
-	//private int costoRadiacion = 100;
+	private int costoRadiacion = 100;
 	
 	public NaveCiencia(Terran raza){
 		
@@ -65,6 +65,13 @@ public class NaveCiencia extends UnidadAerea{
 		}
 		
 	}
+
+	private void descontarDeEnergia(int costoEnergia) {
+		
+		if(costoEnergia<this.energia) this.energia = this.energia - costoEnergia;
+		else this.energia = 0;
+		
+	}
 	
 	public boolean recibirDanioMisilEMP() {
 		
@@ -76,7 +83,7 @@ public class NaveCiencia extends UnidadAerea{
 	public void atacarConMisilEMP(Mapa mapa,NaveCiencia naveAtacada){
 		
 		if(!this.puedoAtacar(naveAtacada)) throw new AtaqueFueraDelRangoDeVisionException();
-		this.energia -= this.costoMisilEMP;
+		this.descontarDeEnergia(this.costoMisilEMP);
 		naveAtacada.recibirDanioMisilEMP();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
 		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
@@ -85,7 +92,7 @@ public class NaveCiencia extends UnidadAerea{
 				Ubicable unUbicable = celdaActual.getUbicableEnSuperior();
 				Atacable unAtacable = (Atacable)unUbicable;
 				unAtacable.recibirDanioMisilEMP();
-			}if( (!this.estaElevado()) && celdaActual.getCapaInferior().estaOcupado()){
+			}else if( (!this.estaElevado()) && celdaActual.getCapaInferior().estaOcupado()){
 				Ubicable unUbicable = celdaActual.getUbicableEnInferior();
 				Atacable unAtacable = (Atacable)unUbicable;
 				unAtacable.recibirDanioMisilEMP();
@@ -93,20 +100,20 @@ public class NaveCiencia extends UnidadAerea{
 		}
 			
 	}
-	
-	/*public void atacarConRadiacion(Mapa mapa,Unidad unidad){
-		
-		this.energia -= this.costoRadiacion;
-		unidad.recibirDanio(mapa,unidad.danio.devolverDanio(this.estaElevado));
-		mapa.liberarEspacioCorrespondienteA(unidad);
-		//TODO: atacar a las celdas a distancia 1 de la unidad.
-	}
-	*/
 
+	
+	public void atacarConRadiacion(Mapa mapa,Unidad unidad){
+		
+		if(!this.puedoAtacar(unidad)) throw new AtaqueFueraDelRangoDeVisionException();
+		this.descontarDeEnergia(this.costoRadiacion);
+		Radiacion ataqueRadioactivo = new Radiacion(mapa);
+		unidad.recibirAtaqueRadiacion(ataqueRadioactivo);
+		
+	}
+	
 	public void cobrar(Terran raza){
 		raza.quitarMinerales(this.minerales);
 		raza.quitarGas(this.gas);
 	}
 
-	
 }

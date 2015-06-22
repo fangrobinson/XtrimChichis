@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
@@ -192,5 +193,56 @@ public class EspectroTest {
 		assertTrue(gengar.subirANaveDeTransporte(nave));
 				
 	}
+	
+	@Test
+	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Espectro gengar = new Espectro();
+		int vidaInicial = gengar.getVida();
+		
+		gengar.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		gengar.recibirAtaqueRadiacion(radiacion);
+		
+		assertEquals((vidaInicial-Radiacion.danioIrradiado), gengar.getVida());
+		
+	}
+	
+
+	@Test
+	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Espectro gengar = new Espectro();
+		
+		gengar.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		gengar.recibirAtaqueRadiacion(radiacion);
+		
+		assertTrue(gengar.esRadioactivo());
+		
+	}
+
+	/*
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
+	
+	}
+	*/
 
 }

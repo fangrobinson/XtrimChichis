@@ -130,6 +130,7 @@ public class MapaTest {
 		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,1);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+1));

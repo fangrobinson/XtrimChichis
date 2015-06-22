@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -191,5 +192,55 @@ public class MarineTest {
 		assertTrue(miniSamus.subirANaveDeTransporte(nave));
 				
 	}
+	
+	@Test
+	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Marine miniSamus = new Marine();
+		int vidaInicial = miniSamus.getVida();
+		
+		miniSamus.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		miniSamus.recibirAtaqueRadiacion(radiacion);
+		
+		assertEquals((vidaInicial-Radiacion.danioIrradiado), miniSamus.getVida());
+		
+	}
+	
+	@Test
+	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioActivo(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
+		Marine miniSamus = new Marine();
+		
+		miniSamus.actualizarUbicacion(tierra);
+		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
+		Radiacion radiacion = new Radiacion(mapa);
+		miniSamus.recibirAtaqueRadiacion(radiacion);
+		
+		assertTrue(miniSamus.esRadioactivo());
+		
+	}
+
+	/*
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
+	
+	}
+	
+	@Test
+	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
+	
+	}
+	*/
 	
 }
