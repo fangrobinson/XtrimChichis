@@ -129,7 +129,7 @@ public class JugadorTest {
 		
 		unMapa.ubicar(barraca, celda2);
 		
-		Marine marine2 = jugador.crearMarine(barraca2, unMapa);
+		Marine marine2 = jugador2.crearMarine(barraca2, unMapa);
 		for(int turno=0;turno<marine2.tiempoConstruccion();turno++) marine2.pasarTiempo();
 		
 		
