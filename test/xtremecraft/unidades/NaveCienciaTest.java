@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -278,11 +281,12 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		goliatAtacado.actualizarUbicacion(tierra);
-		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		
 		assertTrue(energiaInicialNaveAtacante > naveCienciaAtacante.getEnergia());
 				
@@ -296,10 +300,11 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(20,20).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		goliatAtacado.actualizarUbicacion(tierra);
-		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 				
 	}
 	
@@ -309,10 +314,11 @@ public class NaveCienciaTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCiencia = new NaveCiencia();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		naveCiencia.recibirAtaqueRadiacion(radiacion);
 		
 		assertTrue(naveCiencia.esRadioactivo());
@@ -327,12 +333,13 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
 		naveCienciaAtacante.actualizarUbicacion(aire);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
-		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		for(int tiempo=0;tiempo<tiempoMuerteUnidad;tiempo++) goliatAtacado.pasarTiempo();
 		
 		assertEquals(goliatAtacado.getVida(),0);
@@ -349,6 +356,7 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacante = new NaveCiencia();
 		Goliat goliatAtacado = new Goliat();
 		Goliat goliatIrradiado = new Goliat();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		int vidaInicialIrradiado = goliatIrradiado.getVida();
 		
 		naveCienciaAtacante.actualizarUbicacion(aire);
@@ -356,7 +364,7 @@ public class NaveCienciaTest {
 		goliatIrradiado.actualizarUbicacion(otraTierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
-		naveCienciaAtacante.atacarConRadiacion(mapa,goliatAtacado);
+		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		goliatAtacado.pasarTiempo();
 		
 		assertTrue(vidaInicialIrradiado > goliatIrradiado.getVida());
@@ -369,11 +377,12 @@ public class NaveCienciaTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCiencia = new NaveCiencia();
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		int vidaInicial = naveCiencia.getVida();
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		naveCiencia.recibirAtaqueRadiacion(radiacion);
 		
 		assertEquals((vidaInicial-Radiacion.danioIrradiado), naveCiencia.getVida());

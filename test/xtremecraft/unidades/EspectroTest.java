@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -197,7 +200,8 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(gengar, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		gengar.recibirAtaqueRadiacion(radiacion);
 		
 		assertEquals((vidaInicial-Radiacion.danioIrradiado), gengar.getVida());
@@ -214,7 +218,8 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(gengar, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		gengar.recibirAtaqueRadiacion(radiacion);
 		
 		assertTrue(gengar.esRadioactivo());

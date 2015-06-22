@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -235,7 +238,8 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(taxiVolador, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		taxiVolador.recibirAtaqueRadiacion(radiacion);
 		
 		assertEquals((vidaInicial-Radiacion.danioIrradiado), taxiVolador.getVida());
@@ -251,7 +255,8 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(taxiVolador, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		taxiVolador.recibirAtaqueRadiacion(radiacion);
 		
 		assertTrue(taxiVolador.esRadioactivo());

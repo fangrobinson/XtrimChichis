@@ -3,8 +3,11 @@ package xtremecraft.unidades;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 
@@ -16,7 +19,8 @@ public class RadiacionTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Goliat goliatAtacado = new Goliat();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
@@ -36,7 +40,8 @@ public class RadiacionTest {
 		Terreno otraTierra = mapa.getCeldaEnFilaColumna(6,5).getCapaInferior();
 		Goliat goliatAtacado = new Goliat();
 		Goliat goliatIrradiado = new Goliat();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		int vidaInicialGoliatIrradiado = goliatIrradiado.getVida();
 		
 		goliatAtacado.actualizarUbicacion(tierra);

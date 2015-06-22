@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -203,7 +206,8 @@ public class MarineTest {
 		
 		miniSamus.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(miniSamus, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		miniSamus.recibirAtaqueRadiacion(radiacion);
 		
 		assertEquals((vidaInicial-Radiacion.danioIrradiado), miniSamus.getVida());
@@ -219,7 +223,8 @@ public class MarineTest {
 		
 		miniSamus.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
-		Radiacion radiacion = new Radiacion(mapa);
+		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(miniSamus, Radiacion.radioDeAlcance);
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
 		miniSamus.recibirAtaqueRadiacion(radiacion);
 		
 		assertTrue(miniSamus.esRadioactivo());

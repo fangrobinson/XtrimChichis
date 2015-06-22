@@ -96,11 +96,11 @@ public class NaveCiencia extends UnidadAerea{
 	}
 
 	
-	public void atacarConRadiacion(Mapa mapa,Unidad unidad){
+	public void atacarConRadiacion(ArrayList<Celda>celdasAfectadas,Unidad unidad){
 		
 		if(!this.puedoAtacar(unidad)) throw new AtaqueFueraDelRangoDeVisionException();
 		this.descontarDeEnergia(this.costoRadiacion);
-		Radiacion ataqueRadioactivo = new Radiacion(mapa);
+		Radiacion ataqueRadioactivo = new Radiacion(celdasAfectadas);
 		unidad.recibirAtaqueRadiacion(ataqueRadioactivo);
 		
 	}
