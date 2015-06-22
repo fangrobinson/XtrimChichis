@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 
@@ -154,6 +155,101 @@ public class NaveCienciaTest {
 		nave.actualizarUbicacion(otraTierra);
 		
 		assertTrue(naveCiencia.subirANaveDeTransporte(nave));
+				
+	}
+	
+	@Test
+	public void atacarConMisilEMPLeQuitaLaEnergiaAOtraUnidadMagica(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno otroAire = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		naveCienciaAtacada.actualizarUbicacion(otroAire);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+		
+		assertEquals(naveCienciaAtacada.getEnergia(),0);
+				
+	}
+	
+	@Test
+	public void atacarConMisilEMPSiHayUnaUnidadNoMagicaEnElRadioDeImpactoNoRecibeDanio(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno otroAire = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		Goliat goliatEnRadioDeImpacto = new Goliat();
+		int vidaInicialGoliat = goliatEnRadioDeImpacto.getVida();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire);
+		naveCienciaAtacada.actualizarUbicacion(otroAire);
+		goliatEnRadioDeImpacto.actualizarUbicacion(tierra);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+		
+		assertEquals(goliatEnRadioDeImpacto.getVida(),vidaInicialGoliat);
+				
+	}
+	
+	@Test
+	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioDeImpactoPierdeSuEnergia(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		Terreno aire3 = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire1);
+		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaEnRadioDeImpacto.actualizarUbicacion(aire3);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+		
+		assertEquals(naveCienciaEnRadioDeImpacto.getEnergia(),0);
+				
+	}
+	
+	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
+	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioPeroNoEnElMismoTerrenoQueElAtacadoNoPierdeEnergia(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(40,40).getCapaSuperior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire1);
+		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+				
+	}
+	
+
+	@Test
+	public void atacarConMisilEMPSiUnaNaveIntentaLanzarUnMisilFueraDeSuRangoDeVisionSeLanzaUnaExcepcion(){
+		
+		Mapa mapa = new Mapa(2);
+		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(7,7).getCapaInferior();
+		NaveCiencia naveCienciaAtacante = new NaveCiencia();
+		NaveCiencia naveCienciaAtacada = new NaveCiencia();
+		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia();
+		int energiaInicialNaveEnRadioDeImpacto = naveCienciaEnRadioDeImpacto.getEnergia();
+		
+		naveCienciaAtacante.actualizarUbicacion(aire1);
+		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaEnRadioDeImpacto.actualizarUbicacion(tierra);
+		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
+		
+		assertEquals(naveCienciaEnRadioDeImpacto.getEnergia(),energiaInicialNaveEnRadioDeImpacto);
 				
 	}
 	

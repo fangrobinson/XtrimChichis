@@ -138,5 +138,5 @@ public class MapaTest {
 		assertTrue(celdasEnRadio.containsAll(celdasObtenidasDesdeElMapa));
 		
 	}
-	
+		
 }
