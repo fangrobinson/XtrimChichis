@@ -19,7 +19,7 @@ public class Partida {
 		this.mapa = new Mapa(cant_jug);
 		this.jugadores = new ArrayList<Jugador>();
 		
-		//TODO:que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
+		//que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
 		// Perdon??? Raro D: 
 		//TODO: Verdadero: resolver obtenerTerrenoJugador.
 		

@@ -1,7 +1,18 @@
 package xtremecraft.sistema;
 
+import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
+import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
+import xtremecraft.unidades.Espectro;
+import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Marine;
+import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.Ubicable;
 
 public class Jugador {
@@ -24,24 +35,43 @@ public class Jugador {
 		return this.nacion.esDeMiPropiedad(ubicable);
 	}
 	
-	//TODO: implementar los metodos de creacion de unidades y edificios.
-	/*
-	public crearBarraca();
+
+	public Barraca crearBarraca(Terreno unTerreno){
+		return this.nacion.crearBarraca(unTerreno);
+	}
 	
-	public crearFabrica();
+	public Fabrica crearFabrica(Terreno unTerreno){
+		return this.nacion.crearFabrica(unTerreno);
+	}
 	
-	public crearPuertoEstelar();
+	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
+		return this.nacion.crearPuertoEstelar(unTerreno);
+	}
 	
-	public crearRecolectorDeGasVespeno();
+	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
+		return this.nacion.crearRecolectorDeGasVespeno(unTerreno);
+	}
 	
-	public crearRecolectorDeMineral();
+	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
+		return this.nacion.crearRecolectorDeMineral(unTerreno);
+	}
 	
-	public crearMarine();
+	public Marine crearMarine(Barraca unaBarraca, Mapa unMapa){
+		return (Marine) this.nacion.crearMarine(unaBarraca, unMapa);
+	}
 	
-	public crearGoliat();
+	public Goliat crearGoliat(Fabrica unaFabrica, Mapa unMapa){
+		return (Goliat) this.nacion.crearGoliat(unaFabrica, unMapa);
+	}
 	
-	public crearEspectro();
+	public Espectro crearEspectro(PuertoEstelar unPuerto, Mapa unMapa){
+		return (Espectro) this.nacion.crearEspectro(unPuerto, unMapa);
+	}
 	
-	public crearNaveCiencia();
-	*/
+	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa){
+		return (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
+	}
+	
+	
+
 }
