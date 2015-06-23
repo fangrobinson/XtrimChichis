@@ -32,6 +32,8 @@ public class IntegracionTest {
 		
 		Terreno esteTerreno = terrenosConRecurso.get(0);
 		
+		jugadorTurno.nacion().juntarMinerales(200);
+		
 		try{
 			
 			xtremGame.crearRecolectorDeMineral(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
@@ -39,8 +41,7 @@ public class IntegracionTest {
 		}
 		catch(RuntimeException NoHayRecursoException){
 			
-			//ESTE RECOLECTOR SALE MUY CARO NUNCA ME ALCANZA!!!
-			//xtremGame.crearRecolectorDeGasVespeno(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
+			xtremGame.crearRecolectorDeGasVespeno(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
 			
 		}
 		
