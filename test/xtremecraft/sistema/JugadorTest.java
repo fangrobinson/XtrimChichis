@@ -99,6 +99,7 @@ public class JugadorTest {
 	
 	@Test (expected = ElAtacanteNoEsDelJugadorException.class)
 	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia (){
+		
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
 		Tierra tierra3 = new Tierra(1,3);
@@ -137,7 +138,46 @@ public class JugadorTest {
 		
 	}
 	
+	@Test
+	public void setTurnoHaceQueElJugadorTengaElTurno(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Jugador jugador1 = new Jugador("Juan",tierra1);
+		
+		jugador1.setTurno();
+		
+		assertTrue(jugador1.tieneTurno());
+		
+	}
 	
+	@Test
+	public void pasarTurnoHaceQueElJugadorDejeElTurnoActual(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador1 = new Jugador("Juan",tierra1);
+		Jugador jugador2 = new Jugador("Juan",tierra2);	
+		
+		jugador1.setJugadorSiguiente(jugador2);
+		jugador1.pasarTurno();
+		
+		assertFalse(jugador1.tieneTurno());
+		
+	}
 
+	@Test
+	public void pasarTurnoHaceQueElJugadorSiguienteTengaElTurno(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador1 = new Jugador("Juan",tierra1);
+		Jugador jugador2 = new Jugador("Juan",tierra2);	
+		
+		jugador1.setJugadorSiguiente(jugador2);
+		jugador1.pasarTurno();
+		
+		assertTrue(jugador2.tieneTurno());
+		
+	}
 	
 }
