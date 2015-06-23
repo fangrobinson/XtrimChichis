@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import xtremecraft.mapa.Celda;
 import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.recursos.Recurso;
 import xtremecraft.recursos.VolcanGasVespeno;
 import xtremecraft.unidades.Ubicable;
 
@@ -256,5 +257,32 @@ public class Mapa {
 		}
 		return terrenos;
 	}
+	
+	public Terreno obtenerTerrenoConMinaDeMinerales(){
+		
+		ArrayList<Terreno> listaTerrenos = this.obtenerTerrenosConRecursos();
+		for (int i = 0; i < listaTerrenos.size(); i++){
+			Recurso recursoActual = listaTerrenos.get(i).getRecurso(); 
+			if (recursoActual.getClass() == MinaDeMinerales.class){
+				return listaTerrenos.get(i);
+			}
+		}
+		return null;
+		
+	}
+	
+	public Terreno obtenerTerrenoConVolcanGasVespeno(){
+		
+		ArrayList<Terreno> listaTerrenos = this.obtenerTerrenosConRecursos();
+		for (int i = 0; i < listaTerrenos.size(); i++){
+			Recurso recursoActual = listaTerrenos.get(i).getRecurso(); 
+			if (recursoActual.getClass() == VolcanGasVespeno.class){
+				return listaTerrenos.get(i);
+			}
+		}
+		return null;
+		
+	}
+	
 
 }
