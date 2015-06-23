@@ -1,6 +1,7 @@
 package xtremecraft.recursos;
 
 import xtremecraft.edificios.Recolector;
+import xtremecraft.mapa.Coordenada;
 
 public class MinaDeMinerales extends Recurso{
 	
@@ -10,8 +11,7 @@ public class MinaDeMinerales extends Recurso{
 		if(numeroDeCristales<=0){
 			throw new NumeroDeCristalesNegativoException();
 		}
-		this.cantidadDeRecurso=numeroDeCristales;
-		
+		this.cantidadDeRecurso=numeroDeCristales;		
 		
 	}
 	
@@ -31,6 +31,12 @@ public class MinaDeMinerales extends Recurso{
 	public boolean puedeSerExtraidoPor(Recolector nuevoRecolector) {
 		
 		return nuevoRecolector.puedeExtraerMineral();
+		
+	}
+
+	public Coordenada getUbicacionActual() {
+
+		return null;
 		
 	}
 

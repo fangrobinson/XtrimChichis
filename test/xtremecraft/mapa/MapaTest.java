@@ -138,7 +138,7 @@ public class MapaTest {
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
 		Barraca unaBarraca = nacion.crearBarraca(unTerreno);
-		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,1);
+		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna));
@@ -146,8 +146,39 @@ public class MapaTest {
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+2,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-2,columna));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna+2));
+		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila,columna-2));
 		
 		assertTrue(celdasEnRadio.containsAll(celdasObtenidasDesdeElMapa));
+		
+	}
+	
+	@Test
+	public void obtenerTerrenoDevuelveUnTerrenoDistintoParaCadaJugador(){
+		
+		Mapa mapa = new Mapa(4);
+				
+		Tierra unTerreno = mapa.obtenerTerrenoJugador(0);
+		Tierra otroTerreno = mapa.obtenerTerrenoJugador(2);
+		
+		assertTrue(unTerreno!=otroTerreno);
+		
+	}
+	
+	@Test
+	public void elMapaSeInicializaConRecursos(){
+		
+		Mapa mapa = new Mapa(2);
+		
+		ArrayList<Terreno> terrenosConRecursos = mapa.obtenerTerrenosConRecursos();
+		
+		assertTrue(terrenosConRecursos.size()!=0);		
 		
 	}
 		

@@ -1,7 +1,6 @@
 package xtremecraft.mapa;
 
 import xtremecraft.recursos.Recurso;
-//import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.Ubicable;
 
 
@@ -13,7 +12,6 @@ public class Aire extends Terreno {
 		
 	}
     
-	
 	public boolean ocuparConRecursoNatural(Recurso recursoNatural){
 		
 		return false;
@@ -38,8 +36,6 @@ public class Aire extends Terreno {
 		
 	}
 
-
-	
 	public boolean agregarRecursoNatural(Recurso unRecurso) {
 		
 		return false;
@@ -51,7 +47,6 @@ public class Aire extends Terreno {
 		throw new NoHayRecursoException();
 		
 	}
-
 
 }
 

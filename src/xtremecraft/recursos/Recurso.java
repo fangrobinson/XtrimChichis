@@ -1,11 +1,13 @@
 package xtremecraft.recursos;
 
 import xtremecraft.edificios.Recolector;
+import xtremecraft.mapa.Coordenada;
 
-public abstract class Recurso {
+public abstract class Recurso{
 	
 	protected boolean esExplotado;
 	protected int cantidadDeRecurso;
+	protected Coordenada ubicacionActual;
 	
 	public Recurso(){
 		

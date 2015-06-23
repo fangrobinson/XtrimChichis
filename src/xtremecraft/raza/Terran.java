@@ -26,19 +26,21 @@ public class Terran implements Actualizable{
     private int poblacionMaxima;
     private int minerales;
     private int gas;
+
 	
 	public Terran(Tierra terreno){
 		
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
-		this.minerales = 100; //Debe cobrarse el primer deposito de suministros.
-		this.gas = 0;
+		this.minerales = 150; 
+		this.gas = 150;
 
-		DepositoDeSuministros baseInicial = new DepositoDeSuministros(this, terreno);
+		DepositoDeSuministros baseInicial = crearDepositoDeSuministros(terreno);
 		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
 		
-		this.edificios.add(baseInicial);
+		//this.edificios.add(baseInicial);
+		
 	}
 
 	public boolean estaViva(){

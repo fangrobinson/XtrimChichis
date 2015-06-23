@@ -24,7 +24,7 @@ public class Jugador {
 	private Jugador siguienteJugador;
 	private boolean esMiTurno;
 	
-	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
+	public Jugador (String nombre,Tierra tierra) throws NombreMuyCortoException{
 		
 		if (nombre.length() < 4){
 			throw new NombreMuyCortoException();
@@ -37,11 +37,15 @@ public class Jugador {
 	}
 	
 	public String nombre(){
+		
 		return this.nombre;
+		
 	}
 	
 	public Terran nacion(){
+		
 		return this.nacion;
+		
 	}
 
 	public boolean estaEnJuego(){
@@ -56,6 +60,11 @@ public class Jugador {
 		
 	}
 	
+	public void setTierraInicial(Tierra tierraInicial){
+		
+		this.nacion = new Terran(tierraInicial);
+		
+	}
 
 	public void atacar(Defendible atacante, Atacable atacado){
 		

@@ -1,9 +1,13 @@
 package xtremecraft.mapa;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.Random;
 import java.util.TreeMap;
 
 import xtremecraft.mapa.Celda;
+import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.recursos.VolcanGasVespeno;
 import xtremecraft.unidades.Ubicable;
 
 
@@ -12,7 +16,8 @@ public class Mapa {
 	private TreeMap<Integer, TreeMap<Integer, Celda>> mapaAlto;
 	private int alto;
 	private int ancho;
-
+	private static int maximoRecursoPorUnidadTerreno = 1000;
+	public ArrayList<Tierra> terrenosBasesJugadores;
 	public Mapa(int cant_jugadores) {
 		
 		if (cant_jugadores <= 1){
@@ -20,12 +25,17 @@ public class Mapa {
 		}
 		this.alto = this.decidirAlto(cant_jugadores);
 		this.ancho = this.decidirAncho(cant_jugadores);
-		
+		this.terrenosBasesJugadores = new ArrayList<Tierra>();
 		rellenarMapa(alto, ancho, cant_jugadores);	
-		//ubicarBases(cant_jugadores);
+		//TODO: armar bien este algoritmo. Lo armo para que ubique las bases aleatoriamente,
+		//para los tests, pero hay que armarlo bien.
+		ubicarBases(cant_jugadores);
+		ubicarRecursosMinerales();
+		
 	}
 
 	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
+		
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
 		for(int fila =0; fila < this.alto ;fila = fila + 1) {
@@ -33,30 +43,40 @@ public class Mapa {
 			for(int columna = 0; columna < this.ancho; columna = columna + 1) {
 				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna, cant_jugadores));
 			}
-		}	
+		}
+				
 	}
 	
 	private int decidirAlto(int cant_jugadores) {
+		
 		return cant_jugadores * 50;
+		
 	}
 
 	private int decidirAncho(int cant_jugadores) {
+		
 		return cant_jugadores * 50;
+		
 	}
 	
-	
 	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores){
+		
 		return new Celda(new Tierra(fila, columna), new Aire(fila, columna));
+		
 	}
 	
 	//Ya no hay mas islas voladoras
 	
 	public boolean tieneAire() {
+		
 		return true;
+		
 	}
 
 	public boolean tieneTierra() {
+		
 		return true;
+		
 	}
 	
 	public Celda getCeldaEnFilaColumna(int fila, int columna){
@@ -140,10 +160,105 @@ public class Mapa {
 		else celda.liberarCapaInferior();
 		
 	}
+	
+	private int numeroAleatorioEntreMinimoYMaximo(int min,int max){
+		
+		Random aleatorio = new Random();
+		int cantidadAleatoria = aleatorio.nextInt(max-min) + min;
+		return cantidadAleatoria;
+		
+	}
+	
+	public Tierra obtenerTerrenoJugador(int numeroJugador) {
+		
+		return this.terrenosBasesJugadores.get(numeroJugador);
+		
+	}
+	
 
-	public Tierra obtenerTerrenoJugador(int i) {
+	private void ubicarRecursosMinerales() {
+		
+		for(int i=0;i<this.terrenosBasesJugadores.size();i++){
+			Tierra terrenoActual = this.terrenosBasesJugadores.get(i);
+			//obtengo un listado de coordenadas en un radio aleatorio de la base actual:
+			int radioAleatorioAlrededorDeLaBase = this.numeroAleatorioEntreMinimoYMaximo(2,3);
+			Coordenada coordenadaBase = terrenoActual.getCoordenada();
+			ArrayList<Coordenada> celdasAlrededorDeEstaBase = coordenadaBase.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
+			//saco las coordenadas que caen fuera del mapa:
+			for(int posicion=0;posicion<celdasAlrededorDeEstaBase.size();posicion++){
+				Coordenada unaCoordenada = celdasAlrededorDeEstaBase.get(posicion);
+				if(!this.coordenadaEstaDentroDelMapa(unaCoordenada)) celdasAlrededorDeEstaBase.remove(unaCoordenada);
+			}
+			//selecciono (aleatoriamente) los terrenos en los que quiero ubicar un recurso alrededor de la base:
+			for(int j=0;j<celdasAlrededorDeEstaBase.size();j++){
+				Coordenada coordenadaActual = celdasAlrededorDeEstaBase.get(j); 
+				Tierra posibleTerrenoParaRecurso = (Tierra)this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()).getCapaInferior();
+				
+				int aleatorioEleccion = new Random().nextInt(2);
+				boolean aleatorioEleccionEsMineral = (aleatorioEleccion == 0);
+				boolean aleatorioEleccionEsGasVespeno = (aleatorioEleccion == 1);
+				boolean terrenoDisponible = ((!posibleTerrenoParaRecurso.tieneRecursos()) && (!this.terrenosBasesJugadores.contains(posibleTerrenoParaRecurso)));
+				
+				if(terrenoDisponible && aleatorioEleccionEsMineral){
+					this.agregarNodoMineral(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
+				}
+				else if(terrenoDisponible && aleatorioEleccionEsGasVespeno){
+					this.agregarVolcanGasVespeno(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
+				}
+			}
+		}	
+		
+	}
+
+	private void agregarNodoMineral(int fila, int columna) {
+		
+		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
+		this.getCeldaEnFilaColumna(fila, columna).getCapaInferior().agregarRecursoNatural(new MinaDeMinerales(cantidadAleatoriaMineral));
+		
+	}
+	
+	private void agregarVolcanGasVespeno(int fila, int columna) {
+		
+		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
+		this.getCeldaEnFilaColumna(fila, columna).getCapaInferior().agregarRecursoNatural(new VolcanGasVespeno(cantidadAleatoriaMineral));
+		
+	}
+
+	//TODO:ARREGLAR!!!!!!!!!!!!!!
+	public void ubicarBases(int cantidadJugadores) {
+		
+		Tierra posibleTerreno;
+		int filaAleatoria;
+		int columnaAleatoria;
+		while(this.terrenosBasesJugadores.size()<cantidadJugadores){
+			columnaAleatoria = new Random().nextInt(this.ancho);
+			filaAleatoria = new Random().nextInt(this.alto);
+			posibleTerreno = (Tierra)this.getCeldaEnFilaColumna(filaAleatoria,columnaAleatoria).getCapaInferior();
+			if(!this.terrenosBasesJugadores.contains(posibleTerreno)){
+				this.terrenosBasesJugadores.add(posibleTerreno);
+			}
+				
+		}
+		
+	}
+	
+	public void pasarTiempo() {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+	
+	public ArrayList<Terreno> obtenerTerrenosConRecursos(){
+		
+		ArrayList<Terreno> terrenos = new ArrayList<Terreno>(); 
+		for(Entry<Integer, TreeMap<Integer, Celda>> filas : this.mapaAlto.entrySet()) { 
+			for(Entry<Integer, Celda> columnas : filas.getValue().entrySet()) {
+				Celda celda = columnas.getValue();
+				if(celda.getCapaInferior().tieneRecursos()){
+					terrenos.add(celda.getCapaInferior());
+				}
+			}
+		}
+		return terrenos;
 	}
 
 }

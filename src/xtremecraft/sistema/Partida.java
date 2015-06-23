@@ -11,7 +11,7 @@ import xtremecraft.unidades.Ubicable;
 
 public class Partida {
 	private int tiempo;
-	private int cant_jug;
+	private int cantidadJugadores;
 	private Mapa mapa;
 	private ArrayList<Jugador> jugadores;
 	
@@ -20,34 +20,34 @@ public class Partida {
 			throw new CantidadDeJugadoresMenorAUnoException();
 		}
 		this.tiempo = 0;
-		this.cant_jug = nombresJugadores.size();
-		this.mapa = new Mapa(cant_jug);
+		this.cantidadJugadores = nombresJugadores.size();
+		this.mapa = new Mapa(cantidadJugadores);
 		this.jugadores = new ArrayList<Jugador>();
 		
 		//que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
 		// Perdon??? Raro D: 
 		//TODO: Verdadero: resolver obtenerTerrenoJugador.
 		
-		for (int i = 0; i < nombresJugadores.size(); i++){
-			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(i), this.mapa.obtenerTerrenoJugador(i));
+		for (int numeroJugador = 0; numeroJugador < nombresJugadores.size(); numeroJugador++){
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(numeroJugador), this.mapa.obtenerTerrenoJugador(numeroJugador));
 			jugadores.add(jugadorNuevo);
 		}
 		
-		this.crearRondaDeTurnos(jugadores);
+		this.crearRondaDeTurnos();
 		
 	}
-	
-	private void crearRondaDeTurnos(ArrayList<Jugador> listaJugadores) {
+
+	private void crearRondaDeTurnos() {
 		
-		for (int posicion = 0; posicion < listaJugadores.size(); posicion++){
-			Jugador jugadorActual = listaJugadores.get(posicion);
-			if((posicion+1) < listaJugadores.size()) {
-				Jugador jugadorSiguiente = listaJugadores.get(posicion+1);
+		for (int posicion = 0; posicion < this.jugadores.size(); posicion++){
+			Jugador jugadorActual = this.jugadores.get(posicion);
+			if((posicion+1) < this.jugadores.size()) {
+				Jugador jugadorSiguiente = this.jugadores.get(posicion+1);
 				jugadorActual.setJugadorSiguiente(jugadorSiguiente);
 			}
 		}
-		Jugador primerJugador = listaJugadores.get(0);
-		Jugador ultimoJugador = listaJugadores.get(listaJugadores.size() - 1);
+		Jugador primerJugador = this.jugadores.get(0);
+		Jugador ultimoJugador = this.jugadores.get(this.jugadores.size() - 1);
 		ultimoJugador.setJugadorSiguiente(primerJugador); 
 		
 		primerJugador.setTurno();
@@ -56,7 +56,7 @@ public class Partida {
 
 	public void pasarTiempo(){
 		
-		//this.mapa.pasarTiempo();
+		this.mapa.pasarTiempo();
 		
 	}
 	
@@ -186,4 +186,5 @@ public class Partida {
 		jugador.crearNaveTransporte(unPuerto, this.mapa);
 		
 	}
+	
 }

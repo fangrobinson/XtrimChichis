@@ -19,6 +19,8 @@ public class RecolectorDeMineral extends Recolector{
 	
 	}
 	//TODO: si el constructor ya recibe un terreno... por que esta este metodo???
+	//PARA VALIDAR QUE ESTAS CONSTRUYENDO UN RECOLECTOR DE GAS VESPENO SOBRE GAS VESPENO. 
+	//FIJATE QUE HACE DOUBLE DISPATCH. NO LO BORRES. FIRMA EUGE.
 	public static RecolectorDeMineral nuevoRecolectorDeMineral(Terran raza, Terreno unTerreno){
 		
 		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(raza, unTerreno);
