@@ -48,5 +48,6 @@ public class RecolectorDeMineral extends Recolector{
 		}
 		super.pasarTiempo();
 	}
+	
 
 }

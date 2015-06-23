@@ -36,6 +36,7 @@ public class Terran implements Actualizable{
 		this.minerales = 200; 
 		this.gas = 200;
 
+
 		DepositoDeSuministros baseInicial = crearDepositoDeSuministros(terreno);
 		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
 		
@@ -275,5 +276,13 @@ public class Terran implements Actualizable{
 	
 	public int getGasVespeno(){
 		return this.gas;
+	}
+	
+	public ArrayList<Edificio> edificios(){
+		return this.edificios;
+	}
+	
+	public ArrayList<Unidad> unidades(){
+		return this.unidades;
 	}
 }

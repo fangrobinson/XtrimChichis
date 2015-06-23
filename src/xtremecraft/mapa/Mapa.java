@@ -184,11 +184,6 @@ public class Mapa {
 			int radioAleatorioAlrededorDeLaBase = this.numeroAleatorioEntreMinimoYMaximo(2,3);
 			Coordenada coordenadaBase = terrenoActual.getCoordenada();
 			ArrayList<Coordenada> celdasAlrededorDeEstaBase = coordenadaBase.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
-			//saco las coordenadas que caen fuera del mapa:
-			/*for(int posicion=0;posicion<celdasAlrededorDeEstaBase.size();posicion++){
-				Coordenada unaCoordenada = celdasAlrededorDeEstaBase.get(posicion);
-				if(!this.coordenadaEstaDentroDelMapa(unaCoordenada)) celdasAlrededorDeEstaBase.remove(unaCoordenada);
-			}*/
 			//selecciono (aleatoriamente) los terrenos en los que quiero ubicar un recurso alrededor de la base:
 			for(int j=0;j<celdasAlrededorDeEstaBase.size();j++){
 				Coordenada coordenadaActual = celdasAlrededorDeEstaBase.get(j); 
