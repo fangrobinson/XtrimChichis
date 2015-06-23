@@ -8,7 +8,8 @@ public class Fabrica extends Edificio{
 	
 	private static int vida = 100;
 	private static int tiempoDeConstruccion = 12;
-	private int minerales = 150;
+	private int minerales = 200;
+	private int gas = 100;
 	
 	public Fabrica(Terran raza, Barraca unaBarraca, Terreno terreno){
 		
@@ -50,6 +51,7 @@ public class Fabrica extends Edificio{
 	
 	public void cobrar(Terran raza){
 		raza.quitarMinerales(this.minerales);
+		raza.quitarGas(this.gas);
 	}
 	
 }
