@@ -129,8 +129,10 @@ public class Jugador {
 
 	public void pasarTurno() {
 		
-		this.esMiTurno = false;
-		this.siguienteJugador.setTurno();
+		if(this.esMiTurno){
+			this.esMiTurno = false;
+			this.siguienteJugador.setTurno();
+		}
 		
 	}
 

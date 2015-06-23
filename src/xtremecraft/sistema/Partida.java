@@ -28,15 +28,37 @@ public class Partida {
 			jugadores.add(jugadorNuevo);
 		}
 		
+		this.crearRondaDeTurnos(jugadores);
+		
 	}
 	
+	private void crearRondaDeTurnos(ArrayList<Jugador> listaJugadores) {
+		
+		for (int posicion = 0; posicion < listaJugadores.size(); posicion++){
+			Jugador jugadorActual = listaJugadores.get(posicion);
+			if((posicion+1) < listaJugadores.size()) {
+				Jugador jugadorSiguiente = listaJugadores.get(posicion+1);
+				jugadorActual.setJugadorSiguiente(jugadorSiguiente);
+			}
+		}
+		Jugador primerJugador = listaJugadores.get(0);
+		Jugador ultimoJugador = listaJugadores.get(listaJugadores.size() - 1);
+		ultimoJugador.setJugadorSiguiente(primerJugador); 
+		
+		primerJugador.setTurno();
+		
+	}
+
 	public void pasarTiempo(){
-		this.tiempo = this.tiempo + 1;
+		
 		//this.mapa.pasarTiempo();
+		
 	}
 	
 	public int tiempo(){
+		
 		return this.tiempo;
+		
 	}
 	
 	public Mapa getMapa(){
@@ -46,8 +68,14 @@ public class Partida {
 	}
 	
 	public Jugador quienJuega(){
-		int pos = this.tiempo % this.cant_jug;
-		return this.jugadores.get(pos);
+		
+		for(int posicion = 0; posicion < this.jugadores.size(); posicion++){
+			Jugador jugadorActual = this.jugadores.get(posicion);
+			if(jugadorActual.tieneTurno()){
+				return jugadorActual;
+			}
+		}
+		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
 	}
 	
 }

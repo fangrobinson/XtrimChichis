@@ -14,21 +14,25 @@ public class JugadorTest {
 	
 	@Test(expected = NombreMuyCortoException.class)
 	public void siSeIntentaCrearUnJugadorConUnNombreMuyCortoSeLanzaNombreMuyCortoException(){
+		
 		Tierra tierra = new Tierra(1,1);
 		new Jugador("Ana",tierra);
 	}
 	
 	@Test
 	public void alCrearseUnJugadorElMismoEstaEnJuego(){
+		
 		Tierra tierra = new Tierra(1,1);
 		Jugador jugador = new Jugador("Juan",tierra);
 		boolean juega = jugador.estaEnJuego();
 		
 		assertTrue(juega);
+		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceLaUnidad (){
+		
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(2,1);
@@ -40,10 +44,12 @@ public class JugadorTest {
 		bool = jugador2.esDeMiPropiedad(marine);
 		
 		assertFalse(bool);
+		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceElEdificio (){
+		
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
@@ -56,12 +62,12 @@ public class JugadorTest {
 		bool = jugador2.esDeMiPropiedad(barraca);
 		
 		assertFalse(bool);
+		
 	}
 	
-
-
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad (){
+		
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
@@ -82,10 +88,12 @@ public class JugadorTest {
 		bool = jugador.esDeMiPropiedad(marine);
 		
 		assertTrue(bool);
+		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceElEdificio (){
+		
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
@@ -95,6 +103,7 @@ public class JugadorTest {
 		
 		bool = jugador.esDeMiPropiedad(barraca);
 		assertTrue(bool);
+		
 	}
 	
 	@Test (expected = ElAtacanteNoEsDelJugadorException.class)
@@ -156,8 +165,9 @@ public class JugadorTest {
 		Tierra tierra1 = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
 		Jugador jugador1 = new Jugador("Juan",tierra1);
-		Jugador jugador2 = new Jugador("Juan",tierra2);	
+		Jugador jugador2 = new Jugador("Pepe",tierra2);	
 		
+		jugador1.setTurno();
 		jugador1.setJugadorSiguiente(jugador2);
 		jugador1.pasarTurno();
 		
@@ -171,12 +181,32 @@ public class JugadorTest {
 		Tierra tierra1 = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
 		Jugador jugador1 = new Jugador("Juan",tierra1);
-		Jugador jugador2 = new Jugador("Juan",tierra2);	
+		Jugador jugador2 = new Jugador("Pepe",tierra2);	
 		
+		jugador1.setTurno();
 		jugador1.setJugadorSiguiente(jugador2);
 		jugador1.pasarTurno();
 		
 		assertTrue(jugador2.tieneTurno());
+		
+	}
+	
+	@Test
+	public void siUnJugadorQueNoTieneTurnoIntentaPasarElTurnoElEstadoDelSiguienteJugadorNoCambia(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Tierra tierra3 = new Tierra(1,3);
+		Jugador jugador1 = new Jugador("Juan",tierra1);
+		Jugador jugador2 = new Jugador("Pepe",tierra2);
+		Jugador jugador3 = new Jugador("Aquaman",tierra3);
+		
+		jugador1.setJugadorSiguiente(jugador2);
+		jugador2.setJugadorSiguiente(jugador3);
+		jugador3.setTurno();
+		jugador1.pasarTurno();
+		
+		assertFalse(jugador2.tieneTurno());
 		
 	}
 	
