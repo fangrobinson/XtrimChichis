@@ -62,7 +62,9 @@ public class Terran implements Actualizable{
 	public Barraca crearBarraca(Terreno unTerreno){
 		
 		Barraca nuevaBarraca = new Barraca(this, unTerreno);
-		if(!unTerreno.ubicar(nuevaBarraca)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevaBarraca)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevaBarraca);
 		return nuevaBarraca;
 		
@@ -74,7 +76,9 @@ public class Terran implements Actualizable{
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
 		Fabrica nuevaFabrica = new Fabrica(this, unaBarraca,unTerreno);
-		if(!unTerreno.ubicar(nuevaFabrica)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevaFabrica)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevaFabrica);
 		return nuevaFabrica;
 			
@@ -86,7 +90,9 @@ public class Terran implements Actualizable{
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
 		PuertoEstelar nuevoPuerto = new PuertoEstelar(this,unaFabrica,unTerreno);
-		if(!unTerreno.ubicar(nuevoPuerto)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevoPuerto)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevoPuerto);
 		return nuevoPuerto;
 	
@@ -95,7 +101,9 @@ public class Terran implements Actualizable{
 	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
 		
 		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this,unTerreno);
-		if(!unTerreno.ubicar(nuevoCentroMineral)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevoCentroMineral)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevoCentroMineral);
 		return nuevoCentroMineral;
 		
@@ -104,7 +112,9 @@ public class Terran implements Actualizable{
 	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
 		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this, unTerreno);
-		if(!unTerreno.ubicar(nuevaRefineria)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevaRefineria)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevaRefineria);
 		return nuevaRefineria;
 		
@@ -113,7 +123,9 @@ public class Terran implements Actualizable{
 	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
 		
 		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this, unTerreno);
-		if(!unTerreno.ubicar(nuevoDeposito)) throw new UbicacionNoValidaException();
+		if(!unTerreno.ubicar(nuevoDeposito)){
+			throw new UbicacionNoValidaException();
+		}
 		this.agregarEdificio(nuevoDeposito);
 		return nuevoDeposito;
 		
@@ -126,7 +138,9 @@ public class Terran implements Actualizable{
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaBarraca,mapa);
-		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+			throw new CantidadDeSuministroInsuficienteException();
+		}
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -139,7 +153,9 @@ public class Terran implements Actualizable{
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaFabrica,mapa);
-		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+			throw new CantidadDeSuministroInsuficienteException();
+		}
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -152,7 +168,9 @@ public class Terran implements Actualizable{
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(this, puerto,mapa);
-		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+			throw new CantidadDeSuministroInsuficienteException();
+		}
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -165,7 +183,9 @@ public class Terran implements Actualizable{
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(this, puerto,mapa);
-		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+			throw new CantidadDeSuministroInsuficienteException();
+		}
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -178,7 +198,9 @@ public class Terran implements Actualizable{
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(this, puerto,mapa);
-		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ) throw new CantidadDeSuministroInsuficienteException();
+		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+			throw new CantidadDeSuministroInsuficienteException();
+		}
 		this.agregarUnidad(nuevaUnidad);
 		return nuevaUnidad;
 		
@@ -245,44 +267,61 @@ public class Terran implements Actualizable{
 	}
 
 	public void juntarMinerales(int cantidad){
+		
 		this.minerales += cantidad;
+		
 	}
 	
 	public void juntarGas(int cantidad){
+		
 		this.gas += cantidad;
+		
 	}
 	
 	public void quitarMinerales(int cantidad) {
+		
 		if (cantidad > this.minerales){
 			throw new RecursosInsuficientesException();
 		}
 		else{
 			this.minerales -= cantidad;
 		}
+		
 	}
 	
 	public void quitarGas(int cantidad) {
+		
 		if (cantidad > this.gas){
 			throw new RecursosInsuficientesException();
 		}
 		else{
 			this.gas -= cantidad;
 		}
+		
 	}
 	
 	public int getMinerales(){
+		
 		return this.minerales;
+		
 	}
 	
 	public int getGasVespeno(){
+		
 		return this.gas;
+		
 	}
 	
 	public ArrayList<Edificio> edificios(){
+		
 		return this.edificios;
+		
 	}
 	
 	public ArrayList<Unidad> unidades(){
+		
 		return this.unidades;
+		
 	}
+	
 }

@@ -32,7 +32,6 @@ public class Jugador implements Actualizable{
 		}
 		this.nombre = nombre;
 		this.nacion = new Terran(tierra);
-		this.siguienteJugador = null;
 		this.esMiTurno = false;
 		
 	}

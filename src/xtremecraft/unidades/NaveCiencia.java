@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.unidades.UnidadAerea;
 
 public class NaveCiencia extends UnidadAerea{
 	
@@ -14,8 +13,6 @@ public class NaveCiencia extends UnidadAerea{
 	private int aumentoDeEnergiaEnTurno = 10;
 	private int minerales = 100;
 	private int gas = 225; 
-	//private int radioMisilEMP = 3;
-	//private int costoMisilEMP = 100;
 	private int radioMisilEMP = 3;
 	private int costoMisilEMP = 100;
 	private int costoRadiacion = 100;
