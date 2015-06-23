@@ -34,6 +34,14 @@ public class Mapa {
 		ubicarRecursosMinerales();
 		
 	}
+	
+	public int alto(){
+		return this.alto;
+	}
+	
+	public int ancho(){
+		return this.ancho;
+	}
 
 	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
 		
