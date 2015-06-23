@@ -32,6 +32,8 @@ public class RecolectorDeGasVespenoTest {
 		tierra.agregarRecursoNatural(volcan);
 		
 		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
 
 	}
 	

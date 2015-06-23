@@ -33,8 +33,8 @@ public class Terran implements Actualizable{
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
-		this.minerales = 150; 
-		this.gas = 150;
+		this.minerales = 200; 
+		this.gas = 200;
 
 		DepositoDeSuministros baseInicial = crearDepositoDeSuministros(terreno);
 		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();

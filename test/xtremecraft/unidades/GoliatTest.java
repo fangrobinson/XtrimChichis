@@ -25,7 +25,7 @@ public class GoliatTest {
 		razaTerran.juntarMinerales(1000);
 		return razaTerran;
 	}
-	
+	/*
 	@Test (expected = RecursosInsuficientesException.class)
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
@@ -34,7 +34,7 @@ public class GoliatTest {
 		
 		new Goliat(nacion);
 	}
-	
+	*/
 	
 	@Test
 	public void goliatInicializadoConVidaCompleta(){

@@ -32,6 +32,8 @@ public class RecolectorDeMineralTest {
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		
 		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
 
 	}
 	

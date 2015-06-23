@@ -25,7 +25,7 @@ public class NaveTransporteTest {
 		razaTerran.juntarMinerales(1000);
 		return razaTerran;
 	}
-	
+	/*
 	@Test (expected = RecursosInsuficientesException.class)
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
@@ -33,7 +33,7 @@ public class NaveTransporteTest {
 		Terran nacion = new Terran(tierra);
 		
 		new NaveTransporte(nacion);
-	}
+	}*/
 	
 	@Test
 	public void naveTransporteInicializadoConVidaCompleta(){

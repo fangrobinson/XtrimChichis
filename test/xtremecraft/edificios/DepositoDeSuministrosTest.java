@@ -26,7 +26,10 @@ public class DepositoDeSuministrosTest {
 	public void crearDepositoDeSuministrosConRazaSinRecursosLanzaExcepcion(){
 		Tierra tierra = new Tierra(15,15);
 		Terran razaTerran = new Terran(tierra);
+		Terreno unaTierra = new Tierra(2,2);
 		Terreno otraTierra = new Tierra(1,1);
+		
+		new DepositoDeSuministros(razaTerran, unaTierra);
 		new DepositoDeSuministros(razaTerran, otraTierra);
 	}
 	

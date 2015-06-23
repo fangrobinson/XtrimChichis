@@ -34,12 +34,16 @@ public class PuertoEstelarTest {
 		Terreno otraTierra = new Tierra(1,1);
 		Tierra tercerTierra = new Tierra (2,2);
 		Tierra cuartaTierra = new Tierra(3,3);
+		Tierra quintaTierra = new Tierra(11,11);
+		Tierra sextaTierra = new Tierra(12,12);
 		
 		razaTerran.juntarMinerales(350);
 		Barraca barraca = new Barraca(razaTerran, otraTierra);
 		Fabrica fabrica = new Fabrica(razaTerran, barraca, tercerTierra);
 		
 		new PuertoEstelar(razaTerran, fabrica, cuartaTierra);
+		new PuertoEstelar(razaTerran, fabrica, quintaTierra);
+		new PuertoEstelar(razaTerran, fabrica, sextaTierra);
 	}
 	
 	@Test
