@@ -3,10 +3,21 @@ package xtremecraft.sistema;
 import org.junit.Test;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.DepositoDeSuministros;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.IteradorEdificios;
+import xtremecraft.raza.IteradorUnidades;
+import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.recursos.VolcanGasVespeno;
+import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -191,14 +202,14 @@ public class JugadorTest {
 		
 	}
 	
-	@Test
-	public void siUnJugadorQueNoTieneTurnoIntentaPasarElTurnoElEstadoDelSiguienteJugadorNoCambia(){
+	@Test(expected = JugadorNoTieneElTurnoException.class)
+	public void siUnJugadorQueNoTieneTurnoIntentaPasarElTurnoSeLanzaJugadorNoTieneElTurnoException(){
 		
 		Tierra tierra1 = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
 		Tierra tierra3 = new Tierra(1,3);
-		Jugador jugador1 = new Jugador("Juan",tierra1);
-		Jugador jugador2 = new Jugador("Pepe",tierra2);
+		Jugador jugador1 = new Jugador("Flash",tierra1);
+		Jugador jugador2 = new Jugador("Linterna Verde",tierra2);
 		Jugador jugador3 = new Jugador("Aquaman",tierra3);
 		
 		jugador1.setJugadorSiguiente(jugador2);
@@ -206,8 +217,205 @@ public class JugadorTest {
 		jugador3.setTurno();
 		jugador1.pasarTurno();
 		
-		assertFalse(jugador2.tieneTurno());
 		
 	}
+	
+	@Test
+	public void alPasarTiempoSeConstruyeLaBarraca(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		jugador.crearBarraca(tierra2);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(Barraca.class), 1);
+		
+	
+	}
+	
+	@Test
+	public void alPasarTiempoSeConstruyeElDepositoDeSuministros(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		jugador.crearDepositoDeSuministros(tierra2);
+		
+		for (int i =0; i < 6; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(DepositoDeSuministros.class), 2);
+		
+	
+	}
+	
+	@Test
+	public void alPasarTiempoSeConstruyeLaFabrica(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Tierra tierra3 = new Tierra(1,3);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		jugador.crearBarraca(tierra2);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		jugador.crearFabrica(tierra3);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(Fabrica.class), 1);
+		
+	
+	}
+	
+	@Test
+	public void alPasarTiempoSeConstruyeElRecolectorDeMineral(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		MinaDeMinerales mina = new MinaDeMinerales(30);
+		tierra2.agregarRecursoNatural(mina);
+		
+		jugador.crearRecolectorDeMineral(tierra2);
+		
+		for (int i =0; i < 4; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(RecolectorDeMineral.class), 1);
+		
+	
+	}
+	
+	@Test
+	public void alPasarTiempoSeConstruyeElRecolectorDeGasVespeno(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		VolcanGasVespeno volcancito = new VolcanGasVespeno(40);
+		tierra2.agregarRecursoNatural(volcancito);
+		jugador.crearRecolectorDeGasVespeno(tierra2);
+		
+		for (int i =0; i < 6; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(RecolectorDeGasVespeno.class), 1);
+		
+	}
+	
+	
+	@Test
+	public void alPasarTiempoSeConstruyeElPuertoEstelar(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Tierra tierra3 = new Tierra(1,3);
+		Tierra tierra4 = new Tierra(1,4);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+        jugador.crearBarraca(tierra2);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		jugador.crearFabrica(tierra3);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		jugador.crearPuertoEstelar(tierra4);
+		
+		for (int i =0; i < 10; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorEdificios iter = new IteradorEdificios(jugador.nacion().edificios());
+		
+		assertEquals(iter.cuantosHayCreadosDe(PuertoEstelar.class), 1);
+		
+	}
+	
+	
+	
+	@Test
+	public void alPasarTiempoSeConstruyeUnaUnidad(){
+		
+		Tierra tierra1 = new Tierra(1,1);
+		Tierra tierra2 = new Tierra(1,2);
+		Tierra tierra3 = new Tierra(1,3);
+		Jugador jugador = new Jugador("Batman", tierra1);
+		
+		jugador.nacion().juntarMinerales(2000);
+		
+		jugador.crearBarraca(tierra2);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		Fabrica unaFabrica = jugador.crearFabrica(tierra3);
+		
+		for (int i =0; i < 12; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		Mapa unMapa = new Mapa(2); 
+		
+		unMapa.ubicar(unaFabrica, unMapa.getCeldaEnFilaColumna(1, 3));
+		
+		jugador.crearGoliat(unaFabrica, unMapa);
+		
+		for (int i =0; i < 6; i++ ){
+			jugador.pasarTiempo();
+		}
+		
+		IteradorUnidades iter = new IteradorUnidades(jugador.nacion().unidades());
+		
+		assertEquals(iter.cuantosHayCreadosDe(Goliat.class),1);
+		
+	}
+	
 	
 }

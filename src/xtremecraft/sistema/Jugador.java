@@ -1,6 +1,7 @@
 package xtremecraft.sistema;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
@@ -18,7 +19,7 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
-public class Jugador {
+public class Jugador implements Actualizable{
 	private String nombre;
 	private Terran nacion;
 	private Jugador siguienteJugador;
@@ -138,6 +139,11 @@ public class Jugador {
 		return (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
 		
 	}
+	
+	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
+		
+		return this.nacion.crearDepositoDeSuministros(unTerreno);
+	}
 
 	public void setJugadorSiguiente(Jugador jugador) {
 		
@@ -153,11 +159,11 @@ public class Jugador {
 
 	public void pasarTurno() {
 		
-		if(this.esMiTurno){
-			this.esMiTurno = false;
-			this.siguienteJugador.setTurno();
+		if(!this.esMiTurno){
+			throw new JugadorNoTieneElTurnoException();
 		}
-		//TODO: else : Throw Exception JugadorNoTieneElTurnoException?
+		this.esMiTurno = false;
+		this.siguienteJugador.setTurno();
 		
 	}
 
@@ -165,6 +171,13 @@ public class Jugador {
 		
 		return this.esMiTurno;
 		
+	}
+
+	@Override
+	public void pasarTiempo() {
+		
+		
+		this.nacion.pasarTiempo();
 	}
 	
 }

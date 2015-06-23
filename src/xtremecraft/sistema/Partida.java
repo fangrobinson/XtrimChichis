@@ -56,7 +56,10 @@ public class Partida {
 
 	public void pasarTiempo(){
 		
-		this.mapa.pasarTiempo();
+		for (int posicion = 0; posicion < this.jugadores.size(); posicion++){
+			Jugador jugadorActual = this.jugadores.get(posicion);
+			jugadorActual.pasarTiempo();
+		}
 		
 	}
 	
