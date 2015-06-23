@@ -32,7 +32,7 @@ public class Terran implements Actualizable{
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
-		this.minerales = 100; //Debe cobrarse el primer deposito de suministros.
+		this.minerales = 150; //Debe cobrarse el primer deposito de suministros.
 		this.gas = 0;
 
 		DepositoDeSuministros baseInicial = new DepositoDeSuministros(this, terreno);
@@ -273,5 +273,13 @@ public class Terran implements Actualizable{
 	
 	public int getGasVespeno(){
 		return this.gas;
+	}
+	
+	public ArrayList<Edificio> edificios(){
+		return this.edificios;
+	}
+	
+	public ArrayList<Unidad> unidades(){
+		return this.unidades;
 	}
 }

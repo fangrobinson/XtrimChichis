@@ -6,7 +6,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import xtremecraft.edificios.Barraca;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.raza.IteradorEdificios;
+import xtremecraft.raza.IteradorUnidades;
 
 public class IntegracionTest {
 	
@@ -30,6 +33,39 @@ public class IntegracionTest {
         nombreJugadorTurno = xtremGame.quienJuega().nombre();
 		
 		//assertEquals(nombreJugadorTurno, "playerOpCoreano");
+        
+        for (int i = 0; i < 10; i++){
+        	xtremGame.pasarTiempo(); //Espero a que se construyan ambos recolectores y a que stocken minerales
+        }
+        
+        nombreJugadorTurno = xtremGame.quienJuega().nombre();
 		
+		assertEquals(nombreJugadorTurno, "noob");
+		
+		jugadorTurno = xtremGame.quienJuega();
+		IteradorEdificios iter = new IteradorEdificios(jugadorTurno.nacion().edificios());
+		Barraca unaBarraca = (Barraca) iter.nextDe(Barraca.class);
+		//xtremGame.crearMarine(jugadorTurno, unaBarraca);
+		
+        xtremGame.pasarTiempo();
+		
+        nombreJugadorTurno = xtremGame.quienJuega().nombre();
+		
+		//assertEquals(nombreJugadorTurno, "playerOpCoreano");
+        
+        for (int i = 0; i < 10; i++){
+        	//xtremGame.crearMarine(jugadorTurno, unaBarraca);
+        }
+        
+        
+        for (int i = 0; i < 2; i++){
+        	xtremGame.pasarTiempo();   //espero que se construyan los marines
+        }
+        
+        
+        
+        for (int i = 0; i < 30; i++){
+        	xtremGame.pasarTiempo();   //espero que se construyan los marines
+        }
 	}
 }
