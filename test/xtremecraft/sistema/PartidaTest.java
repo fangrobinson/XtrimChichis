@@ -85,7 +85,7 @@ public class PartidaTest {
 		
 		Partida partida = new Partida(jugadores);
 		
-		assertEquals(partida.quienJuega().nombre,"ninioRata");
+		assertEquals(partida.quienJuega().nombre(),"ninioRata");
 		
 	}
 	
@@ -109,7 +109,7 @@ public class PartidaTest {
 		
 		segundoJugador.pasarTurno();
 		
-		assertEquals(partida.quienJuega().nombre,"aquaman");
+		assertEquals(partida.quienJuega().nombre(),"aquaman");
 		
 	}
 	
@@ -136,7 +136,7 @@ public class PartidaTest {
 		
 		tercerJugador.pasarTurno();
 		
-		assertEquals(partida.quienJuega().nombre,"ninioRata");
+		assertEquals(partida.quienJuega().nombre(),"ninioRata");
 		
 	}
 	

@@ -2,7 +2,12 @@ package xtremecraft.sistema;
 
 import java.util.ArrayList;
 
+import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.Terreno;
+import xtremecraft.unidades.Ubicable;
 
 public class Partida {
 	private int tiempo;
@@ -78,4 +83,107 @@ public class Partida {
 		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
 	}
 	
+	public void crearBarraca(Jugador jugador, int fila, int columna){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Ubicable barraca = jugador.crearBarraca(unTerreno);
+		mapa.ubicar(barraca, this.mapa.getCeldaEnFilaColumna(fila, columna));
+	}
+	
+	public void crearFabrica(Jugador jugador, int fila, int columna){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Ubicable fabrica = jugador.crearFabrica(unTerreno);
+		mapa.ubicar(fabrica, this.mapa.getCeldaEnFilaColumna(fila, columna));
+	}
+	
+	public void crearPuertoEstelar(Jugador jugador, int fila, int columna){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Ubicable puerto = jugador.crearPuertoEstelar(unTerreno);
+		mapa.ubicar(puerto, this.mapa.getCeldaEnFilaColumna(fila, columna));
+	}
+	
+	public void crearRecolectorDeGasVespeno(Jugador jugador, int fila, int columna){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Ubicable recolectorGas = jugador.crearRecolectorDeGasVespeno(unTerreno);
+		mapa.ubicar(recolectorGas, this.mapa.getCeldaEnFilaColumna(fila, columna));
+	}
+	
+	public void crearRecolectorDeMineral(Jugador jugador, int fila, int columna){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Ubicable recolectorMineral = jugador.crearRecolectorDeMineral(unTerreno);
+		mapa.ubicar(recolectorMineral, this.mapa.getCeldaEnFilaColumna(fila, columna));
+	}
+	
+	public void crearMarine(Jugador jugador, Barraca unaBarraca){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		jugador.crearMarine(unaBarraca, this.mapa);
+		
+	}
+	
+	public void crearGoliat(Jugador jugador, Fabrica unaFabrica){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		jugador.crearGoliat(unaFabrica, this.mapa);
+	}
+	
+	public void crearEspectro(Jugador jugador, PuertoEstelar unPuerto){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		jugador.crearEspectro(unPuerto, this.mapa);
+		
+	}
+	
+	public void crearNaveCiencia(Jugador jugador, PuertoEstelar unPuerto){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		jugador.crearNaveCiencia(unPuerto, this.mapa);
+		
+	}
+	
+	public void crearNaveTransporte(Jugador jugador, PuertoEstelar unPuerto){
+		
+		if (jugador != this.quienJuega()){
+			throw new JugadorNoTieneElTurnoException();
+		}
+		
+		jugador.crearNaveTransporte(unPuerto, this.mapa);
+		
+	}
 }

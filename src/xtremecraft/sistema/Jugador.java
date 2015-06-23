@@ -15,11 +15,12 @@ import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
+import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
 public class Jugador {
-	String nombre;
-	Terran nacion;
+	private String nombre;
+	private Terran nacion;
 	private Jugador siguienteJugador;
 	private boolean esMiTurno;
 	
@@ -33,6 +34,14 @@ public class Jugador {
 		this.siguienteJugador = null;
 		this.esMiTurno = false;
 		
+	}
+	
+	public String nombre(){
+		return this.nombre;
+	}
+	
+	public Terran nacion(){
+		return this.nacion;
 	}
 
 	public boolean estaEnJuego(){
@@ -112,6 +121,12 @@ public class Jugador {
 	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa){
 		
 		return (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
+		
+	}
+	
+	public NaveTransporte crearNaveTransporte(PuertoEstelar unPuerto, Mapa unMapa){
+		
+		return (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
 		
 	}
 
