@@ -8,4 +8,11 @@ public class IntegracionTest {
 	public void prueba01_creacionDeRecolectoresDeGasDeUnidadesAtaqueEntreUnidadesYaEdificios(){
 		
 	}
+	
+	@Test
+	
+	public void prueba03_creacionDeRecolectoresDeGasDeUnidadesAtaqueEntreUnidadesYaEdificios(){
+		
+	}
+		
 }
