@@ -15,6 +15,7 @@ import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
+import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
 public class Jugador {
@@ -120,6 +121,12 @@ public class Jugador {
 	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa){
 		
 		return (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
+		
+	}
+	
+	public NaveTransporte crearNaveTransporte(PuertoEstelar unPuerto, Mapa unMapa){
+		
+		return (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
 		
 	}
 
