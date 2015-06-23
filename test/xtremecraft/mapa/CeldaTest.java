@@ -10,6 +10,7 @@ import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.Ubicable;
 
 public class CeldaTest {
+	
 	@Test
 	public void ubicarCapaInferiorUnMarineDevuelveTrue(){
 		
@@ -37,16 +38,5 @@ public class CeldaTest {
 		
 		assertFalse(bool);
 	}
-	
-	/*
-	@Test
-	public void ubicarCapaSuperior(){
-		Celda celda = new Celda(new Tierra(), new Aire());
-		Ubicable marine = new Marine();
-		
-		boolean bool = celda.ubicarCapaSuperior(marine);
-		
-		assertTrue(bool);
-	}*///TODO: COMPLETAR 
 	
 }
