@@ -18,6 +18,7 @@ public class Mapa {
 	private int ancho;
 	private static int maximoRecursoPorUnidadTerreno = 1000;
 	public ArrayList<Tierra> terrenosBasesJugadores;
+	
 	public Mapa(int cant_jugadores) {
 		
 		if (cant_jugadores <= 1){
@@ -32,6 +33,10 @@ public class Mapa {
 		ubicarBases(cant_jugadores);
 		ubicarRecursosMinerales();
 		
+	}
+	
+	public TreeMap<Integer, TreeMap<Integer, Celda>> devolverMapaEstatico(){
+		return this.mapaAlto;
 	}
 	
 	public int alto(){
