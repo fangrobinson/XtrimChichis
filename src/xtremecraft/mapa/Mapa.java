@@ -239,10 +239,6 @@ public class Mapa {
 		
 	}
 	
-	public void pasarTiempo() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public ArrayList<Terreno> obtenerTerrenosConRecursos(){
 		

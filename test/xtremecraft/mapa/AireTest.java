@@ -1,9 +1,11 @@
 package xtremecraft.mapa;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import xtremecraft.mapa.Aire;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
+import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Unidad;
 
@@ -43,19 +45,22 @@ public class AireTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	public void ocuparterrenoConUnidadGuardaLaUnidadEnElterreno(){
 		
 		Terreno terreno=new Aire(1,3);
-		Unidad marine= new Marine(terreno);
-		terreno.ubicar(marine);
-		Unidad unidad = (Unidad) terreno.getUnidadEnTerreno();
+		Tierra terreno2 = new Tierra(1,2);
+		Terran terran = new Terran(terreno2);
+		terran.juntarMinerales(1000);
+		terran.juntarGas(1000);
+		Unidad espectro = new Espectro(terran);
+		terreno.ubicar(espectro);
+		Unidad unidad = (Unidad) terreno.getUbicableEnTerreno();
 		int vida = unidad.getVida();
 		 
-		assertEquals(vida, 40);
+		assertEquals(vida, 120);
 		
-	}*/ //TODO:COMPLETAR CUANDO EXISTAN UNIDADES VOLADORAS!!
-	
+	}	
 	
 	
 	

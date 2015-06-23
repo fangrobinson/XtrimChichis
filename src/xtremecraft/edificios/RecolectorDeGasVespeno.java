@@ -1,6 +1,5 @@
 package xtremecraft.edificios;
 
-import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.raza.Terran;
 
@@ -19,14 +18,14 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 	}
 	
-	//TODO: si el constructor ya recibe un terreno... por que esta este metodo???
+	//si el constructor ya recibe un terreno... por que esta este metodo???
 	//PARA VALIDAR QUE ESTAS CONSTRUYENDO UN RECOLECTOR DE GAS VESPENO SOBRE GAS VESPENO. 
 	//FIJATE QUE HACE DOUBLE DISPATCH. NO LO BORRES. FIRMA EUGE.
 	public static RecolectorDeGasVespeno nuevoRecolectorDeGasVespeno(Terran raza, Terreno unTerreno){
 		
 		RecolectorDeGasVespeno nuevoRecolector = new RecolectorDeGasVespeno(raza, unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
-			throw new NoHayRecursoException();
+			throw new NoHayGasVespenoException();
 		}	
 		return nuevoRecolector;
 		

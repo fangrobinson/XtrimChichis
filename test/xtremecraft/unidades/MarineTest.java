@@ -83,8 +83,14 @@ public class MarineTest {
 		Marine miniSamus = new Marine(nacion);
 		Espectro miniMasterChief = new Espectro(nacion);
 		
+		for (int i = 0; i < miniMasterChief.tiempoConstruccion(); i++){
+			miniSamus.pasarTiempo();
+			miniMasterChief.pasarTiempo();
+		}
+		
 		miniSamus.actualizarUbicacion(tierra);
 		miniMasterChief.actualizarUbicacion(aire);
+		
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.getValor(), 114);
@@ -102,13 +108,17 @@ public class MarineTest {
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniMasterChief.actualizarUbicacion(tierra2);
+		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
+			miniSamus.pasarTiempo();
+			miniMasterChief.pasarTiempo();
+		}
 		miniSamus.atacar(miniMasterChief);
 		
 		assertEquals(miniMasterChief.vitalidad.getValor(), 34);
 	}
 	
-	@Test
-	public void siUnMarineAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
+	@Test (expected = AtaqueFueraDelRangoDeVisionException.class)
+	public void siUnMarineAtacaAOtroFueraDeSuRangoSeLanzaAtaqueFueraDeRangoExcepcion(){
 
 		Terran nacion = crearRazaTerranValida();
 		Terreno tierra1 = new Tierra(1,1);
@@ -118,9 +128,12 @@ public class MarineTest {
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniMasterChief.actualizarUbicacion(tierra2);
-		miniSamus.atacar(miniMasterChief);
 		
-		assertEquals(miniMasterChief.vitalidad.getValor(),40);
+		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
+			miniSamus.pasarTiempo();
+			miniMasterChief.pasarTiempo();
+		}
+		miniSamus.atacar(miniMasterChief);
 	}
 
 	
@@ -205,6 +218,10 @@ public class MarineTest {
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniMasterChief.actualizarUbicacion(tierra2);
+		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
+			miniSamus.pasarTiempo();
+			miniMasterChief.pasarTiempo();
+		}
 		for(int i=0;i<cantidadDeAtaques;i++) miniSamus.atacar(miniMasterChief);
 		
 		assertFalse(miniMasterChief.estaVivo());

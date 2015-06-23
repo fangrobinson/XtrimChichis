@@ -84,6 +84,12 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(tierra);
 		misdreavus.actualizarUbicacion(aire);
+		
+		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
+			gengar.pasarTiempo();
+			misdreavus.pasarTiempo();
+		}
+		
 		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.getValor(),100);
@@ -100,14 +106,20 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(tierra1);
 		misdreavus.actualizarUbicacion(tierra2);
+		
+		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
+			gengar.pasarTiempo();
+			misdreavus.pasarTiempo();
+		}
+		
 		gengar.atacar(misdreavus);
 		
 		assertEquals(misdreavus.vitalidad.getValor(),112);
 	}
 	
 	
-	@Test
-	public void siUnEspectroAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
+	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
+	public void siUnEspectroAtacaAOtroFueraDeSuRangoSeLanzaAtaqueFueraDelRangoDeVisionException(){
 
 		Terran nacion = crearRazaTerranValida();
 		Terreno unTerreno = new Aire(1,4);
@@ -117,9 +129,14 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
+		
+		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
+			gengar.pasarTiempo();
+			misdreavus.pasarTiempo();
+		}
+		
 		gengar.atacar(misdreavus);
 		
-		assertEquals(misdreavus.vitalidad.getValor(),120);
 	}
 	
 	
@@ -134,6 +151,11 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
+		
+		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
+			gengar.pasarTiempo();
+			misdreavus.pasarTiempo();
+		}
 		
 		for (int i = 0; i < 16; i++){
 			gengar.atacar(misdreavus);
@@ -153,6 +175,11 @@ public class EspectroTest {
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
+		
+		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
+			gengar.pasarTiempo();
+			misdreavus.pasarTiempo();
+		}
 		
 		for (int i = 0; i < 16; i++){
 			gengar.atacar(misdreavus);

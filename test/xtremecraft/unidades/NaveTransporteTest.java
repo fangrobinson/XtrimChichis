@@ -83,6 +83,12 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(aire1);
 		remisVolador.actualizarUbicacion(aire2);
+		
+		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
+			taxiVolador.pasarTiempo();
+			remisVolador.pasarTiempo();
+		}
+		
 		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.getValor(),150);
@@ -99,6 +105,12 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(aire);
 		remisVolador.actualizarUbicacion(tierra);
+		
+		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
+			taxiVolador.pasarTiempo();
+			remisVolador.pasarTiempo();
+		}
+		
 		remisVolador.atacar(taxiVolador);
 		
 		assertEquals(taxiVolador.vitalidad.getValor(),150);
@@ -145,6 +157,12 @@ public class NaveTransporteTest {
 		
 		taxiVolador.actualizarUbicacion(aire);
 		unGoliat.actualizarUbicacion(tierra);
+		
+		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
+			taxiVolador.pasarTiempo();
+			unGoliat.pasarTiempo();
+		}
+		
 		for(int i=0;i<cantidadDeAtaques;i++) unGoliat.atacar(taxiVolador);
 		
 		assertFalse(taxiVolador.estaVivo());

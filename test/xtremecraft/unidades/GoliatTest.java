@@ -84,6 +84,12 @@ public class GoliatTest {
 		
 		tanque1.actualizarUbicacion(tierra);
 		tanque2.actualizarUbicacion(aire);
+		
+		for (int i = 0; i < tanque2.tiempoConstruccion(); i++){
+			tanque1.pasarTiempo();
+			tanque2.pasarTiempo();
+		}
+		
 		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.getValor(),110);
@@ -100,14 +106,20 @@ public class GoliatTest {
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
+		
+		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
+			tanque1.pasarTiempo();
+			tanque2.pasarTiempo();
+		}
+		
 		tanque1.atacar(tanque2);
 		
 		assertEquals(tanque2.vitalidad.getValor(),113);
 	}
 	
 	
-	@Test
-	public void siUnGoliatAtacaAOtroFueraDeSuRangoNoLeHaceDaño(){
+	@Test (expected = AtaqueFueraDelRangoDeVisionException.class)
+	public void siUnGoliatAtacaAOtroFueraDeSuRangoSeLanzaAtaqueFueraDelRangoDeVisionException(){
 
 		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,4);
@@ -117,9 +129,8 @@ public class GoliatTest {
 		
 		tanque1.actualizarUbicacion(tierra);
 		tanque2.actualizarUbicacion(aire);
-		tanque1.atacar(tanque2);
 		
-		assertEquals(tanque2.vitalidad.getValor(),125);
+		tanque1.atacar(tanque2);
 	}
 	
 	
@@ -134,6 +145,12 @@ public class GoliatTest {
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
+		
+		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
+			tanque1.pasarTiempo();
+			tanque2.pasarTiempo();
+		}
+		
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2);
 		}
@@ -152,6 +169,12 @@ public class GoliatTest {
 		
 		tanque1.actualizarUbicacion(tierra1);
 		tanque2.actualizarUbicacion(tierra2);
+		
+		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
+			tanque1.pasarTiempo();
+			tanque2.pasarTiempo();
+		}
+		
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2);
 		}

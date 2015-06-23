@@ -33,8 +33,11 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		
 	}
 	
-	//TODO: manejar excepciones UnidadEnConstruccion!!
     public void recibirDanio(int danio){
+    	
+    	if(this.estaEnConstruccion()){
+    		throw new UnidadEnConstruccionException();
+    	}
     	
         vitalidad.recibirAtaque(danio);
         if(this.vitalidad.getValor() == 0){
@@ -46,10 +49,10 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     public void atacar (Atacable atacado){
     	
     	Ubicable atacadoUbicado = (Ubicable) atacado;
-    	if (this.puedoAtacar(atacadoUbicado)){
-			atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
-		} 
-    	//else throw new AtaqueFueraDelRangoDeVisionException(); ???
+    	if (!this.puedoAtacar(atacadoUbicado)){
+			throw new AtaqueFueraDelRangoDeVisionException();
+		}
+    	atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
 		
     }
     
