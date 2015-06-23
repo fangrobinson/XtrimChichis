@@ -38,8 +38,8 @@ public class JugadorTest {
 		Tierra tierra2 = new Tierra(2,1);
 		Jugador jugador = new Jugador("Juan",tierra);		
 		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
-		jugador.nacion.juntarMinerales(1000);
-		Marine marine = new Marine(jugador.nacion);
+		jugador.nacion().juntarMinerales(1000);
+		Marine marine = new Marine(jugador.nacion());
 		
 		bool = jugador2.esDeMiPropiedad(marine);
 		
@@ -56,8 +56,8 @@ public class JugadorTest {
 		Tierra tierra3 = new Tierra(1,3);
 		Jugador jugador = new Jugador("Juan",tierra);
 		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
-		jugador.nacion.juntarMinerales(1000);
-		Barraca barraca = new Barraca(jugador.nacion, tierra3);
+		jugador.nacion().juntarMinerales(1000);
+		Barraca barraca = new Barraca(jugador.nacion(), tierra3);
 		
 		bool = jugador2.esDeMiPropiedad(barraca);
 		
@@ -74,7 +74,7 @@ public class JugadorTest {
 		Mapa unMapa = new Mapa(2);
 		
 		Jugador jugador = new Jugador("Juan",tierra);		
-		jugador.nacion.juntarMinerales(2000);
+		jugador.nacion().juntarMinerales(2000);
 		Barraca barraca = jugador.crearBarraca(tierra2);
 		
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
@@ -98,7 +98,7 @@ public class JugadorTest {
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
 		Jugador jugador = new Jugador("Juan",tierra);		
-		jugador.nacion.juntarMinerales(1000);
+		jugador.nacion().juntarMinerales(1000);
 		Barraca barraca = jugador.crearBarraca(tierra2);
 		
 		bool = jugador.esDeMiPropiedad(barraca);
@@ -116,7 +116,7 @@ public class JugadorTest {
 		Mapa unMapa = new Mapa(2);
 		
 		Jugador jugador = new Jugador("Juan",tierra);	
-		jugador.nacion.juntarMinerales(2000);
+		jugador.nacion().juntarMinerales(2000);
 		
 		Barraca barraca = jugador.crearBarraca(tierra2);
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
@@ -130,7 +130,7 @@ public class JugadorTest {
 		
 		
 		Jugador jugador2 = new Jugador("Juan",tierra3);	
-		jugador2.nacion.juntarMinerales(2000);
+		jugador2.nacion().juntarMinerales(2000);
 		
 		Barraca barraca2 = jugador2.crearBarraca(tierra4);
 		for(int turno=0;turno<barraca2.tiempoConstruccion();turno++) barraca2.pasarTiempo();

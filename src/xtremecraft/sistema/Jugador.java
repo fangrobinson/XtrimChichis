@@ -18,8 +18,8 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.Ubicable;
 
 public class Jugador {
-	String nombre;
-	Terran nacion;
+	private String nombre;
+	private Terran nacion;
 	private Jugador siguienteJugador;
 	private boolean esMiTurno;
 	
@@ -33,6 +33,14 @@ public class Jugador {
 		this.siguienteJugador = null;
 		this.esMiTurno = false;
 		
+	}
+	
+	public String nombre(){
+		return this.nombre;
+	}
+	
+	public Terran nacion(){
+		return this.nacion;
 	}
 
 	public boolean estaEnJuego(){
