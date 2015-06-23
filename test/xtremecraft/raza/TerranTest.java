@@ -223,7 +223,7 @@ public class TerranTest {
 	
 	@Test (expected = BarracaNoEsDeLaRazaException.class)
 	public void crearMarineConBarracaNoPropiaLanzaBarracaNoEsDeLaRazaException(){
-		Mapa mapa = new Mapa(2);
+		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranValida();
 		Terran razaTerran2 = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
@@ -236,7 +236,7 @@ public class TerranTest {
 	
 	@Test(expected = FabricaNoEsDeLaRazaException.class)
 	public void crearGoliatConFabricaNoPropiaLanzaFabricaNoEsDeLaRazaException(){
-		Mapa mapa = new Mapa(2);
+		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranValida();
 		Terran razaTerran2 = crearRazaTerranValida();
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
@@ -252,7 +252,7 @@ public class TerranTest {
 	
 	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
 	public void crearEspectroConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
-		Mapa mapa = new Mapa(2);
+		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranValida();
 		Terran razaTerran2 = crearRazaTerranValida();
 		Terreno terreno1 = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
@@ -309,8 +309,6 @@ public class TerranTest {
 		Unidad naveTransporte = razaTerran2.crearNaveTransporte(puerto, mapa);
 		
 	}
-	
-	
 	
 	//TODO: emprolijar estos tests. Mas de 1 assert x test.
 	@Test

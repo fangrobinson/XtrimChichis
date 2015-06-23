@@ -38,10 +38,10 @@ public class Mapa {
 		
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
-		for(int fila =0; fila < this.alto ;fila = fila + 1) {
+		for(int fila = 0; fila < this.alto ;fila = fila + 1) {
 			this.mapaAlto.put(fila, new TreeMap<Integer, Celda>());
 			for(int columna = 0; columna < this.ancho; columna = columna + 1) {
-				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna, cant_jugadores));
+				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna));
 			}
 		}
 				
@@ -59,7 +59,7 @@ public class Mapa {
 		
 	}
 	
-	private Celda obtenerCeldaAdecuada(int fila, int columna, int cant_jugadores){
+	private Celda obtenerCeldaAdecuada(int fila, int columna){
 		
 		return new Celda(new Tierra(fila, columna), new Aire(fila, columna));
 		
@@ -128,8 +128,8 @@ public class Mapa {
 
 	private boolean coordenadaEstaDentroDelMapa(Coordenada unaCoordenada) {
 		
-		boolean filaEstaDentroDelMapa = unaCoordenada.fila()>=0 && unaCoordenada.fila()<this.ancho;
-		boolean columnaEstaDentroDelMapa = unaCoordenada.columna()>=0 && unaCoordenada.columna()<this.alto;
+		boolean filaEstaDentroDelMapa = (unaCoordenada.fila()>=0) && (unaCoordenada.fila()<this.alto);
+		boolean columnaEstaDentroDelMapa = (unaCoordenada.columna()>=0) && (unaCoordenada.columna()<this.ancho);
 		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
 		
 	}
@@ -185,13 +185,14 @@ public class Mapa {
 			Coordenada coordenadaBase = terrenoActual.getCoordenada();
 			ArrayList<Coordenada> celdasAlrededorDeEstaBase = coordenadaBase.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
 			//saco las coordenadas que caen fuera del mapa:
-			for(int posicion=0;posicion<celdasAlrededorDeEstaBase.size();posicion++){
+			/*for(int posicion=0;posicion<celdasAlrededorDeEstaBase.size();posicion++){
 				Coordenada unaCoordenada = celdasAlrededorDeEstaBase.get(posicion);
 				if(!this.coordenadaEstaDentroDelMapa(unaCoordenada)) celdasAlrededorDeEstaBase.remove(unaCoordenada);
-			}
+			}*/
 			//selecciono (aleatoriamente) los terrenos en los que quiero ubicar un recurso alrededor de la base:
 			for(int j=0;j<celdasAlrededorDeEstaBase.size();j++){
 				Coordenada coordenadaActual = celdasAlrededorDeEstaBase.get(j); 
+				if(!this.coordenadaEstaDentroDelMapa(coordenadaActual)) continue;
 				Tierra posibleTerrenoParaRecurso = (Tierra)this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()).getCapaInferior();
 				
 				int aleatorioEleccion = new Random().nextInt(2);
