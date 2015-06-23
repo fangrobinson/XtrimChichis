@@ -2,8 +2,8 @@ package xtremecraft.edificios;
 
 public interface Construible {
 	
-	public int tiempoConstruccion();
+	int tiempoConstruccion();
 	
-	public boolean estaEnConstruccion();
+	boolean estaEnConstruccion();
 
 }

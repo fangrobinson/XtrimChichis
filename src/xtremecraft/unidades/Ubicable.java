@@ -6,18 +6,18 @@ import xtremecraft.raza.Terran;
 
 public interface Ubicable {
 	
-	public Coordenada getUbicacionActual();
+	Coordenada getUbicacionActual();
 	
-	public void actualizarUbicacion(Terreno unTerreno);
+	void actualizarUbicacion(Terreno unTerreno);
 		
-	public boolean puedeUbicarseSobreRecursoNatural();
+	boolean puedeUbicarseSobreRecursoNatural();
 	
-	public boolean pertenezcoAEstaRaza(Terran terran);
+	boolean pertenezcoAEstaRaza(Terran terran);
 	
-	public boolean puedeUbicarseEnTierra();
+	boolean puedeUbicarseEnTierra();
 	
-	public boolean puedeUbicarseEnAire();
+	boolean puedeUbicarseEnAire();
 	
-	public boolean estaElevado();
+	boolean estaElevado();
 	
 }

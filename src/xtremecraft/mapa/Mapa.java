@@ -27,7 +27,7 @@ public class Mapa {
 		this.alto = this.decidirAlto(cant_jugadores);
 		this.ancho = this.decidirAncho(cant_jugadores);
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
-		rellenarMapa(alto, ancho, cant_jugadores);	
+		rellenarMapa();	
 		//TODO: armar bien este algoritmo. Lo armo para que ubique las bases aleatoriamente,
 		//para los tests, pero hay que armarlo bien.
 		ubicarBases(cant_jugadores);
@@ -43,7 +43,7 @@ public class Mapa {
 		return this.ancho;
 	}
 
-	private void rellenarMapa(int alto, int ancho, int cant_jugadores) {
+	private void rellenarMapa() {
 		
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
