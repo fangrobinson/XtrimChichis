@@ -191,34 +191,52 @@ public class Mapa {
 
 	private void ubicarRecursosMinerales() {
 		
+		ArrayList<Coordenada>coordenadasParaUbicacionDeRecurso = obtenerCoordenadasParaUbicacionDeMinerales();
+		
+		for(int posicion=0;posicion<coordenadasParaUbicacionDeRecurso.size();posicion++){
+			
+			Coordenada coordenadaActual = coordenadasParaUbicacionDeRecurso.get(posicion); 
+			Tierra posibleTerrenoParaRecurso = (Tierra)this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()).getCapaInferior();
+				
+			int aleatorioEleccion = new Random().nextInt(2);
+			boolean aleatorioEleccionEsMineral = (aleatorioEleccion == 0);
+			boolean aleatorioEleccionEsGasVespeno = (aleatorioEleccion == 1);
+			boolean terrenoEstaDisponible = ((!posibleTerrenoParaRecurso.tieneRecursos()) && (!this.terrenosBasesJugadores.contains(posibleTerrenoParaRecurso)));
+			
+			if(terrenoEstaDisponible && aleatorioEleccionEsMineral){
+				this.agregarNodoMineral(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
+			}
+			if(terrenoEstaDisponible && aleatorioEleccionEsGasVespeno){
+				this.agregarVolcanGasVespeno(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
+			}
+				
+		}
+	
+	}
+	
+	private ArrayList<Coordenada> obtenerCoordenadasParaUbicacionDeMinerales(){
+		
+		ArrayList<Coordenada> coordenadasParaUbicacionDeRecurso = new ArrayList<Coordenada>();
+		ArrayList<Coordenada> celdasAlrededorDeEstaBase = new ArrayList<Coordenada>();
+		Coordenada coordenadaBaseActual;
+		
 		for(int i=0;i<this.terrenosBasesJugadores.size();i++){
 			Tierra terrenoActual = this.terrenosBasesJugadores.get(i);
 			//obtengo un listado de coordenadas en un radio aleatorio de la base actual:
 			int radioAleatorioAlrededorDeLaBase = this.numeroAleatorioEntreMinimoYMaximo(2,3);
-			Coordenada coordenadaBase = terrenoActual.getCoordenada();
-			ArrayList<Coordenada> celdasAlrededorDeEstaBase = coordenadaBase.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
-			//selecciono (aleatoriamente) los terrenos en los que quiero ubicar un recurso alrededor de la base:
+			coordenadaBaseActual = terrenoActual.getCoordenada();
+			celdasAlrededorDeEstaBase = coordenadaBaseActual.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
+			//De las coordenadas obtenidas selecciono solo aquellas que estan dentro de las dimensiones del mapa:
 			for(int j=0;j<celdasAlrededorDeEstaBase.size();j++){
-				Coordenada coordenadaActual = celdasAlrededorDeEstaBase.get(j); 
-				if(!this.coordenadaEstaDentroDelMapa(coordenadaActual)) continue;
-				Tierra posibleTerrenoParaRecurso = (Tierra)this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()).getCapaInferior();
-				
-				int aleatorioEleccion = new Random().nextInt(2);
-				boolean aleatorioEleccionEsMineral = (aleatorioEleccion == 0);
-				boolean aleatorioEleccionEsGasVespeno = (aleatorioEleccion == 1);
-				boolean terrenoDisponible = ((!posibleTerrenoParaRecurso.tieneRecursos()) && (!this.terrenosBasesJugadores.contains(posibleTerrenoParaRecurso)));
-				
-				if(terrenoDisponible && aleatorioEleccionEsMineral){
-					this.agregarNodoMineral(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
-				}
-				else if(terrenoDisponible && aleatorioEleccionEsGasVespeno){
-					this.agregarVolcanGasVespeno(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
+				Coordenada unaCoordenada = celdasAlrededorDeEstaBase.get(j); 
+				if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
+					coordenadasParaUbicacionDeRecurso.add(unaCoordenada);
 				}
 			}
-		}	
-		
+		}
+		return coordenadasParaUbicacionDeRecurso;
 	}
-
+	
 	private void agregarNodoMineral(int fila, int columna) {
 		
 		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
