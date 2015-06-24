@@ -251,6 +251,15 @@ public class Terran implements Actualizable{
 		//posible solucion guardarlos y hacer un getter para que el mapa pueda pedirlos y removerlos.
 		IteradorEdificios iterEdificios = new IteradorEdificios(this.edificios);
 		this.poblacionMaxima = iterEdificios.cuantosHayCreadosDe(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
+		extraerEdificiosMuertos();
+		extraerUnidadesMuertas();
+		
+	}
+	
+	//TODO: Refactory. Hacer merge de los dos metodos siguientes:
+	
+	private void extraerUnidadesMuertas(){
+		
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
 			Unidad unidadActual = this.unidades.get(posicionActual);
 			if(!unidadActual.estaVivo()){
@@ -258,6 +267,11 @@ public class Terran implements Actualizable{
 			}
 			else unidadActual.pasarTiempo();
 		}
+		
+	}
+	
+	private void extraerEdificiosMuertos(){
+		
 		for(int posicionActual = 0; posicionActual < this.edificios.size(); posicionActual++){
 			Edificio edificioActual = this.edificios.get(posicionActual);
 			if(!edificioActual.estaVivo()){
@@ -265,7 +279,7 @@ public class Terran implements Actualizable{
 			}
 			else edificioActual.pasarTiempo();
 		}
-		
+				
 	}
 
 	public void juntarMinerales(int cantidad){
