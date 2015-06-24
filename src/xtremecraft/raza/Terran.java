@@ -23,9 +23,9 @@ public class Terran implements Actualizable{
 
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Edificio> edificios;
-    private int poblacionMaxima;
-    private int minerales;
-    private int gas;
+    	private int poblacionMaxima;
+    	private int minerales;
+    	private int gas;
 
 	
 	public Terran(Tierra terreno){
