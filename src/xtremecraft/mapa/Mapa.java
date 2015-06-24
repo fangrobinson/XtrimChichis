@@ -19,18 +19,18 @@ public class Mapa {
 	private static int maximoRecursoPorUnidadTerreno = 1000;
 	public ArrayList<Tierra> terrenosBasesJugadores;
 	
-	public Mapa(int cant_jugadores) {
+	public Mapa(int cantidadJugadores) {
 		
-		if (cant_jugadores <= 1){
+		if (cantidadJugadores <= 1){
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}
-		this.alto = this.decidirAlto(cant_jugadores);
-		this.ancho = this.decidirAncho(cant_jugadores);
+		this.alto = this.decidirAlto(cantidadJugadores);
+		this.ancho = this.decidirAncho(cantidadJugadores);
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
 		rellenarMapa();	
 		//TODO: armar bien este algoritmo. Lo armo para que ubique las bases aleatoriamente,
 		//para los tests, pero hay que armarlo bien.
-		ubicarBases(cant_jugadores);
+		ubicarBases(cantidadJugadores);
 		ubicarRecursosMinerales();
 		
 	}
