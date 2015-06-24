@@ -97,7 +97,6 @@ public class NaveCiencia extends UnidadAerea{
 		}
 			
 	}
-
 	
 	public void atacarConRadiacion(ArrayList<Celda>celdasAfectadas,Unidad unidad){
 		
@@ -109,8 +108,10 @@ public class NaveCiencia extends UnidadAerea{
 	}
 	
 	public void cobrar(Terran raza){
+		
 		raza.quitarMinerales(this.minerales);
 		raza.quitarGas(this.gas);
+		
 	}
 
 }

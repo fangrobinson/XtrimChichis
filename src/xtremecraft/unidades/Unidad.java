@@ -209,6 +209,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     	return false;
     	
     }
+    
     //las unidades que estan alrededor del irradiado reciben radiacion.
     public boolean recibirDanio(Radiacion radiacion){
     	

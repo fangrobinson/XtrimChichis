@@ -36,15 +36,21 @@ public class Mapa {
 	}
 	
 	public TreeMap<Integer, TreeMap<Integer, Celda>> devolverMapaEstatico(){
+		
 		return this.mapaAlto;
+		
 	}
 	
 	public int alto(){
+		
 		return this.alto;
+		
 	}
 	
 	public int ancho(){
+		
 		return this.ancho;
+		
 	}
 
 	private void rellenarMapa() {
@@ -269,7 +275,6 @@ public class Mapa {
 		
 	}
 	
-	
 	public ArrayList<Terreno> obtenerTerrenosConRecursos(){
 		
 		ArrayList<Terreno> terrenos = new ArrayList<Terreno>(); 
@@ -309,6 +314,5 @@ public class Mapa {
 		return null;
 		
 	}
-	
 
 }
