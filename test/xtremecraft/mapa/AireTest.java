@@ -22,7 +22,7 @@ public class AireTest {
 	}
 	
 	
-	@Test
+	@Test(expected = NoSePudoOcuparElTerrenoException.class)
 	public void aireEstaOcupadaDeberiaDevolverFalseSiTratoDeUbicarUnaUnidadTerrestre(){
 		
 		Tierra tierra = new Tierra(15,15);
@@ -32,7 +32,6 @@ public class AireTest {
 		Terreno terreno=new Aire(1,4);
 		Unidad goliat= new Goliat(razaTerran);
 		terreno.ubicar(goliat);
-		assertFalse(terreno.estaOcupado());
 		
 	}
 	

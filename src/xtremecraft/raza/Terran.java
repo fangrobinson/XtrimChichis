@@ -12,10 +12,10 @@ import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.sistema.Actualizable;
+import xtremecraft.partida.Actualizable;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
-import xtremecraft.unidades.UbicacionNoValidaException;
+//import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 
@@ -62,9 +62,11 @@ public class Terran implements Actualizable{
 	public Barraca crearBarraca(Terreno unTerreno){
 		
 		Barraca nuevaBarraca = new Barraca(this, unTerreno);
+		unTerreno.ubicar(nuevaBarraca);
+		/*
 		if(!unTerreno.ubicar(nuevaBarraca)){
 			throw new UbicacionNoValidaException();
-		}
+		}*/
 		this.agregarEdificio(nuevaBarraca);
 		return nuevaBarraca;
 		
@@ -75,9 +77,12 @@ public class Terran implements Actualizable{
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
 		Fabrica nuevaFabrica = new Fabrica(this, unaBarraca,unTerreno);
+		unTerreno.ubicar(nuevaFabrica);
+		/*
 		if(!unTerreno.ubicar(nuevaFabrica)){
 			throw new UbicacionNoValidaException();
 		}
+		*/
 		this.agregarEdificio(nuevaFabrica);
 		return nuevaFabrica;
 			
@@ -88,9 +93,10 @@ public class Terran implements Actualizable{
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
 		PuertoEstelar nuevoPuerto = new PuertoEstelar(this,unaFabrica,unTerreno);
-		if(!unTerreno.ubicar(nuevoPuerto)){
+		unTerreno.ubicar(nuevoPuerto);
+		/*if(!unTerreno.ubicar(nuevoPuerto)){
 			throw new UbicacionNoValidaException();
-		}
+		}*/
 		this.agregarEdificio(nuevoPuerto);
 		return nuevoPuerto;
 	
@@ -99,9 +105,11 @@ public class Terran implements Actualizable{
 	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
 		
 		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this,unTerreno);
+		unTerreno.ubicar(nuevoCentroMineral);
+		/*
 		if(!unTerreno.ubicar(nuevoCentroMineral)){
 			throw new UbicacionNoValidaException();
-		}
+		}*/
 		this.agregarEdificio(nuevoCentroMineral);
 		return nuevoCentroMineral;
 		
@@ -110,9 +118,11 @@ public class Terran implements Actualizable{
 	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
 		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this, unTerreno);
+		unTerreno.ubicar(nuevaRefineria);
+		/*
 		if(!unTerreno.ubicar(nuevaRefineria)){
 			throw new UbicacionNoValidaException();
-		}
+		}*/
 		this.agregarEdificio(nuevaRefineria);
 		return nuevaRefineria;
 		
@@ -121,9 +131,11 @@ public class Terran implements Actualizable{
 	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
 		
 		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this, unTerreno);
+		unTerreno.ubicar(nuevoDeposito);
+		/*
 		if(!unTerreno.ubicar(nuevoDeposito)){
 			throw new UbicacionNoValidaException();
-		}
+		}*/
 		this.agregarEdificio(nuevoDeposito);
 		return nuevoDeposito;
 		

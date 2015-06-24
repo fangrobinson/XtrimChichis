@@ -1,4 +1,4 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,6 +6,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import xtremecraft.partida.CantidadDeJugadoresMenorAUnoException;
+import xtremecraft.partida.Jugador;
+import xtremecraft.partida.Partida;
 
 public class PartidaTest {
 	

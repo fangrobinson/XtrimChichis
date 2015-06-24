@@ -1,4 +1,4 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
@@ -19,6 +19,7 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
+// TODO: Jugador deberia dejar de ser Actualizable
 public class Jugador implements Actualizable{
 	private String nombre;
 	private Terran nacion;
@@ -161,6 +162,7 @@ public class Jugador implements Actualizable{
 		if(!this.esMiTurno){
 			throw new JugadorNoTieneElTurnoException();
 		}
+		this.nacion.pasarTiempo();
 		this.esMiTurno = false;
 		this.siguienteJugador.setTurno();
 		

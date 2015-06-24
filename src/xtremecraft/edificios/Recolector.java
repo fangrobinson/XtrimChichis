@@ -1,9 +1,9 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.partida.Actualizable;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.Recurso;
-import xtremecraft.sistema.Actualizable;
 
 
 public abstract class Recolector extends Edificio implements Actualizable{

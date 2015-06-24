@@ -1,4 +1,4 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 public interface Actualizable {
 	

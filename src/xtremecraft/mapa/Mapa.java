@@ -29,7 +29,6 @@ public class Mapa {
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
 		rellenarMapa();	
 		//TODO: armar bien este algoritmo. Lo armo para que ubique las bases aleatoriamente,
-		//para los tests, pero hay que armarlo bien.
 		ubicarBases(cantidadJugadores);
 		ubicarRecursosMinerales();
 		
@@ -104,20 +103,29 @@ public class Mapa {
 		
 	}
 	
-	private boolean ubicarCapaInferior(Ubicable ubicable, Celda celda ){
+	public Terreno ubicarCapaInferior(Ubicable ubicable, Celda celda ){
 		
 		return celda.ubicarCapaInferior(ubicable);
 		
 	}
 	
-	private boolean ubicarCapaSuperior(Ubicable ubicable, Celda celda ){
+	private Terreno ubicarCapaSuperior(Ubicable ubicable, Celda celda ){
 		
 		return celda.ubicarCapaSuperior(ubicable);
 		
 	}
 	
-	public boolean ubicar(Ubicable ubicable, Celda celda ){
+	public void ubicar(Ubicable ubicable, Celda celda){
 		
+		Terreno terreno = null;
+		try{
+			terreno = this.ubicarCapaInferior(ubicable, celda);
+		}
+		catch(RuntimeException NoSePudoOcuparElTerrenoException){
+			terreno = this.ubicarCapaSuperior(ubicable, celda);
+		};
+		ubicable.actualizarUbicacion(terreno);
+		/*	
 		if(!this.ubicarCapaInferior(ubicable, celda )){
 			if(!this.ubicarCapaSuperior(ubicable, celda )){
 				return false;
@@ -125,7 +133,7 @@ public class Mapa {
 			else ubicable.actualizarUbicacion(celda.getCapaSuperior());
 		}
 		else ubicable.actualizarUbicacion(celda.getCapaInferior());
-		return true;
+		return true;*/
 		
 	}
 	
@@ -257,7 +265,7 @@ public class Mapa {
 		
 	}
 
-	//TODO:ARREGLAR!!!!!!!!!!!!!!
+	//TODO: Repensar con Persistencia
 	public void ubicarBases(int cantidadJugadores) {
 		
 		Tierra posibleTerreno;
@@ -294,7 +302,7 @@ public class Mapa {
 		ArrayList<Terreno> listaTerrenos = this.obtenerTerrenosConRecursos();
 		for (int i = 0; i < listaTerrenos.size(); i++){
 			Recurso recursoActual = listaTerrenos.get(i).getRecurso(); 
-			if (recursoActual.getClass() == MinaDeMinerales.class){
+			if (recursoActual.getClass() == MinaDeMinerales.class && !recursoActual.estaSiendoExplotado()){
 				return listaTerrenos.get(i);
 			}
 		}

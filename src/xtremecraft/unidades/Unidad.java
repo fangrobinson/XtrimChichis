@@ -3,8 +3,8 @@ package xtremecraft.unidades;
 import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.partida.Actualizable;
 import xtremecraft.raza.Terran;
-import xtremecraft.sistema.Actualizable;
 
 public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable{
 	

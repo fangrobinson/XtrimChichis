@@ -1,4 +1,4 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 import org.junit.Test;
 
@@ -8,9 +8,13 @@ import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
-import xtremecraft.mapa.Celda;
+//import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
+import xtremecraft.partida.Jugador;
+import xtremecraft.partida.JugadorNoTieneElTurnoException;
+import xtremecraft.partida.NombreMuyCortoException;
 import xtremecraft.raza.IteradorEdificios;
 import xtremecraft.raza.IteradorUnidades;
 import xtremecraft.recursos.MinaDeMinerales;
@@ -90,9 +94,9 @@ public class JugadorTest {
 		
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
 
-        Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
+        //Celda celda = unMapa.getCeldaEnFilaColumna(1, 6);
 		
-		unMapa.ubicar(barraca, celda);
+		//unMapa.ubicar(barraca, celda);
 		
 		Marine marine = jugador.crearMarine(barraca, unMapa);
 		
@@ -132,9 +136,9 @@ public class JugadorTest {
 		Barraca barraca = jugador.crearBarraca(tierra2);
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
 		
-        Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
+        //Celda celda = unMapa.getCeldaEnFilaColumna(1, 2);
 		
-		unMapa.ubicar(barraca, celda);
+		//unMapa.ubicar(barraca, celda);
 		
 		Marine marine = jugador.crearMarine(barraca, unMapa);
 		for(int turno=0;turno<marine.tiempoConstruccion();turno++) marine.pasarTiempo();
@@ -146,9 +150,9 @@ public class JugadorTest {
 		Barraca barraca2 = jugador2.crearBarraca(tierra4);
 		for(int turno=0;turno<barraca2.tiempoConstruccion();turno++) barraca2.pasarTiempo();
 		
-        Celda celda2 = unMapa.getCeldaEnFilaColumna(1, 3);
+        //Celda celda2 = unMapa.getCeldaEnFilaColumna(1, 3);
 		
-		unMapa.ubicar(barraca, celda2);
+		//unMapa.ubicar(barraca, celda2);
 		
 		Marine marine2 = jugador2.crearMarine(barraca2, unMapa);
 		for(int turno=0;turno<marine2.tiempoConstruccion();turno++) marine2.pasarTiempo();
@@ -403,7 +407,7 @@ public class JugadorTest {
 		
 		Mapa unMapa = new Mapa(2); 
 		
-		unMapa.ubicar(unaFabrica, unMapa.getCeldaEnFilaColumna(1, 3));
+		//unMapa.ubicar(unaFabrica, unMapa.getCeldaEnFilaColumna(1, 3));
 		
 		jugador.crearGoliat(unaFabrica, unMapa);
 		

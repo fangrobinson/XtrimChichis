@@ -6,7 +6,6 @@ import xtremecraft.unidades.Ubicable;
 public abstract class Terreno{
 	
 	protected Coordenada coordenada;
-	protected boolean ocupada;
 	protected Ubicable ubicable;
 	protected Recurso recurso;
 	protected boolean tieneRecursos;
@@ -14,14 +13,14 @@ public abstract class Terreno{
 	public Terreno(int fila, int columna){
 		
 		this.coordenada = new Coordenada(fila,columna);
-		this.ocupada = false;
+		this.ubicable = null;
 		this.tieneRecursos = false;
 		
 	}
 	
 	public boolean estaOcupado(){
 		
-		return this.ocupada;
+		return !(this.ubicable == null);
 		
 	}
 		
@@ -55,7 +54,7 @@ public abstract class Terreno{
 		
 	}
 
-	public abstract boolean ubicar(Ubicable ubicable);
+	public abstract Terreno ubicar(Ubicable ubicable);
 
 	public abstract boolean estaElevado();
 
@@ -66,7 +65,6 @@ public abstract class Terreno{
 	public void desocupar() {
 		
 		this.ubicable = null;
-		this.ocupada = false;
 		
 	}
 

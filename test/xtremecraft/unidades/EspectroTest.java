@@ -287,22 +287,4 @@ public class EspectroTest {
 		
 	}
 
-	//TODO: Que paso aca?
-	/*
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
-	
-	}
-	*/
-
 }

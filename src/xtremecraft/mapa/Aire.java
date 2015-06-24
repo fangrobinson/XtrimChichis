@@ -18,16 +18,12 @@ public class Aire extends Terreno {
 		
 	}
 
-    public boolean ubicar(Ubicable ubicable){
-    	if(this.ocupada){
-    		return false;
+    public Terreno ubicar(Ubicable ubicable){
+    	if(super.estaOcupado() || !ubicable.puedeUbicarseEnAire()){
+    		throw new NoSePudoOcuparElTerrenoException();
     	}
-    	if (ubicable.puedeUbicarseEnAire()){
-    		this.ubicable = ubicable;
-    		this.ocupada = true;
-    		return true;
-    	}
-    	return false;
+    	this.ubicable = ubicable;
+    	return this;
     }
 
 	public boolean estaElevado() {

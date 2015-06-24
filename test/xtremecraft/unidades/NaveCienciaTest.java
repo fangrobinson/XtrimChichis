@@ -219,7 +219,7 @@ public class NaveCienciaTest {
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
 		Terreno otroAire = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
-		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
 		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
 		Goliat goliatEnRadioDeImpacto = new Goliat(nacion);

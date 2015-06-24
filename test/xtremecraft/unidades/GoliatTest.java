@@ -123,12 +123,12 @@ public class GoliatTest {
 
 		Terran nacion = crearRazaTerranValida();
 		Terreno tierra = new Tierra(1,4);
-		Terreno aire = new Aire(10,10);
+		Terreno tierraDos = new Tierra(24,24);
 		Goliat tanque1 = new Goliat(nacion);
 		Goliat tanque2 = new Goliat(nacion);
 		
 		tanque1.actualizarUbicacion(tierra);
-		tanque2.actualizarUbicacion(aire);
+		tanque2.actualizarUbicacion(tierraDos);
 		
 		tanque1.atacar(tanque2);
 	}
@@ -307,22 +307,5 @@ public class GoliatTest {
 		
 	}
 
-	//TODO: Faltan tests
-	/*
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
-	
-	}
-	*/
 }
 
