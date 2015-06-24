@@ -38,9 +38,9 @@ public class Terran implements Actualizable{
 
 
 		DepositoDeSuministros baseInicial = crearDepositoDeSuministros(terreno);
-		for(int i=0;i<baseInicial.tiempoConstruccion();i++)	baseInicial.pasarTiempo();
-		
-		//this.edificios.add(baseInicial);
+		for(int tiempo=0;tiempo<baseInicial.tiempoConstruccion();tiempo++){
+			baseInicial.pasarTiempo();
+		}
 		
 	}
 
@@ -72,7 +72,6 @@ public class Terran implements Actualizable{
 	
 	public Fabrica crearFabrica(Terreno unTerreno){
 		
-		//TODO: pasar validacion al edificio pasando por parametro una barraca
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
 		Fabrica nuevaFabrica = new Fabrica(this, unaBarraca,unTerreno);
@@ -86,7 +85,6 @@ public class Terran implements Actualizable{
 		
 	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
 		
-		//TODO: pasar validacion al edificio pasando por parametro una fabrica
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
 		PuertoEstelar nuevoPuerto = new PuertoEstelar(this,unaFabrica,unTerreno);
@@ -255,12 +253,16 @@ public class Terran implements Actualizable{
 		this.poblacionMaxima = iterEdificios.cuantosHayCreadosDe(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
 			Unidad unidadActual = this.unidades.get(posicionActual);
-			if(!unidadActual.estaVivo()) this.unidades.remove(unidadActual);
+			if(!unidadActual.estaVivo()){
+				this.unidades.remove(unidadActual);
+			}
 			else unidadActual.pasarTiempo();
 		}
 		for(int posicionActual = 0; posicionActual < this.edificios.size(); posicionActual++){
 			Edificio edificioActual = this.edificios.get(posicionActual);
-			if(!edificioActual.estaVivo()) this.edificios.remove(edificioActual);
+			if(!edificioActual.estaVivo()){
+				this.edificios.remove(edificioActual);
+			}
 			else edificioActual.pasarTiempo();
 		}
 		
