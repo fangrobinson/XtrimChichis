@@ -2,6 +2,8 @@ package xtremecraft.vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -30,17 +32,52 @@ public class IngresoNombres extends JFrame {
 		setSize(400,150);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		mensaje.setHorizontalTextPosition(JLabel.LEFT);
-		mensaje.setVerticalTextPosition(JLabel.TOP);
-		
 		panel.add(Box.createRigidArea(getPreferredSize()));
 		
 		panel.add(mensaje);
 		
 		panel.add(Box.createRigidArea(getPreferredSize()));
 		
-		panel.add(cajaTexto);
+		int numeroJugador = nombresJugadores.size()+1;
+		cajaTexto.setText("Jugador"+" "+ Integer.toString(numeroJugador));
 		
+		cajaTexto.addMouseListener(new MouseListener(){
+		
+			@Override
+			public void mouseClicked(MouseEvent click) {
+				cajaTexto.setText("");
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+						
+		});
+		
+		
+		panel.add(cajaTexto);
+						
 		panel.add(Box.createRigidArea(getPreferredSize()));
 		
 		panel.add(btnEnter);
@@ -49,19 +86,24 @@ public class IngresoNombres extends JFrame {
 			
 			public void actionPerformed(ActionEvent click){
 				
-				String input = cajaTexto.getText();
-				nombresJugadores.add(input);
+				String nombreNuevoJugador = cajaTexto.getText();
 				
+				if(nombresJugadores.contains(nombreNuevoJugador)){
+					new MensajeDeError("Este nombre ya fue ingresado por otro jugador. Elige otro nombre.");
+				}else{		
+					nombresJugadores.add(nombreNuevoJugador);
+				}				
 				if(nombresJugadores.size() == cantidadDeJugadores){
 					System.exit(0);
 				}
 				else{
-					cajaTexto.setText("");
+					int numeroJugador = nombresJugadores.size()+1;
+					cajaTexto.setText("Jugador"+" "+ Integer.toString(numeroJugador));
 				}
 			}
 
 		});		
-		//panel.add(label);
+		
 		add(panel);
 		
 	}

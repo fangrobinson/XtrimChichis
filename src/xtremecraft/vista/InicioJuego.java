@@ -1,20 +1,13 @@
 package xtremecraft.vista;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-import javax.swing.border.Border;
-
-import com.sun.xml.internal.ws.api.server.Container;
 
 @SuppressWarnings("serial")
 public class InicioJuego extends JFrame{
@@ -32,8 +25,6 @@ public class InicioJuego extends JFrame{
 		setTitle("Cantidad de jugadores");
 		setSize(250,100);
 		setResizable(false);
-		java.awt.Container contentPane = getContentPane();
-		new BoxLayout(contentPane,BoxLayout.PAGE_AXIS);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
