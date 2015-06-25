@@ -1,4 +1,4 @@
-package vista;
+package xtremecraft.vista;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -20,6 +20,8 @@ public class MapaObservable extends JPanel implements MouseListener {
 	
 	private Mapa modeloReal;
 	private HashMap<Class<?>, Class<?>> vistas;
+	
+	public MapaObservable(){};
 	
 	public MapaObservable(Mapa mapa, int x, int y){
 		

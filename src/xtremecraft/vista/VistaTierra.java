@@ -1,4 +1,4 @@
-package vista;
+package xtremecraft.vista;
 
 import java.awt.Color;
 
