@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -44,7 +43,6 @@ public class IngresoNombres extends JFrame {
 				}
 				else{
 					cajaTexto.setText("");
-					System.out.println(nombresJugadores.size());
 				}
 			}
 
