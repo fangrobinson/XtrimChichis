@@ -4,8 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -14,21 +17,32 @@ public class IngresoNombres extends JFrame {
 	
 	JTextField cajaTexto = new JTextField(30);
 	JPanel panel = new JPanel();
-	//JLabel label = new JLabel("Nombre jugador:");
+	JLabel mensaje = new JLabel("Nombre jugador:");
 	JButton btnEnter = new JButton("Ingresar Jugador");
 
 	public IngresoNombres(final ArrayList<String> nombresJugadores, final int cantidadDeJugadores){
 		
-		setTitle("BIENVENIDO");
+		setTitle("JUGADORES");
 		setVisible(true);
-		setSize(400,200);
+		setResizable(false);
+		java.awt.Container contentPane = getContentPane();
+		new BoxLayout(contentPane,BoxLayout.PAGE_AXIS);
+		setSize(400,150);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//label.setHorizontalTextPosition(JLabel.LEFT);
-		//label.setVerticalTextPosition(JLabel.TOP);
+		mensaje.setHorizontalTextPosition(JLabel.LEFT);
+		mensaje.setVerticalTextPosition(JLabel.TOP);
 		
-		//panel.add(label);
+		panel.add(Box.createRigidArea(getPreferredSize()));
+		
+		panel.add(mensaje);
+		
+		panel.add(Box.createRigidArea(getPreferredSize()));
+		
 		panel.add(cajaTexto);
+		
+		panel.add(Box.createRigidArea(getPreferredSize()));
+		
 		panel.add(btnEnter);
 			
 		btnEnter.addActionListener(new ActionListener(){
