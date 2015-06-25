@@ -281,22 +281,4 @@ public class MarineTest {
 		
 	}
 
-	//TODO: Faltan Tests
-	/*
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
-	
-	}
-	*/
-	
 }

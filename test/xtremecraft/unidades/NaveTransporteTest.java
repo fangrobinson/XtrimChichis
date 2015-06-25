@@ -315,22 +315,4 @@ public class NaveTransporteTest {
 		
 	}
 
-	//TODO: Faltan tests
-	/*
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadDisminuyeAlPasarElTiempo(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeMoverse(){
-	
-	}
-	
-	@Test
-	public void luegoDeRecibirUnAtaqueRadioactivoLaVidaDeLaUnidadNoPuedeAtacar(){
-	
-	}
-	*/
-
 }

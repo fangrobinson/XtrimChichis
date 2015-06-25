@@ -59,11 +59,19 @@ public class NaveTransporte extends UnidadAerea {
 	public boolean bajarUnidad(Mapa mapa,Unidad unaUnidad){
 		
 		ArrayList<Celda> celdasAdyacentes = mapa.obtenerCeldasAdyacentesAlUbicable(this);
-		for(int posicion=0;posicion<celdasAdyacentes.size();posicion++){
+		int posicion = 0;
+		for(posicion = 0;posicion<celdasAdyacentes.size();posicion++){
 			Celda celdaActual = celdasAdyacentes.get(posicion);
-			if(mapa.ubicar(unaUnidad,celdaActual)) return true;
+			try{
+				mapa.ubicar(unaUnidad,celdaActual);
+			}
+			catch(RuntimeException NoSePudoOcuparElTerrenoException){
+				//doFoo();
+			}
+			//if(mapa.ubicar(unaUnidad,celdaActual)) return true;
 		}
-		return false;
+		if(posicion == celdasAdyacentes.size()) return false;
+		return true;
 	}
 	
 	public ArrayList<Unidad> getUnidadesTransportadas(){

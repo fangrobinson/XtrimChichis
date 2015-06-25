@@ -1,18 +1,23 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.Terreno;
+
+//import xtremecraft.mapa.Mapa;
+//import xtremecraft.mapa.Terreno;
+//import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
+import xtremecraft.partida.Partida;
+//import xtremecraft.recursos.MinaDeMinerales;
 
 
 public class IntegracionTest {
 	
 	@Test
-	public void prueba01_creacionDeRecolectoresDeGasDeUnidadesAtaqueEntreUnidadesYaEdificios(){
+	public void prueba01CreacionDeRecolectoresDeGasDeUnidadesAtaqueEntreUnidadesYaEdificios(){
 		
 		ArrayList<String> nombresJugadores = new ArrayList<String>();
 		nombresJugadores.add("noob");
@@ -26,24 +31,13 @@ public class IntegracionTest {
 		
 		Jugador jugadorTurno = xtremGame.quienJuega();
 		
-		Mapa mapa = xtremGame.getMapa();
+		//Mapa mapa = xtremGame.getMapa();
 		
-		ArrayList<Terreno> terrenosConRecurso = mapa.obtenerTerrenosConRecursos();
-		
-		Terreno esteTerreno = terrenosConRecurso.get(0);
-		
+		//Terreno esteTerreno = mapa.obtenerTerrenoConMinaDeMinerales();
+
 		jugadorTurno.nacion().juntarMinerales(200);
 		
-		try{
-			
-			xtremGame.crearRecolectorDeMineral(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
-			
-		}
-		catch(RuntimeException NoHayRecursoException){
-			
-			xtremGame.crearRecolectorDeGasVespeno(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
-			
-		}
+		//xtremGame.crearRecolectorDeMineral(jugadorTurno,esteTerreno.fila(),esteTerreno.columna());
 		
 		xtremGame.pasarTiempo();
 		
@@ -54,6 +48,7 @@ public class IntegracionTest {
 		assertEquals(nombreJugadorTurno, "playerOpCoreano");
 		
 	}
+
 	/*
 	@Test
 	

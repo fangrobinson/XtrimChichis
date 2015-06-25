@@ -1,4 +1,4 @@
-package xtremecraft.sistema;
+package xtremecraft.partida;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class Partida {
 		this.jugadores = new ArrayList<Jugador>();
 		
 		//que las coordenadas de jugador las determine partida según lo raro que programó robin en mapa. 
-		// Perdon??? Raro D: 
+		// Perdon??? Raro ??? D: 
 		//TODO: Verdadero: resolver obtenerTerrenoJugador.
 		
 		for (int numeroJugador = 0; numeroJugador < nombresJugadores.size(); numeroJugador++){
@@ -138,7 +138,9 @@ public class Partida {
 		
 		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
 		Ubicable recolectorMineral = jugador.crearRecolectorDeMineral(unTerreno);
-		mapa.ubicar(recolectorMineral, this.mapa.getCeldaEnFilaColumna(fila, columna));
+		mapa.ubicarCapaInferior(recolectorMineral, this.mapa.getCeldaEnFilaColumna(fila, columna));
+		
+		//mapa.ubicar(recolectorMineral, this.mapa.getCeldaEnFilaColumna(fila, columna));
 	}
 	
 	public void crearMarine(Jugador jugador, Barraca unaBarraca){

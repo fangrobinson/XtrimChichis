@@ -20,11 +20,11 @@ public class Celda {
     	return this.superior;
     }
     
-    public boolean ubicarCapaSuperior(Ubicable ubicable){
+    public Terreno ubicarCapaSuperior(Ubicable ubicable){
     	return this.superior.ubicar(ubicable);
     }
     
-    public boolean ubicarCapaInferior(Ubicable ubicable){
+    public Terreno ubicarCapaInferior(Ubicable ubicable){
     	return this.inferior.ubicar(ubicable);
     }
     

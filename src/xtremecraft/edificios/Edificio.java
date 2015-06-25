@@ -2,8 +2,8 @@ package xtremecraft.edificios;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.partida.Actualizable;
 import xtremecraft.raza.Terran;
-import xtremecraft.sistema.Actualizable;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
 import xtremecraft.unidades.Cobrable;

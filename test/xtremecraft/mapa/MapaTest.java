@@ -58,20 +58,21 @@ public class MapaTest {
 	}
 	
 	@Test 
-	public void ubicarCapaInferiorUnGoliatDevuelveTrue(){
+	public void ubicarCapaInferiorUnGoliatDevuelveElTerreno(){
 		
 		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
 		Goliat goliat = new Goliat(nacion);
+		Terreno tierraEsperada = celda.getCapaInferior();
 		
-		boolean bool = celda.ubicarCapaInferior(goliat);
+		Terreno tierra = celda.ubicarCapaInferior(goliat);
 		
-		assertTrue(bool);
+		assertEquals(tierra, tierraEsperada);
 		
 	}
 	
-	@Test 
+	@Test (expected = NoSePudoOcuparElTerrenoException.class)
 	public void ubicarCapaSuperiorUnGoliatDevuelveFalse(){
 		
 		Terran nacion = crearRazaTerranValida();
@@ -79,9 +80,7 @@ public class MapaTest {
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
 		Goliat goliat = new Goliat(nacion);
 		
-		boolean bool = celda.ubicarCapaSuperior(goliat);
-		
-		assertFalse(bool);
+		celda.ubicarCapaSuperior(goliat);
 		
 	}
 	
@@ -119,6 +118,7 @@ public class MapaTest {
 		Goliat goliat = new Goliat(nacion);
 		
 		celda.ubicarCapaInferior(goliat);
+		celda = mapa.getCeldaEnFilaColumna(1,2);
 		goliat.actualizarUbicacion(celda.getCapaInferior());
 		
 		assertTrue(celda.getCapaInferior().estaOcupado());
