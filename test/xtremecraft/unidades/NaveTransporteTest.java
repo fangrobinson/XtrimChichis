@@ -208,8 +208,8 @@ public class NaveTransporteTest {
 		
 	}
 	
-	@Test
-	public void bajarNaveDevuelveFalseSiTodasSiTodosLosLugaresAlrededorDeLaNaveEstanOcupados(){
+	@Test(expected = UnidadNoSePudoBajarDeLaNaveException.class)
+	public void bajarNaveDevuelveLanzaExcepcionSiTodosLosLugaresAlrededorDeLaNaveEstanOcupados(){
 		
 		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
@@ -239,8 +239,8 @@ public class NaveTransporteTest {
 		taxiVolador.actualizarUbicacion(aire);
 		goliat0.subirANaveDeTransporte(taxiVolador);
 		
-		assertFalse(taxiVolador.bajarUnidad(mapa, goliat0));
-		
+		taxiVolador.bajarUnidad(mapa, goliat0);
+				
 	}
 	
 	@Test

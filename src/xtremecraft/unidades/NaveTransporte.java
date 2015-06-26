@@ -56,22 +56,23 @@ public class NaveTransporte extends UnidadAerea {
 		
 	 }
 	
-	public boolean bajarUnidad(Mapa mapa,Unidad unaUnidad){
+	public void bajarUnidad(Mapa mapa,Unidad unaUnidad){
 		
 		ArrayList<Celda> celdasAdyacentes = mapa.obtenerCeldasAdyacentesAlUbicable(this);
 		int posicion = 0;
+		
 		for(posicion = 0;posicion<celdasAdyacentes.size();posicion++){
 			Celda celdaActual = celdasAdyacentes.get(posicion);
 			try{
 				mapa.ubicar(unaUnidad,celdaActual);
+			}catch(RuntimeException NoSePudoOcuparElTerrenoException){
+				continue;
 			}
-			catch(RuntimeException NoSePudoOcuparElTerrenoException){
-				//doFoo();
-			}
-			//if(mapa.ubicar(unaUnidad,celdaActual)) return true;
 		}
-		if(posicion == celdasAdyacentes.size()) return false;
-		return true;
+		//TODO: verificar si en este punto queremos lanzar la excepcion o 
+		//seguir devolviendo false:
+		if(posicion == celdasAdyacentes.size()) throw new UnidadNoSePudoBajarDeLaNaveException();
+		
 	}
 	
 	public ArrayList<Unidad> getUnidadesTransportadas(){
