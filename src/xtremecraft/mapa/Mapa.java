@@ -129,7 +129,7 @@ public class Mapa {
 		}
 		catch(RuntimeException NoSePudoOcuparElTerrenoException){
 			terreno = this.ubicarCapaSuperior(ubicable, celda);
-		};
+		}
 		ubicable.actualizarUbicacion(terreno);
 		
 	}
