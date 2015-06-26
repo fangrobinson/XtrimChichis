@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import xtremecraft.partida.Partida;
+
 @SuppressWarnings("serial")
 public class IngresoNombres extends JFrame {
 	
@@ -94,7 +96,9 @@ public class IngresoNombres extends JFrame {
 					nombresJugadores.add(nombreNuevoJugador);
 				}				
 				if(nombresJugadores.size() == cantidadDeJugadores){
-					System.exit(0);
+					setVisible(false);
+					new VentanaJuego(new Partida(nombresJugadores));
+					//System.exit(0);
 				}
 				else{
 					int numeroJugador = nombresJugadores.size()+1;

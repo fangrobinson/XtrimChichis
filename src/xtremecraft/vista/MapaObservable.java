@@ -26,6 +26,7 @@ public class MapaObservable extends JPanel implements MouseListener {
 	public MapaObservable(Mapa mapa, int x, int y){
 		
 		this.addMouseListener(this);
+		this.setVisible(true);
 		this.setBounds(x, y, mapa.ancho(), mapa.alto());
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
@@ -96,5 +97,5 @@ public class MapaObservable extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

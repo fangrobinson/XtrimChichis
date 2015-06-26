@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import xtremecraft.partida.Partida;
+
 @SuppressWarnings("serial")
 public class InicioJuego extends JFrame{
 	
@@ -40,6 +42,7 @@ public class InicioJuego extends JFrame{
 				int cantidadDeJugadores = numeroDeJugadores[elementoSeleccionado];
 				setVisible(false);
 				new IngresoNombres(nombresJugadores,cantidadDeJugadores);
+				
 				
 			}
 			

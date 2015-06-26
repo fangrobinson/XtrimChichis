@@ -25,8 +25,8 @@ public class Mapa {
 		if (cantidadJugadores <= 1){
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
 		}
-		this.alto = this.decidirAlto(cantidadJugadores);
-		this.ancho = this.decidirAncho(cantidadJugadores);
+		this.alto = this.decidirAlto();
+		this.ancho = this.decidirAncho();
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
 		this.estrategiasUbicacion = new ArrayList<EstrategiaUbicacion>();
 		this.estrategiasUbicacion.add(new EstrategiaUbicacionMinerales());
@@ -71,15 +71,15 @@ public class Mapa {
 				
 	}
 	
-	private int decidirAlto(int cant_jugadores) {
+	private int decidirAlto() {
 		
-		return cant_jugadores * 25;
+		return 25;
 		
 	}
 
-	private int decidirAncho(int cant_jugadores) {
+	private int decidirAncho() {
 		
-		return cant_jugadores * 25;
+		return 25;
 		
 	}
 	

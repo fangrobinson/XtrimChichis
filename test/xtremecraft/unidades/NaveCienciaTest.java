@@ -261,7 +261,7 @@ public class NaveCienciaTest {
 		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
-		Terreno aire2 = mapa.getCeldaEnFilaColumna(40,40).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(20,21).getCapaSuperior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
 		NaveCiencia naveCienciaAtacada = new NaveCiencia(nacion);
 		
