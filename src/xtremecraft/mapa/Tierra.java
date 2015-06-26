@@ -1,7 +1,5 @@
 package xtremecraft.mapa;
 
-//import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
-//import xtremecraft.partida.NoSeEncontroNingunJugadorConTurnoAsignadoException;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -51,34 +49,10 @@ public class Tierra extends Terreno {
 		return this.tieneRecursos;
 		
 	}
-	
-//    public boolean ubicar(Ubicable ubicable){
-//    	
-//    	boolean hayMineralYUbicableNoEsRecolector = this.tieneRecursos()&& (!ubicable.puedeUbicarseSobreRecursoNatural());
-//    	if( (super.estaOcupado()) || hayMineralYUbicableNoEsRecolector ){
-//    		return false;
-//    	}
-//    	if (ubicable.puedeUbicarseEnTierra()){
-//    		this.ubicable = ubicable;
-//    		return true;
-//    	}
-//    	return false;
-//    	
-//    }
     
     public Terreno ubicar(Ubicable ubicable){
     	
     	boolean hayMineralYUbicableNoEsRecolector = this.tieneRecursos() && (!ubicable.puedeUbicarseSobreRecursoNatural());
-    	/*
-    	if( (super.estaOcupado())){
-    		throw new ElAtacanteNoEsDelJugadorException();
-    	}
-    	if(hayMineralYUbicableNoEsRecolector){
-    		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
-    	}
-    	if(!ubicable.puedeUbicarseEnTierra() ){
-    		throw new NoSePudoOcuparElTerrenoException();
-    	}*/
     	if( (super.estaOcupado()) || hayMineralYUbicableNoEsRecolector || !ubicable.puedeUbicarseEnTierra() ){
     		throw new NoSePudoOcuparElTerrenoException();
     	}

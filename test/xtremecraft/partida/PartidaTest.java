@@ -41,6 +41,7 @@ public class PartidaTest {
 		Partida partida = new Partida(jugadores);
 		int tiempo = partida.tiempo();
 		
+		
 		assertEquals(tiempo, 0);
 		
 	}

@@ -13,6 +13,7 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 
 public class NaveTransporteTest {
@@ -24,15 +25,20 @@ public class NaveTransporteTest {
 		razaTerran.juntarMinerales(1000);
 		return razaTerran;
 	}
-	/*
-	@Test (expected = RecursosInsuficientesException.class)
+	
+	@Test (expected = RecursosInsuficientesException.class )
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
 		Tierra tierra = new Tierra(15,15);
 		Terran nacion = new Terran(tierra);
 		
 		new NaveTransporte(nacion);
-	}*/
+		new NaveTransporte(nacion);
+		new NaveTransporte(nacion);
+		new NaveTransporte(nacion);
+		new NaveTransporte(nacion);
+		
+	}
 	
 	@Test
 	public void naveTransporteInicializadoConVidaCompleta(){
@@ -207,27 +213,21 @@ public class NaveTransporteTest {
 		
 		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
-		int fila = 4;
-		int columna = 4;
+		int fila = 2;
+		int columna = 5;
 		Terreno aire = mapa.getCeldaEnFilaColumna(fila,columna).getCapaSuperior();
 		Terreno tierra0 = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Terreno tierra1 = mapa.getCeldaEnFilaColumna(fila-1,columna).getCapaInferior();
-		Terreno tierra2 = mapa.getCeldaEnFilaColumna(fila+1,columna).getCapaInferior();
-		Terreno tierra3 = mapa.getCeldaEnFilaColumna(fila,columna-1).getCapaInferior();
-		Terreno tierra4 = mapa.getCeldaEnFilaColumna(fila,columna+1).getCapaInferior();
-		Terreno tierra5 = mapa.getCeldaEnFilaColumna(fila+1,columna+1).getCapaInferior();
-		Terreno tierra6 = mapa.getCeldaEnFilaColumna(fila-1,columna-1).getCapaInferior();
-		Terreno tierra7 = mapa.getCeldaEnFilaColumna(fila+1,columna-1).getCapaInferior();
-		Terreno tierra8 = mapa.getCeldaEnFilaColumna(fila-1,columna+1).getCapaInferior();	
+		Terreno tierra1 = mapa.getCeldaEnFilaColumna(fila+1,columna).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(fila+1,columna+1).getCapaInferior();
+		Terreno tierra3 = mapa.getCeldaEnFilaColumna(fila-1,columna-1).getCapaInferior();
+		Terreno tierra4 = mapa.getCeldaEnFilaColumna(fila+1,columna-1).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(fila-1,columna+1).getCapaInferior();	
 		Goliat goliat0 = new Goliat(nacion);
 		Goliat goliat1 = new Goliat(nacion);
 		Goliat goliat2 = new Goliat(nacion);
 		Goliat goliat3 = new Goliat(nacion);
 		Goliat goliat4 = new Goliat(nacion);
 		Goliat goliat5 = new Goliat(nacion);
-		Goliat goliat6 = new Goliat(nacion);
-		Goliat goliat7 = new Goliat(nacion);
-		Goliat goliat8 = new Goliat(nacion);
 		NaveTransporte taxiVolador = new NaveTransporte(nacion);
 		
 		goliat0.actualizarUbicacion(tierra0);
@@ -236,9 +236,6 @@ public class NaveTransporteTest {
 		goliat3.actualizarUbicacion(tierra3);
 		goliat4.actualizarUbicacion(tierra4);
 		goliat5.actualizarUbicacion(tierra5);
-		goliat6.actualizarUbicacion(tierra6);
-		goliat7.actualizarUbicacion(tierra7);
-		goliat8.actualizarUbicacion(tierra8);
 		taxiVolador.actualizarUbicacion(aire);
 		goliat0.subirANaveDeTransporte(taxiVolador);
 		

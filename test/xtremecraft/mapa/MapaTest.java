@@ -43,7 +43,6 @@ public class MapaTest {
 		new Mapa(1);
 		
 	}
-
 	
 	@Test 
 	public void getCeldaEnFilaColumnaDevuelveLaCeldaConEsasCoordenadas(){
@@ -81,6 +80,46 @@ public class MapaTest {
 		Goliat goliat = new Goliat(nacion);
 		
 		celda.ubicarCapaSuperior(goliat);
+		
+	}
+	
+	@Test
+	public void ubicarBasesParaCuatroJugadoresUbicaBaseUnoEnEsquinaInferiorIzquierdaParaPrimerJugador(){
+		
+		Mapa mapa = new Mapa(4);
+		Tierra terrenoPrimerJugador = mapa.obtenerTerrenoJugador(1);
+		
+		assertEquals(mapa.getCeldaEnFilaColumna(4,4).getCapaInferior(),terrenoPrimerJugador);
+		
+	}
+	
+	@Test
+	public void ubicarBasesParaCuatroJugadoresUbicaBaseUnoEnEsquinaSuperiorDerechaParaPrimerJugador(){
+		
+		Mapa mapa = new Mapa(4);
+		Tierra terrenoSegundoJugador = mapa.obtenerTerrenoJugador(2);
+		
+		assertEquals(mapa.getCeldaEnFilaColumna(20,20).getCapaInferior(),terrenoSegundoJugador);
+		
+	}
+	
+	@Test
+	public void ubicarBasesParaCuatroJugadoresUbicaBaseTresEnEsquinaInferiorDerecha(){
+		
+		Mapa mapa = new Mapa(4);
+		Tierra terrenoTercerJugador = mapa.obtenerTerrenoJugador(3);
+		
+		assertEquals(mapa.getCeldaEnFilaColumna(20,4).getCapaInferior(),terrenoTercerJugador);
+		
+	}
+	
+	@Test
+	public void ubicarBasesParaCuatroJugadoresUbicaBaseCuatroEnEsquinaSuperiorIzquierda(){
+		
+		Mapa mapa = new Mapa(4);
+		Tierra terrenoCuartoJugador = mapa.obtenerTerrenoJugador(4);
+		
+		assertEquals(mapa.getCeldaEnFilaColumna(4,20).getCapaInferior(),terrenoCuartoJugador);
 		
 	}
 	
@@ -164,7 +203,7 @@ public class MapaTest {
 		
 		Mapa mapa = new Mapa(4);
 				
-		Tierra unTerreno = mapa.obtenerTerrenoJugador(0);
+		Tierra unTerreno = mapa.obtenerTerrenoJugador(1);
 		Tierra otroTerreno = mapa.obtenerTerrenoJugador(2);
 		
 		assertTrue(unTerreno!=otroTerreno);

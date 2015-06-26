@@ -17,7 +17,8 @@ public class Mapa {
 	private int alto;
 	private int ancho;
 	private static int maximoRecursoPorUnidadTerreno = 1000;
-	public ArrayList<Tierra> terrenosBasesJugadores;
+	private ArrayList<Tierra> terrenosBasesJugadores;
+	private ArrayList<EstrategiaUbicacion> estrategiasUbicacion;
 	
 	public Mapa(int cantidadJugadores) {
 		
@@ -27,10 +28,15 @@ public class Mapa {
 		this.alto = this.decidirAlto(cantidadJugadores);
 		this.ancho = this.decidirAncho(cantidadJugadores);
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
-		rellenarMapa();	
-		//TODO: armar bien este algoritmo. Lo armo para que ubique las bases aleatoriamente,
+		this.estrategiasUbicacion = new ArrayList<EstrategiaUbicacion>();
+		this.estrategiasUbicacion.add(new EstrategiaUbicacionMinerales());
+		this.estrategiasUbicacion.add(new EstrategiaUbicacionGasVespeno());
+		this.estrategiasUbicacion.add(new EstrategiaUbicacionDosJugadores());
+		this.estrategiasUbicacion.add(new EstrategiaUbicacionTresJugadores());
+		this.estrategiasUbicacion.add(new EstrategiaUbicacionCuatroJugadores());
+		rellenarMapa();
 		ubicarBases(cantidadJugadores);
-		ubicarRecursosMinerales();
+		ubicarRecursos();	
 		
 	}
 	
@@ -67,13 +73,13 @@ public class Mapa {
 	
 	private int decidirAlto(int cant_jugadores) {
 		
-		return cant_jugadores * 50;
+		return cant_jugadores * 25;
 		
 	}
 
 	private int decidirAncho(int cant_jugadores) {
 		
-		return cant_jugadores * 50;
+		return cant_jugadores * 25;
 		
 	}
 	
@@ -125,15 +131,6 @@ public class Mapa {
 			terreno = this.ubicarCapaSuperior(ubicable, celda);
 		};
 		ubicable.actualizarUbicacion(terreno);
-		/*	
-		if(!this.ubicarCapaInferior(ubicable, celda )){
-			if(!this.ubicarCapaSuperior(ubicable, celda )){
-				return false;
-			}
-			else ubicable.actualizarUbicacion(celda.getCapaSuperior());
-		}
-		else ubicable.actualizarUbicacion(celda.getCapaInferior());
-		return true;*/
 		
 	}
 	
@@ -198,87 +195,53 @@ public class Mapa {
 	
 	public Tierra obtenerTerrenoJugador(int numeroJugador) {
 		
-		return this.terrenosBasesJugadores.get(numeroJugador);
+		int posicion = numeroJugador - 1;
+		return this.terrenosBasesJugadores.get(posicion);
 		
 	}
 	
-
-	private void ubicarRecursosMinerales() {
+	public void ubicarRecursos(){
 		
-		ArrayList<Coordenada>coordenadasParaUbicacionDeRecurso = obtenerCoordenadasParaUbicacionDeMinerales();
-		
-		for(int posicion=0;posicion<coordenadasParaUbicacionDeRecurso.size();posicion++){
-			
-			Coordenada coordenadaActual = coordenadasParaUbicacionDeRecurso.get(posicion); 
-			Tierra posibleTerrenoParaRecurso = (Tierra)this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()).getCapaInferior();
-				
-			int aleatorioEleccion = new Random().nextInt(2);
-			boolean aleatorioEleccionEsMineral = (aleatorioEleccion == 0);
-			boolean aleatorioEleccionEsGasVespeno = (aleatorioEleccion == 1);
-			boolean terrenoEstaDisponible = ((!posibleTerrenoParaRecurso.tieneRecursos()) && (!this.terrenosBasesJugadores.contains(posibleTerrenoParaRecurso)));
-			
-			if(terrenoEstaDisponible && aleatorioEleccionEsMineral){
-				this.agregarNodoMineral(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
-			}
-			if(terrenoEstaDisponible && aleatorioEleccionEsGasVespeno){
-				this.agregarVolcanGasVespeno(posibleTerrenoParaRecurso.fila(), posibleTerrenoParaRecurso.columna());
-			}
-				
+		int estrategiaMinerales = 0;
+		int estrategiaGasVespeno = 1;
+		EstrategiaUbicacion estrategiaUbicacion = this.estrategiasUbicacion.get(estrategiaMinerales);
+		ArrayList<Coordenada> coordenadasUbicacionRecursos = estrategiaUbicacion.getCoordenadasDeUbicacion();
+		Coordenada coordenadaActual;
+		for(int posicion=0;posicion<coordenadasUbicacionRecursos.size();posicion++){
+			coordenadaActual = coordenadasUbicacionRecursos.get(posicion);
+			this.agregarNodoMineral(coordenadaActual);
 		}
-	
-	}
-	
-	private ArrayList<Coordenada> obtenerCoordenadasParaUbicacionDeMinerales(){
-		
-		ArrayList<Coordenada> coordenadasParaUbicacionDeRecurso = new ArrayList<Coordenada>();
-		ArrayList<Coordenada> celdasAlrededorDeEstaBase = new ArrayList<Coordenada>();
-		Coordenada coordenadaBaseActual;
-		
-		for(int i=0;i<this.terrenosBasesJugadores.size();i++){
-			Tierra terrenoActual = this.terrenosBasesJugadores.get(i);
-			//obtengo un listado de coordenadas en un radio aleatorio de la base actual:
-			int radioAleatorioAlrededorDeLaBase = this.numeroAleatorioEntreMinimoYMaximo(2,3);
-			coordenadaBaseActual = terrenoActual.getCoordenada();
-			celdasAlrededorDeEstaBase = coordenadaBaseActual.getCoordenadasEnRadio(radioAleatorioAlrededorDeLaBase);
-			//De las coordenadas obtenidas selecciono solo aquellas que estan dentro de las dimensiones del mapa:
-			for(int j=0;j<celdasAlrededorDeEstaBase.size();j++){
-				Coordenada unaCoordenada = celdasAlrededorDeEstaBase.get(j); 
-				if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
-					coordenadasParaUbicacionDeRecurso.add(unaCoordenada);
-				}
-			}
+		estrategiaUbicacion = this.estrategiasUbicacion.get(estrategiaGasVespeno);
+		coordenadasUbicacionRecursos = estrategiaUbicacion.getCoordenadasDeUbicacion();
+		for(int posicion=0;posicion<coordenadasUbicacionRecursos.size();posicion++){
+			coordenadaActual = coordenadasUbicacionRecursos.get(posicion);
+			this.agregarVolcanGasVespeno(coordenadaActual);
 		}
-		return coordenadasParaUbicacionDeRecurso;
+		
 	}
 	
-	private void agregarNodoMineral(int fila, int columna) {
+	private void agregarNodoMineral(Coordenada coordenada) {
 		
 		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
-		this.getCeldaEnFilaColumna(fila, columna).getCapaInferior().agregarRecursoNatural(new MinaDeMinerales(cantidadAleatoriaMineral));
+		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new MinaDeMinerales(cantidadAleatoriaMineral));
 		
 	}
 	
-	private void agregarVolcanGasVespeno(int fila, int columna) {
+	private void agregarVolcanGasVespeno(Coordenada coordenada) {
 		
 		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
-		this.getCeldaEnFilaColumna(fila, columna).getCapaInferior().agregarRecursoNatural(new VolcanGasVespeno(cantidadAleatoriaMineral));
+		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new VolcanGasVespeno(cantidadAleatoriaMineral));
 		
 	}
 
-	//TODO: Repensar con Persistencia
 	public void ubicarBases(int cantidadJugadores) {
 		
-		Tierra posibleTerreno;
-		int filaAleatoria;
-		int columnaAleatoria;
-		while(this.terrenosBasesJugadores.size()<cantidadJugadores){
-			columnaAleatoria = new Random().nextInt(this.ancho);
-			filaAleatoria = new Random().nextInt(this.alto);
-			posibleTerreno = (Tierra)this.getCeldaEnFilaColumna(filaAleatoria,columnaAleatoria).getCapaInferior();
-			if(!this.terrenosBasesJugadores.contains(posibleTerreno)){
-				this.terrenosBasesJugadores.add(posibleTerreno);
-			}
-				
+		EstrategiaUbicacion estrategiaUbicacion = this.estrategiasUbicacion.get(cantidadJugadores);
+		ArrayList<Coordenada> coordenadasUbicacion = estrategiaUbicacion.getCoordenadasDeUbicacion();
+		for(int posicion=0;posicion<coordenadasUbicacion.size();posicion++){
+			Coordenada estaCoordenada = coordenadasUbicacion.get(posicion);
+			Tierra terreno =  (Tierra) this.getCeldaEnFilaColumna(estaCoordenada.fila(),estaCoordenada.columna()).getCapaInferior();
+			this.terrenosBasesJugadores.add(terreno);
 		}
 		
 	}

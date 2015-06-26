@@ -23,7 +23,7 @@ import xtremecraft.unidades.Ubicable;
 public class Jugador implements Actualizable{
 	private String nombre;
 	private Terran nacion;
-	private Jugador siguienteJugador;
+	public Jugador siguienteJugador;
 	private boolean esMiTurno;
 	
 	public Jugador (String nombre,Tierra tierra) throws NombreMuyCortoException{

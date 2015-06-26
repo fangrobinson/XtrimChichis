@@ -28,8 +28,9 @@ public class Partida {
 		// Perdon??? Raro ??? D: 
 		//TODO: Verdadero: resolver obtenerTerrenoJugador.
 		
-		for (int numeroJugador = 0; numeroJugador < nombresJugadores.size(); numeroJugador++){
-			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(numeroJugador), this.mapa.obtenerTerrenoJugador(numeroJugador));
+		for (int posicion = 0; posicion < nombresJugadores.size(); posicion++){
+			int numeroDeJugador = posicion + 1;
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(posicion), this.mapa.obtenerTerrenoJugador(numeroDeJugador));
 			jugadores.add(jugadorNuevo);
 		}
 		
@@ -39,7 +40,8 @@ public class Partida {
 
 	private void crearRondaDeTurnos() {
 		
-		for (int posicion = 0; posicion < this.jugadores.size(); posicion++){
+		int ultimaPosicion = this.jugadores.size() - 1;
+		for (int posicion = 0; posicion < ultimaPosicion; posicion++){
 			Jugador jugadorActual = this.jugadores.get(posicion);
 			if((posicion+1) < this.jugadores.size()) {
 				Jugador jugadorSiguiente = this.jugadores.get(posicion+1);
@@ -47,7 +49,7 @@ public class Partida {
 			}
 		}
 		Jugador primerJugador = this.jugadores.get(0);
-		Jugador ultimoJugador = this.jugadores.get(this.jugadores.size() - 1);
+		Jugador ultimoJugador = this.jugadores.get(ultimaPosicion);
 		ultimoJugador.setJugadorSiguiente(primerJugador); 
 		
 		primerJugador.setTurno();

@@ -345,7 +345,6 @@ public class JugadorTest {
 		
 	}
 	
-	
 	@Test
 	public void alPasarTiempoSeConstruyeElPuertoEstelar(){
 		
@@ -380,8 +379,6 @@ public class JugadorTest {
 		assertEquals(iter.cuantosHayCreadosDe(PuertoEstelar.class), 1);
 		
 	}
-	
-	
 	
 	@Test
 	public void alPasarTiempoSeConstruyeUnaUnidad(){

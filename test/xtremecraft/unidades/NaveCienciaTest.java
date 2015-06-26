@@ -338,7 +338,7 @@ public class NaveCienciaTest {
 		Terran nacion = crearRazaTerranValida();
 		Mapa mapa = new Mapa(2);
 		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
-		Terreno tierra = mapa.getCeldaEnFilaColumna(20,20).getCapaInferior();
+		Terreno tierra = mapa.getCeldaEnFilaColumna(20,18).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(nacion);
 		Goliat goliatAtacado = new Goliat(nacion);
 		
