@@ -16,11 +16,13 @@ import xtremecraft.unidades.Goliat;
 public class MapaTest {
 	
 	public Terran crearRazaTerranValida(){
+		
 		Tierra tierra = new Tierra(15,15);
 		Terran razaTerran = new Terran(tierra);
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
 		return razaTerran;
+		
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

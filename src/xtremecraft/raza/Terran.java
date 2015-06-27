@@ -58,7 +58,6 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	//TODO: refactoring codigo repetido
 	public Barraca crearBarraca(Terreno unTerreno){
 		
 		Barraca nuevaBarraca = new Barraca(this, unTerreno);
@@ -259,16 +258,13 @@ public class Terran implements Actualizable{
 	}
 
 	public void pasarTiempo() {
-		//TODO: resolver que hacemos con las unidades/edificios muertos para ver como acutalizamos el mapa.
-		//posible solucion guardarlos y hacer un getter para que el mapa pueda pedirlos y removerlos.
+		
 		IteradorEdificios iterEdificios = new IteradorEdificios(this.edificios);
 		this.poblacionMaxima = iterEdificios.cuantosHayCreadosDe(DepositoDeSuministros.class)*DepositoDeSuministros.getIncrementoPoblacion();
 		extraerEdificiosMuertos();
 		extraerUnidadesMuertas();
 		
 	}
-	
-	//TODO: Refactory. Hacer merge de los dos metodos siguientes:
 	
 	private void extraerUnidadesMuertas(){
 		

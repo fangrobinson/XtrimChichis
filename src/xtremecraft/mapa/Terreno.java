@@ -20,7 +20,7 @@ public abstract class Terreno{
 	
 	public boolean estaOcupado(){
 		
-		return !(this.ubicable == null);
+		return (this.ubicable != null);
 		
 	}
 		

@@ -119,7 +119,9 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
     public void actualizarUbicacion(Terreno terreno) {
 
     	if(this.estaUbicada){
-    		if(!this.puedoVer(terreno.getCoordenada())) throw new UbicacionNoValidaException();
+    		if(!this.puedoVer(terreno.getCoordenada()) || terreno.estaOcupado()){
+    			throw new UbicacionNoValidaException();
+    		}
     		this.terrenoActual.desocupar();
     	}
     	this.terrenoActual = terreno;

@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import javax.swing.JFrame;
 
+import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
@@ -43,10 +44,14 @@ public class MapaObservable extends JFrame{
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
 				Class<?> vistaClase = null;
-				if (!terrenoInferior.tieneRecursos()){
-					vistaClase = this.vistas.get(terrenoInferior.getClass());
+				if(terrenoInferior.estaOcupado()){
+					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 				}else{
-					vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
+					if (!terrenoInferior.tieneRecursos()){
+						vistaClase = this.vistas.get(terrenoInferior.getClass());
+					}else{
+						vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
+					}
 				}
 										
 				Vista vistaNueva = (Vista) vistaClase.newInstance();
@@ -68,6 +73,8 @@ public class MapaObservable extends JFrame{
 		vistas.put(Tierra.class, VistaTierra.class);
 		vistas.put(VolcanGasVespeno.class, VistaGas.class);
 		vistas.put(MinaDeMinerales.class, VistaMinerales.class);
+		//TODO: distinguir que deposito es de cada jugador.
+		vistas.put(DepositoDeSuministros.class, VistaDeposito.class);
 		
 		return vistas;
 	}
