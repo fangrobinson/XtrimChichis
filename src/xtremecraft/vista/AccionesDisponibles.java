@@ -42,7 +42,7 @@ public class AccionesDisponibles extends JPanel{
 	}
 	
 	//solo para prueba no es el main del juego
-	public static void main(String args[]){
+	/*public static void main(String args[]){
 		
 		JFrame frame = new JFrame("ACCIONES DISPONIBLES");
 		frame.setVisible(true);
@@ -63,5 +63,5 @@ public class AccionesDisponibles extends JPanel{
 		frame.add(panelPrincipal);
 		
 		}
-
+*/
 }

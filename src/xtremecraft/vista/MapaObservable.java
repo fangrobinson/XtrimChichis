@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.mapa.Celda;
@@ -14,7 +15,7 @@ import xtremecraft.mapa.Tierra;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
 
-public class MapaObservable extends JFrame{
+public class MapaObservable extends JPanel{
 	// implements MouseListener {
 	
 	private static final long serialVersionUID = 7787529771808926374L;
@@ -27,15 +28,11 @@ public class MapaObservable extends JFrame{
 	//public MapaObservable(Mapa mapa, int x, int y){
 	public MapaObservable(Mapa mapa) throws InstantiationException, IllegalAccessException{
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("ALGO CRAFT");
 		//this.addMouseListener(this);
-		setVisible(true);
-		//this.setBounds(x, y, mapa.ancho(), mapa.alto());
-		setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
 		this.modeloReal = mapa;
 		this.vistas = this.generarVistas();
+		this.setLayout(new GridLayout(this.modeloReal.ancho(),this.modeloReal.alto()));
 		
 				
 		TreeMap<Integer, TreeMap<Integer, Celda>> mapaIterable = this.modeloReal.devolverMapaEstatico();
@@ -61,8 +58,8 @@ public class MapaObservable extends JFrame{
 			}
 		}
 		
-		 pack();
-		 setSize(800,800);
+		 
+		//setSize(800,800);
 		
 	}
 	
