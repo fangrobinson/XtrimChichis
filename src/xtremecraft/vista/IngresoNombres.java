@@ -97,7 +97,12 @@ public class IngresoNombres extends JFrame {
 				}				
 				if(nombresJugadores.size() == cantidadDeJugadores){
 					setVisible(false);
-					new VentanaJuego(new Partida(nombresJugadores));
+					try {
+						Partida partida = new Partida(nombresJugadores);
+						new MapaObservable(partida.getMapa());
+					} catch (InstantiationException | IllegalAccessException e) {
+						new MensajeDeError("Error no se pudo generar el mapa");
+					}
 					//System.exit(0);
 				}
 				else{

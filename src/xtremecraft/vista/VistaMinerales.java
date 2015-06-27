@@ -7,7 +7,8 @@ public class VistaMinerales extends Vista {
 	
 	public VistaMinerales(){
 		
-		this.setBackground(new Color(0,204,204));
+		this.color = new Color(0,204,204);
+		
 	}
 
 }

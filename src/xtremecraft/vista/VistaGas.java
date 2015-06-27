@@ -6,8 +6,9 @@ import java.awt.Color;
 public class VistaGas extends Vista {
 	
 	public VistaGas(){
-		this.setVisible(true);
-		this.setBackground(new Color(153,0,153));
+		
+		this.color = new Color(153,0,153);
+		
 	}
-
+	
 }
