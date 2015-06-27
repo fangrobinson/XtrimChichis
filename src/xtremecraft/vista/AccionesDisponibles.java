@@ -1,32 +1,29 @@
 package xtremecraft.vista;
 
-import java.util.ArrayList;
-
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 
 public class AccionesDisponibles extends JPanel{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	
-	public AccionesDisponibles(ArrayList<String> accionesPrueba){
+	public AccionesDisponibles(ListModel<String> accionesPrueba){
 		
-		/*setLayout(new BorderLayout());
-		ListModel acciones = new DefaultListModel();
-		 
+		setVisible(true);
 		
-
-		
-		
-		for(int posicion=0;posicion<accionesPrueba.size();posicion++){
-			//acciones.addElement("Element"+posicion);
-		}
-		JList list = new JList(acciones);
+		JList<String> list = new JList<String>(accionesPrueba);
+		list.setBackground(getBackground());
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
-		JScrollPane listScroller = new JScrollPane(list);
-		listScroller.setPreferredSize(new Dimension(250, 80));
-		*/
-		/* LIST SELECTION LISTENER:
-		 * public void valueChanged(ListSelectionEvent e) {
+		
+		
+		// LIST SELECTION LISTENER:
+		/* public void valueChanged(ListSelectionEvent e) {
     	       if (e.getValueIsAdjusting() == false) {
 
         	        if (list.getSelectedIndex() == -1) {
@@ -39,8 +36,8 @@ public class AccionesDisponibles extends JPanel{
         			}
     			}
 			}
-		 */
-		/*add(list);
+		*/
+		add(list);
 		
 	}
 	
@@ -51,12 +48,20 @@ public class AccionesDisponibles extends JPanel{
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300,400);
-		ArrayList<String> accionesPrueba = new ArrayList<String>();
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setVisible(true);
 		
+		//agrego lista para probar panel:
+		DefaultListModel<String> accionesPrueba = new DefaultListModel<String>();	
+		accionesPrueba.addElement("Construir barraca");
+		accionesPrueba.addElement("Construir deposito");
+		accionesPrueba.addElement("Atacar");
 		JPanel panel = new AccionesDisponibles(accionesPrueba);
+		panelPrincipal.setBorder(BorderFactory.createLineBorder(panel.getBackground(),25));
 		
-		frame.add(panel);
-	*/	
-	}
+		panelPrincipal.add(panel);
+		frame.add(panelPrincipal);
+		
+		}
 
 }
