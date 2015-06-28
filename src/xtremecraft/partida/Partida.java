@@ -10,6 +10,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Ubicable;
 
 public class Partida {
+	
 	private int tiempo;
 	private int cantidadJugadores;
 	private Mapa mapa;
