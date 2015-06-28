@@ -5,12 +5,15 @@ package xtremecraft.vista;
 //import java.awt.GridLayout;
 
 import java.awt.Dimension;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
 
 
 //import xtremecraft.mapa.Mapa;
@@ -20,7 +23,7 @@ public class VentanaDeJuego extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
-	public VentanaDeJuego(Partida partida) throws InstantiationException, IllegalAccessException{
+	public VentanaDeJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ALGO CRAFT");
@@ -33,7 +36,7 @@ public class VentanaDeJuego extends JFrame{
 		//panelPrincipal.setVisible(true);
 		
 		
-		MapaObservable mapaObservable = this.generarNuevoMapa(partida);
+		MapaObservable mapaObservable = this.generarNuevoMapa(partida, vistas);
 		mapaObservable.setPreferredSize(new Dimension(600,600));
 		panelPrincipal.setVisible(true);
 		//TODO: Trucho
@@ -58,9 +61,9 @@ public class VentanaDeJuego extends JFrame{
 		
 	}
 
-	private MapaObservable generarNuevoMapa(Partida partida) throws InstantiationException, IllegalAccessException{
+	private MapaObservable generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
-		return new MapaObservable(partida);
+		return new MapaObservable(partida, vistas);
 		
 	}
 }

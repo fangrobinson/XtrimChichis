@@ -3,8 +3,8 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import java.util.ArrayList;
+
 
 //import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +34,10 @@ public abstract class Vista extends JPanel{
 	
 	public Coordenada getCoordenada(){
 		return this.ubicacion;
+	}
+	
+	public Color getColor(){
+		return this.color;
 	}
 	
 	public abstract ArrayList<String> mostrarOpcionesAccion();

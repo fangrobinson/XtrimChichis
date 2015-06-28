@@ -14,15 +14,11 @@ import javax.swing.JLabel;
 //import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
-import xtremecraft.recursos.MinaDeMinerales;
-import xtremecraft.recursos.VolcanGasVespeno;
 
 public class MapaObservable extends JPanel implements MouseListener {
 	
@@ -34,12 +30,12 @@ public class MapaObservable extends JPanel implements MouseListener {
 	public MapaObservable(){};
 	
 	//public MapaObservable(Mapa mapa, int x, int y){
-	public MapaObservable(Partida partida) throws InstantiationException, IllegalAccessException{
+	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
 		//this.addMouseListener(this);
 		Mapa mapa = partida.getMapa();
 		this.modeloReal = mapa;
-		this.vistas = this.generarVistas();
+		this.vistas = vistas;
 		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
@@ -79,18 +75,6 @@ public class MapaObservable extends JPanel implements MouseListener {
 		
 	}
 	
-	private HashMap<Class<?>, Class<?>> generarVistas() {
-		
-		HashMap<Class<?>, Class<?>> vistas = new HashMap<Class<?>, Class<?>>();
-		
-		vistas.put(Tierra.class, VistaTierra.class);
-		vistas.put(VolcanGasVespeno.class, VistaGas.class);
-		vistas.put(MinaDeMinerales.class, VistaMinerales.class);
-		//TODO: distinguir que deposito es de cada jugador.
-		vistas.put(DepositoDeSuministros.class, VistaDeposito.class);
-		
-		return vistas;
-	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
