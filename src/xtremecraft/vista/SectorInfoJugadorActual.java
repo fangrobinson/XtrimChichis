@@ -27,7 +27,14 @@ public class SectorInfoJugadorActual extends JPanel implements Observer{
 		this.tituloPanel = new JLabel ("SUMINISTROS Y RECURSOS");
 		
 		this.add(this.tituloPanel);
-		this.generarVistaPanel(jugador);
+		
+		this.cantidadDeMinerales = new JLabel ("Minerales:"+this.cantidadDeMinerales(jugador));
+		this.cantidadDeGasVespeno = new JLabel ("Gas vespeno:"+this.cantidadDeGasVespeno(jugador));
+		this.cantidadDePoblacion = new JLabel ("Poblacion disponible:"+this.cantidadDePoblacion(jugador));
+		
+		this.add(this.cantidadDeMinerales);
+		this.add(this.cantidadDeGasVespeno);
+		this.add(this.cantidadDePoblacion);
 		
 		setVisible(true);
 		
@@ -65,14 +72,12 @@ public class SectorInfoJugadorActual extends JPanel implements Observer{
 		this.cantidadDeGasVespeno = new JLabel ("Gas vespeno:"+this.cantidadDeGasVespeno(jugador));
 		this.cantidadDePoblacion = new JLabel ("Poblacion disponible:"+this.cantidadDePoblacion(jugador));
 		
-		this.add(this.cantidadDeMinerales);
-		this.add(this.cantidadDeGasVespeno);
-		this.add(this.cantidadDePoblacion);
+		this.cantidadDeMinerales.revalidate();
+		this.cantidadDeGasVespeno.revalidate();
+		this.cantidadDePoblacion.revalidate();
 		
-		this.revalidate();
 		this.repaint();
 		
 	}
 	
-
 }

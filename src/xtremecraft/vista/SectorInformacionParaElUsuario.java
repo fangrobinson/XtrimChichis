@@ -12,6 +12,7 @@ public class SectorInformacionParaElUsuario extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	public SectorInformacionParaElUsuario(Partida partida){
+		
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		setPreferredSize(new Dimension(1000, 150));
 		
