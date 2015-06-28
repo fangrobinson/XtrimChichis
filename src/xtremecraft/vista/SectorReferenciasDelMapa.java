@@ -1,6 +1,7 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -13,7 +14,7 @@ public class SectorReferenciasDelMapa extends JPanel {
 	
 	public SectorReferenciasDelMapa(HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new GridLayout(3, 5));
 		Iterator<Class<?>> iter = vistas.keySet().iterator();
 		
 		while (iter.hasNext()){
