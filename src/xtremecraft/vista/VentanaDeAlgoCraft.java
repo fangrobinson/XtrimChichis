@@ -7,11 +7,20 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Partida;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
+import xtremecraft.unidades.Espectro;
+import xtremecraft.unidades.Goliat;
+import xtremecraft.unidades.Marine;
+import xtremecraft.unidades.NaveCiencia;
+import xtremecraft.unidades.NaveTransporte;
 
 public class VentanaDeAlgoCraft  extends JFrame{
 	
@@ -23,10 +32,18 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		HashMap<Class<?>, Class<?>> vistas = new HashMap<Class<?>, Class<?>>();
 		
 		vistas.put(Tierra.class, VistaTierra.class);
+		vistas.put(Aire.class, VistaAire.class);
 		vistas.put(VolcanGasVespeno.class, VistaGas.class);
 		vistas.put(MinaDeMinerales.class, VistaMinerales.class);
-		//TODO: distinguir que deposito es de cada jugador.
 		vistas.put(DepositoDeSuministros.class, VistaDeposito.class);
+		vistas.put(Barraca.class, VistaBarraca.class);
+		vistas.put(Fabrica.class, VistaFabrica.class);
+		vistas.put(PuertoEstelar.class, VistaPuertoEstelar.class);
+		vistas.put(Goliat.class, VistaGoliat.class);
+		vistas.put(Marine.class, VistaMarine.class);
+		vistas.put(Espectro.class, VistaEspectro.class);
+		vistas.put(NaveCiencia.class, VistaNaveCiencia.class);
+		vistas.put(NaveTransporte.class, VistaNaveTransporte.class);
 		
 		return vistas;
 	}
