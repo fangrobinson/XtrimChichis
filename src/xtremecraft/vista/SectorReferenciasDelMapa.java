@@ -1,5 +1,6 @@
 package xtremecraft.vista;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -21,13 +22,18 @@ public class SectorReferenciasDelMapa extends JPanel {
 			
 		    @SuppressWarnings("rawtypes")
 			Class clave = iter.next();
-			String nombreObjetoActual = clave.toString();
+			String nombreObjetoActual = clave.getSimpleName();
 			
 			Vista vistaNueva = (Vista) vistas.get(clave).newInstance();
 			vistaNueva.paintComponents(getGraphics());
+			vistaNueva.setPreferredSize(new Dimension(24,24));
+			vistaNueva.setMaximumSize(new Dimension(24,24));
+			
+			JLabel etiquetaNombre = new JLabel(nombreObjetoActual);
+			etiquetaNombre.setPreferredSize(new Dimension(24,200));
 			
 			panelInfoClase.add(vistaNueva);
-			panelInfoClase.add(new JLabel(nombreObjetoActual));
+			panelInfoClase.add(etiquetaNombre);
 			
 			this.add(panelInfoClase);
 		}
