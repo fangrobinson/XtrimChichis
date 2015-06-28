@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public abstract class VistaEdificio extends Vista implements IdentificableVisible{
+public abstract class VistaIdentificable extends Vista implements IdentificableVisible{
 	
 	@Override
 	public void paintComponent(Graphics grafico) {

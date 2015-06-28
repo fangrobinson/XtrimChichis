@@ -3,22 +3,24 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
-
 @SuppressWarnings("serial")
-public class VistaFabrica extends VistaIdentificable implements IdentificableVisible{
+public class VistaNaveTransporte extends VistaIdentificable {
 	
-	public VistaFabrica(){
+	public VistaNaveTransporte(){
 		
-		this.color = new Color(173,156,121);
+		this.color = new Color(153,153,0);
 	
 	}
-	
+
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
+		
 		ArrayList<String> opciones = new ArrayList<String>();
-		opciones.add("Crear goliat");
+		opciones.add("Subir unidad");
+		opciones.add("Bajar unidad");
 		
 		return opciones;
+		
 	}
 
 }

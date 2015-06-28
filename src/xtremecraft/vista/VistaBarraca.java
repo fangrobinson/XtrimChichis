@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaBarraca extends VistaEdificio implements IdentificableVisible{
+public class VistaBarraca extends VistaIdentificable implements IdentificableVisible{
 	
 	
 	public VistaBarraca(){

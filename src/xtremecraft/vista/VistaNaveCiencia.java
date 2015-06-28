@@ -4,16 +4,17 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaRecolectorDeMineral extends VistaIdentificable {
+public class VistaNaveCiencia extends VistaIdentificable {
 	
-	public VistaRecolectorDeMineral(){
+	public VistaNaveCiencia(){
 		
-		this.color = new Color(0,204,204);
+		this.color = new Color(153,153,0);
 	
 	}
 
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

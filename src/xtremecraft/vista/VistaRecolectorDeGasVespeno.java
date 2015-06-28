@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaRecolectorDeGasVespeno extends VistaEdificio {
+public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	
 	public VistaRecolectorDeGasVespeno(){
 		
