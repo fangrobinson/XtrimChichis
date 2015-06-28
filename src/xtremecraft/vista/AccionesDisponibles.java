@@ -1,8 +1,8 @@
 package xtremecraft.vista;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
+//import javax.swing.BorderFactory;
+//import javax.swing.DefaultListModel;
+//import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;

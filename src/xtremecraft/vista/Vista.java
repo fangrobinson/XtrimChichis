@@ -6,11 +6,14 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import xtremecraft.mapa.Coordenada;
+
 public abstract class Vista extends JPanel{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	
 	Color color;
+	Coordenada ubicacion;
 		
 	public void paintComponent(Graphics grafico) {
 
@@ -21,5 +24,8 @@ public abstract class Vista extends JPanel{
         grafico.fill3DRect(0, 0, dimension.width, dimension.height, true);
     }
 
+	public void setCoordenada(Coordenada coordenada) {
+		this.ubicacion = coordenada;
+	}
 
 }

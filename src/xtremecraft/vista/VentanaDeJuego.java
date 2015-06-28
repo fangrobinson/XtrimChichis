@@ -1,8 +1,8 @@
 package xtremecraft.vista;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridLayout;
+//import java.awt.BorderLayout;
+//import java.awt.Container;
+//import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,7 +21,8 @@ public class VentanaDeJuego extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ALGO CRAFT");
-		setSize(1000,1000);
+		//setSize(1000,1000);
+		setSize(2000,2000);
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.X_AXIS));
 		//this.addMouseListener(this);
 		
@@ -32,7 +33,7 @@ public class VentanaDeJuego extends JFrame{
 		
 		MapaObservable mapaObservable = this.generarNuevoMapa(partida.getMapa());
 		
-		
+		//TODO: Trucho
 		//agrego lista para probar panel:
 		DefaultListModel<String> accionesPrueba = new DefaultListModel<String>();	
 		accionesPrueba.addElement("Construir barraca");
@@ -47,7 +48,7 @@ public class VentanaDeJuego extends JFrame{
 		panelPrincipal.add(panelAccionesDisponibles);
 		panelPrincipal.add(mapaObservable);
 		add(panelPrincipal);
-		pack();
+		pack();// Tarea: Entender esto.
 
 		
 		

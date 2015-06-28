@@ -17,7 +17,7 @@ public class InicioJuego extends JFrame{
 	JLabel mensaje = new JLabel("Ingrese cantidad de jugadores:");
 	Integer numeroDeJugadores[] = {2,3,4};
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	JComboBox menu = new JComboBox(numeroDeJugadores);
+	JComboBox menuIngresoJugadores = new JComboBox(numeroDeJugadores);
 	
 	
 	public InicioJuego(){
@@ -26,17 +26,16 @@ public class InicioJuego extends JFrame{
 		setSize(250,100);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 		
 		panel.add(mensaje);		
 			
-		panel.add(menu);
+		panel.add(menuIngresoJugadores);
 	
-		menu.addActionListener(new ActionListener(){
+		menuIngresoJugadores.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent seleccionUsuario){
 				
-				int elementoSeleccionado = menu.getSelectedIndex();
+				int elementoSeleccionado = menuIngresoJugadores.getSelectedIndex();
 				int cantidadDeJugadores = numeroDeJugadores[elementoSeleccionado];
 				setVisible(false);
 				new IngresoNombres(nombresJugadores,cantidadDeJugadores);
@@ -46,6 +45,7 @@ public class InicioJuego extends JFrame{
 		});
 		
 		add(panel);
+		setVisible(true);
 		
 	}
 	

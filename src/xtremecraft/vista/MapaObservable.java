@@ -1,10 +1,12 @@
 package xtremecraft.vista;
 
+//import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import javax.swing.JFrame;
+
+//import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import xtremecraft.edificios.DepositoDeSuministros;
@@ -32,7 +34,9 @@ public class MapaObservable extends JPanel{
 		
 		this.modeloReal = mapa;
 		this.vistas = this.generarVistas();
-		this.setLayout(new GridLayout(this.modeloReal.ancho(),this.modeloReal.alto()));
+		//setBounds(800, 800, mapa.ancho(), mapa.alto());
+		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
+		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
 				
 		TreeMap<Integer, TreeMap<Integer, Celda>> mapaIterable = this.modeloReal.devolverMapaEstatico();
@@ -52,14 +56,14 @@ public class MapaObservable extends JPanel{
 				}
 										
 				Vista vistaNueva = (Vista) vistaClase.newInstance();
+				vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
 				vistaNueva.paintComponents(getGraphics());
 				add(vistaNueva);
 				
 			}
 		}
 		
-		 
-		//setSize(800,800);
+		
 		
 	}
 	
