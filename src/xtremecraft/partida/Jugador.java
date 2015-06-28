@@ -1,5 +1,6 @@
 package xtremecraft.partida;
 
+import java.util.Observable;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
@@ -19,7 +20,7 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
-public class Jugador implements Actualizable{
+public class Jugador extends Observable implements Actualizable {
 	
 	private String nombre;
 	private Terran nacion;
@@ -38,7 +39,7 @@ public class Jugador implements Actualizable{
 		this.esMiTurno = false;
 		
 	}
-	
+		
 	public String nombre(){
 		
 		return this.nombre;
@@ -92,6 +93,8 @@ public class Jugador implements Actualizable{
 		for(int tiempo = 0; tiempo<deposito.tiempoConstruccion();tiempo++){
 			deposito.pasarTiempo();
 		}
+		this.setChanged();
+		this.notifyObservers();
 		
 	}
 	
@@ -99,67 +102,101 @@ public class Jugador implements Actualizable{
 	
 	public Barraca crearBarraca(Terreno unTerreno){
 		
-		return this.nacion.crearBarraca(unTerreno);
+		Barraca nuevaBarraca = this.nacion.crearBarraca(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevaBarraca;
 		
 	}
 	
 	public Fabrica crearFabrica(Terreno unTerreno){
 		
-		return this.nacion.crearFabrica(unTerreno);
+		Fabrica nuevaFabrica = this.nacion.crearFabrica(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevaFabrica;
 		
 	}
 	
 	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
 		
-		return this.nacion.crearPuertoEstelar(unTerreno);
+		PuertoEstelar nuevoPuerto = this.nacion.crearPuertoEstelar(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevoPuerto;
 		
 	}
 	
 	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		return this.nacion.crearRecolectorDeGasVespeno(unTerreno);
+		RecolectorDeGasVespeno recolectorDeGas = this.nacion.crearRecolectorDeGasVespeno(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return recolectorDeGas;
 		
 	}
 	
 	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
 		
-		return this.nacion.crearRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral recolectorDeMineral = this.nacion.crearRecolectorDeMineral(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return recolectorDeMineral;
 		
 	}
 	
 	public Marine crearMarine(Barraca unaBarraca, Mapa unMapa){
 		
-		return (Marine) this.nacion.crearMarine(unaBarraca, unMapa);
+		Marine nuevoMarine = (Marine) this.nacion.crearMarine(unaBarraca, unMapa);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevoMarine;
 		
 	}
 	
 	public Goliat crearGoliat(Fabrica unaFabrica, Mapa unMapa){
 		
-		return (Goliat) this.nacion.crearGoliat(unaFabrica, unMapa);
+		Goliat nuevoGoliat = (Goliat) this.nacion.crearGoliat(unaFabrica, unMapa);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevoGoliat;
 		
 	}
 	
 	public Espectro crearEspectro(PuertoEstelar unPuerto, Mapa unMapa){
 		
-		return (Espectro) this.nacion.crearEspectro(unPuerto, unMapa);
+		Espectro nuevoEspectro = (Espectro) this.nacion.crearEspectro(unPuerto, unMapa);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevoEspectro;
 		
 	}
 	
 	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa){
 		
-		return (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
+		NaveCiencia nuevaNaveCiencia = (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevaNaveCiencia;
 		
 	}
 	
 	public NaveTransporte crearNaveTransporte(PuertoEstelar unPuerto, Mapa unMapa){
 		
-		return (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
+		NaveTransporte nuevaNaveTransporte = (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevaNaveTransporte;
 		
 	}
 	
 	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
 		
-		return this.nacion.crearDepositoDeSuministros(unTerreno);
+		DepositoDeSuministros nuevoDeposito = this.nacion.crearDepositoDeSuministros(unTerreno);
+		this.setChanged();
+		this.notifyObservers();
+		return nuevoDeposito;
+		
 	}
 
 	public void setJugadorSiguiente(Jugador jugador) {
@@ -194,6 +231,24 @@ public class Jugador implements Actualizable{
 	public void pasarTiempo() {
 
 		this.nacion.pasarTiempo();
+		
+	}
+	
+	public int getCantidadDeMinerales(){
+		
+		return this.nacion.getMinerales();
+		
+	}
+	
+	public int getCantidadDeGasVespeno(){
+		
+		return this.nacion.getGasVespeno();
+		
+	}
+	
+	public int getPoblacionDisponible(){
+		
+		return this.nacion.getPoblacionMaxima();
 		
 	}
 	
