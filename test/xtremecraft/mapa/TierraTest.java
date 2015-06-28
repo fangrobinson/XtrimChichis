@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.unidades.Goliat;
@@ -13,12 +14,15 @@ import org.junit.Test;
 
 public class TierraTest {
 
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test
@@ -43,9 +47,9 @@ public class TierraTest {
 	@Test
 	public void tierraEstaOcupadaDeberiaDevolverTrueLuegoDeOcuparla(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno terreno=new Tierra(1,1);
-		Unidad goliat= new Goliat(nacion);
+		Unidad goliat= new Goliat(jugador);
 		terreno.ubicar(goliat);
 		
 		assertTrue(terreno.estaOcupado());
@@ -55,9 +59,9 @@ public class TierraTest {
 	@Test
 	public void ocuparTerrenoConUnidadGuardaLaUnidadEnLaterreno(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno terreno=new Tierra(1,1);
-		Unidad goliat= new Goliat(nacion);	
+		Unidad goliat= new Goliat(jugador);	
 	
 		terreno.ubicar(goliat);
 		Unidad unidad = (Unidad) terreno.getUbicableEnTerreno();

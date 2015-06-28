@@ -19,20 +19,21 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 
-// TODO: Jugador deberia dejar de ser Actualizable
 public class Jugador implements Actualizable{
+	
 	private String nombre;
 	private Terran nacion;
 	public Jugador siguienteJugador;
 	private boolean esMiTurno;
 	
-	public Jugador (String nombre,Tierra tierra) throws NombreMuyCortoException{
+	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
 		
 		if (nombre.length() < 4){
 			throw new NombreMuyCortoException();
 		}
 		this.nombre = nombre;
-		this.nacion = new Terran(tierra);
+		this.nacion = new Terran(this);
+		this.crearBaseInicial(tierra);
 		this.esMiTurno = false;
 		
 	}
@@ -61,12 +62,6 @@ public class Jugador implements Actualizable{
 		
 	}
 	
-	public void setTierraInicial(Tierra tierraInicial){
-		
-		this.nacion = new Terran(tierraInicial);
-		
-	}
-
 	public void atacar(Defendible atacante, Atacable atacado){
 		
 		Ubicable atacanteUbicado = (Ubicable) atacante;
@@ -76,6 +71,15 @@ public class Jugador implements Actualizable{
 		}
 		
 		atacante.atacar(atacado);
+	}
+	
+	private void crearBaseInicial(Tierra tierra){
+		
+		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(tierra);
+		for(int tiempo = 0; tiempo<deposito.tiempoConstruccion();tiempo++){
+			deposito.pasarTiempo();
+		}
+		
 	}
 	
 	//metodos de creacion
@@ -162,7 +166,7 @@ public class Jugador implements Actualizable{
 		if(!this.esMiTurno){
 			throw new JugadorNoTieneElTurnoException();
 		}
-		this.nacion.pasarTiempo();
+		this.pasarTiempo();
 		this.esMiTurno = false;
 		this.siguienteJugador.setTurno();
 		
@@ -174,11 +178,10 @@ public class Jugador implements Actualizable{
 		
 	}
 
-	@Override
 	public void pasarTiempo() {
-		
-		
+
 		this.nacion.pasarTiempo();
+		
 	}
 	
 }

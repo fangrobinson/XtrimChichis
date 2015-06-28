@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import xtremecraft.edificios.Barraca;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
 
 
 public class MapaTest {
 	
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
 		
 	}
 	
@@ -61,10 +63,10 @@ public class MapaTest {
 	@Test 
 	public void ubicarCapaInferiorUnGoliatDevuelveElTerreno(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat(nacion);
+		Goliat goliat = new Goliat(jugador);
 		Terreno tierraEsperada = celda.getCapaInferior();
 		
 		Terreno tierra = celda.ubicarCapaInferior(goliat);
@@ -76,10 +78,10 @@ public class MapaTest {
 	@Test (expected = NoSePudoOcuparElTerrenoException.class)
 	public void ubicarCapaSuperiorUnGoliatDevuelveFalse(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat(nacion);
+		Goliat goliat = new Goliat(jugador);
 		
 		celda.ubicarCapaSuperior(goliat);
 		
@@ -129,11 +131,11 @@ public class MapaTest {
 	public void obtenerCeldasAdyacentesAlUbicableDevuelveListaCeldasAlrededorDelUbicable(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran razaTerran = crearRazaTerranValida();;
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unaBarraca);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
@@ -153,10 +155,10 @@ public class MapaTest {
 	@Test
 	public void liberarEspacioCorrespondienteADejaLiberaElEspacioOcupadoPorElUbicable(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
-		Goliat goliat = new Goliat(nacion);
+		Goliat goliat = new Goliat(jugador);
 		
 		celda.ubicarCapaInferior(goliat);
 		celda = mapa.getCeldaEnFilaColumna(1,2);
@@ -174,11 +176,11 @@ public class MapaTest {
 	public void obtenerCeldasEnRadioDevuelveListaCeldasADistanciaRadio(){
 		
 		Mapa mapa = new Mapa(2);
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Barraca unaBarraca = nacion.crearBarraca(unTerreno);
+		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
 		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		

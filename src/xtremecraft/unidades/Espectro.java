@@ -1,17 +1,16 @@
 package xtremecraft.unidades;
 
-import xtremecraft.raza.Terran;
-
+import xtremecraft.partida.Jugador;
 
 public class Espectro extends UnidadAerea{
 	
 	private int minerales = 150;
 	private int gas = 100;
 	
-	public Espectro(Terran raza) {
+	public Espectro(Jugador jugador) {
 		
-		super();
-		this.cobrar(raza);
+		super(jugador);
+		this.cobrar();
 		this.vitalidad = new BarraDeVitalidad(120);
 		this.danio = new Danio (20,8);
 		this.vision = 7;
@@ -20,9 +19,11 @@ public class Espectro extends UnidadAerea{
 		
 	}
 	
-	public void cobrar(Terran raza){
-		raza.quitarMinerales(this.minerales);
-		raza.quitarGas(this.gas);
+	public void cobrar(){
+		
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		this.jugador.nacion().quitarGas(this.gas);
+		
 	}
 	
 }

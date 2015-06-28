@@ -1,6 +1,6 @@
 package xtremecraft.unidades;
 
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 import java.util.ArrayList;
 
 import xtremecraft.mapa.Celda;
@@ -17,10 +17,10 @@ public class NaveCiencia extends UnidadAerea{
 	private int costoMisilEMP = 100;
 	private int costoRadiacion = 100;
 	
-	public NaveCiencia(Terran raza){
+	public NaveCiencia(Jugador unJugador){
 		
-		super();
-		this.cobrar(raza);
+		super(unJugador);
+		this.cobrar();
 		this.vitalidad = new BarraDeVitalidad(200);
 		this.danio = new Danio(0,0);
 		this.vision = 10;
@@ -107,10 +107,10 @@ public class NaveCiencia extends UnidadAerea{
 		
 	}
 	
-	public void cobrar(Terran raza){
+	public void cobrar(){
 		
-		raza.quitarMinerales(this.minerales);
-		raza.quitarGas(this.gas);
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		this.jugador.nacion().quitarGas(this.gas);
 		
 	}
 

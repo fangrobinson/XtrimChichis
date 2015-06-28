@@ -1,17 +1,16 @@
 package xtremecraft.unidades;
 
-import xtremecraft.raza.Terran;
-
+import xtremecraft.partida.Jugador;
 
 
 public class Marine extends UnidadTerrestre{
 	
 	private int minerales = 50;
 	
-	public Marine(Terran raza){
+	public Marine(Jugador jugador){
 
-		super();
-		this.cobrar(raza);
+		super(jugador);
+		this.cobrar();
 		this.vitalidad = new BarraDeVitalidad(40);
 		this.danio = new Danio (6,6);
 		this.vision = 7;
@@ -21,8 +20,10 @@ public class Marine extends UnidadTerrestre{
 		
 	}
 	
-	public void cobrar(Terran raza){
-		raza.quitarMinerales(this.minerales);
+	public void cobrar(){
+		
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		
 	}
 	
 

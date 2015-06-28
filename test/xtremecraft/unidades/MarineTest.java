@@ -13,32 +13,40 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
+import xtremecraft.raza.RecursosInsuficientesException;
 
 public class MarineTest {
 	
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
-	/*
+	
 	@Test (expected = RecursosInsuficientesException.class)
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
 		Tierra tierra = new Tierra(15,15);
-		Terran nacion = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
 		
-		new Marine(nacion);
+		new Marine(jugador);
+		new Marine(jugador);
+		new Marine(jugador);
+		
 	}
-	*/
+	
 	@Test
 	public void testMarineInicializadoConVidaCompleta(){
 
-		Terran nacion = crearRazaTerranValida();
-		Marine miniSamus = new Marine(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Marine miniSamus = new Marine(jugador);
 
 		assertEquals(miniSamus.getVida(),40);
 		
@@ -47,8 +55,8 @@ public class MarineTest {
 	@Test
 	public void testMarineInicializadoConEstadoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
-		Marine miniSamus = new Marine(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Marine miniSamus = new Marine(jugador);
 
 		assertTrue(miniSamus.estaVivo());
 		
@@ -57,8 +65,8 @@ public class MarineTest {
 	@Test
 	public void marinePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Terran nacion = crearRazaTerranValida();
-		Marine miniSamus = new Marine(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Marine miniSamus = new Marine(jugador);
 		
 		assertFalse(miniSamus.puedeUbicarseSobreRecursoNatural());
 		
@@ -67,8 +75,8 @@ public class MarineTest {
 	@Test
 	public void goliatGetVisionDevuelveRadioDeVisionDelGoliat(){
 
-		Terran nacion = crearRazaTerranValida();
-		Marine miniSamus = new Marine(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Marine miniSamus = new Marine(jugador);
 
 		assertEquals(miniSamus.getRadioVision(),7);
 		
@@ -77,11 +85,11 @@ public class MarineTest {
 	@Test
 	public void siUnMarineAtacaAOtroPorAireLeSacaSeisDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
 		Terreno aire = new Aire(1,3);
-		Marine miniSamus = new Marine(nacion);
-		Espectro miniMasterChief = new Espectro(nacion);
+		Marine miniSamus = new Marine(jugador);
+		Espectro miniMasterChief = new Espectro(jugador);
 		
 		for (int i = 0; i < miniMasterChief.tiempoConstruccion(); i++){
 			miniSamus.pasarTiempo();
@@ -100,11 +108,11 @@ public class MarineTest {
 	@Test
 	public void siUnMarineAtacaAOtroPorTierraLeSacaSeisDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(1,3);
-		Marine miniSamus = new Marine(nacion);
-		Marine miniMasterChief = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
+		Marine miniMasterChief = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniMasterChief.actualizarUbicacion(tierra2);
@@ -120,11 +128,11 @@ public class MarineTest {
 	@Test (expected = AtaqueFueraDelRangoDeVisionException.class)
 	public void siUnMarineAtacaAOtroFueraDeSuRangoSeLanzaAtaqueFueraDeRangoExcepcion(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,1);
 		Terreno tierra2 = new Tierra(40,10);
-		Marine miniSamus = new Marine(nacion);
-		Marine miniMasterChief = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
+		Marine miniMasterChief = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniMasterChief.actualizarUbicacion(tierra2);
@@ -140,9 +148,9 @@ public class MarineTest {
 	@Test
 	public void actualizarUbicacionIgualaLasCoordenadasDeLaUnidadALasDelTerreno(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra);
 		
@@ -153,10 +161,10 @@ public class MarineTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniSamus.actualizarUbicacion(tierra2);
@@ -168,10 +176,10 @@ public class MarineTest {
 	@Test
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra1);
 		miniSamus.actualizarUbicacion(tierra2);
@@ -183,10 +191,10 @@ public class MarineTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
 		Terreno tierraDestino = new Tierra(20,20);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra);
 		miniSamus.actualizarUbicacion(tierraDestino);
@@ -196,10 +204,10 @@ public class MarineTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoAereoSeLanzaExcepcion(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
 		Terreno aireDestino = new Aire(1,1);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra);
 		miniSamus.actualizarUbicacion(aireDestino);
@@ -209,11 +217,11 @@ public class MarineTest {
 	@Test
 	public void siUnMarineAtacaAOtroHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(1,3);
-		Marine miniSamus = new Marine(nacion);
-		Marine miniMasterChief = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
+		Marine miniMasterChief = new Marine(jugador);
 		int cantidadDeAtaques = 7;
 		
 		miniSamus.actualizarUbicacion(tierra1);
@@ -231,11 +239,11 @@ public class MarineTest {
 	@Test
 	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
 		Terreno otraTierra = new Tierra(3,4);
-		Marine miniSamus = new Marine(nacion);
-		NaveTransporte nave = new NaveTransporte(nacion);
+		Marine miniSamus = new Marine(jugador);
+		NaveTransporte nave = new NaveTransporte(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
@@ -247,10 +255,10 @@ public class MarineTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		int vidaInicial = miniSamus.getVida();
 		
 		miniSamus.actualizarUbicacion(tierra);
@@ -266,10 +274,10 @@ public class MarineTest {
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioActivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();

@@ -11,44 +11,38 @@ import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Actualizable;
+import xtremecraft.partida.Jugador;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
-//import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 
 public class Terran implements Actualizable{
 
-	private ArrayList<Unidad> unidades;
-	private ArrayList<Edificio> edificios;
+		private ArrayList<Unidad> unidades;
+		private ArrayList<Edificio> edificios;
     	private int poblacionMaxima;
     	private int minerales;
     	private int gas;
+		private Jugador jugador;
 
 	
-	public Terran(Tierra terreno){
+	public Terran(Jugador jugador){
 		
+		this.jugador = jugador;
 		this.unidades = new ArrayList<Unidad>();
 		this.edificios = new ArrayList<Edificio>();
 		this.poblacionMaxima = 5;
 		this.minerales = 200; 
 		this.gas = 200;
 
-
-		DepositoDeSuministros baseInicial = crearDepositoDeSuministros(terreno);
-		for(int tiempo=0;tiempo<baseInicial.tiempoConstruccion();tiempo++){
-			baseInicial.pasarTiempo();
-		}
-		
 	}
 
 	public boolean estaViva(){
 		
 		IteradorEdificios iter = new IteradorEdificios(edificios);
 		return (iter.tieneCreados(DepositoDeSuministros.class));
-		
 		
 	}
 	
@@ -60,12 +54,8 @@ public class Terran implements Actualizable{
 	
 	public Barraca crearBarraca(Terreno unTerreno){
 		
-		Barraca nuevaBarraca = new Barraca(this, unTerreno);
+		Barraca nuevaBarraca = new Barraca(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevaBarraca);
-		/*
-		if(!unTerreno.ubicar(nuevaBarraca)){
-			throw new UbicacionNoValidaException();
-		}*/
 		this.agregarEdificio(nuevaBarraca);
 		return nuevaBarraca;
 		
@@ -75,13 +65,8 @@ public class Terran implements Actualizable{
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
-		Fabrica nuevaFabrica = new Fabrica(this, unaBarraca,unTerreno);
+		Fabrica nuevaFabrica = new Fabrica(this.jugador, unaBarraca, unTerreno);
 		unTerreno.ubicar(nuevaFabrica);
-		/*
-		if(!unTerreno.ubicar(nuevaFabrica)){
-			throw new UbicacionNoValidaException();
-		}
-		*/
 		this.agregarEdificio(nuevaFabrica);
 		return nuevaFabrica;
 			
@@ -91,11 +76,8 @@ public class Terran implements Actualizable{
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
-		PuertoEstelar nuevoPuerto = new PuertoEstelar(this,unaFabrica,unTerreno);
+		PuertoEstelar nuevoPuerto = new PuertoEstelar(this.jugador, unaFabrica, unTerreno);
 		unTerreno.ubicar(nuevoPuerto);
-		/*if(!unTerreno.ubicar(nuevoPuerto)){
-			throw new UbicacionNoValidaException();
-		}*/
 		this.agregarEdificio(nuevoPuerto);
 		return nuevoPuerto;
 	
@@ -103,12 +85,8 @@ public class Terran implements Actualizable{
 	
 	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
 		
-		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this,unTerreno);
+		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevoCentroMineral);
-		/*
-		if(!unTerreno.ubicar(nuevoCentroMineral)){
-			throw new UbicacionNoValidaException();
-		}*/
 		this.agregarEdificio(nuevoCentroMineral);
 		return nuevoCentroMineral;
 		
@@ -116,12 +94,8 @@ public class Terran implements Actualizable{
 	
 	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
 		
-		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this, unTerreno);
+		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevaRefineria);
-		/*
-		if(!unTerreno.ubicar(nuevaRefineria)){
-			throw new UbicacionNoValidaException();
-		}*/
 		this.agregarEdificio(nuevaRefineria);
 		return nuevaRefineria;
 		
@@ -129,12 +103,8 @@ public class Terran implements Actualizable{
 	
 	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
 		
-		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this, unTerreno);
+		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevoDeposito);
-		/*
-		if(!unTerreno.ubicar(nuevoDeposito)){
-			throw new UbicacionNoValidaException();
-		}*/
 		this.agregarEdificio(nuevoDeposito);
 		return nuevoDeposito;
 		
@@ -146,7 +116,7 @@ public class Terran implements Actualizable{
 			throw new BarracaNoEsDeLaRazaException();
 		}
 		
-		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaBarraca,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaBarraca,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
 			throw new CantidadDeSuministroInsuficienteException();
 		}
@@ -161,7 +131,7 @@ public class Terran implements Actualizable{
 			throw new FabricaNoEsDeLaRazaException();
 		}
 		
-		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(this, unaFabrica,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaFabrica,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
 			throw new CantidadDeSuministroInsuficienteException();
 		}
@@ -176,7 +146,7 @@ public class Terran implements Actualizable{
 			throw new PuertoEstelarNoEsDeLaRazaException();
 		}
 		
-		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(this, puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
 			throw new CantidadDeSuministroInsuficienteException();
 		}
@@ -191,7 +161,7 @@ public class Terran implements Actualizable{
 			throw new PuertoEstelarNoEsDeLaRazaException();
 		}
 		
-		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(this, puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
 			throw new CantidadDeSuministroInsuficienteException();
 		}
@@ -206,7 +176,7 @@ public class Terran implements Actualizable{
 			throw new PuertoEstelarNoEsDeLaRazaException();
 		}
 		
-		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(this, puerto,mapa);
+		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
 			throw new CantidadDeSuministroInsuficienteException();
 		}

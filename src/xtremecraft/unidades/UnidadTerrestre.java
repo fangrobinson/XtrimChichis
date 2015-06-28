@@ -1,13 +1,14 @@
 package xtremecraft.unidades;
 
 import xtremecraft.mapa.Terreno;
+import xtremecraft.partida.Jugador;
 
 public abstract class UnidadTerrestre extends Unidad {
 	
 	protected int distanciaTransporte;
 	
-	protected UnidadTerrestre() {
-		super();
+	protected UnidadTerrestre(Jugador unJugador) {
+		super(unJugador);
 	}
 
 	public boolean puedeUbicarseEnTierra() {

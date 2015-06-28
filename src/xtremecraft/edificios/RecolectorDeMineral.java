@@ -1,28 +1,25 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 
 public class RecolectorDeMineral extends Recolector{
 
 	private static int tiempoDeConstruccion = 4;
 	private int minerales = 50;
 
-	private RecolectorDeMineral(Terran raza, Terreno terreno) {
+	private RecolectorDeMineral(Jugador jugador, Terreno terreno) {
 		
-		super(terreno);
-		this.raza = raza;
-		this.cobrar(raza);
+		super(jugador,terreno);
+		this.cobrar();
 		this.recurso = terreno.getRecurso();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 	
 	}
-	//si el constructor ya recibe un terreno... por que esta este metodo???
-	//PARA VALIDAR QUE ESTAS CONSTRUYENDO UN RECOLECTOR DE GAS VESPENO SOBRE GAS VESPENO. 
-	//FIJATE QUE HACE DOUBLE DISPATCH. NO LO BORRES. FIRMA EUGE.
-	public static RecolectorDeMineral nuevoRecolectorDeMineral(Terran raza, Terreno unTerreno){
+	
+	public static RecolectorDeMineral nuevoRecolectorDeMineral(Jugador jugador, Terreno unTerreno){
 		
-		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(raza, unTerreno);
+		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(jugador, unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
 			throw new NoHayGasVespenoException();
 		}	
@@ -36,13 +33,15 @@ public class RecolectorDeMineral extends Recolector{
 		
 	}
 	
-	public void cobrar(Terran raza){
-		raza.quitarMinerales(this.minerales);
+	public void cobrar(){
+		
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		
 	}
 	
 	public void pasarTiempo(){
 		if (!super.estaEnConstruccion){
-			this.raza.juntarMinerales(this.recurso.explotar(this.aumentoDeReservaEnTurno));
+			this.jugador.nacion().juntarMinerales(this.recurso.explotar(this.aumentoDeReservaEnTurno));
 		}
 		super.pasarTiempo();
 	}

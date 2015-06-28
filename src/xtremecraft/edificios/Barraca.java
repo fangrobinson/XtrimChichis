@@ -1,7 +1,7 @@
 package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 import xtremecraft.unidades.Marine;
 
 public class Barraca extends Edificio{
@@ -10,20 +10,20 @@ public class Barraca extends Edificio{
 	public static int tiempoDeConstruccion = 12;
 	private int minerales = 150;
 	
-	public Barraca(Terran raza, Terreno unTerreno){
+	public Barraca(Jugador jugador, Terreno unTerreno){
 		
-		super(unTerreno,vida);
-		this.cobrar(raza);
+		super(jugador,unTerreno,vida);
+		this.cobrar();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 
 	}
 	
-	public Marine entrenarMarine(Terran raza){
+	public Marine entrenarMarine(){
 		
 		if(this.estaEnConstruccion()){
 			throw new EdificioEnConstruccionException();
 		}
-		return new Marine(raza);
+		return new Marine(this.jugador);
 		
 	}
 
@@ -45,8 +45,10 @@ public class Barraca extends Edificio{
 		
 	}
 	
-	public void cobrar(Terran raza){
-		raza.quitarMinerales(this.minerales);
+	public void cobrar(){
+		
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		
 	}
 
 }

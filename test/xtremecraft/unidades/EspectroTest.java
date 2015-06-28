@@ -13,33 +13,37 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 
 public class EspectroTest {
 
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test (expected = RecursosInsuficientesException.class)
 	public void espectroCreadoParaRazaSinRecursosLanzaExcepcion(){
 
 		Tierra tierra = new Tierra(15,15);
-		Terran nacion = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
 		
-		new Espectro(nacion);
+		new Espectro(jugador);
 	}
 	
 	@Test
 	public void espectroInicializadoConVidaCompleta(){
 
-		Terran nacion = crearRazaTerranValida();
-		Espectro gengar = new Espectro(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Espectro gengar = new Espectro(jugador);
 		
 		assertEquals(gengar.getVida(),120);
 	}
@@ -47,8 +51,8 @@ public class EspectroTest {
 	@Test
 	public void espectroInicializadoConEstadoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
-		Espectro gengar = new Espectro(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Espectro gengar = new Espectro(jugador);
 		
 		assertTrue(gengar.estaVivo());
 		
@@ -57,8 +61,8 @@ public class EspectroTest {
 	@Test
 	public void espectroPuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
-		Terran nacion = crearRazaTerranValida();
-		Espectro gengar = new Espectro(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Espectro gengar = new Espectro(jugador);
 		
 		assertFalse(gengar.puedeUbicarseSobreRecursoNatural());
 		
@@ -67,8 +71,8 @@ public class EspectroTest {
 	@Test
 	public void espectroGetVisionDevuelveRadioDeVisionDelEspectro(){
 
-		Terran nacion = crearRazaTerranValida();
-		Espectro gengar = new Espectro(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Espectro gengar = new Espectro(jugador);
 		
 		assertEquals(gengar.getRadioVision(),7);
 	}
@@ -76,11 +80,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorAireLeSacaVeinteDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,2);
 		Terreno tierra = new Tierra(2,3);
-		Espectro gengar = new Espectro(nacion);
-		Espectro misdreavus = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
+		Espectro misdreavus = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(tierra);
 		misdreavus.actualizarUbicacion(aire);
@@ -98,11 +102,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraLeSacaOchoDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro gengar = new Espectro(nacion);
-		Espectro misdreavus = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
+		Espectro misdreavus = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(tierra1);
 		misdreavus.actualizarUbicacion(tierra2);
@@ -121,11 +125,11 @@ public class EspectroTest {
 	@Test(expected = AtaqueFueraDelRangoDeVisionException.class)
 	public void siUnEspectroAtacaAOtroFueraDeSuRangoSeLanzaAtaqueFueraDelRangoDeVisionException(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno unTerreno = new Aire(1,4);
 		Terreno otroTerreno = new Tierra(10,10);
-		Espectro gengar = new Espectro(nacion);
-		Espectro misdreavus = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
+		Espectro misdreavus = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -143,11 +147,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloSuVidaQuedaEnCero(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno unTerreno = new Aire(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
-		Espectro gengar = new Espectro(nacion);
-		Espectro misdreavus = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
+		Espectro misdreavus = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -167,11 +171,11 @@ public class EspectroTest {
 	@Test
 	public void siUnEspectroAtacaAOtroPorTierraHastaMatarloPasaAEstadoNoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno unTerreno = new Aire(1,1);
 		Terreno otroTerreno = new Tierra(1,2);
-		Espectro gengar = new Espectro(nacion);
-		Espectro misdreavus = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
+		Espectro misdreavus = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(unTerreno);
 		misdreavus.actualizarUbicacion(otroTerreno);
@@ -192,10 +196,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno unTerreno=new Aire(1,4);
 		
-		Espectro unEspectro = new Espectro(nacion);
+		Espectro unEspectro = new Espectro(jugador);
 		
 		unEspectro.actualizarUbicacion(unTerreno);
 		
@@ -206,10 +210,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro unEspectro = new Espectro(nacion);
+		Espectro unEspectro = new Espectro(jugador);
 		
 		unEspectro.actualizarUbicacion(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
@@ -221,10 +225,10 @@ public class EspectroTest {
 	@Test
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(2,3);
-		Espectro unEspectro = new Espectro(nacion);
+		Espectro unEspectro = new Espectro(jugador);
 		
 		unEspectro.actualizarUbicacion(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
@@ -236,11 +240,11 @@ public class EspectroTest {
 	@Test
 	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
 		Terreno otraTierra = new Tierra(3,4);
-		Espectro gengar = new Espectro(nacion);
-		NaveTransporte nave = new NaveTransporte(nacion);
+		Espectro gengar = new Espectro(jugador);
+		NaveTransporte nave = new NaveTransporte(jugador);
 		
 		gengar.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
@@ -252,10 +256,10 @@ public class EspectroTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Espectro gengar = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
 		int vidaInicial = gengar.getVida();
 		
 		gengar.actualizarUbicacion(tierra);
@@ -268,14 +272,13 @@ public class EspectroTest {
 		
 	}
 	
-
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Espectro gengar = new Espectro(nacion);
+		Espectro gengar = new Espectro(jugador);
 		
 		gengar.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();

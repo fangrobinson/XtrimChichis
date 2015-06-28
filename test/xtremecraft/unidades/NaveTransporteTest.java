@@ -13,38 +13,42 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 
 public class NaveTransporteTest {
 	
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test (expected = RecursosInsuficientesException.class )
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
 		Tierra tierra = new Tierra(15,15);
-		Terran nacion = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
 		
-		new NaveTransporte(nacion);
-		new NaveTransporte(nacion);
-		new NaveTransporte(nacion);
-		new NaveTransporte(nacion);
-		new NaveTransporte(nacion);
+		new NaveTransporte(jugador);
+		new NaveTransporte(jugador);
+		new NaveTransporte(jugador);
+		new NaveTransporte(jugador);
+		new NaveTransporte(jugador);
 		
 	}
 	
 	@Test
 	public void naveTransporteInicializadoConVidaCompleta(){
 
-		Terran nacion = crearRazaTerranValida();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		assertEquals(taxiVolador.getVida(),150);
 		
@@ -53,8 +57,8 @@ public class NaveTransporteTest {
 	@Test
 	public void naveTransporteInicializadoConEstadoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		assertTrue(taxiVolador.estaVivo());
 		
@@ -63,8 +67,8 @@ public class NaveTransporteTest {
 	@Test
 	public void naveTransportePuedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 
-		Terran nacion = crearRazaTerranValida();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		assertFalse(taxiVolador.puedeUbicarseSobreRecursoNatural());
 	}
@@ -72,8 +76,8 @@ public class NaveTransporteTest {
 	@Test
 	public void NaveTransporteGetVisionDevuelveRadioDeVisionDeLaNaveTransporte(){
 
-		Terran nacion = crearRazaTerranValida();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		assertEquals(taxiVolador.getRadioVision(),8);
 	}
@@ -81,11 +85,11 @@ public class NaveTransporteTest {
 	@Test
 	public void siUnaNaveTransporteAtacaAOtroPorAireLeSacaCeroDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire1 = new Aire(1,3);
 		Terreno aire2 = new Aire(1,4);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		NaveTransporte remisVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		NaveTransporte remisVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire1);
 		remisVolador.actualizarUbicacion(aire2);
@@ -103,11 +107,11 @@ public class NaveTransporteTest {
 	@Test
 	public void siUnaNaveTransporteAtacaAOtroPorTierraLeSacaCeroDeVida(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,2);
 		Terreno tierra = new Tierra(2,3);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		NaveTransporte remisVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		NaveTransporte remisVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 		remisVolador.actualizarUbicacion(tierra);
@@ -126,9 +130,9 @@ public class NaveTransporteTest {
 	@Test
 	public void actualizarUbicacionCambiaLasCoordenadasActualesDeLaUnidad(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,2);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 
@@ -139,10 +143,10 @@ public class NaveTransporteTest {
 	@Test
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,2);
 		Terreno tierra = new Tierra(2,3);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 		taxiVolador.actualizarUbicacion(tierra);
@@ -154,11 +158,11 @@ public class NaveTransporteTest {
 	@Test
 	public void siUnaNaveEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,3);
 		Terreno tierra = new Tierra(1,4);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		Goliat unGoliat = new Goliat(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		Goliat unGoliat = new Goliat(jugador);
 		int cantidadDeAtaques = 15;
 		
 		taxiVolador.actualizarUbicacion(aire);
@@ -178,11 +182,11 @@ public class NaveTransporteTest {
 	@Test
 	public void transportarNuevaUnidadDevuelveTrueSiNoSuperaLaCapacidadMaxima(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,3);
 		Terreno tierra = new Tierra(4,4);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		Goliat unGoliat = new Goliat(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		Goliat unGoliat = new Goliat(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 		unGoliat.actualizarUbicacion(tierra);
@@ -194,11 +198,11 @@ public class NaveTransporteTest {
 	@Test
 	public void transportarUnidadActualizaLaUbicacionDeLaUnidadQueTransporta(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,3);
 		Terreno tierra = new Tierra(4,4);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		Goliat unGoliat = new Goliat(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		Goliat unGoliat = new Goliat(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 		unGoliat.actualizarUbicacion(tierra);
@@ -211,7 +215,7 @@ public class NaveTransporteTest {
 	@Test(expected = UnidadNoSePudoBajarDeLaNaveException.class)
 	public void bajarNaveDevuelveLanzaExcepcionSiTodosLosLugaresAlrededorDeLaNaveEstanOcupados(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		int fila = 2;
 		int columna = 5;
@@ -222,13 +226,13 @@ public class NaveTransporteTest {
 		Terreno tierra3 = mapa.getCeldaEnFilaColumna(fila-1,columna-1).getCapaInferior();
 		Terreno tierra4 = mapa.getCeldaEnFilaColumna(fila+1,columna-1).getCapaInferior();
 		Terreno tierra5 = mapa.getCeldaEnFilaColumna(fila-1,columna+1).getCapaInferior();	
-		Goliat goliat0 = new Goliat(nacion);
-		Goliat goliat1 = new Goliat(nacion);
-		Goliat goliat2 = new Goliat(nacion);
-		Goliat goliat3 = new Goliat(nacion);
-		Goliat goliat4 = new Goliat(nacion);
-		Goliat goliat5 = new Goliat(nacion);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		Goliat goliat0 = new Goliat(jugador);
+		Goliat goliat1 = new Goliat(jugador);
+		Goliat goliat2 = new Goliat(jugador);
+		Goliat goliat3 = new Goliat(jugador);
+		Goliat goliat4 = new Goliat(jugador);
+		Goliat goliat5 = new Goliat(jugador);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		goliat0.actualizarUbicacion(tierra0);
 		goliat1.actualizarUbicacion(tierra1);
@@ -246,12 +250,12 @@ public class NaveTransporteTest {
 	@Test
 	public void actualizarUbicacionActualizaLaUbicacionDeLasUnidadesQueTransporta(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire1 = new Aire(1,3);
 		Terreno aire2 = new Tierra(5,8);
 		Terreno tierra = new Tierra(4,4);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
-		Goliat unGoliat = new Goliat(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
+		Goliat unGoliat = new Goliat(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire1);
 		unGoliat.actualizarUbicacion(tierra);
@@ -265,10 +269,10 @@ public class NaveTransporteTest {
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire = new Aire(1,2);
 		Terreno aireDestino = new Aire(40,40);
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(aire);
 		taxiVolador.actualizarUbicacion(aireDestino);
@@ -278,10 +282,10 @@ public class NaveTransporteTest {
 	@Test
 	public void recibirAtaqueRadiacionLeProduceDanioALaUnidadAfectada(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		int vidaInicial = taxiVolador.getVida();
 		
 		taxiVolador.actualizarUbicacion(tierra);
@@ -297,10 +301,10 @@ public class NaveTransporteTest {
 	@Test
 	public void recibirAtaqueRadiacionDejaALaUnidadEnEstadoRadioactivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveTransporte taxiVolador = new NaveTransporte(nacion);
+		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
 		taxiVolador.actualizarUbicacion(tierra);
 		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();

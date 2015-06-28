@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Goliat;
@@ -16,37 +17,42 @@ import xtremecraft.unidades.Marine;
 public class FabricaTest {
 	
 
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearFabricaConRazaSinRecursosLanzaExcepcion(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
 		Terreno otraTierra = new Tierra(1,1);
 		Tierra tercerTierra = new Tierra (2,2);
 		
-		razaTerran.juntarMinerales(150);
-		Barraca barraca = new Barraca(razaTerran, otraTierra);
+		jugador.nacion().juntarMinerales(150);
+		Barraca barraca = new Barraca(jugador, otraTierra);
 
 		
-		new Fabrica(razaTerran, barraca, tercerTierra);
+		new Fabrica(jugador, barraca, tercerTierra);
+		
 	}
 	
 	@Test
 	public void seInicializaConEstadoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		assertTrue(fabrica.estaVivo());
 		
@@ -55,12 +61,12 @@ public class FabricaTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaFabrica(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		assertTrue(fabrica.estaEnConstruccion());
 		
@@ -69,11 +75,11 @@ public class FabricaTest {
 	@Test
 	public void fabricaEstaEnConstruccionDevuelveFalsePasadoElTiempoDeConstruccionDeLaFabrica(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		for (int tiempo=0; tiempo<fabrica.tiempoConstruccion(); tiempo++) fabrica.pasarTiempo();
 		
@@ -84,24 +90,24 @@ public class FabricaTest {
 	@Test(expected = EdificioEnConstruccionException.class)
 	public void siFabricaNoEstaConstruidaYSeIntentaEntrenarUnGoliatSeLanzaExcepcion(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
-		fabrica.entrenarGoliat(nacion);
+		fabrica.entrenarGoliat();
 		
 	}
 	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		assertEquals(fabrica.getUbicacionActual().fila(),3);
 		assertEquals(fabrica.getUbicacionActual().columna(),3);
@@ -111,11 +117,11 @@ public class FabricaTest {
 	@Test
 	public void puedeUbicarseSobreRecursoNaturalDevuelveFalse(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		assertFalse(fabrica.puedeUbicarseSobreRecursoNatural());
 		
@@ -124,11 +130,11 @@ public class FabricaTest {
 	@Test
 	public void edificioEstaElevadoDevuelveFalseParaEdificiosCreadosEnTierra(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		assertFalse(fabrica.estaElevado());
 		
@@ -137,11 +143,11 @@ public class FabricaTest {
 	@Test
 	public void edificioSeInicializaConBarraDeVidaCompleta(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		int vida = fabrica.vidaMax();
 		
 		
@@ -154,11 +160,11 @@ public class FabricaTest {
 	@Test
 	public void siElEdificioRecibeDanioSuVidaDecrece(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		int valorDanio = 30;
 		int vidaEsperada = fabrica.vidaMax() - valorDanio;
 		
@@ -174,14 +180,14 @@ public class FabricaTest {
 	@Test
 	public void entrenarGoliatDevuelveNuevaUnidadGoliat(){
 		 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
 		
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
-		Goliat unGoliat = fabrica.entrenarGoliat(nacion);
+		Goliat unGoliat = fabrica.entrenarGoliat();
 		
 		assertEquals(unGoliat.getVida(),125);
 		
@@ -190,13 +196,13 @@ public class FabricaTest {
 	@Test
 	public void siUnaFabricaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra1 = new Tierra(1,2);
 		Terreno tierra2 = new Tierra(3,3);
 		Terreno tierra3 = new Tierra(4,4);
-		Barraca barraca = new Barraca(nacion, tierra1);
-		Fabrica fabrica = new Fabrica(nacion, barraca,tierra2);
-		Marine miniSamus = new Marine(nacion);
+		Barraca barraca = new Barraca(jugador, tierra1);
+		Fabrica fabrica = new Fabrica(jugador, barraca,tierra2);
+		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesAFabrica = 17;
 		
 		miniSamus.actualizarUbicacion(tierra3);

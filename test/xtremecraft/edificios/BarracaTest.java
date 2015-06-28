@@ -8,37 +8,37 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 import xtremecraft.unidades.Marine;
 import xtremecraft.raza.RecursosInsuficientesException;
 
 public class BarracaTest {
 
-	public Terran crearRazaTerranValida(){
-		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
-		razaTerran.juntarGas(1000);
-		razaTerran.juntarMinerales(1000);
-		return razaTerran;
-	}
 	
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
 		Terreno otraTierra = new Tierra(1,1);
-		new Barraca(razaTerran, otraTierra);
+		new Barraca(jugador, otraTierra);
+		
 	}
 	
 	@Test
 	public void barracaSeInicializaConEstadoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
-		Terreno tierra = new Tierra(fila,columna);
+		Tierra tierra = new Tierra(15,15);
+		Terreno unTerreno = new Tierra(fila,columna);
+		Jugador jugador = new Jugador("Juan",tierra);
 		
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		jugador.nacion().juntarGas(1000);
+		jugador.nacion().juntarMinerales(1000);
+		
+		
+		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
 		
 		assertTrue(unaBarraca.estaVivo());
 		
@@ -47,11 +47,16 @@ public class BarracaTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaBarraca(){
 		
-		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
-		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Tierra tierra = new Tierra(15,15);
+		Terreno unTerreno = new Tierra(fila,columna);
+		Jugador jugador = new Jugador("Juan",tierra);
+		
+		jugador.nacion().juntarGas(1000);
+		jugador.nacion().juntarMinerales(1000);
+		
+		Barraca unaBarraca = new Barraca(jugador,unTerreno);
 		
 		assertTrue(unaBarraca.estaEnConstruccion());
 		
@@ -61,13 +66,18 @@ public class BarracaTest {
 	@Test(expected = EdificioEnConstruccionException.class)
 	public void siBarracaNoEstaConstruidaYSeIntentaEntrenarUnMarineSeLanzaExcepcion(){
 		
-		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
-		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Tierra tierra = new Tierra(15,15);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terreno unTerreno = new Tierra(fila,columna);
 		
-		unaBarraca.entrenarMarine(nacion);
+		jugador.nacion().juntarGas(1000);
+		jugador.nacion().juntarMinerales(1000);
+		
+		Barraca unaBarraca = new Barraca(jugador, unTerreno);
+		
+		unaBarraca.entrenarMarine();
 		
 	}
 
@@ -82,6 +92,7 @@ public class BarracaTest {
 	
 	@Test
 	public void getUbicacionActualDevuelveCoordenadasDelEdificio(){
+		
 		int fila = 1;
 		int columna = 2;
 		Barraca unaBarraca = construirNuevaBarraca(fila, columna);
@@ -136,10 +147,9 @@ public class BarracaTest {
 	@Test
 	public void entrenarMarineDevuelveNuevaUnidadMarine(){
 		
-		Terran nacion = crearRazaTerranValida();
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
 		
-		Marine nuevoMarine = unaBarraca.entrenarMarine(nacion);
+		Marine nuevoMarine = unaBarraca.entrenarMarine();
 		
 		assertEquals(nuevoMarine.getVida(), 40);
 		
@@ -147,9 +157,11 @@ public class BarracaTest {
 	
 	public Barraca construirNuevaBarraca(int fila, int columna){
 		
-		Terran nacion = crearRazaTerranValida();
-		Terreno tierra = new Tierra(fila,columna);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Tierra tierra = new Tierra(fila,columna);
+		Jugador jugador = new Jugador("Juan",tierra);
+		jugador.nacion().juntarGas(1000);
+		jugador.nacion().juntarMinerales(1000);
+		Barraca unaBarraca = new Barraca(jugador, tierra);
 		for(int i=0; i<unaBarraca.tiempoConstruccion(); i++){
 			unaBarraca.pasarTiempo();
 		}
@@ -160,13 +172,18 @@ public class BarracaTest {
 	@Test
 	public void siUnaBarracaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
-		Terreno tierra = new Tierra(3,2);
+		Tierra tierra1 = new Tierra(15,15);
+		Terreno tierra2 = new Tierra(3,2);
+		Jugador jugador = new Jugador("Juan",tierra1);
+		
+		jugador.nacion().juntarGas(1000);
+		jugador.nacion().juntarMinerales(1000);
+	
 		Barraca unaBarraca = construirNuevaBarraca(1,2);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesABarraca = 17;
 		
-		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.actualizarUbicacion(tierra2);
 		for(int i=0;i<cantidadDeAtaquesABarraca;i++) miniSamus.atacar(unaBarraca);
 		
 		assertFalse(unaBarraca.estaVivo());		

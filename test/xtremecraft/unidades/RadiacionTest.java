@@ -11,25 +11,29 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
 public class RadiacionTest {
 	
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test
 	public void emitirRadiacionDisminuyeLaVidaDeLaUnidadAfectada(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		Goliat goliatAtacado = new Goliat(nacion);
+		Goliat goliatAtacado = new Goliat(jugador);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
 		goliatAtacado.actualizarUbicacion(tierra);
@@ -47,12 +51,12 @@ public class RadiacionTest {
 	@Test
 	public void emitirRadiacionDisminuyeLaVidaDeLasUnidadesADistanciaMenorOIgualAUnoDeUnidadRadioactiva(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Terreno otraTierra = mapa.getCeldaEnFilaColumna(6,5).getCapaInferior();
-		Goliat goliatAtacado = new Goliat(nacion);
-		Goliat goliatIrradiado = new Goliat(nacion);
+		Goliat goliatAtacado = new Goliat(jugador);
+		Goliat goliatIrradiado = new Goliat(jugador);
 		int vidaInicialGoliatIrradiado = goliatIrradiado.getVida();
 		
 		goliatAtacado.actualizarUbicacion(tierra);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 
 public class NaveTransporte extends UnidadAerea {
 	
@@ -14,10 +14,10 @@ public class NaveTransporte extends UnidadAerea {
 	private int minerales = 100;
 	private int gas = 100;
 	
-	public NaveTransporte(Terran raza) {
+	public NaveTransporte(Jugador jugador) {
 		
-		super();
-		this.cobrar(raza);
+		super(jugador);
+		this.cobrar();
 		this.vitalidad = new BarraDeVitalidad(150);
 		this.danio = new Danio (0,0);
 		this.vision = 8;
@@ -81,9 +81,11 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 
-	public void cobrar(Terran raza){
-		raza.quitarMinerales(this.minerales);
-		raza.quitarGas(this.gas);
+	public void cobrar(){
+		
+		this.jugador.nacion().quitarMinerales(this.minerales);
+		this.jugador.nacion().quitarGas(this.gas);
+		
 	}
 	
 

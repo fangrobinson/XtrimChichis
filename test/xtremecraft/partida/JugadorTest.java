@@ -54,7 +54,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Juan",tierra);		
 		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
 		jugador.nacion().juntarMinerales(1000);
-		Marine marine = new Marine(jugador.nacion());
+		Marine marine = new Marine(jugador);
 		
 		bool = jugador2.esDeMiPropiedad(marine);
 		
@@ -72,7 +72,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Juan",tierra);
 		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
 		jugador.nacion().juntarMinerales(1000);
-		Barraca barraca = new Barraca(jugador.nacion(), tierra3);
+		Barraca barraca = new Barraca(jugador, tierra3);
 		
 		bool = jugador2.esDeMiPropiedad(barraca);
 		

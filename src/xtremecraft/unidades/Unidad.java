@@ -4,6 +4,7 @@ import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Actualizable;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
 public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable{
@@ -19,11 +20,13 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 	boolean estaUbicada;
 	int suministro;
 	protected Terreno terrenoActual;
+	protected Jugador jugador;
 	private Radiacion radiacion;
 	private boolean esRadioactivo;
 	
-	protected Unidad(){
+	protected Unidad(Jugador unJugador){
 		
+		this.jugador = unJugador;
 		this.puedeAtacar = true;
 		this.puedeMoverse = true;
 		this.estaViva = true;
@@ -32,7 +35,7 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		this.tiempoConstruccionActual = 1;
 		
 	}
-	
+		
     public void recibirDanio(int danio){
     	
     	if(this.estaEnConstruccion()){

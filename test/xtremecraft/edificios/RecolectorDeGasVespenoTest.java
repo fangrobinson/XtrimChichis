@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.VolcanGasVespeno;
@@ -15,35 +16,39 @@ import xtremecraft.unidades.Marine;
 
 public class RecolectorDeGasVespenoTest {
 
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
+		
 		Tierra tierraNacion = new Tierra(15,15);
-		Terran nacion = new Terran(tierraNacion);
+		Jugador jugador = new Jugador("Juan",tierraNacion);
 		Terreno tierra = new Tierra(1,1);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
 		
-		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
-		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
-		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
+		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
+		RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
 
 	}
 	
 	public RecolectorDeGasVespeno construirNuevoRecolectorDeGasVespeno(int fila, int columna){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(fila,columna);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
 		for(int i=0; i < refineria.tiempoConstruccion; i++){
 			refineria.pasarTiempo();
 		}
@@ -53,13 +58,13 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void seInicializaConEstadoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(fila,columna);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
 		
 		assertTrue(refineria.estaVivo());
 		
@@ -68,13 +73,13 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearElRecolectorDeGasVespeno(){
 		
-		Terran nacion = crearRazaTerranValida();
 		int fila = 1;
 		int columna = 2;
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(fila,columna);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
 		
 		assertTrue(refineria.estaEnConstruccion());
 		
@@ -101,19 +106,19 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void testPasarTiempoAumentaLaCantidadDeReservasDeLaRaza(){
 
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(12,12);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
-		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(nacion, tierra);
+		RecolectorDeGasVespeno refineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(jugador, tierra);
 		for(int i=0; i < refineria.tiempoConstruccion; i++){
 			refineria.pasarTiempo();
 		}
-		int valorEsperado = nacion.getGasVespeno() + refineria.aumentoDeReservaEnTurno;
+		int valorEsperado = jugador.nacion().getGasVespeno() + refineria.aumentoDeReservaEnTurno;
 		
 		refineria.pasarTiempo();
 		
-		assertEquals(nacion.getGasVespeno(), valorEsperado);
+		assertEquals(jugador.nacion().getGasVespeno(), valorEsperado);
 			
 	}
 	
@@ -154,10 +159,10 @@ public class RecolectorDeGasVespenoTest {
 	@Test
 	public void siUnRecolectorEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(3,2);
 		RecolectorDeGasVespeno refineria = construirNuevoRecolectorDeGasVespeno(1,2);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesARecolector = 17;
 		
 		miniSamus.actualizarUbicacion(tierra);

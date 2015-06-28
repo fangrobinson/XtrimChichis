@@ -2,7 +2,7 @@ package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Actualizable;
-import xtremecraft.raza.Terran;
+import xtremecraft.partida.Jugador;
 import xtremecraft.recursos.Recurso;
 
 
@@ -11,11 +11,10 @@ public abstract class Recolector extends Edificio implements Actualizable{
 	protected int aumentoDeReservaEnTurno;
 	public static int vida = 100;
 	protected Recurso recurso;
-	protected Terran raza;
 	
-	protected Recolector(Terreno terreno){
+	protected Recolector(Jugador jugador,Terreno terreno){
 		
-		super(terreno, vida);
+		super(jugador,terreno, vida);
 		this.aumentoDeReservaEnTurno = 10;
 	
 	}

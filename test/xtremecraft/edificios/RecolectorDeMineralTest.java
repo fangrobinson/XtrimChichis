@@ -2,6 +2,7 @@ package xtremecraft.edificios;
 
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 import xtremecraft.recursos.MinaDeMinerales;
@@ -12,38 +13,41 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
 public class RecolectorDeMineralTest {
 	
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
+		
 		Tierra tierraNacion = new Tierra(15,15);
-		Terran nacion = new Terran(tierraNacion);
+		Jugador jugador = new Jugador("Juan",tierraNacion);
 		Terreno tierra = new Tierra(1, 1);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		
-		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
-		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
-		RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral.nuevoRecolectorDeMineral(jugador,tierra);
+		RecolectorDeMineral.nuevoRecolectorDeMineral(jugador,tierra);
+		RecolectorDeMineral.nuevoRecolectorDeMineral(jugador,tierra);
 
 	}
 	
 	public RecolectorDeMineral construirNuevoRecolectorDeMineral(int fila, int columna){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(fila,columna);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
-		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(jugador, tierra);
 		for(int i=0; i<recolector.tiempoConstruccion; i++){
 			recolector.pasarTiempo();
 		}
@@ -54,14 +58,14 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void recolectorSeIniciaConEstadoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		
-		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(jugador, tierra);
 		
 		assertTrue(recolector.estaVivo());
 		
@@ -70,14 +74,14 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearElRecolectorDeMineral(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		int fila = 1;
 		int columna = 2;
 		Terreno tierra = new Tierra(fila,columna);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
 		
-		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(jugador, tierra);
 		
 		assertTrue(recolector.estaEnConstruccion());
 		
@@ -104,19 +108,19 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void testPasarTiempoAumentaLaCantidadDeReservasEnElEdificioRecolector(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(12, 12);
 		MinaDeMinerales nuevoNodoMineral=new MinaDeMinerales(20);
 		tierra.agregarRecursoNatural(nuevoNodoMineral);
-		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(nacion, tierra);
+		RecolectorDeMineral recolector = RecolectorDeMineral.nuevoRecolectorDeMineral(jugador, tierra);
 		for(int i=0; i<recolector.tiempoConstruccion; i++){
 			recolector.pasarTiempo();
 		}
-		int valorEsperado = nacion.getMinerales() + recolector.aumentoDeReservaEnTurno;
+		int valorEsperado = jugador.nacion().getMinerales() + recolector.aumentoDeReservaEnTurno;
 		
 		recolector.pasarTiempo();
 		
-		assertEquals(nacion.getMinerales(), valorEsperado);
+		assertEquals(jugador.nacion().getMinerales(), valorEsperado);
 				
 	}
 	
@@ -157,10 +161,10 @@ public class RecolectorDeMineralTest {
 	@Test
 	public void siUnRecolectorEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(3,2);
 		RecolectorDeMineral centroMineralTerran = construirNuevoRecolectorDeMineral(1,2);
-		Marine miniSamus = new Marine(nacion);
+		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesARecolector = 17;
 		
 		miniSamus.actualizarUbicacion(tierra);

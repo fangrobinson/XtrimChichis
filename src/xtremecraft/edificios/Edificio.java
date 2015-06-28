@@ -3,6 +3,7 @@ package xtremecraft.edificios;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Actualizable;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
@@ -19,8 +20,9 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	protected int turnosConstruccionPasados;
 	protected boolean estaVivo;
 	protected boolean estaEnConstruccion;
+	protected Jugador jugador;
 	
-	public Edificio(Terreno unTerreno,int vida){
+	public Edificio(Jugador unJugador,Terreno unTerreno,int vida){
 		
 		this.terrenoActual = unTerreno;
 		this.vida = new BarraDeVitalidad(vida);
@@ -28,6 +30,7 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		this.turnosConstruccionPasados = 0;
 		this.estaEnConstruccion = true;
 		this.estaVivo = true;
+		this.jugador = unJugador;
 	
 	}
 	
@@ -46,6 +49,12 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 	public boolean estaEnConstruccion(){
 		
 		return this.estaEnConstruccion;
+		
+	}
+	
+	public Jugador getJugador(){
+		
+		return this.jugador;
 		
 	}
 	

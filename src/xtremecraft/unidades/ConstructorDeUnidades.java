@@ -8,45 +8,44 @@ import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.raza.Terran;
 
 public abstract class ConstructorDeUnidades {
 	
-	public static Unidad nuevaUnidad(Terran raza, Barraca unaBarraca, Mapa mapa){
+	public static Unidad nuevaUnidad(Barraca unaBarraca, Mapa mapa){
 	
-		Unidad nuevaUnidad = unaBarraca.entrenarMarine(raza);
+		Unidad nuevaUnidad = unaBarraca.entrenarMarine();
 		ubicarUnidadEnElMapa(mapa,unaBarraca,nuevaUnidad);	
 		
 		return nuevaUnidad;	
 	}
 
-	public static Unidad nuevaUnidad(Terran raza, Fabrica unaFabrica, Mapa mapa){
+	public static Unidad nuevaUnidad(Fabrica unaFabrica, Mapa mapa){
 		
-		Unidad nuevaUnidad = unaFabrica.entrenarGoliat(raza);
+		Unidad nuevaUnidad = unaFabrica.entrenarGoliat();
 		ubicarUnidadEnElMapa(mapa,unaFabrica,nuevaUnidad);		
 		
 		return nuevaUnidad;
 	}
 	
-	public static Unidad nuevaNaveTransporte(Terran raza, PuertoEstelar puerto, Mapa mapa) {
+	public static Unidad nuevaNaveTransporte(PuertoEstelar puerto, Mapa mapa) {
 		
-		Unidad nuevaUnidad = puerto.crearNaveTransporte(raza);
+		Unidad nuevaUnidad = puerto.crearNaveTransporte();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
 		
 		return nuevaUnidad;
 	}
 
-	public static Unidad nuevoEspectro(Terran raza, PuertoEstelar puerto,Mapa mapa) {
+	public static Unidad nuevoEspectro(PuertoEstelar puerto,Mapa mapa) {
 
-		Unidad nuevaUnidad = puerto.crearEspectro(raza);
+		Unidad nuevaUnidad = puerto.crearEspectro();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);
 
 		return nuevaUnidad;
 	}
 
-	public static Unidad nuevaNaveCiencia(Terran raza, PuertoEstelar puerto,Mapa mapa) {
+	public static Unidad nuevaNaveCiencia(PuertoEstelar puerto,Mapa mapa) {
 
-		Unidad nuevaUnidad = puerto.crearNaveCiencia(raza);
+		Unidad nuevaUnidad = puerto.crearNaveCiencia();
 		ubicarUnidadEnElMapa(mapa,puerto,nuevaUnidad);	
 		
 		return nuevaUnidad;	

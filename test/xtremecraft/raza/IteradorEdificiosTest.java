@@ -11,15 +11,19 @@ import org.junit.Test;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Edificio;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Jugador;
 
 public class IteradorEdificiosTest {
 		
-	public Terran crearRazaTerranValida(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
 		Tierra tierra = new Tierra(15,15);
-		Terran razaTerran = new Terran(tierra);
+		Jugador jugador = new Jugador("Juan",tierra);
+		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
-		return razaTerran;
+		return jugador;
+		
 	}
 	
 	public void cuantosHayDeConstruidosDevuelveCeroConArregloVacio(){
@@ -55,9 +59,9 @@ public class IteradorEdificiosTest {
 		
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(edificios);
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		
-		Barraca barraca = new Barraca(nacion, new Tierra(1,2));
+		Barraca barraca = new Barraca(jugador, new Tierra(1,2));
 		for(int i=0;i<barraca.tiempoConstruccion();i++)	barraca.pasarTiempo();
 		edificios.add(barraca);
 		
@@ -68,20 +72,20 @@ public class IteradorEdificiosTest {
 	@Test
 	public void elementoPerteneceConBarracaConArregloVacioDaFalse(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		IteradorEdificios iter = new IteradorEdificios(edificios);
 		
-		assertFalse(iter.elementoPertenece(new Barraca(nacion, new Tierra(1,1))));
+		assertFalse(iter.elementoPertenece(new Barraca(jugador, new Tierra(1,1))));
 		
 	}
 	
 	@Test
 	public void tieneCreadosBarracaConArregloDeUnaBarracaSinConstruirDaFalse(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Tierra tierra = new Tierra(1,1);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Barraca unaBarraca = new Barraca(jugador, tierra);
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		
 		edificios.add(unaBarraca);
@@ -94,9 +98,9 @@ public class IteradorEdificiosTest {
 	@Test
 	public void elementoPerteneceBarracaConArregloDeUnaBarracaConstruidaDevuelveTrue(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Tierra tierra = new Tierra(1,1);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Barraca unaBarraca = new Barraca(jugador, tierra);
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		
 		for(int i=0;i<unaBarraca.tiempoConstruccion();i++)	unaBarraca.pasarTiempo();
@@ -110,9 +114,9 @@ public class IteradorEdificiosTest {
 	@Test
 	public void elementoPerteneceBarracaConArregloDeUnaBarracaNoConstruidaDevuelveTrue(){
 		
-		Terran nacion = crearRazaTerranValida();
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Tierra tierra = new Tierra(1,1);
-		Barraca unaBarraca = new Barraca(nacion, tierra);
+		Barraca unaBarraca = new Barraca(jugador, tierra);
 		ArrayList<Edificio> edificios = new ArrayList<Edificio>();
 		
 		edificios.add(unaBarraca);
