@@ -43,6 +43,7 @@ public class Partida {
 		int ultimaPosicion = this.jugadores.size() - 1;
 		for (int posicion = 0; posicion < ultimaPosicion; posicion++){
 			Jugador jugadorActual = this.jugadores.get(posicion);
+			jugadorActual.setNumeroDeJugador(posicion+1);
 			if((posicion+1) < this.jugadores.size()) {
 				Jugador jugadorSiguiente = this.jugadores.get(posicion+1);
 				jugadorActual.setJugadorSiguiente(jugadorSiguiente);
@@ -50,6 +51,7 @@ public class Partida {
 		}
 		Jugador primerJugador = this.jugadores.get(0);
 		Jugador ultimoJugador = this.jugadores.get(ultimaPosicion);
+		ultimoJugador.setNumeroDeJugador(ultimaPosicion+1);
 		ultimoJugador.setJugadorSiguiente(primerJugador); 
 		
 		primerJugador.setTurno();

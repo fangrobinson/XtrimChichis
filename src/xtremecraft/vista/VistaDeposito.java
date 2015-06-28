@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class VistaDeposito extends Vista implements Identificable{
+public class VistaDeposito extends Vista implements IdentificableVisible{
 	
 	public VistaDeposito(){
 		

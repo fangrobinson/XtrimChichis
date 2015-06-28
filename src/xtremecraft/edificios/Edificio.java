@@ -3,6 +3,7 @@ package xtremecraft.edificios;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Actualizable;
+import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
@@ -12,7 +13,7 @@ import xtremecraft.unidades.Radiacion;
 import xtremecraft.unidades.Ubicable;
 
 
-public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible,Cobrable{
+public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible,Cobrable,Identificable{
 	
 	protected Terreno terrenoActual;
 	protected BarraDeVitalidad vida;

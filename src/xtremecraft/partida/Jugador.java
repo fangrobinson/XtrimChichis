@@ -23,7 +23,8 @@ public class Jugador implements Actualizable{
 	
 	private String nombre;
 	private Terran nacion;
-	public Jugador siguienteJugador;
+	private Jugador siguienteJugador;
+	private int numeroDeJugador;
 	private boolean esMiTurno;
 	
 	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
@@ -47,6 +48,18 @@ public class Jugador implements Actualizable{
 	public Terran nacion(){
 		
 		return this.nacion;
+		
+	}
+	
+	public void setNumeroDeJugador(int numero){
+		
+		this.numeroDeJugador = numero;
+		
+	}
+	
+	public int getNumeroDeJugador(){
+		
+		return this.numeroDeJugador;
 		
 	}
 

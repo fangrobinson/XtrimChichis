@@ -15,6 +15,7 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
@@ -49,11 +50,12 @@ public class MapaObservable extends JPanel{
 				Vista vistaNueva = null;
 				
 				if(terrenoInferior.estaOcupado()){
-					int numero = 0;
+					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+					int numero =identificable.getJugador().getNumeroDeJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
-					Identificable identificable = (Identificable) vistaClase.newInstance();
-					identificable.setJugador(numero);
-					vistaNueva = (Vista) identificable;
+					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
+					identificableVisible.setJugador(numero);
+					vistaNueva = (Vista) identificableVisible;
 				}else{
 					if (!terrenoInferior.tieneRecursos()){
 						vistaClase = this.vistas.get(terrenoInferior.getClass());

@@ -4,10 +4,11 @@ import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Actualizable;
+import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable{
+public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable,Identificable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -33,6 +34,12 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
 		this.estaUbicada = false;
 		this.esRadioactivo = false;
 		this.tiempoConstruccionActual = 1;
+		
+	}
+	
+	public Jugador getJugador(){
+		
+		return this.jugador;
 		
 	}
 		

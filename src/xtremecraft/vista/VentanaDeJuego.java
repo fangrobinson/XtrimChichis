@@ -24,17 +24,18 @@ public class VentanaDeJuego extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ALGO CRAFT");
-		setPreferredSize(new Dimension(800,1000));
+		setPreferredSize(new Dimension(1200,800));
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.X_AXIS));
 		//this.addMouseListener(this);
 		
 		
 		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setVisible(true);
+		//panelPrincipal.setVisible(true);
 		
 		
 		MapaObservable mapaObservable = this.generarNuevoMapa(partida);
 		mapaObservable.setPreferredSize(new Dimension(600,600));
+		panelPrincipal.setVisible(true);
 		//TODO: Trucho
 		//agrego lista para probar panel:
 		DefaultListModel<String> accionesPrueba = new DefaultListModel<String>();	
