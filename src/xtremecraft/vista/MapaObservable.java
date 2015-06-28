@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 
+
 //import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,6 +15,7 @@ import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
+import xtremecraft.partida.Partida;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
 
@@ -28,13 +30,12 @@ public class MapaObservable extends JPanel{
 	public MapaObservable(){};
 	
 	//public MapaObservable(Mapa mapa, int x, int y){
-	public MapaObservable(Mapa mapa) throws InstantiationException, IllegalAccessException{
+	public MapaObservable(Partida partida) throws InstantiationException, IllegalAccessException{
 		
 		//this.addMouseListener(this);
-		
+		Mapa mapa = partida.getMapa();
 		this.modeloReal = mapa;
 		this.vistas = this.generarVistas();
-		//setBounds(800, 800, mapa.ancho(), mapa.alto());
 		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
@@ -45,25 +46,31 @@ public class MapaObservable extends JPanel{
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
 				Class<?> vistaClase = null;
+				Vista vistaNueva = null;
+				
 				if(terrenoInferior.estaOcupado()){
+					int numero = 0;
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
+					Identificable identificable = (Identificable) vistaClase.newInstance();
+					identificable.setJugador(numero);
+					vistaNueva = (Vista) identificable;
 				}else{
 					if (!terrenoInferior.tieneRecursos()){
 						vistaClase = this.vistas.get(terrenoInferior.getClass());
+						vistaNueva = (Vista) vistaClase.newInstance();
 					}else{
 						vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
+						vistaNueva = (Vista) vistaClase.newInstance();
 					}
 				}
-										
-				Vista vistaNueva = (Vista) vistaClase.newInstance();
+
 				vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
+
 				vistaNueva.paintComponents(getGraphics());
 				add(vistaNueva);
 				
 			}
 		}
-		
-		
 		
 	}
 	

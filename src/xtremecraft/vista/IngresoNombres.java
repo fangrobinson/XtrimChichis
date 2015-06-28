@@ -99,7 +99,6 @@ public class IngresoNombres extends JFrame {
 					setVisible(false);
 					try {
 						Partida partida = new Partida(nombresJugadores);
-						//new MapaObservable(partida.getMapa());
 						new VentanaDeJuego(partida);
 					} catch (InstantiationException | IllegalAccessException e) {
 						new MensajeDeError("Error no se pudo generar el mapa");

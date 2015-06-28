@@ -9,6 +9,6 @@ public class VistaMinerales extends Vista {
 		
 		this.color = new Color(0,204,204);
 		
-	}
+	}	
 
 }

@@ -3,7 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class VistaGas extends Vista {
+public class VistaGas extends Vista{
 	
 	public VistaGas(){
 		

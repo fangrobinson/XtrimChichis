@@ -3,7 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class VistaTierra extends Vista {
+public class VistaTierra extends Vista{
 	
 	public VistaTierra(){
 		

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Coordenada;
@@ -14,7 +15,8 @@ public abstract class Vista extends JPanel{
 	
 	Color color;
 	Coordenada ubicacion;
-		
+	int numeroJugador;
+	
 	public void paintComponent(Graphics grafico) {
 
         super.paintComponent(grafico);
