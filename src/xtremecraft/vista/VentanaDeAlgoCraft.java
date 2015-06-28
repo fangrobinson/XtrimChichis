@@ -11,6 +11,8 @@ import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.edificios.RecolectorDeGasVespeno;
+import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Partida;
@@ -36,6 +38,8 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		vistas.put(VolcanGasVespeno.class, VistaGas.class);
 		vistas.put(MinaDeMinerales.class, VistaMinerales.class);
 		vistas.put(DepositoDeSuministros.class, VistaDeposito.class);
+		vistas.put(RecolectorDeGasVespeno.class, VistaRecolectorDeGasVespeno.class);
+		vistas.put(RecolectorDeMineral.class, VistaRecolectorDeMineral.class);
 		vistas.put(Barraca.class, VistaBarraca.class);
 		vistas.put(Fabrica.class, VistaFabrica.class);
 		vistas.put(PuertoEstelar.class, VistaPuertoEstelar.class);
@@ -54,14 +58,14 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Algo Craft Game");
-		setPreferredSize(new Dimension(1000, 750));
+		setPreferredSize(new Dimension(1200, 950));
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 		
 		//Agregar aca los componentes de este Frame
 		JPanel sectorJuego = new SectorJuego(partida, this.vistas);
 		sectorJuego.setPreferredSize(new Dimension(1000, 600));
 		setVisible(true);
-		JPanel panelInformacion = new SectorInformacionParaElUsuario(partida);
+		JPanel panelInformacion = new SectorInformacionParaElUsuario(partida, vistas);
 		panelInformacion.setPreferredSize(new Dimension(1000, 150));
 		
 		//Ponerlos visibles
