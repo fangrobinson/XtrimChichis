@@ -3,6 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
@@ -29,6 +30,13 @@ public class VistaDeposito extends Vista implements IdentificableVisible{
 	
 	public void setJugador(int jugador){
 		this.numeroJugador = jugador;
+	}
+
+	@Override
+	public ArrayList<String> mostrarOpcionesAccion() {
+		return null;
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

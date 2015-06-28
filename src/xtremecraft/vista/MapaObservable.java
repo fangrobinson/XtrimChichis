@@ -2,11 +2,26 @@ package xtremecraft.vista;
 
 //import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
 
 
+
+
+
+
+
+
+
+
+
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 //import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,8 +35,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
 
-public class MapaObservable extends JPanel{
-	// implements MouseListener {
+public class MapaObservable extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
@@ -88,16 +102,34 @@ public class MapaObservable extends JPanel{
 		
 		return vistas;
 	}
-	/*
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		Vista vistaSeleccionada = (Vista) this.findComponentAt(e.getX(), e.getY());
+		
+		/*Coordenada ubicacion = vistaSeleccionada.getCoordenada();
+		this.modeloReal.getCeldaEnFilaColumna(ubicacion.fila(), ubicacion.columna());*/
+		
+		ArrayList<String> opciones = vistaSeleccionada.mostrarOpcionesAccion();
+		
+		JPanel panel = new JPanel();
+		JLabel mensaje = new JLabel("Elija la opcion que desee:");
+		@SuppressWarnings("unchecked")
+		JComboBox menuOpciones = new JComboBox((ComboBoxModel) opciones);
+		
+		panel.add(mensaje);		
+		
+		panel.add(menuOpciones);
+		
+		add(panel);
+		
+		setVisible(true);
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		mouseClicked(e);
 		
 	}
 
@@ -109,7 +141,7 @@ public class MapaObservable extends JPanel{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		mouseClicked(e);
 		
 	}
 
@@ -118,5 +150,4 @@ public class MapaObservable extends JPanel{
 		// TODO Auto-generated method stub
 		
 	}
-	*/
 }

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import java.util.ArrayList;
+
 //import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -29,5 +31,11 @@ public abstract class Vista extends JPanel{
 	public void setCoordenada(Coordenada coordenada) {
 		this.ubicacion = coordenada;
 	}
+	
+	public Coordenada getCoordenada(){
+		return this.ubicacion;
+	}
+	
+	public abstract ArrayList<String> mostrarOpcionesAccion();
 
 }
