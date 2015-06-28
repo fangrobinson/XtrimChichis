@@ -16,10 +16,11 @@ public class SectorInformacionParaElUsuario extends JPanel{
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		setPreferredSize(new Dimension(1000, 150));
 		
-		//TODO: Agregar Informacion del Jugador.
-		//TODO: Agregar Referencias de los colores del Mapa
+		JPanel informacionJugador = new SectorInfoJugadorActual(partida.quienJuega());
 		
-		//TODO: Poner visible las cosas.
+		add(informacionJugador);
+		
+		setVisible(true);
 		
 	}
 	

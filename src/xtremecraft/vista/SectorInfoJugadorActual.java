@@ -36,6 +36,8 @@ public class SectorInfoJugadorActual extends JPanel implements Observer{
 		this.add(this.cantidadDeGasVespeno);
 		this.add(this.cantidadDePoblacion);
 		
+		this.miJugador.addObserver(this);
+		
 		setVisible(true);
 		
 	}
