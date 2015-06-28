@@ -11,7 +11,7 @@ public class VistaDeposito extends Vista implements IdentificableVisible{
 	
 	public VistaDeposito(){
 		
-		this.color = new Color(64,64,64);
+		this.color = new Color(128,128,128);
 	
 	}
 	

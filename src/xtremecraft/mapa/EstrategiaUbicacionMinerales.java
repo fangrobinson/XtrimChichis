@@ -10,7 +10,7 @@ public class EstrategiaUbicacionMinerales extends EstrategiaUbicacion {
 		ArrayList<Coordenada> coordenadasUbicacionMinerales = new ArrayList<Coordenada>();
 
 		coordenadasUbicacionMinerales.add( new Coordenada(5,1) );
-		coordenadasUbicacionMinerales.add( new Coordenada(19,1) );
+		coordenadasUbicacionMinerales.add( new Coordenada(1,19) );
 		coordenadasUbicacionMinerales.add( new Coordenada(2,4) );
 		coordenadasUbicacionMinerales.add( new Coordenada(2,6) );
 		coordenadasUbicacionMinerales.add( new Coordenada(2,18) );
