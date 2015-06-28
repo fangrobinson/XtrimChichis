@@ -4,18 +4,17 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaDeposito extends VistaEdificio implements IdentificableVisible{
+public class VistaRecolectorDeGasVespeno extends VistaEdificio {
 	
-	public VistaDeposito(){
+	public VistaRecolectorDeGasVespeno(){
 		
-		this.color = new Color(128,128,128);
+		this.color = new Color(153,0,153);
 	
 	}
 
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		return null;
-		
 	}
-	
+
 }

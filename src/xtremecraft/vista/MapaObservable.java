@@ -114,7 +114,7 @@ public class MapaObservable extends JPanel implements MouseListener {
 		
 		JPanel panel = new JPanel();
 		JLabel mensaje = new JLabel("Elija la opcion que desee:");
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox menuOpciones = new JComboBox((ComboBoxModel) opciones);
 		
 		panel.add(mensaje);		
@@ -122,9 +122,9 @@ public class MapaObservable extends JPanel implements MouseListener {
 		panel.add(menuOpciones);
 		
 		add(panel);
+		panel.setVisible(true);
 		
 		setVisible(true);
-		
 	}
 
 	@Override
