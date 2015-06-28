@@ -14,8 +14,13 @@ public class VistaNaveCiencia extends VistaIdentificable {
 
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<String> opciones = new ArrayList<String>();
+		opciones.add("EMP");
+		opciones.add("Radiacion");
+		opciones.add("Mover");
+		
+		return opciones;
 	}
 
 }

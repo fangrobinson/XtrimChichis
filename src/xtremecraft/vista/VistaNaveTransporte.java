@@ -18,6 +18,7 @@ public class VistaNaveTransporte extends VistaIdentificable {
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("Subir unidad");
 		opciones.add("Bajar unidad");
+		opciones.add("Mover");
 		
 		return opciones;
 		
