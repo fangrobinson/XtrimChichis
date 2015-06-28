@@ -16,15 +16,21 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Algo Craft Game");
-		setPreferredSize(new Dimension(1200,800));
+		setPreferredSize(new Dimension(1000, 750));
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 		
 		//Agregar aca los componentes de este Frame
+		JPanel sectorJuego = new SectorJuego(partida);
+		sectorJuego.setPreferredSize(new Dimension(1000, 600));
+		setVisible(true);
 		JPanel panelInformacion = new SectorInformacionParaElUsuario(partida);
-		this.add(panelInformacion);
+		panelInformacion.setPreferredSize(new Dimension(1000, 150));
 		
 		//Ponerlos visibles
+		sectorJuego.setVisible(true);
 		panelInformacion.setVisible(true);
+		this.add(sectorJuego);
+		this.add(panelInformacion);
 		pack();
 		
 		setVisible(true);

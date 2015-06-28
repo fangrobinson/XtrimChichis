@@ -99,7 +99,8 @@ public class IngresoNombres extends JFrame {
 					setVisible(false);
 					try {
 						Partida partida = new Partida(nombresJugadores);
-						new VentanaDeJuego(partida);
+						//new VentanaDeJuego(partida);
+						new VentanaDeAlgoCraft(partida);
 					} catch (InstantiationException | IllegalAccessException e) {
 						new MensajeDeError("Error no se pudo generar el mapa");
 					}
