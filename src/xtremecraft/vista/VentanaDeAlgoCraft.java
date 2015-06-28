@@ -32,7 +32,7 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		this.add(sectorJuego);
 		this.add(panelInformacion);
 		pack();
-		
+		setResizable(false);
 		setVisible(true);
 		
 	}

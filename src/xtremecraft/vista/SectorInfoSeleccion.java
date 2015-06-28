@@ -8,7 +8,7 @@ public class SectorInfoSeleccion  extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public SectorInfoSeleccion(){
-		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
+		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 
 	}
 	
