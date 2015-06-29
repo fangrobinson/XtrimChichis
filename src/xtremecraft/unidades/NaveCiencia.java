@@ -1,6 +1,7 @@
 package xtremecraft.unidades;
 
 import xtremecraft.partida.Jugador;
+
 import java.util.ArrayList;
 
 import xtremecraft.mapa.Celda;
@@ -113,5 +114,13 @@ public class NaveCiencia extends UnidadAerea{
 		this.jugador.nacion().quitarGas(this.gas);
 		
 	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		
+		return acciones;
+	}
+	
 
 }

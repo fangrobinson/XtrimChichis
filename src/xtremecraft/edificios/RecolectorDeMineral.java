@@ -1,5 +1,7 @@
 package xtremecraft.edificios;
 
+import java.util.ArrayList;
+
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 
@@ -44,6 +46,13 @@ public class RecolectorDeMineral extends Recolector{
 			this.jugador.nacion().juntarMinerales(this.recurso.explotar(this.aumentoDeReservaEnTurno));
 		}
 		super.pasarTiempo();
+	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		
+		return acciones;
 	}
 	
 

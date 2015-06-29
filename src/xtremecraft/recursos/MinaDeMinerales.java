@@ -1,5 +1,7 @@
 package xtremecraft.recursos;
 
+import java.util.ArrayList;
+
 import xtremecraft.edificios.Recolector;
 import xtremecraft.mapa.Coordenada;
 
@@ -38,6 +40,13 @@ public class MinaDeMinerales extends Recurso{
 
 		return null;
 		
+	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear recolector de minerales");
+		return acciones;
 	}
 
 }

@@ -3,7 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class VistaGoliat extends VistaUnidadDefendible{
+public class VistaGoliat extends VistaIdentificable{
 	
 	public VistaGoliat(){
 		

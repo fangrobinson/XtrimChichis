@@ -1,5 +1,7 @@
 package xtremecraft.edificios;
 
+import java.util.ArrayList;
+
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 import xtremecraft.unidades.Espectro;
@@ -74,6 +76,15 @@ public class PuertoEstelar extends Edificio{
 		this.jugador.nacion().quitarMinerales(this.minerales);
 		this.jugador.nacion().quitarGas(this.gas);
 		
+	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear nave transporte");
+		acciones.add("Crear nave ciencia");
+		acciones.add("Crear espectro");
+		return acciones;
 	}
 
 }

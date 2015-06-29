@@ -3,7 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class VistaMarine extends VistaUnidadDefendible{
+public class VistaMarine extends VistaIdentificable{
 	
 	public VistaMarine(){
 		

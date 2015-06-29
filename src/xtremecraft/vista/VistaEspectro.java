@@ -3,7 +3,7 @@ package xtremecraft.vista;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class VistaEspectro extends VistaUnidadDefendible{
+public class VistaEspectro extends VistaIdentificable{
 	
 	public VistaEspectro(){
 		

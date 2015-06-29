@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Observer;
 
 import javax.swing.JPanel;
@@ -52,8 +51,6 @@ public abstract class Vista extends JPanel implements MouseListener{
 	public Color getColor(){
 		return this.color;
 	}
-	
-	public abstract ArrayList<String> mostrarOpcionesAccion();
 
 	public void agregarObservador(Observer observador) {
 		

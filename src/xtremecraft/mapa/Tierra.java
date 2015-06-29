@@ -1,5 +1,7 @@
 package xtremecraft.mapa;
 
+import java.util.ArrayList;
+
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -60,5 +62,14 @@ public class Tierra extends Terreno {
     	return this;
     
     }
+    
+    public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear barraca");
+		acciones.add("Crear fabrica");
+		acciones.add("Crear puerto estelar");
+		return acciones;
+	}
     
 }

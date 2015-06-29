@@ -98,7 +98,8 @@ public class MapaObservable extends JPanel implements MouseListener {
 		/*Coordenada ubicacion = vistaSeleccionada.getCoordenada();
 		this.modeloReal.getCeldaEnFilaColumna(ubicacion.fila(), ubicacion.columna());*/
 		
-		/*ArrayList<String> opciones = vistaSeleccionada.mostrarOpcionesAccion();
+		/*ArrayList<String> opciones = vistaSelecciona
+		 * da.mostrarOpcionesAccion();
 		
 		JPanel panel = new JPanel();
 		JLabel mensaje = new JLabel("Elija la opcion que desee:");

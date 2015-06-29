@@ -1,5 +1,7 @@
 package xtremecraft.recursos;
 
+import java.util.ArrayList;
+
 import xtremecraft.edificios.Recolector;
 
 public class VolcanGasVespeno extends Recurso{
@@ -28,6 +30,13 @@ public class VolcanGasVespeno extends Recurso{
 		
 		return nuevoRecolector.puedeExtraerGasVespeno();
 		
+	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear recolector de gas vespeno");
+		return acciones;
 	}
 
 }
