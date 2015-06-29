@@ -36,8 +36,8 @@ public class VentanaDeJuego extends JFrame{
 		//panelPrincipal.setVisible(true);
 		
 		
-		MapaObservable mapaObservable = this.generarNuevoMapa(partida, vistas);
-		mapaObservable.setPreferredSize(new Dimension(600,600));
+		MapaObservableTerrestre mapaObservableTerrestre = this.generarNuevoMapa(partida, vistas);
+		mapaObservableTerrestre.setPreferredSize(new Dimension(600,600));
 		panelPrincipal.setVisible(true);
 		//TODO: Trucho
 		//agrego lista para probar panel:
@@ -47,11 +47,11 @@ public class VentanaDeJuego extends JFrame{
 		accionesPrueba.addElement("Atacar");
 		JPanel panelAccionesDisponibles = new AccionesDisponibles(accionesPrueba);
 		panelPrincipal.setBorder(BorderFactory.createLineBorder(panelAccionesDisponibles.getBackground(),25));
-		panelPrincipal.setBorder(BorderFactory.createLineBorder(mapaObservable.getBackground(),25));
-		panelPrincipal.add(mapaObservable);
+		panelPrincipal.setBorder(BorderFactory.createLineBorder(mapaObservableTerrestre.getBackground(),25));
+		panelPrincipal.add(mapaObservableTerrestre);
 		
 		panelPrincipal.add(panelAccionesDisponibles);
-		panelPrincipal.add(mapaObservable);
+		panelPrincipal.add(mapaObservableTerrestre);
 		add(panelPrincipal);
 		pack();// Tarea: Entender esto.
 
@@ -61,9 +61,9 @@ public class VentanaDeJuego extends JFrame{
 		
 	}
 
-	private MapaObservable generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	private MapaObservableTerrestre generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
-		return new MapaObservable(partida, vistas);
+		return new MapaObservableTerrestre(partida, vistas);
 		
 	}
 }

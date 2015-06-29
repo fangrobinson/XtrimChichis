@@ -20,17 +20,17 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
 
-public class MapaObservable extends JPanel implements MouseListener {
+public class MapaObservableTerrestre extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
 	private Mapa modeloReal;
 	private HashMap<Class<?>, Class<?>> vistas;
 	
-	public MapaObservable(){};
+	public MapaObservableTerrestre(){};
 	
 	//public MapaObservable(Mapa mapa, int x, int y){
-	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	public MapaObservableTerrestre(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
 		//this.addMouseListener(this);
 		Mapa mapa = partida.getMapa();
