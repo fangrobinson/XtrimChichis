@@ -24,12 +24,5 @@ public class VistaGas extends Vista{
 		return opciones;
 		
 	}
-
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreGas;
-		
-	}
 	
 }

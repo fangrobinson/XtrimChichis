@@ -25,11 +25,4 @@ public class VistaMinerales extends Vista {
 		return opciones;
 	}
 
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreMarine;
-		
-	}
-
 }

@@ -14,22 +14,18 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 		this.color = new Color(125,156,190);
 	
 	}
-	
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		ArrayList<String> opciones = new ArrayList<String>();
-		opciones.add("Crear espectro");
-		opciones.add("Crear nave de transporte");
-		opciones.add("Crear nave ciencia");
-		
-		return opciones;
-	}
 
 	@Override
 	public void setNombre() {
 		
 		this.nombre = nombrePuerto;
 		
+	}
+
+	@Override
+	public ArrayList<String> mostrarOpcionesAccion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

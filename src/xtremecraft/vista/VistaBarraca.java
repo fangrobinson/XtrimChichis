@@ -15,20 +15,18 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 		this.color = new Color(153,102,0);
 	
 	}
-	
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		ArrayList<String> opciones = new ArrayList<String>();
-		opciones.add("Crear marine");
-		
-		return opciones;
-	}
 
 	@Override
 	public void setNombre() {
 		
 		this.nombre = nombreBarraca;
 		
+	}
+
+	@Override
+	public ArrayList<String> mostrarOpcionesAccion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

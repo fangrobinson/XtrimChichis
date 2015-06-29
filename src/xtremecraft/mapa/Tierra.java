@@ -1,6 +1,7 @@
 package xtremecraft.mapa;
 
 import xtremecraft.partida.Jugador;
+import java.util.ArrayList;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -66,6 +67,15 @@ public class Tierra extends Terreno {
 	public Jugador getJugador() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+    public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear barraca");
+		acciones.add("Crear fabrica");
+		acciones.add("Crear puerto estelar");
+		return acciones;
 	}
 
 }

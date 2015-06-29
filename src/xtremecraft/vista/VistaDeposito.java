@@ -21,11 +21,4 @@ public class VistaDeposito extends VistaIdentificable implements IdentificableVi
 		
 	}
 
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreDeposito;
-		
-	}
-	
 }

@@ -1,9 +1,10 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaMarine extends VistaUnidadDefendible{
+public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
 	
@@ -19,6 +20,12 @@ public class VistaMarine extends VistaUnidadDefendible{
 		
 		this.nombre = nombreMarine;
 		
+	}
+
+	@Override
+	public ArrayList<String> mostrarOpcionesAccion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

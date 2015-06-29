@@ -14,7 +14,7 @@ public class VistaRecolectorDeMineral extends VistaIdentificable {
 		this.color = new Color(0,204,204);
 	
 	}
-
+	
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		
@@ -22,11 +22,4 @@ public class VistaRecolectorDeMineral extends VistaIdentificable {
 		
 	}
 
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreRecolector;
-		
-	}
-	
 }

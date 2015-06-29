@@ -25,12 +25,5 @@ public class VistaNaveCiencia extends VistaIdentificable {
 		
 		return opciones;
 	}
-
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreNave;
-		
-	}
-
+	
 }

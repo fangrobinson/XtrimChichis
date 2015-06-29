@@ -1,5 +1,7 @@
 package xtremecraft.edificios;
 
+import java.util.ArrayList;
+
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 import xtremecraft.unidades.Goliat;
@@ -52,6 +54,13 @@ public class Fabrica extends Edificio{
 	public void cobrar(){
 		this.jugador.nacion().quitarMinerales(this.minerales);
 		this.jugador.nacion().quitarGas(this.gas);
+	}
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear goliat");
+		return acciones;
 	}
 	
 }

@@ -3,7 +3,6 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
-
 @SuppressWarnings("serial")
 public class VistaFabrica extends VistaIdentificable implements IdentificableVisible{
 	
@@ -22,13 +21,6 @@ public class VistaFabrica extends VistaIdentificable implements IdentificableVis
 		opciones.add("Crear goliat");
 		
 		return opciones;
-	}
-
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreFabrica;
-		
 	}
 
 }

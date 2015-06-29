@@ -27,11 +27,4 @@ public class VistaNaveTransporte extends VistaIdentificable {
 		
 	}
 
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreNave;
-		
-	}
-	
 }

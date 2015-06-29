@@ -16,17 +16,11 @@ public class VistaAire extends Vista{
 		
 	}
 
+
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		
 		return null;
-	}
-
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreAire;
-		
 	}
 
 }

@@ -1,9 +1,10 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class VistaGoliat extends VistaUnidadDefendible{
+public class VistaGoliat extends VistaIdentificable{
 	
 	static String nombreGoliat = "Goliat";
 	
@@ -19,6 +20,12 @@ public class VistaGoliat extends VistaUnidadDefendible{
 		
 		this.nombre = nombreGoliat;
 		
+	}
+
+	@Override
+	public ArrayList<String> mostrarOpcionesAccion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

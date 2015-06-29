@@ -14,17 +14,10 @@ public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 		this.color = new Color(153,0,153);
 	
 	}
-
+	
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		return null;
-	}
-
-	@Override
-	public void setNombre() {
-		
-		this.nombre = nombreRecolector;
-		
 	}
 
 }
