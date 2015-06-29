@@ -29,5 +29,18 @@ public class VolcanGasVespeno extends Recurso{
 		return nuevoRecolector.puedeExtraerGasVespeno();
 		
 	}
+	
+	private String generarEstadoImprimible(){
+		
+		return "Cantidad de mineral: " + Integer.toString(this.cantidadDeRecurso);
+		
+	}
+	
+	@Override
+	public String getEstadoImprimible() {
+		
+		return this.generarEstadoImprimible();
+		
+	}
 
 }

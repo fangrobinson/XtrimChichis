@@ -1,5 +1,6 @@
 package xtremecraft.mapa;
 
+import xtremecraft.partida.Jugador;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -60,5 +61,11 @@ public class Tierra extends Terreno {
     	return this;
     
     }
-    
+
+	@Override
+	public Jugador getJugador() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

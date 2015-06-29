@@ -17,10 +17,11 @@ public class SectorSeleccionObjeto extends JPanel implements MouseListener,Obser
 
 	private static final long serialVersionUID = 1L;
 	private MapaObservable mapaObservable;
-	JLabel nombreCapaSuperior = new JLabel("AIRE");
-	JLabel estadoSuperior = new JLabel("");
-	JLabel nombreCapaInferior = new JLabel("TIERRA");
-	JLabel estadoInferior = new JLabel("");
+	
+	JLabel titulo = new JLabel("ESTADO ACTUAL SELECCIONADO"); 
+	JLabel nombreObservable = new JLabel("");
+	JLabel estadoObservable = new JLabel("");
+	JLabel coordenadaObservable = new JLabel("");
 	
 	public SectorSeleccionObjeto(MapaObservable mapaObservable, Mapa mapa) {
 		
@@ -31,26 +32,26 @@ public class SectorSeleccionObjeto extends JPanel implements MouseListener,Obser
 		this.mapaObservable = mapaObservable;
 		this.mapaObservable.agregarObservadorAVistas(this);
 		
-		estadoSuperior.addMouseListener(this);
-		estadoInferior.addMouseListener(this);
+		//TODO:para seleccionar en teoria... despues lo implementamos bien
+		estadoObservable.addMouseListener(this);
 		
-		this.add(nombreCapaSuperior);
-		this.add(estadoSuperior);
-		this.add(nombreCapaInferior);
-		this.add(estadoInferior);
+		this.add(titulo);
+		this.add(nombreObservable);
+		this.add(coordenadaObservable);
+		this.add(estadoObservable);
+		
 		
 		setVisible(true);
 		
 	}
 	
 	@Override
-	public void update(Observable vistaObservada, Object arg1) {
+	public void update(Observable observableSeleccionado, Object arg1) {
 		
-		ObservablePosicionMouse vista = (ObservablePosicionMouse) vistaObservada;
-		int x = vista.getCoordenadaActualMouse().fila();
-		int y = vista.getCoordenadaActualMouse().columna();
-		this.estadoSuperior.setText("Coordenada: "+ Integer.toString(x)+","+ Integer.toString(y));
-		this.estadoInferior.setText("Coordenada: "+ Integer.toString(x)+","+ Integer.toString(y));
+		ObservableSeleccionado vista = (ObservableSeleccionado) observableSeleccionado;
+		nombreObservable.setText(vista.getNombre());
+		coordenadaObservable.setText(vista.getCoordenadaImprimible());
+		estadoObservable.setText(vista.getEstado());
 		
 	}
 

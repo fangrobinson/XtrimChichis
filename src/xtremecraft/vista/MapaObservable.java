@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
 import javax.swing.JPanel;
@@ -44,9 +45,9 @@ public class MapaObservable extends JPanel implements MouseListener {
 			for (int j = 0; j < this.modeloReal.alto(); j++){
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
-				Class<?> vistaClase = null;
-				Vista vistaNueva = null;
-				
+				Class<?> vistaClase;
+				Vista vistaNueva;
+				//TODO: refactor considerar cambios a identificable.
 				if(terrenoInferior.estaOcupado()){
 					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
 					int numero =identificable.getJugador().getNumeroDeJugador();
@@ -54,21 +55,30 @@ public class MapaObservable extends JPanel implements MouseListener {
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
 					vistaNueva = (Vista) identificableVisible;
+					
+					Observable observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+					observable.addObserver(vistaNueva);
 				}else{
 					if (!terrenoInferior.tieneRecursos()){
 						vistaClase = this.vistas.get(terrenoInferior.getClass());
 						vistaNueva = (Vista) vistaClase.newInstance();
+						Observable observable = (Observable)terrenoInferior;
+						observable.addObserver(vistaNueva);
 					}else{
 						vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
 						vistaNueva = (Vista) vistaClase.newInstance();
+						Observable observable = (Observable)terrenoInferior.getRecurso();
+						observable.addObserver(vistaNueva);
 					}
+			
 					
 					
 				}
-				this.mapaVisible.get(i).put(j, vistaNueva);
 				
 				vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
-
+				
+				this.mapaVisible.get(i).put(j, vistaNueva);
+				
 				vistaNueva.paintComponents(getGraphics());
 			
 				add(vistaNueva);
@@ -139,4 +149,5 @@ public class MapaObservable extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

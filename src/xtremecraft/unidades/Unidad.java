@@ -1,5 +1,7 @@
 package xtremecraft.unidades;
 
+import java.util.Observable;
+
 import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
@@ -8,7 +10,7 @@ import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable,Identificable{
+public abstract class Unidad extends Observable implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable,Identificable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -53,7 +55,20 @@ public abstract class Unidad implements Ubicable,Atacable,Defendible,Actualizabl
         if(this.vitalidad.getValor() == 0){
         	this.estaViva = false;
         }
+        setChanged();
+		notifyObservers();
+    }
     
+    private String generarEstadoImprimible(){
+		
+		return "vida: "+Integer.toString(this.vitalidad.getValor());
+		
+	}
+    
+    public String getEstadoImprimible(){
+    	
+    	return this.generarEstadoImprimible();
+    	
     }
     
     public void atacar (Atacable atacado){

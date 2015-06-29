@@ -39,5 +39,18 @@ public class MinaDeMinerales extends Recurso{
 		return null;
 		
 	}
+	
+	private String generarEstadoImprimible(){
+		
+		return "Cantidad de mineral: " + Integer.toString(this.cantidadDeRecurso);
+		
+	}
+	
+	@Override
+	public String getEstadoImprimible() {
+		
+		return this.generarEstadoImprimible();
+		
+	}
 
 }

@@ -7,9 +7,11 @@ public class VistaAire extends Vista{
 	
 	private static final long serialVersionUID = 1L;
 
+	static String nombreAire = "Terreno Aire";
+	
 	public VistaAire(){
 		
-		//super();
+		super(nombreAire);
 		this.color = new Color(216, 255, 249);
 		
 	}
@@ -18,6 +20,13 @@ public class VistaAire extends Vista{
 	public ArrayList<String> mostrarOpcionesAccion() {
 		
 		return null;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreAire;
+		
 	}
 
 }

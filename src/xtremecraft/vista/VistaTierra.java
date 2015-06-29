@@ -6,10 +6,13 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaTierra extends Vista{
 	
+	static String nombreTerreno = "Terreno Tierra";
+	
 	public VistaTierra(){
 		
-		super();
+		super(nombreTerreno);
 		this.color = new Color(153,102,0);
+		//this.nombre = nombreTerreno;
 		
 	}
 
@@ -24,6 +27,13 @@ public class VistaTierra extends Vista{
 		
 		
 		return opciones;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreTerreno;
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 package xtremecraft.edificios;
 
+import java.util.Observable;
+
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Actualizable;
@@ -13,7 +15,7 @@ import xtremecraft.unidades.Radiacion;
 import xtremecraft.unidades.Ubicable;
 
 
-public abstract class Edificio implements Ubicable,Atacable,Actualizable,Construible,Cobrable,Identificable{
+public abstract class Edificio extends Observable implements Ubicable,Atacable,Actualizable,Construible,Cobrable,Identificable{
 	
 	protected Terreno terrenoActual;
 	protected BarraDeVitalidad vida;
@@ -59,6 +61,18 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		
 	}
 	
+	private String generarEstadoImprimible(){
+		
+		return "vida: "+Integer.toString(this.vida.getValor());
+		
+	}
+
+    public String getEstadoImprimible(){
+    	
+    	return this.generarEstadoImprimible();
+    	
+    }
+	
 	public void recibirDanio(int valorDanio){
 		//TODO: Implementar logica de danio recibido que resta turnos.
 		if(this.estaEnConstruccion){
@@ -71,6 +85,8 @@ public abstract class Edificio implements Ubicable,Atacable,Actualizable,Constru
 		if(this.vida.getValor() == 0){
 			this.estaVivo = false;
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	public void actualizarUbicacion(Terreno unTerreno){

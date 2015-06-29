@@ -6,9 +6,11 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaGas extends Vista{
 	
+	static String nombreGas = "Gas Vespeno";
+	
 	public VistaGas(){
 		
-		super();
+		super(nombreGas);
 		this.color = new Color(153,0,153);
 		
 	}
@@ -23,5 +25,11 @@ public class VistaGas extends Vista{
 		
 	}
 
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreGas;
+		
+	}
 	
 }

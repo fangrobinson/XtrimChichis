@@ -6,10 +6,12 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaBarraca extends VistaIdentificable implements IdentificableVisible{
 	
+	static String nombreBarraca = "Barraca";
+	
 	
 	public VistaBarraca(){
 		
-		super();
+		super(nombreBarraca);
 		this.color = new Color(153,102,0);
 	
 	}
@@ -20,6 +22,13 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 		opciones.add("Crear marine");
 		
 		return opciones;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreBarraca;
+		
 	}
 
 }

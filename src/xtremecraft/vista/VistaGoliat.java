@@ -5,11 +5,20 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class VistaGoliat extends VistaUnidadDefendible{
 	
+	static String nombreGoliat = "Goliat";
+	
 	public VistaGoliat(){
 		
-		super();
+		super(nombreGoliat);
 		this.color = new Color(0,102,51);
 	
 	}
 
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreGoliat;
+		
+	}
+	
 }

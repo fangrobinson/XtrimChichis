@@ -7,6 +7,12 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public abstract class VistaIdentificable extends Vista implements IdentificableVisible{
 	
+	public VistaIdentificable(String nombre){
+		
+		super(nombre);
+		
+	}
+	
 	@Override
 	public void paintComponent(Graphics grafico) {
 

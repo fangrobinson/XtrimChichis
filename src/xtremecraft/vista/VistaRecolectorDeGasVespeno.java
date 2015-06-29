@@ -6,9 +6,11 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	
+	static String nombreRecolector = "Recolector de Gas";
+	
 	public VistaRecolectorDeGasVespeno(){
 		
-		super();
+		super(nombreRecolector);
 		this.color = new Color(153,0,153);
 	
 	}
@@ -16,6 +18,13 @@ public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		return null;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreRecolector;
+		
 	}
 
 }

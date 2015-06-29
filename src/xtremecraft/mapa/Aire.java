@@ -1,5 +1,6 @@
 package xtremecraft.mapa;
 
+import xtremecraft.partida.Jugador;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -42,6 +43,12 @@ public class Aire extends Terreno {
 		
 		throw new NoHayRecursoException();
 		
+	}
+
+	@Override
+	public Jugador getJugador() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

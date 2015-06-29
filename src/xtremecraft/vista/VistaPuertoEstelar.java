@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class VistaPuertoEstelar extends VistaIdentificable implements IdentificableVisible{
-
+	
+	static String nombrePuerto = "Puerto Estelar";
+	
 	public VistaPuertoEstelar(){
 		
-		super();
+		super(nombrePuerto);
 		this.color = new Color(125,156,190);
 	
 	}
@@ -21,6 +23,13 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 		opciones.add("Crear nave ciencia");
 		
 		return opciones;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombrePuerto;
+		
 	}
 
 }

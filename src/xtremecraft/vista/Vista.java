@@ -6,25 +6,33 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.partida.Identificable;
 
-public abstract class Vista extends JPanel implements MouseListener{
+public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	
 	Color color;
 	Coordenada ubicacion;
 	int numeroJugador;
-	private ObservablePosicionMouse mouseObservable = new ObservablePosicionMouse();
+	protected String nombre;
+	
+	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 	
 	
-	public Vista(){
+	public Vista(String nombreVista){
 		
 		this.addMouseListener(this);
+		this.nombre = nombreVista;
+		this.observableSeleccionado.setNombre(this.nombre);
+		this.observableSeleccionado.setEstado("Estado inicial");
+		
 		
 	}
 	
@@ -40,6 +48,7 @@ public abstract class Vista extends JPanel implements MouseListener{
 	public void setCoordenada(Coordenada coordenada) {
 		
 		this.ubicacion = coordenada;
+		this.observableSeleccionado.setCoordenada(this.ubicacion);
 		
 	}
 	
@@ -50,21 +59,35 @@ public abstract class Vista extends JPanel implements MouseListener{
 	}
 	
 	public Color getColor(){
+		
 		return this.color;
+		
 	}
 	
 	public abstract ArrayList<String> mostrarOpcionesAccion();
-
+	
+	
+	@Override
+	public void update(Observable observado, Object arg) {
+		
+		Identificable identificableVisibleEnMapa = (Identificable)observado;
+		//this.observableSeleccionado.setNombre(this.nombre);
+		this.observableSeleccionado.setEstado(identificableVisibleEnMapa.getEstadoImprimible());
+		
+	}
+	
 	public void agregarObservador(Observer observador) {
 		
-		this.mouseObservable.addObserver(observador);
+		//observador avisa cuando el mouse hace click sobre esta celda visible:
+		this.observableSeleccionado.addObserver(observador);
 		
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent click) {
-		
-		this.mouseObservable.setCoordenada(this.ubicacion);
+		//Cuando hago click en el panel, se notifica la ventana de informacion dinamica:
+		//Coordenada ubicacionActual = new Coordenada(click.getX(),click.getY());
+		this.observableSeleccionado.notificarObservado();
 		
 	}
 
@@ -88,6 +111,11 @@ public abstract class Vista extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setNombre() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -6,9 +6,11 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaDeposito extends VistaIdentificable implements IdentificableVisible{
 	
+	static String nombreDeposito = "Deposito de suministros";
+	
 	public VistaDeposito(){
 		
-		super();
+		super(nombreDeposito);
 		this.color = new Color(128,128,128);
 	
 	}
@@ -16,6 +18,13 @@ public class VistaDeposito extends VistaIdentificable implements IdentificableVi
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
 		return null;
+		
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreDeposito;
 		
 	}
 	

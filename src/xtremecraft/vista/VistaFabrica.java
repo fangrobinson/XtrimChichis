@@ -7,9 +7,11 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaFabrica extends VistaIdentificable implements IdentificableVisible{
 	
+	static String nombreFabrica = "Fabrica";
+
 	public VistaFabrica(){
 		
-		super();
+		super(nombreFabrica);
 		this.color = new Color(173,156,121);
 	
 	}
@@ -20,6 +22,13 @@ public class VistaFabrica extends VistaIdentificable implements IdentificableVis
 		opciones.add("Crear goliat");
 		
 		return opciones;
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreFabrica;
+		
 	}
 
 }

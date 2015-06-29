@@ -1,9 +1,12 @@
 package xtremecraft.mapa;
 
+import java.util.Observable;
+
+import xtremecraft.partida.Identificable;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
-public abstract class Terreno{
+public abstract class Terreno extends Observable implements Identificable{
 	
 	protected Coordenada coordenada;
 	protected Ubicable ubicable;
@@ -29,6 +32,19 @@ public abstract class Terreno{
 		return this.ubicable;
 		
 	}
+	
+	private String generarEstadoImprimible(){
+		
+		return "No ocupado"; 
+		
+	}
+	
+
+    public String getEstadoImprimible(){
+    	
+    	return this.generarEstadoImprimible();
+    	
+    }
 	
 	public Coordenada getCoordenada() {
 		

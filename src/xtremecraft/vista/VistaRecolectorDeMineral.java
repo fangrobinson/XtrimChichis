@@ -6,16 +6,27 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaRecolectorDeMineral extends VistaIdentificable {
 	
+	static String nombreRecolector = "Recolector de Mineral";
+	
 	public VistaRecolectorDeMineral(){
 		
-		super();
+		super(nombreRecolector);
 		this.color = new Color(0,204,204);
 	
 	}
 
 	@Override
 	public ArrayList<String> mostrarOpcionesAccion() {
+		
 		return null;
+		
 	}
 
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreRecolector;
+		
+	}
+	
 }

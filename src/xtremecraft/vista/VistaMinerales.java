@@ -6,9 +6,12 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaMinerales extends Vista {
 	
+	static String nombreMarine = "Mineral";
+	
 	public VistaMinerales(){
 		
-		super();
+		super(nombreMarine);
+		this.nombre = nombreMarine;
 		this.color = new Color(0,204,204);
 		
 	}
@@ -20,6 +23,13 @@ public class VistaMinerales extends Vista {
 		opciones.add("Crear recolector de mineral");
 		
 		return opciones;
-	}	
+	}
+
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreMarine;
+		
+	}
 
 }

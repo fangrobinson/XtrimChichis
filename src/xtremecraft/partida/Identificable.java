@@ -6,4 +6,6 @@ public interface Identificable {
 	//void setJugador(int jugador);
 	Jugador getJugador();
 	
+	String getEstadoImprimible();
+	
 }

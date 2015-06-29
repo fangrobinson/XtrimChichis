@@ -6,9 +6,11 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class VistaNaveTransporte extends VistaIdentificable {
 	
+	static String nombreNave = "Nave Transporte";
+	
 	public VistaNaveTransporte(){
 		
-		super();
+		super(nombreNave);
 		this.color = new Color(153,153,0);
 	
 	}
@@ -25,4 +27,11 @@ public class VistaNaveTransporte extends VistaIdentificable {
 		
 	}
 
+	@Override
+	public void setNombre() {
+		
+		this.nombre = nombreNave;
+		
+	}
+	
 }
