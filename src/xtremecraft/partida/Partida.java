@@ -1,6 +1,7 @@
 package xtremecraft.partida;
 
 import java.util.ArrayList;
+import java.util.Observer;
 
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Fabrica;
@@ -89,6 +90,7 @@ public class Partida {
 			}
 		}
 		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
+		
 	}
 	
 	public void crearBarraca(Jugador jugador, int fila, int columna){
@@ -194,6 +196,15 @@ public class Partida {
 		}
 		
 		jugador.crearNaveTransporte(unPuerto, this.mapa);
+		
+	}
+
+	public void agregarObservadorDeJugadores(Observer observador,Jugador jugador){
+		
+		for(int posicion = 0; posicion < this.jugadores.size(); posicion++){
+			Jugador jugadorActual = this.jugadores.get(posicion);
+			jugadorActual.addObserver(observador);
+		}
 		
 	}
 	

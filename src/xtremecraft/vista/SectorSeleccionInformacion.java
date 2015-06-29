@@ -3,13 +3,17 @@ package xtremecraft.vista;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-public class SectorInfoSeleccion  extends JPanel {
+public class SectorSeleccionInformacion  extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-
-	public SectorInfoSeleccion(){
+	
+	
+	public SectorSeleccionInformacion(){
+		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
+		
+		setVisible(true);
 
 	}
-	
+
 }

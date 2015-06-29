@@ -1,9 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
-
-import java.util.Observable;
-import java.util.Observer;
 import java.util.HashMap;
 
 
@@ -12,17 +9,19 @@ import javax.swing.JPanel;
 
 import xtremecraft.partida.Partida;
 
-public class SectorInformacionParaElUsuario extends JPanel implements Observer{
+public class SectorInformacionParaElUsuario extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-
+	
+	
 
 	public SectorInformacionParaElUsuario(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		setPreferredSize(new Dimension(1000, 150));
 		
+		
 		//TODO: Agregar Informacion del Jugador.
-		JPanel informacionJugador = new SectorInfoJugadorActual(partida.quienJuega());
+		JPanel informacionJugador = new SectorInformacionJugadorActual(partida);
 		this.add(informacionJugador);
 		setVisible(true);
 		
@@ -34,10 +33,4 @@ public class SectorInformacionParaElUsuario extends JPanel implements Observer{
 		
 	}
 
-	@Override
-	public void update(Observable partida, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

@@ -219,6 +219,8 @@ public class Jugador extends Observable implements Actualizable {
 		this.pasarTiempo();
 		this.esMiTurno = false;
 		this.siguienteJugador.setTurno();
+		this.setChanged();
+		this.notifyObservers();
 		
 	}
 

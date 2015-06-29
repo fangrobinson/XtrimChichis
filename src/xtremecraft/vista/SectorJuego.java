@@ -18,7 +18,7 @@ public class SectorJuego extends JPanel{
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		
 		//Info de Unidades Edificios Etc
-		SectorInfoSeleccion info = new SectorInfoSeleccion();
+		SectorSeleccionInformacion info = new SectorSeleccionInformacion();
 		info.setPreferredSize(new Dimension(350, 600));
 		info.setVisible(true);
 		this.add(info);
