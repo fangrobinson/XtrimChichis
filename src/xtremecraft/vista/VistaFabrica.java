@@ -9,6 +9,7 @@ public class VistaFabrica extends VistaIdentificable implements IdentificableVis
 	
 	public VistaFabrica(){
 		
+		super();
 		this.color = new Color(173,156,121);
 	
 	}

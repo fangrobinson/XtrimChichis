@@ -8,6 +8,7 @@ public class VistaNaveTransporte extends VistaIdentificable {
 	
 	public VistaNaveTransporte(){
 		
+		super();
 		this.color = new Color(153,153,0);
 	
 	}

@@ -8,6 +8,7 @@ public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	
 	public VistaRecolectorDeGasVespeno(){
 		
+		super();
 		this.color = new Color(153,0,153);
 	
 	}

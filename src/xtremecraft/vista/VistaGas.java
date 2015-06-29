@@ -8,6 +8,7 @@ public class VistaGas extends Vista{
 	
 	public VistaGas(){
 		
+		super();
 		this.color = new Color(153,0,153);
 		
 	}

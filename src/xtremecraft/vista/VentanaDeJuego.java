@@ -29,6 +29,7 @@ public class VentanaDeJuego extends JFrame{
 		setTitle("ALGO CRAFT");
 		setPreferredSize(new Dimension(1200,800));
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.X_AXIS));
+		
 		//this.addMouseListener(this);
 		
 		
@@ -36,8 +37,8 @@ public class VentanaDeJuego extends JFrame{
 		//panelPrincipal.setVisible(true);
 		
 		
-		MapaObservableTerrestre mapaObservableTerrestre = this.generarNuevoMapa(partida, vistas);
-		mapaObservableTerrestre.setPreferredSize(new Dimension(600,600));
+		MapaObservable mapaObservableTerrestre = this.generarNuevoMapa(partida, vistas);
+		mapaObservableTerrestre.setPreferredSize(new Dimension(800,800));
 		panelPrincipal.setVisible(true);
 		//TODO: Trucho
 		//agrego lista para probar panel:
@@ -56,14 +57,14 @@ public class VentanaDeJuego extends JFrame{
 		pack();// Tarea: Entender esto.
 
 		
-		
+		setResizable(true);
 		setVisible(true);
 		
 	}
 
-	private MapaObservableTerrestre generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	private MapaObservable generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
-		return new MapaObservableTerrestre(partida, vistas);
+		return new MapaObservable(partida, vistas);
 		
 	}
 }

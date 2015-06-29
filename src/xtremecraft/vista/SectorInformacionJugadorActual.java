@@ -24,6 +24,8 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 	JLabel cantidadGasVespeno;
 	JLabel cantidadPoblacion;
 	JButton btnPasarTurno = new JButton("PASAR TURNO");
+
+	private JLabel nombreJugador;
 	
 	public SectorInformacionJugadorActual(Partida partida){
 		
@@ -34,7 +36,8 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		
 		this.partida = partida;
 		
-		this.tituloPanel = new JLabel ("SUMINISTROS Y RECURSOS " + this.partida.quienJuega().nombre());
+		this.tituloPanel = new JLabel ("SUMINISTROS Y RECURSOS " );
+		this.nombreJugador = new JLabel(this.partida.quienJuega().nombre());
 		
 		this.cantidadMinerales = new JLabel ("Minerales:"+this.cantidadDeMinerales(this.partida.quienJuega()));
 		this.cantidadGasVespeno = new JLabel ("Gas vespeno:"+this.cantidadDeGasVespeno(this.partida.quienJuega()));
@@ -44,6 +47,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		this.add(btnPasarTurno);
 		
 		this.add(this.tituloPanel);
+		this.add(this.nombreJugador);
 		this.add(this.cantidadMinerales);
 		this.add(this.cantidadGasVespeno);
 		this.add(this.cantidadPoblacion);
@@ -81,7 +85,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 			
 		Jugador jugador = (Jugador) jugadorActual;
 				
-		this.tituloPanel.setText("SUMINISTROS Y RECURSOS " + this.partida.quienJuega().nombre());
+		this.nombreJugador.setText(this.partida.quienJuega().nombre());
 		this.cantidadMinerales.setText("Minerales:"+this.cantidadDeMinerales(jugador));
 		this.cantidadGasVespeno.setText("Gas vespeno:"+this.cantidadDeGasVespeno(jugador));
 		this.cantidadPoblacion.setText("Poblacion disponible:"+this.cantidadDePoblacion(jugador));

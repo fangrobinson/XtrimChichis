@@ -11,8 +11,9 @@ public abstract class VistaIdentificable extends Vista implements IdentificableV
 	public void paintComponent(Graphics grafico) {
 
 		super.paintComponent(grafico);
-        JLabel numero = new JLabel(Integer.toString(this.numeroJugador));
-        this.add(numero);
+        JLabel numeroIdentificador = new JLabel();
+        numeroIdentificador.setText(Integer.toString(this.numeroJugador));
+        this.add(numeroIdentificador);
        
     }
 	

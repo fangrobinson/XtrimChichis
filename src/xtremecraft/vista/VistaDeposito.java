@@ -8,6 +8,7 @@ public class VistaDeposito extends VistaIdentificable implements IdentificableVi
 	
 	public VistaDeposito(){
 		
+		super();
 		this.color = new Color(128,128,128);
 	
 	}

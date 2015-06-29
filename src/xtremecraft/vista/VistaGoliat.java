@@ -7,6 +7,7 @@ public class VistaGoliat extends VistaUnidadDefendible{
 	
 	public VistaGoliat(){
 		
+		super();
 		this.color = new Color(0,102,51);
 	
 	}

@@ -8,6 +8,7 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 
 	public VistaPuertoEstelar(){
 		
+		super();
 		this.color = new Color(125,156,190);
 	
 	}

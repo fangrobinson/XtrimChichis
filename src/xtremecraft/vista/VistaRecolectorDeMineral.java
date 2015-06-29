@@ -8,6 +8,7 @@ public class VistaRecolectorDeMineral extends VistaIdentificable {
 	
 	public VistaRecolectorDeMineral(){
 		
+		super();
 		this.color = new Color(0,204,204);
 	
 	}

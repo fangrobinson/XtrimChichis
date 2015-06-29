@@ -27,8 +27,8 @@ public class SectorInformacionParaElUsuario extends JPanel{
 		
 		
 		SectorReferenciasDelMapa referencias = new SectorReferenciasDelMapa(vistas);
-		referencias.setVisible(true);
 		this.add(referencias);
+		referencias.setVisible(true);
 		//TODO: Poner visible las cosas.
 		
 	}

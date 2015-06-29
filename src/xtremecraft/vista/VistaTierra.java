@@ -8,6 +8,7 @@ public class VistaTierra extends Vista{
 	
 	public VistaTierra(){
 		
+		super();
 		this.color = new Color(153,102,0);
 		
 	}
