@@ -5,14 +5,14 @@ import xtremecraft.partida.Jugador;
 
 public class DepositoDeSuministros extends Edificio{
 
-	private static int vida = 100;
+	private static int vidaInicial = 100;
 	private static int tiempoDeConstruccion = 6;
 	private static int incrementoPoblacion = 5;
 	private int minerales = 100;
 	
 	public DepositoDeSuministros(Jugador jugador, Terreno unTerreno) {
 		
-		super(jugador,unTerreno, vida);
+		super(jugador,unTerreno, vidaInicial);
 		this.cobrar();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		

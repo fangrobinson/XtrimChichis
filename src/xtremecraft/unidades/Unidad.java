@@ -25,6 +25,7 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 	protected Jugador jugador;
 	private Radiacion radiacion;
 	private boolean esRadioactivo;
+	protected static int vidaInicial;
 	
 	protected Unidad(Jugador unJugador){
 		
@@ -41,6 +42,12 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 	public int getJugador(){
 		
 		return this.jugador.getNumeroDeJugador();
+		
+	}
+	
+	public static int getVidaInicial(){
+		
+		return vidaInicial;
 		
 	}
 		

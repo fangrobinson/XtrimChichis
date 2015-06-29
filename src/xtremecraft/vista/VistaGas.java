@@ -3,14 +3,17 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import xtremecraft.mapa.Mapa;
+
 @SuppressWarnings("serial")
 public class VistaGas extends Vista{
 	
 	static String nombreGas = "Gas Vespeno";
+	static String estadoInicial = "Volumen de gas: "+Integer.toString(Mapa.getCantidadDeRecursoInicialPorTerreno());
 	
 	public VistaGas(){
 		
-		super(nombreGas);
+		super(nombreGas,estadoInicial);
 		this.color = new Color(153,0,153);
 		
 	}

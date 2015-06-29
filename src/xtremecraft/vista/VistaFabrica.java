@@ -3,14 +3,17 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import xtremecraft.edificios.Fabrica;
+
 @SuppressWarnings("serial")
 public class VistaFabrica extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreFabrica = "Fabrica";
+	static String estadoInicial = "vida: "+Integer.toString(Fabrica.getVidaInicial());
 
 	public VistaFabrica(){
 		
-		super(nombreFabrica);
+		super(nombreFabrica,estadoInicial);
 		this.color = new Color(173,156,121);
 	
 	}

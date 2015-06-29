@@ -13,12 +13,13 @@ public class NaveTransporte extends UnidadAerea {
 	static int capacidadMaxima = 8;
 	private int minerales = 100;
 	private int gas = 100;
+	private static int vidaInicial = 150;
 	
 	public NaveTransporte(Jugador jugador) {
 		
 		super(jugador);
 		this.cobrar();
-		this.vitalidad = new BarraDeVitalidad(150);
+		this.vitalidad = new BarraDeVitalidad(vidaInicial);
 		this.danio = new Danio (0,0);
 		this.vision = 8;
 		this.tiempoConstruccion = 5;

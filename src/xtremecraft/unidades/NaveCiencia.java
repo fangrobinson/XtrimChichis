@@ -17,12 +17,13 @@ public class NaveCiencia extends UnidadAerea{
 	private int radioMisilEMP = 3;
 	private int costoMisilEMP = 100;
 	private int costoRadiacion = 100;
+	private static int vidaInicial = 200;
 	
 	public NaveCiencia(Jugador unJugador){
 		
 		super(unJugador);
 		this.cobrar();
-		this.vitalidad = new BarraDeVitalidad(200);
+		this.vitalidad = new BarraDeVitalidad(vidaInicial);
 		this.danio = new Danio(0,0);
 		this.vision = 10;
 		this.tiempoConstruccion = 10;

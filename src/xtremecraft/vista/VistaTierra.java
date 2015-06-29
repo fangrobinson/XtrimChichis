@@ -7,10 +7,11 @@ import java.util.ArrayList;
 public class VistaTierra extends Vista{
 	
 	static String nombreTerreno = "Terreno Tierra";
+	static String estadoInicial = "No Ocupado";
 	
 	public VistaTierra(){
 		
-		super(nombreTerreno);
+		super(nombreTerreno,estadoInicial);
 		this.color = new Color(153,102,0);
 		//this.nombre = nombreTerreno;
 		

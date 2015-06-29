@@ -6,13 +6,13 @@ import xtremecraft.unidades.Marine;
 
 public class Barraca extends Edificio{
 	
-	public static int vida = 100;
-	public static int tiempoDeConstruccion = 12;
+	private static int vidaInicial = 100;
+	private static int tiempoDeConstruccion = 12;
 	private int minerales = 150;
 	
 	public Barraca(Jugador jugador, Terreno unTerreno){
 		
-		super(jugador,unTerreno,vida);
+		super(jugador,unTerreno,vidaInicial);
 		this.cobrar();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 

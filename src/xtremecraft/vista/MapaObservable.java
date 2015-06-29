@@ -93,7 +93,8 @@ public class MapaObservable extends JPanel implements MouseListener {
 		
 		for (int i = 0; i < this.modeloReal.ancho(); i++){
 			for (int j = 0; j < this.modeloReal.alto(); j++){
-				this.mapaVisible.get(i).get(j).agregarObservador(observador);
+				Vista vistaActual = this.mapaVisible.get(i).get(j);
+				vistaActual.agregarObservador(observador);
 			}
 		}
 		

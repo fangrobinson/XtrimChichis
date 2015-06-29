@@ -2,7 +2,6 @@ package xtremecraft.mapa;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
-import java.util.Random;
 import java.util.TreeMap;
 
 import xtremecraft.recursos.MinaDeMinerales;
@@ -16,7 +15,7 @@ public class Mapa {
 	private TreeMap<Integer, TreeMap<Integer, Celda>> mapaAlto;
 	private int alto;
 	private int ancho;
-	private static int maximoRecursoPorUnidadTerreno = 1000;
+	private static int cantidadInicialDeRecursoPorTerreno = 1000;
 	private ArrayList<Tierra> terrenosBasesJugadores;
 	private ArrayList<EstrategiaUbicacion> estrategiasUbicacion;
 	
@@ -40,6 +39,12 @@ public class Mapa {
 		
 	}
 	
+	public static int getCantidadDeRecursoInicialPorTerreno(){
+		
+		return cantidadInicialDeRecursoPorTerreno;
+		
+	}
+	
 	public TreeMap<Integer, TreeMap<Integer, Celda>> devolverMapaEstatico(){
 		
 		return this.mapaAlto;
@@ -51,7 +56,7 @@ public class Mapa {
 		return this.alto;
 		
 	}
-	
+		
 	public int ancho(){
 		
 		return this.ancho;
@@ -184,15 +189,7 @@ public class Mapa {
 		else celda.liberarCapaInferior();
 		
 	}
-	
-	private int numeroAleatorioEntreMinimoYMaximo(int min,int max){
 		
-		Random aleatorio = new Random();
-		int cantidadAleatoria = aleatorio.nextInt(max-min) + min;
-		return cantidadAleatoria;
-		
-	}
-	
 	public Tierra obtenerTerrenoJugador(int numeroJugador) {
 		
 		int posicion = numeroJugador - 1;
@@ -222,15 +219,15 @@ public class Mapa {
 	
 	private void agregarNodoMineral(Coordenada coordenada) {
 		
-		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
-		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new MinaDeMinerales(cantidadAleatoriaMineral));
+		int cantidadMineral = cantidadInicialDeRecursoPorTerreno;
+		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new MinaDeMinerales(cantidadMineral));
 		
 	}
 	
 	private void agregarVolcanGasVespeno(Coordenada coordenada) {
 		
-		int cantidadAleatoriaMineral = this.numeroAleatorioEntreMinimoYMaximo(1,Mapa.maximoRecursoPorUnidadTerreno);
-		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new VolcanGasVespeno(cantidadAleatoriaMineral));
+		int cantidadGasVespeno = cantidadInicialDeRecursoPorTerreno;
+		this.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior().agregarRecursoNatural(new VolcanGasVespeno(cantidadGasVespeno));
 		
 	}
 
