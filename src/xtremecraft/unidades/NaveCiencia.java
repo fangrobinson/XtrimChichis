@@ -115,12 +115,4 @@ public class NaveCiencia extends UnidadAerea{
 		
 	}
 	
-	public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		
-		return acciones;
-	}
-	
-
 }

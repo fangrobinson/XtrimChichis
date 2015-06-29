@@ -8,18 +8,18 @@ public class VistaRecolectorDeMineral extends VistaIdentificable {
 	
 	static String nombreRecolector = "Recolector de Mineral";
 	
-	public VistaRecolectorDeMineral(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaRecolectorDeMineral(){
 		
-		super(nombreRecolector,estadoInicialVisible,accionesDisponibles);
+		super(nombreRecolector);
 		this.color = new Color(0,204,204);
 	
 	}
 	
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones(){
 		
-		return null;
+		ArrayList<String> acciones = new ArrayList<String>();
 		
+		return acciones;
 	}
 
 }

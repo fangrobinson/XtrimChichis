@@ -8,19 +8,18 @@ public class VistaFabrica extends VistaIdentificable implements IdentificableVis
 	
 	static String nombreFabrica = "Fabrica";
 
-	public VistaFabrica(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaFabrica(){
 		
-		super(nombreFabrica,estadoInicialVisible,accionesDisponibles);
+		super(nombreFabrica);
 		this.color = new Color(173,156,121);
 	
 	}
-	
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		ArrayList<String> opciones = new ArrayList<String>();
-		opciones.add("Crear goliat");
 		
-		return opciones;
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear goliat");
+		return acciones;
 	}
 
 }

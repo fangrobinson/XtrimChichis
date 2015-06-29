@@ -8,15 +8,15 @@ public class VistaGas extends Vista{
 	
 	static String nombreGas = "Gas Vespeno";
 	
-	public VistaGas(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaGas(){
 		
-		super(nombreGas,estadoInicialVisible,accionesDisponibles);
+		super(nombreGas);
 		this.color = new Color(153,0,153);
 		
 	}
 
 	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones() {
 		
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("Crear recolector de gas vespeno");

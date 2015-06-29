@@ -6,14 +6,14 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public abstract class VistaUnidadDefendible extends VistaIdentificable {
 	
-	public VistaUnidadDefendible(String nombre,String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaUnidadDefendible(String nombre){
 		
-		super(nombre,estadoInicialVisible,accionesDisponibles);
+		super(nombre);
 		
 	}
 	
 	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones() {
 		
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("Atacar");

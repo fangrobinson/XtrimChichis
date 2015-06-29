@@ -8,9 +8,9 @@ public class VistaGoliat extends VistaIdentificable{
 	
 	static String nombreGoliat = "Goliat";
 	
-	public VistaGoliat(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaGoliat(){
 		
-		super(nombreGoliat,estadoInicialVisible,accionesDisponibles);
+		super(nombreGoliat);
 		this.color = new Color(0,102,51);
 	
 	}
@@ -21,11 +21,13 @@ public class VistaGoliat extends VistaIdentificable{
 		this.nombre = nombreGoliat;
 		
 	}
-
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+	 
+    public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Moverse");
+		acciones.add("Atacar");
+		return acciones;
 	}
 	
 }

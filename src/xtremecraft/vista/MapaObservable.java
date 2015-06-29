@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -54,7 +53,7 @@ public class MapaObservable extends JPanel implements MouseListener {
 					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
 					int numero = identificable.getJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
-					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
+					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
 					vistaNueva = (Vista) identificableVisible;
 					
@@ -63,16 +62,12 @@ public class MapaObservable extends JPanel implements MouseListener {
 				}else{
 					if (!terrenoInferior.tieneRecursos()){
 						vistaClase = this.vistas.get(terrenoInferior.getClass());
-						Identificable identificable = (Identificable)terrenoInferior;
-						//vistaNueva = (Vista) vistaClase.newInstance();
-						vistaNueva = (Vista) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
+						vistaNueva = (Vista) vistaClase.newInstance();
 						Observable observable = (Observable)terrenoInferior;
 						observable.addObserver(vistaNueva);
 					}else{
 						vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
-						Identificable identificable = (Identificable)terrenoInferior.getRecurso();
-						//vistaNueva = (Vista) vistaClase.newInstance();
-						vistaNueva = (Vista) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
+						vistaNueva = (Vista) vistaClase.newInstance();
 						Observable observable = (Observable)terrenoInferior.getRecurso();
 						observable.addObserver(vistaNueva);
 					}

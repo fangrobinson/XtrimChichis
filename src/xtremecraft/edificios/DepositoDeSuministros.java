@@ -1,7 +1,5 @@
 package xtremecraft.edificios;
 
-import java.util.ArrayList;
-
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 
@@ -48,13 +46,6 @@ public class DepositoDeSuministros extends Edificio{
 		
 		this.jugador.nacion().quitarMinerales(this.minerales);
 		
-	}
-	
-	public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		
-		return acciones;
 	}
 	
 }

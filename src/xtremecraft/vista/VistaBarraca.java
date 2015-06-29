@@ -9,9 +9,9 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 	static String nombreBarraca = "Barraca";
 	
 	
-	public VistaBarraca(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaBarraca(){
 		
-		super(nombreBarraca,estadoInicialVisible,accionesDisponibles);
+		super(nombreBarraca);
 		this.color = new Color(153,102,0);
 	
 	}
@@ -22,11 +22,12 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 		this.nombre = nombreBarraca;
 		
 	}
-
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear marine");
+		return acciones;
 	}
 
 }

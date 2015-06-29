@@ -8,15 +8,15 @@ public class VistaNaveCiencia extends VistaIdentificable {
 	
 	static String nombreNave = "Nave Ciencia";
 	
-	public VistaNaveCiencia(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaNaveCiencia(){
 		
-		super(nombreNave,estadoInicialVisible,accionesDisponibles);
+		super(nombreNave);
 		this.color = new Color(153,153,0);
 	
 	}
 
 	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones() {
 		
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("EMP");

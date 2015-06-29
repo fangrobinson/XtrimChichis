@@ -1,6 +1,5 @@
 package xtremecraft.mapa;
 
-import xtremecraft.partida.Jugador;
 import java.util.ArrayList;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;

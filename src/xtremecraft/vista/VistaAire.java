@@ -9,18 +9,18 @@ public class VistaAire extends Vista{
 
 	static String nombreAire = "Terreno Aire";
 	
-	public VistaAire(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaAire(){
 		
-		super(nombreAire,estadoInicialVisible,accionesDisponibles);
+		super(nombreAire);
 		this.color = new Color(216, 255, 249);
 		
 	}
 
-
 	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones() {
 		
-		return null;
+		return new ArrayList<String>();
+		
 	}
 
 }

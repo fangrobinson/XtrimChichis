@@ -8,9 +8,9 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 	
 	static String nombrePuerto = "Puerto Estelar";
 	
-	public VistaPuertoEstelar(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaPuertoEstelar(){
 		
-		super(nombrePuerto,estadoInicialVisible,accionesDisponibles);
+		super(nombrePuerto);
 		this.color = new Color(125,156,190);
 	
 	}
@@ -21,11 +21,14 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 		this.nombre = nombrePuerto;
 		
 	}
-
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Crear nave transporte");
+		acciones.add("Crear nave ciencia");
+		acciones.add("Crear espectro");
+		return acciones;
 	}
 
 }

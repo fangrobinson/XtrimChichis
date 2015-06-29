@@ -8,9 +8,9 @@ public class VistaEspectro extends VistaIdentificable{
 	
 	static String nombreEspectro = "Espectro";
 	
-	public VistaEspectro(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaEspectro(){
 		
-		super(nombreEspectro,estadoInicialVisible,accionesDisponibles);
+		super(nombreEspectro);
 		this.color = new Color(0,102,255);
 	
 	}
@@ -21,11 +21,13 @@ public class VistaEspectro extends VistaIdentificable{
 		this.nombre = nombreEspectro;
 		
 	}
-
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+	
+    public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Moverse");
+		acciones.add("Atacar");
+		return acciones;
 	}
 
 }

@@ -1,7 +1,6 @@
 package xtremecraft.unidades;
 
 import java.util.Observable;
-import java.util.ArrayList;
 import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
@@ -261,13 +260,5 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 		return this.esRadioactivo;
 		
 	}
-    
-    public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		acciones.add("Moverse");
-		acciones.add("Atacar");
-		return acciones;
-	}
-    
+   
 }

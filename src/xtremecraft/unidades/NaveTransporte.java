@@ -87,15 +87,5 @@ public class NaveTransporte extends UnidadAerea {
 		this.jugador.nacion().quitarGas(this.gas);
 		
 	}
-	
-	public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		acciones.add("Moverse");
-		acciones.add("Subir unidad");
-		acciones.add("Bajar unidad");
-		return acciones;
-	}
-	
 
 }

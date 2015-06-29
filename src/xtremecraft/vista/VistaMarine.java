@@ -8,9 +8,9 @@ public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
 	
-	public VistaMarine(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaMarine(){
 		
-		super(nombreMarine,estadoInicialVisible,accionesDisponibles);
+		super(nombreMarine);
 		this.color = new Color(255,102,0);
 	
 	}
@@ -21,11 +21,13 @@ public class VistaMarine extends VistaIdentificable{
 		this.nombre = nombreMarine;
 		
 	}
-
-	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
-		// TODO Auto-generated method stub
-		return null;
+	
+    public ArrayList<String> devolverAcciones(){
+		
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Moverse");
+		acciones.add("Atacar");
+		return acciones;
 	}
 
 }

@@ -8,16 +8,16 @@ public class VistaTierra extends Vista{
 	
 	static String nombreTerreno = "Terreno Tierra";
 	
-	public VistaTierra(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
+	public VistaTierra(){
 		
-		super(nombreTerreno,estadoInicialVisible,accionesDisponibles);
+		super(nombreTerreno);
 		this.color = new Color(153,102,0);
 		//this.nombre = nombreTerreno;
 		
 	}
 
 	@Override
-	public ArrayList<String> mostrarOpcionesAccion() {
+	public ArrayList<String> devolverAcciones() {
 		
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("Crear barraca");
