@@ -9,7 +9,7 @@ import xtremecraft.mapa.Mapa;
 public class VistaMinerales extends Vista {
 	
 	static String nombreMarine = "Mineral";
-	static String estadoInicial = "Volumen de gas: "+Integer.toString(Mapa.getCantidadDeRecursoInicialPorTerreno());
+	static String estadoInicial = "Cantidad de Mineral: "+Integer.toString(Mapa.getCantidadDeRecursoInicialPorTerreno());
 	
 	public VistaMinerales(){
 		

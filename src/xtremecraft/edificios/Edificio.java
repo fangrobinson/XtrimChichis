@@ -29,6 +29,7 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 	public Edificio(Jugador unJugador,Terreno unTerreno,int vida){
 		
 		this.terrenoActual = unTerreno;
+		vidaInicial = vida;
 		this.vida = new BarraDeVitalidad(vida);
 		this.vida.recibirAtaque(vida);
 		this.turnosConstruccionPasados = 0;
