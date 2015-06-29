@@ -8,9 +8,9 @@ public class VistaTierra extends Vista{
 	
 	static String nombreTerreno = "Terreno Tierra";
 	
-	public VistaTierra(){
+	public VistaTierra(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreTerreno);
+		super(nombreTerreno,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(153,102,0);
 		//this.nombre = nombreTerreno;
 		

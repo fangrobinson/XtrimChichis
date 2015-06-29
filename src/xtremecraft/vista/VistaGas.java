@@ -8,9 +8,9 @@ public class VistaGas extends Vista{
 	
 	static String nombreGas = "Gas Vespeno";
 	
-	public VistaGas(){
+	public VistaGas(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreGas);
+		super(nombreGas,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(153,0,153);
 		
 	}

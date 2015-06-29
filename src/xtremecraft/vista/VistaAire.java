@@ -9,9 +9,9 @@ public class VistaAire extends Vista{
 
 	static String nombreAire = "Terreno Aire";
 	
-	public VistaAire(){
+	public VistaAire(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreAire);
+		super(nombreAire,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(216, 255, 249);
 		
 	}

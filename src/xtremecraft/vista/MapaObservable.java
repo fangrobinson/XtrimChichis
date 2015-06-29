@@ -3,6 +3,8 @@ package xtremecraft.vista;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -26,7 +28,7 @@ public class MapaObservable extends JPanel implements MouseListener {
 	public MapaObservable(){};
 	
 	//public MapaObservable(Mapa mapa, int x, int y){
-	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		this.addMouseListener(this);
 		Mapa mapa = partida.getMapa();
@@ -46,13 +48,13 @@ public class MapaObservable extends JPanel implements MouseListener {
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
 				Class<?> vistaClase;
-				Vista vistaNueva;
+				Vista vistaNueva = null;
 				//TODO: refactor considerar cambios a identificable.
 				if(terrenoInferior.estaOcupado()){
 					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
-					int numero =identificable.getJugador().getNumeroDeJugador();
+					int numero = identificable.getJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
-					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
+					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
 					identificableVisible.setJugador(numero);
 					vistaNueva = (Vista) identificableVisible;
 					
@@ -61,12 +63,16 @@ public class MapaObservable extends JPanel implements MouseListener {
 				}else{
 					if (!terrenoInferior.tieneRecursos()){
 						vistaClase = this.vistas.get(terrenoInferior.getClass());
-						vistaNueva = (Vista) vistaClase.newInstance();
+						Identificable identificable = (Identificable)terrenoInferior;
+						//vistaNueva = (Vista) vistaClase.newInstance();
+						vistaNueva = (Vista) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
 						Observable observable = (Observable)terrenoInferior;
 						observable.addObserver(vistaNueva);
 					}else{
 						vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
-						vistaNueva = (Vista) vistaClase.newInstance();
+						Identificable identificable = (Identificable)terrenoInferior.getRecurso();
+						//vistaNueva = (Vista) vistaClase.newInstance();
+						vistaNueva = (Vista) vistaClase.getDeclaredConstructor(String.class,ArrayList.class).newInstance(identificable.getEstadoImprimible(),identificable.devolverAcciones());
 						Observable observable = (Observable)terrenoInferior.getRecurso();
 						observable.addObserver(vistaNueva);
 					}

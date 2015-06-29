@@ -9,9 +9,9 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 	static String nombreBarraca = "Barraca";
 	
 	
-	public VistaBarraca(){
+	public VistaBarraca(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreBarraca);
+		super(nombreBarraca,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(153,102,0);
 	
 	}

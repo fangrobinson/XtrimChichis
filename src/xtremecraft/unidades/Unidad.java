@@ -39,9 +39,9 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 		
 	}
 	
-	public Jugador getJugador(){
+	public int getJugador(){
 		
-		return this.jugador;
+		return this.jugador.getNumeroDeJugador();
 		
 	}
 		

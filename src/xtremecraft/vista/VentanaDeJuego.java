@@ -5,6 +5,7 @@ package xtremecraft.vista;
 //import java.awt.GridLayout;
 
 import java.awt.Dimension;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -23,7 +24,7 @@ public class VentanaDeJuego extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
-	public VentanaDeJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	public VentanaDeJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ALGO CRAFT");
@@ -62,7 +63,7 @@ public class VentanaDeJuego extends JFrame{
 		
 	}
 
-	private MapaObservable generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
+	private MapaObservable generarNuevoMapa(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		return new MapaObservable(partida, vistas);
 		

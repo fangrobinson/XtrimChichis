@@ -1,6 +1,7 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import javax.swing.BoxLayout;
@@ -52,7 +53,7 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		return vistas;
 	}
 
-	public VentanaDeAlgoCraft(Partida partida) throws InstantiationException, IllegalAccessException{
+	public VentanaDeAlgoCraft(Partida partida) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		this.vistas = this.generarVistas();
 		

@@ -8,9 +8,9 @@ public class VistaEspectro extends VistaIdentificable{
 	
 	static String nombreEspectro = "Espectro";
 	
-	public VistaEspectro(){
+	public VistaEspectro(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreEspectro);
+		super(nombreEspectro,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(0,102,255);
 	
 	}

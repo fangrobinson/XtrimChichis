@@ -8,9 +8,9 @@ public class VistaFabrica extends VistaIdentificable implements IdentificableVis
 	
 	static String nombreFabrica = "Fabrica";
 
-	public VistaFabrica(){
+	public VistaFabrica(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreFabrica);
+		super(nombreFabrica,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(173,156,121);
 	
 	}

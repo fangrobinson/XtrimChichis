@@ -55,9 +55,9 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		
 	}
 	
-	public Jugador getJugador(){
+	public int getJugador(){
 		
-		return this.jugador;
+		return this.jugador.getNumeroDeJugador();
 		
 	}
 	

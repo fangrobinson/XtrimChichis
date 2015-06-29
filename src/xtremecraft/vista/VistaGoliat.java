@@ -8,9 +8,9 @@ public class VistaGoliat extends VistaIdentificable{
 	
 	static String nombreGoliat = "Goliat";
 	
-	public VistaGoliat(){
+	public VistaGoliat(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreGoliat);
+		super(nombreGoliat,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(0,102,51);
 	
 	}

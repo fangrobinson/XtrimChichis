@@ -5,7 +5,6 @@ import java.util.Observable;
 import xtremecraft.edificios.Recolector;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Identificable;
-import xtremecraft.partida.Jugador;
 
 public abstract class Recurso extends Observable implements Identificable{
 	
@@ -41,11 +40,11 @@ public abstract class Recurso extends Observable implements Identificable{
 
 	public abstract boolean puedeSerExtraidoPor(Recolector nuevoRecolector);
 	
-
 	@Override
-	public Jugador getJugador() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getJugador() {
+		
+		throw new IdentificableNoTieneJugadorException();
+		
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -101,7 +102,7 @@ public class IngresoNombres extends JFrame {
 						Partida partida = new Partida(nombresJugadores);
 						//new VentanaDeJuego(partida);
 						new VentanaDeAlgoCraft(partida);
-					} catch (InstantiationException | IllegalAccessException e) {
+					} catch (InstantiationException | IllegalAccessException |InvocationTargetException | NoSuchMethodException | SecurityException excepcion) {
 						new MensajeDeError("Error no se pudo generar el mapa");
 					}
 					//System.exit(0);

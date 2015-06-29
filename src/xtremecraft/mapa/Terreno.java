@@ -3,6 +3,7 @@ package xtremecraft.mapa;
 import java.util.Observable;
 
 import xtremecraft.partida.Identificable;
+import xtremecraft.recursos.IdentificableNoTieneJugadorException;
 import xtremecraft.recursos.Recurso;
 import xtremecraft.unidades.Ubicable;
 
@@ -87,6 +88,14 @@ public abstract class Terreno extends Observable implements Identificable{
 	public Coordenada getUbicacionActual() {
 		
 		return this.coordenada;
+		
+	}
+	
+
+	@Override
+	public int getJugador() {
+		
+		throw new IdentificableNoTieneJugadorException();
 		
 	}
 

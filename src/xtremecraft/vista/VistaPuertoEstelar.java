@@ -8,9 +8,9 @@ public class VistaPuertoEstelar extends VistaIdentificable implements Identifica
 	
 	static String nombrePuerto = "Puerto Estelar";
 	
-	public VistaPuertoEstelar(){
+	public VistaPuertoEstelar(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombrePuerto);
+		super(nombrePuerto,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(125,156,190);
 	
 	}

@@ -8,9 +8,9 @@ public class VistaMinerales extends Vista {
 	
 	static String nombreMarine = "Mineral";
 	
-	public VistaMinerales(){
+	public VistaMinerales(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreMarine);
+		super(nombreMarine,estadoInicialVisible,accionesDisponibles);
 		this.nombre = nombreMarine;
 		this.color = new Color(0,204,204);
 		

@@ -16,7 +16,7 @@ public class SectorSeleccionInformacion  extends JPanel{
 		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 		setBackground(new Color(255,255,255));
-		JPanel panelSeleccionObjeto = new SectorSeleccionObjeto(mapaObservable,mapa);
+		JPanel panelSeleccionObjeto = new SectorEstadoObjetoSeleccionado(mapaObservable,mapa);
 		
 		this.add(panelSeleccionObjeto);
 		

@@ -63,12 +63,6 @@ public class Tierra extends Terreno {
     
     }
 
-	@Override
-	public Jugador getJugador() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
     public ArrayList<String> devolverAcciones(){
 		
 		ArrayList<String> acciones = new ArrayList<String>();

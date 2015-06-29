@@ -1,6 +1,7 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -14,7 +15,7 @@ public class SectorJuego extends JPanel {
 	private MapaObservable mapaTerrestre;
 	private static final long serialVersionUID = 1L;
 
-	public SectorJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException {
+	public SectorJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		
 		

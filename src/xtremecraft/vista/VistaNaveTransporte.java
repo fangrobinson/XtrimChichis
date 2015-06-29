@@ -8,9 +8,9 @@ public class VistaNaveTransporte extends VistaIdentificable {
 	
 	static String nombreNave = "Nave Transporte";
 	
-	public VistaNaveTransporte(){
+	public VistaNaveTransporte(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreNave);
+		super(nombreNave,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(153,153,0);
 	
 	}

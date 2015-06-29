@@ -8,9 +8,9 @@ public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	
 	static String nombreRecolector = "Recolector de Gas";
 	
-	public VistaRecolectorDeGasVespeno(){
+	public VistaRecolectorDeGasVespeno(String estadoInicialVisible, ArrayList<String> accionesDisponibles){
 		
-		super(nombreRecolector);
+		super(nombreRecolector,estadoInicialVisible,accionesDisponibles);
 		this.color = new Color(153,0,153);
 	
 	}

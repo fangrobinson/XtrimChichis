@@ -53,11 +53,6 @@ public class Aire extends Terreno {
 		return acciones;
 	}
 
-	@Override
-	public Jugador getJugador() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
 
