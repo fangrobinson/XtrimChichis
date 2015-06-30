@@ -9,6 +9,7 @@ import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
+import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,8 @@ public class AccionCrearEspectro extends AbstractAction{
 			jugadorActual.crearEspectro(puertoEstelar, this.partida.getMapa());
 		}catch(CantidadDeSuministroInsuficienteException noHaySuministros){
 			new MensajeDeError("La cantidad de poblacion disponibles no es suficiente");
+		}catch(RecursosInsuficientesException noHayRecursos){
+		new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
 		}
-		
 	}
 }
