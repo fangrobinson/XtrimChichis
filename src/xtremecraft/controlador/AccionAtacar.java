@@ -14,6 +14,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
+import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.ObservableSeleccionado;
@@ -62,6 +63,8 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			new MensajeDeError("No se selecciono a un agresor propio");
 		}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
 			new MensajeDeError("El atacado esta fuera del rango del atacante");
+		}catch(YaSeSeleccionoUnAtaqueException masDeUnAtaquePorTurno){
+			new MensajeDeError("No se puede atacar más de una vez por turno");	
 		}
 		
 		

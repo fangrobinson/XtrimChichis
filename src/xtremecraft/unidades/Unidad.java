@@ -266,5 +266,9 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 		return this.esRadioactivo;
 		
 	}
+
+	public boolean puedeMoverse() {
+		return this.puedeMoverse;
+	}
    
 }

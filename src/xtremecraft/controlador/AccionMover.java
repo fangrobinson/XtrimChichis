@@ -9,7 +9,6 @@ import javax.swing.AbstractAction;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.unidades.UbicacionNoValidaException;
@@ -57,12 +56,14 @@ public class AccionMover extends AbstractAction implements Observer{
 			new MensajeDeError("La unidad que se quiere mover no es del jugador");
 		}
 		
+		if (!unidadAMover.puedeMoverse()){
+			new MensajeDeError("La unidad no puede hacer mas de un movimiento por turno");
+		}
+		
 		try{
 			unidadAMover.actualizarUbicacion(terrenoAMover);
-		}catch(UbicacionNoValidaException noSePuedeCastear){
+		}catch(UbicacionNoValidaException noPuedeVerElDestino){
 			new MensajeDeError("No se puede mover a la locacion seleccionada");
-		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
-			new MensajeDeError("No se selecciono a un agresor propio");
 		}
 		
 		
