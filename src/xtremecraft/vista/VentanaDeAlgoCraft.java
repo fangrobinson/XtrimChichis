@@ -41,7 +41,7 @@ public class VentanaDeAlgoCraft extends JFrame{
 		setVisible(true);
 
 	}
-
+/*
 	private void agregarSectoresDeLaVentana(){
 		//Agregar aca los componentes de este Frame
 		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
@@ -56,7 +56,7 @@ public class VentanaDeAlgoCraft extends JFrame{
 		this.add(panelInformacion);
 		pack();
 	}
-
+*/
 	private static JMenuBar crearBarraDeMenu(VentanaDeAlgoCraft ventana) {
         JMenuBar barraDeMenu = new JMenuBar();
 
@@ -96,7 +96,7 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
         public void actionPerformed(ActionEvent evento) {
         	new PedirJugadores(ventana);
-        	this.ventana.agregarSectoresDeLaVentana();
+        	//this.ventana.agregarSectoresDeLaVentana();
         }
 		
 	}

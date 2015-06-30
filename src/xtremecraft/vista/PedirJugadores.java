@@ -15,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import xtremecraft.partida.Partida;
-
 public class PedirJugadores extends JFrame{
 
 	private static final long serialVersionUID = 1L;
