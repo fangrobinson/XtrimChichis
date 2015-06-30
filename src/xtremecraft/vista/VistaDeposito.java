@@ -3,14 +3,16 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import xtremecraft.edificios.DepositoDeSuministros;
+
 @SuppressWarnings("serial")
 public class VistaDeposito extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreDeposito = "Deposito de suministros";
-	
+	static String estadoInicial = "vida: "+Integer.toString(DepositoDeSuministros.getVidaInicial());
 	public VistaDeposito(){
 		
-		super(nombreDeposito);
+		super(nombreDeposito,estadoInicial);
 		this.color = new Color(128,128,128);
 	
 	}

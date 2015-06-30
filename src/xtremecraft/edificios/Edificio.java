@@ -18,6 +18,7 @@ import xtremecraft.unidades.Ubicable;
 public abstract class Edificio extends Observable implements Ubicable,Atacable,Actualizable,Construible,Cobrable,Identificable{
 	
 	protected Terreno terrenoActual;
+	protected static int vidaInicial;
 	protected BarraDeVitalidad vida;
 	protected int tiempoConstruccion;
 	protected int turnosConstruccionPasados;
@@ -28,6 +29,7 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 	public Edificio(Jugador unJugador,Terreno unTerreno,int vida){
 		
 		this.terrenoActual = unTerreno;
+		vidaInicial = vida;
 		this.vida = new BarraDeVitalidad(vida);
 		this.vida.recibirAtaque(vida);
 		this.turnosConstruccionPasados = 0;
@@ -35,6 +37,12 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		this.estaVivo = true;
 		this.jugador = unJugador;
 	
+	}
+	
+	public static int getVidaInicial(){
+		
+		return vidaInicial;
+		
 	}
 	
 	public Coordenada getUbicacionActual(){

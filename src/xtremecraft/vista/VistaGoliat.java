@@ -3,14 +3,17 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import xtremecraft.unidades.Goliat;
+
 @SuppressWarnings("serial")
 public class VistaGoliat extends VistaIdentificable{
 	
 	static String nombreGoliat = "Goliat";
+	static String estadoInicial = "vida: "+Integer.toString(Goliat.getVidaInicial());
 	
 	public VistaGoliat(){
 		
-		super(nombreGoliat);
+		super(nombreGoliat,estadoInicial);
 		this.color = new Color(0,102,51);
 	
 	}

@@ -9,12 +9,12 @@ import xtremecraft.recursos.Recurso;
 public abstract class Recolector extends Edificio implements Actualizable{
 
 	protected int aumentoDeReservaEnTurno;
-	public static int vida = 100;
+	private static int vidaInicial = 100;
 	protected Recurso recurso;
 	
 	protected Recolector(Jugador jugador,Terreno terreno){
 		
-		super(jugador,terreno, vida);
+		super(jugador,terreno, vidaInicial);
 		this.aumentoDeReservaEnTurno = 10;
 	
 	}

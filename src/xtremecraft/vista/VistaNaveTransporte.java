@@ -3,14 +3,17 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import xtremecraft.unidades.NaveTransporte;
+
 @SuppressWarnings("serial")
 public class VistaNaveTransporte extends VistaIdentificable {
 	
 	static String nombreNave = "Nave Transporte";
+	static String estadoInicial = "vida: "+Integer.toString(NaveTransporte.getVidaInicial());
 	
 	public VistaNaveTransporte(){
 		
-		super(nombreNave);
+		super(nombreNave,estadoInicial);
 		this.color = new Color(153,153,0);
 	
 	}

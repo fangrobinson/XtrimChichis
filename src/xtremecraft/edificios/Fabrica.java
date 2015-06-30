@@ -6,14 +6,14 @@ import xtremecraft.unidades.Goliat;
 
 public class Fabrica extends Edificio{
 	
-	private static int vida = 100;
+	private static int vidaInicial = 100;
 	private static int tiempoDeConstruccion = 12;
 	private int minerales = 200;
 	private int gas = 100;
 	
 	public Fabrica(Jugador jugador, Barraca unaBarraca, Terreno terreno){
 		
-		super(jugador,terreno,vida);
+		super(jugador,terreno,vidaInicial);
 		this.cobrar();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 

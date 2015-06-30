@@ -35,7 +35,7 @@ public class VolcanGasVespeno extends Recurso{
 
 	private String generarEstadoImprimible(){
 		
-		return "Cantidad de mineral: " + Integer.toString(this.cantidadDeRecurso);
+		return "Volumen de gas: " + Integer.toString(this.cantidadDeRecurso);
 		
 	}
 	

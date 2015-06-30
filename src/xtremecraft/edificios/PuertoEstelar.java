@@ -8,14 +8,14 @@ import xtremecraft.unidades.NaveTransporte;
 
 public class PuertoEstelar extends Edificio{
 	
-	private static int vida = 100;
+	private static int vidaInicial = 100;
 	private static int tiempoDeConstruccion = 10;
 	private int minerales = 150;
 	private int gas = 100;
 	
 	public PuertoEstelar(Jugador jugador, Fabrica unaFabrica, Terreno terreno){
 		
-		super(jugador,terreno,vida);
+		super(jugador,terreno,vidaInicial);
 		this.cobrar();
 		this.tiempoConstruccion = tiempoDeConstruccion;
 		
