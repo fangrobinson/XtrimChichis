@@ -27,11 +27,12 @@ public class IngresoNombres extends JFrame {
 
 	public IngresoNombres(final ArrayList<String> nombresJugadores, final int cantidadDeJugadores){
 		
-		setTitle("JUGADORES");
+		setTitle("Jugadores");
 		setVisible(true);
 		setResizable(false);
+		/*
 		java.awt.Container contentPane = getContentPane();
-		new BoxLayout(contentPane,BoxLayout.PAGE_AXIS);
+		new BoxLayout(contentPane,BoxLayout.PAGE_AXIS);*/
 		setSize(400,150);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

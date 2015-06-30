@@ -1,10 +1,10 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BoxLayout;
@@ -14,22 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import xtremecraft.edificios.Barraca;
-import xtremecraft.edificios.DepositoDeSuministros;
-import xtremecraft.edificios.Fabrica;
-import xtremecraft.edificios.PuertoEstelar;
-import xtremecraft.edificios.RecolectorDeGasVespeno;
-import xtremecraft.edificios.RecolectorDeMineral;
-import xtremecraft.mapa.Aire;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Partida;
-import xtremecraft.recursos.MinaDeMinerales;
-import xtremecraft.recursos.VolcanGasVespeno;
-import xtremecraft.unidades.Espectro;
-import xtremecraft.unidades.Goliat;
-import xtremecraft.unidades.Marine;
-import xtremecraft.unidades.NaveCiencia;
-import xtremecraft.unidades.NaveTransporte;
 
 public class VentanaDeAlgoCraft extends JFrame{
 	
@@ -37,25 +22,32 @@ public class VentanaDeAlgoCraft extends JFrame{
 
 	private HashMap<Class<?>, Class<?>> vistas;
 	private SectorJuego sectorJuego;
+	private Partida partida;
 	
-	public VentanaDeAlgoCraft(Partida partida) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+	public VentanaDeAlgoCraft(HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
-		this.vistas = this.generarVistas();
+		this.vistas = vistas;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Algo Craft Game");
 		setPreferredSize(new Dimension(1200, 950));
 		
-        JMenuBar menuBarra = crearBarraDeMenu();
+        JMenuBar menuBarra = crearBarraDeMenu(this);
         setJMenuBar(menuBarra);
 
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
-	
+		pack();
+		setResizable(false);
+		setVisible(true);
+
+	}
+
+	private void agregarSectoresDeLaVentana(){
 		//Agregar aca los componentes de este Frame
-		this.sectorJuego = new SectorJuego(partida, this.vistas);
+		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
 		sectorJuego.setPreferredSize(new Dimension(1000, 600));
 		setVisible(true);
-		JPanel panelInformacion = new SectorInformacionParaElUsuario(partida, vistas);
+		JPanel panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
 		panelInformacion.setPreferredSize(new Dimension(1000, 100));
 		
 		sectorJuego.setVisible(true);
@@ -63,12 +55,9 @@ public class VentanaDeAlgoCraft extends JFrame{
 		this.add(sectorJuego);
 		this.add(panelInformacion);
 		pack();
-		setResizable(false);
-		setVisible(true);
-		
 	}
 
-	private static JMenuBar crearBarraDeMenu() {
+	private static JMenuBar crearBarraDeMenu(VentanaDeAlgoCraft ventana) {
         JMenuBar barraDeMenu = new JMenuBar();
 
         JMenu menuArchivo = new JMenu("Archivo");
@@ -78,6 +67,7 @@ public class VentanaDeAlgoCraft extends JFrame{
         
         JMenuItem nuevoJuego = new JMenuItem("Nuevo Juego");
         JMenuItem salir = new JMenuItem("Salir");
+        nuevoJuego.addActionListener(new OpcionNuevoJuegoListener(ventana));
         salir.addActionListener(new OpcionSalirListener());
         menuArchivo.add(nuevoJuego);
         menuArchivo.add(salir);
@@ -95,27 +85,27 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
 	}
 	
-	private HashMap<Class<?>, Class<?>> generarVistas() {
+	
+	static class OpcionNuevoJuegoListener implements ActionListener{
 		
-		HashMap<Class<?>, Class<?>> vistas = new HashMap<Class<?>, Class<?>>();
+		VentanaDeAlgoCraft ventana;
 		
-		vistas.put(Tierra.class, VistaTierra.class);
-		vistas.put(Aire.class, VistaAire.class);
-		vistas.put(VolcanGasVespeno.class, VistaGas.class);
-		vistas.put(MinaDeMinerales.class, VistaMinerales.class);
-		vistas.put(DepositoDeSuministros.class, VistaDeposito.class);
-		vistas.put(RecolectorDeGasVespeno.class, VistaRecolectorDeGasVespeno.class);
-		vistas.put(RecolectorDeMineral.class, VistaRecolectorDeMineral.class);
-		vistas.put(Barraca.class, VistaBarraca.class);
-		vistas.put(Fabrica.class, VistaFabrica.class);
-		vistas.put(PuertoEstelar.class, VistaPuertoEstelar.class);
-		vistas.put(Goliat.class, VistaGoliat.class);
-		vistas.put(Marine.class, VistaMarine.class);
-		vistas.put(Espectro.class, VistaEspectro.class);
-		vistas.put(NaveCiencia.class, VistaNaveCiencia.class);
-		vistas.put(NaveTransporte.class, VistaNaveTransporte.class);
+		public OpcionNuevoJuegoListener(VentanaDeAlgoCraft ventana){
+			this.ventana = ventana;
+		}
 		
-		return vistas;
+        public void actionPerformed(ActionEvent evento) {
+        	new PedirJugadores(ventana);
+        	this.ventana.agregarSectoresDeLaVentana();
+        }
+		
+	}
+
+
+	public void agregarPartida(ArrayList<String> nombresJugadores) {
+		
+		this.partida = new Partida(nombresJugadores);
+		
 	}
 
 }

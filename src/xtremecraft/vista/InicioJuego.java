@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 public class InicioJuego extends JFrame{
 	
 	public static ArrayList<String> nombresJugadores = new ArrayList<String>();
+
 	JPanel panel = new JPanel();
 	JLabel mensaje = new JLabel("Ingrese cantidad de jugadores:");
 	Integer numeroDeJugadores[] = {2,3,4};
@@ -49,10 +50,10 @@ public class InicioJuego extends JFrame{
 		
 	}
 	
-	public static void main(String args[]){
-				
-		new InicioJuego();
-		
-	}
+//	public static void main(String args[]){
+//				
+//		new InicioJuego();
+//		
+//	}
 
 }
