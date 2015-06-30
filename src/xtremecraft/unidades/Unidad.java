@@ -80,19 +80,18 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     public void atacar (Atacable atacado){
     	
     	Ubicable atacadoUbicado = (Ubicable) atacado;
-    	if (!this.puedoAtacar(atacadoUbicado)){
+    	if (!this.puedoVer(atacadoUbicado.getUbicacionActual())){
 			throw new AtaqueFueraDelRangoDeVisionException();
 		}
+    	if (!this.puedeAtacar){
+    		throw new YaSeSeleccionoUnAtaqueException();
+    	}
     	atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
 		
     }
     
     protected boolean puedoAtacar(Ubicable atacado){
-    		
-    	if (!this.puedeAtacar){
-    		return false;
-    	}
-		return this.puedoVer(atacado.getUbicacionActual());
+    	return this.puedeAtacar;
 		
 	}
     
