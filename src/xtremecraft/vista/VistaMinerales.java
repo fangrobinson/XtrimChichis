@@ -25,7 +25,7 @@ public class VistaMinerales extends Vista {
 		ArrayList<String> opciones = new ArrayList<String>();
 		opciones.add("Crear recolector de mineral");
 		
-		return opciones;
+		return new ArrayList<String>();
 	}
 
 }
