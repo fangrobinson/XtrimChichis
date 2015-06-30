@@ -25,6 +25,8 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 
+	private Vista ocupante;
+
 	
 	public Vista(String nombreVista, String estadoInicial){
 		
@@ -118,6 +120,23 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	public void setNombre() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void agregarOcupante(Vista vistaOcupante) {
+		this.ocupante = vistaOcupante;
+		this.add(vistaOcupante);
+		
+	}
+	
+	public void cambiarOcupante (Vista nuevoOcupante){
+		this.desocuparVista();
+		this.ocupante = nuevoOcupante;
+		this.add(nuevoOcupante);
+	}
+	
+	public void desocuparVista(){
+		this.ocupante.setVisible(false);
+		this.ocupante = null;
 	}
 
 }
