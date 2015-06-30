@@ -21,7 +21,7 @@ public class SectorSeleccionInformacion extends JPanel implements Observer{
 	private Partida partida;
 	private MapaObservable mapa;
 	
-	public SectorSeleccionInformacion(MapaObservable mapaObservable,Partida partida){
+	public SectorSeleccionInformacion(MapaObservable mapaObservable, Partida partida){
 		
 		this.mapa = mapaObservable;
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
@@ -40,6 +40,7 @@ public class SectorSeleccionInformacion extends JPanel implements Observer{
 		this.add(panelAccionesDisponibles);
 		
 		setVisible(true);
+		
 
 	}
 
