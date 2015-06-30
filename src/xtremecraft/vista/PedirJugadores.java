@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
 //import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -165,7 +166,14 @@ public class PedirJugadores extends JFrame{
 			}				
 			if(nombresJugadores.size() == cantidadJugadores){
 				frame.setVisible(false);
-				this.ventanaJuego.agregarPartida(nombresJugadores);
+				try {
+					this.ventanaJuego.agregarPartida(nombresJugadores);
+				} catch (InstantiationException | IllegalAccessException
+						| IllegalArgumentException | InvocationTargetException
+						| NoSuchMethodException | SecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 			else{

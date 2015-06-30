@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 //import javax.swing.JPanel;
 
+
 import xtremecraft.partida.Partida;
 
 public class VentanaDeAlgoCraft extends JFrame{
@@ -46,10 +47,9 @@ public class VentanaDeAlgoCraft extends JFrame{
 
 	private void agregarSectoresDeLaVentana() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
-		//Agregar aca los componentes de este Frame
 		setPreferredSize(new Dimension(1200, 750));
 		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
-		this.sectorJuego.setPreferredSize(new Dimension(1000, 600));
+		this.sectorJuego.setPreferredSize(new Dimension(1200, 600));
 		setVisible(true);
 		this.panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
 		this.panelInformacion.setPreferredSize(new Dimension(1000, 150));
@@ -63,6 +63,7 @@ public class VentanaDeAlgoCraft extends JFrame{
 	}
 
 	private static JMenuBar crearBarraDeMenu(VentanaDeAlgoCraft ventana) {
+		
         JMenuBar barraDeMenu = new JMenuBar();
 
         JMenu menuArchivo = new JMenu("Archivo");
@@ -105,30 +106,27 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
         public void actionPerformed(ActionEvent evento) {
         	
-        	new PedirJugadores(ventana);
+        	if (ventana.hayPartidaEnCurso()){
+        		new MensajeDeError("Hay Juego En Curso");
+        		return;
+        	}
         	
-        	try {
-        		
-				this.ventana.agregarSectoresDeLaVentana();
-				
-			} catch (InstantiationException | IllegalAccessException
-					
-					| IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-			}
+        	new PedirJugadores(ventana);
         	
         }
 		
 	}
 
 
-	public void agregarPartida(ArrayList<String> nombresJugadores) {
+	public void agregarPartida(ArrayList<String> nombresJugadores) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		
 		this.partida = new Partida(nombresJugadores);
+		this.agregarSectoresDeLaVentana();
 		
+	}
+
+	public boolean hayPartidaEnCurso() {
+		return partida != null;
 	}
 
 }

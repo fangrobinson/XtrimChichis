@@ -1,5 +1,6 @@
 package xtremecraft.vista;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class MapaObservable extends JPanel{
 		this.vistas = vistas;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
 		
-		//setBounds(mapa.ancho(), mapa.alto(), 800, 800);
+		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
 				
@@ -79,6 +80,7 @@ public class MapaObservable extends JPanel{
 				this.mapaVisible.get(i).put(j, vistaNueva);
 				
 				vistaNueva.paintComponents(getGraphics());
+				vistaNueva.setMaximumSize(new Dimension(25,25));
 				add(vistaNueva);
 				
 			}
