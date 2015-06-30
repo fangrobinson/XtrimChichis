@@ -3,6 +3,7 @@ package xtremecraft.controlador;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JComboBox;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
@@ -17,6 +18,14 @@ public class AccionConstruirBarraca extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	
+	public AccionConstruirBarraca(Partida partida, Coordenada coordenada){
+		
+		super("ConstruirBarraca");
+		this.coordenada = coordenada;
+		this.partida = partida;
+		
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
