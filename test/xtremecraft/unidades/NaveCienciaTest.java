@@ -182,19 +182,19 @@ public class NaveCienciaTest {
 		
 	}
 	
-	@Test
-	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+	@Test (expected = NaveFueraDelRangoDeVisionUnidadException.class)
+	public void subirANaveDeTransporteLanzaNaveFueraDelRangoDeVisionExceptionSiLaNaveNoEstaDentroDelRangoDeVision(){
 
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno tierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
+		Terreno tierra = new Tierra(1,1);
+		Terreno otraTierra = new Tierra(35,47);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
 		naveCiencia.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
 		
-		assertTrue(naveCiencia.subirANaveDeTransporte(nave));
+		nave.transportarNuevaUnidad(naveCiencia);
 				
 	}
 	

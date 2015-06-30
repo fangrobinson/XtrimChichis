@@ -260,20 +260,20 @@ public class GoliatTest {
 		
 	}
 	
-	@Test
-	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+	@Test (expected = NaveFueraDelRangoDeVisionUnidadException.class)
+	public void subirANaveDeTransporteLanzaNaveFueraDelRangoDeVisionUnidadExceptionSiNaveNOEstaDentroDelRangoDeVision(){
 
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
+		Terreno otraTierra = new Tierra(3,45);
 		Goliat tanque = new Goliat(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
 		tanque.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
 		
-		assertTrue(tanque.subirANaveDeTransporte(nave));
-				
+		nave.transportarNuevaUnidad(tanque);
+					
 	}
 	
 	@Test

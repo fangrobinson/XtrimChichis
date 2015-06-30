@@ -237,19 +237,19 @@ public class EspectroTest {
 		
 	}
 	
-	@Test
-	public void subirANaveDeTransporteDevuelveTrueSiNaveEstaDentroDelRangoDeVision(){
+	@Test (expected = NaveFueraDelRangoDeVisionUnidadException.class)
+	public void subirANaveDeTransporteLanzaNaveFueraDelRangoDeVisionUnidadExceptionSiNaveNoEstaDentroDelRangoDeVision(){
 
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno tierra = new Tierra(1,2);
-		Terreno otraTierra = new Tierra(3,4);
+		Terreno otraTierra = new Tierra(35,40);
 		Espectro gengar = new Espectro(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
 		gengar.actualizarUbicacion(tierra);
 		nave.actualizarUbicacion(otraTierra);
 		
-		assertTrue(gengar.subirANaveDeTransporte(nave));
+		nave.transportarNuevaUnidad(gengar);
 				
 	}
 	

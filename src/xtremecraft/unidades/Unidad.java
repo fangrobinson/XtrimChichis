@@ -140,7 +140,7 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     }
     
     public void actualizarUbicacion(NaveTransporte naveTransporte) {
-    	 
+    	
     	this.terrenoActual.desocupar();
     	this.terrenoActual = naveTransporte.getTerrenoActual();
     	
@@ -160,12 +160,12 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 		
 	}
     
-	public boolean subirANaveDeTransporte(NaveTransporte unaNave) {
+	public void subirANaveDeTransporte(NaveTransporte unaNave) {
 		
-		if(this.puedoVer(unaNave.getUbicacionActual())){
-			return unaNave.transportarNuevaUnidad(this);
+		if(!this.puedoVer(unaNave.getUbicacionActual())){
+			throw new NaveFueraDelRangoDeVisionUnidadException();
 		}
-		return false;
+		unaNave.transportarNuevaUnidad(this);
 	}
     
     public boolean estaElevado(){

@@ -28,14 +28,16 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 	
-	public boolean transportarNuevaUnidad(Unidad unidad){
+	public void transportarNuevaUnidad(Unidad unidad){
 
-		if(unidadesTransportadas.size() < capacidadMaxima){
-			unidadesTransportadas.add(unidad);
-			unidad.actualizarUbicacion(this);
-			return true;
+		/*if((unidadesTransportadas.size() >= capacidadMaxima)){
+			throw new NaveConCapacidadMaximaException();
+		}*/
+		if(!unidad.puedoVer(this.getUbicacionActual())){
+			throw new NaveFueraDelRangoDeVisionUnidadException();
 		}
-		return false;
+		unidadesTransportadas.add(unidad);
+		unidad.actualizarUbicacion(this);
 		
 	}
 	

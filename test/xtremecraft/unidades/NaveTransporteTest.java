@@ -179,7 +179,7 @@ public class NaveTransporteTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void transportarNuevaUnidadDevuelveTrueSiNoSuperaLaCapacidadMaxima(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
@@ -193,7 +193,7 @@ public class NaveTransporteTest {
 		
 		assertTrue( taxiVolador.transportarNuevaUnidad(unGoliat));
 		
-	}
+	}*/
 	
 	@Test
 	public void transportarUnidadActualizaLaUbicacionDeLaUnidadQueTransporta(){
