@@ -20,7 +20,6 @@ public class Goliat extends UnidadTerrestre {
 		this.suministro = 2;
 		this.distanciaTransporte = 2;
 
-		
 	}
 
 	public void cobrar(){

@@ -34,7 +34,7 @@ public class MapaObservable extends JPanel{
 		this.vistas = vistas;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
 		
-		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
+		//setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
 				

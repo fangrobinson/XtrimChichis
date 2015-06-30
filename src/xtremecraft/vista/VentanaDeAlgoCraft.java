@@ -31,7 +31,8 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Algo Craft Game");
-		setPreferredSize(new Dimension(1200, 950));
+		setMaximumSize(new Dimension (1200, 750));
+		setPreferredSize(new Dimension(1200, 750));
 		
         JMenuBar menuBarra = crearBarraDeMenu(this);
         setJMenuBar(menuBarra);
@@ -46,12 +47,12 @@ public class VentanaDeAlgoCraft extends JFrame{
 	private void agregarSectoresDeLaVentana() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		//Agregar aca los componentes de este Frame
-		setPreferredSize(new Dimension(1200, 950));
+		setPreferredSize(new Dimension(1200, 750));
 		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
 		this.sectorJuego.setPreferredSize(new Dimension(1000, 600));
 		setVisible(true);
 		this.panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
-		this.panelInformacion.setPreferredSize(new Dimension(1000, 100));
+		this.panelInformacion.setPreferredSize(new Dimension(1000, 150));
 		
 		this.sectorJuego.setVisible(true);
 		this.panelInformacion.setVisible(true);

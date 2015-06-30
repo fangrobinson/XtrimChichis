@@ -19,13 +19,14 @@ public class SectorJuego extends JPanel{
 	public SectorJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		
-		//Mapa de Juego
+
 		this.mapaTerrestre = new MapaObservable(partida, vistas);
+		this.mapaTerrestre.setMaximumSize(new Dimension (600, 600));
 		this.mapaTerrestre.setPreferredSize(new Dimension(600,600));
 		this.mapaTerrestre.setVisible(true);
-		
-		//Info de Unidades Edificios Etc
+
 		this.info = new SectorSeleccionInformacion(this.mapaTerrestre,partida);
+		this.mapaTerrestre.setMaximumSize(new Dimension (350, 600));
 		this.info.setPreferredSize(new Dimension(350, 600));
 		this.info.setVisible(true);
 		this.add(this.info);
