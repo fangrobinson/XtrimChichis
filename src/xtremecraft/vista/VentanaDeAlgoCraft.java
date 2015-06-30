@@ -1,6 +1,8 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
@@ -25,10 +27,11 @@ import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 
-public class VentanaDeAlgoCraft  extends JFrame{
+public class VentanaDeAlgoCraft extends JFrame implements MouseListener{
 	
 	private static final long serialVersionUID = 1L;
 	private HashMap<Class<?>, Class<?>> vistas;
+	private SectorJuego sectorJuego;
 	
 	private HashMap<Class<?>, Class<?>> generarVistas() {
 		
@@ -63,7 +66,7 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 		
 		//Agregar aca los componentes de este Frame
-		JPanel sectorJuego = new SectorJuego(partida, this.vistas);
+		this.sectorJuego = new SectorJuego(partida, this.vistas);
 		sectorJuego.setPreferredSize(new Dimension(1000, 600));
 		setVisible(true);
 		JPanel panelInformacion = new SectorInformacionParaElUsuario(partida, vistas);
@@ -77,6 +80,36 @@ public class VentanaDeAlgoCraft  extends JFrame{
 		pack();
 		setResizable(false);
 		setVisible(true);
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		this.sectorJuego.mouseClicked(e);
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

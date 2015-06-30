@@ -8,11 +8,13 @@ import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
-import javax.swing.BorderFactory;
+
+//import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
+//import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 
 
@@ -43,17 +45,19 @@ public class VentanaDeJuego extends JFrame{
 		panelPrincipal.setVisible(true);
 		//TODO: Trucho
 		//agrego lista para probar panel:
-		DefaultListModel<String> accionesPrueba = new DefaultListModel<String>();	
-		accionesPrueba.addElement("Construir barraca");
-		accionesPrueba.addElement("Construir deposito");
-		accionesPrueba.addElement("Atacar");
-		JPanel panelAccionesDisponibles = new AccionesDisponibles(accionesPrueba);
-		panelPrincipal.setBorder(BorderFactory.createLineBorder(panelAccionesDisponibles.getBackground(),25));
-		panelPrincipal.setBorder(BorderFactory.createLineBorder(mapaObservableTerrestre.getBackground(),25));
+		//DefaultListModel<String> accionesPrueba = new DefaultListModel<String>();	
+		//accionesPrueba.addElement("Construir barraca");
+		//accionesPrueba.addElement("Construir deposito");
+		//accionesPrueba.addElement("Atacar");
+		//JPanel panelAccionesDisponibles = new AccionesDisponibles(accionesPrueba);
+		//panelPrincipal.setBorder(BorderFactory.createLineBorder(panelAccionesDisponibles.getBackground(),25));
+		//panelPrincipal.setBorder(BorderFactory.createLineBorder(mapaObservableTerrestre.getBackground(),25));
+		
+		
 		panelPrincipal.add(mapaObservableTerrestre);
 		
-		panelPrincipal.add(panelAccionesDisponibles);
-		panelPrincipal.add(mapaObservableTerrestre);
+		//panelPrincipal.add(panelAccionesDisponibles);
+		//panelPrincipal.add(mapaObservableTerrestre);
 		add(panelPrincipal);
 		pack();// Tarea: Entender esto.
 

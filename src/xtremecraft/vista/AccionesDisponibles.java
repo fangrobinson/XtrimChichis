@@ -3,20 +3,28 @@ package xtremecraft.vista;
 //import javax.swing.BorderFactory;
 //import javax.swing.DefaultListModel;
 //import javax.swing.JFrame;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 public class AccionesDisponibles extends JPanel{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	
-	public AccionesDisponibles(ListModel<String> accionesPrueba){
+	public AccionesDisponibles(ArrayList<String> acciones){
 		
 		setVisible(true);
 		
-		JList<String> list = new JList<String>(accionesPrueba);
+		DefaultListModel<String> accionesProcesadas = new DefaultListModel<String>();
+		
+		for (int i = 0; i < acciones.size(); i++){
+			accionesProcesadas.addElement(acciones.get(i));
+		}
+		
+		JList<String> list = new JList<String>(accionesProcesadas);
 		list.setBackground(getBackground());
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
