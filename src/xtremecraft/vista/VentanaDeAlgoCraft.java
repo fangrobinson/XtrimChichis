@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 
 import xtremecraft.partida.Partida;
 
@@ -22,6 +22,7 @@ public class VentanaDeAlgoCraft extends JFrame{
 
 	private HashMap<Class<?>, Class<?>> vistas;
 	private SectorJuego sectorJuego;
+	private SectorInformacionParaElUsuario panelInformacion;
 	private Partida partida;
 	
 	public VentanaDeAlgoCraft(HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
@@ -41,22 +42,25 @@ public class VentanaDeAlgoCraft extends JFrame{
 		setVisible(true);
 
 	}
-/*
-	private void agregarSectoresDeLaVentana(){
-		//Agregar aca los componentes de este Frame
-		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
-		sectorJuego.setPreferredSize(new Dimension(1000, 600));
-		setVisible(true);
-		JPanel panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
-		panelInformacion.setPreferredSize(new Dimension(1000, 100));
+
+	private void agregarSectoresDeLaVentana() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
-		sectorJuego.setVisible(true);
-		panelInformacion.setVisible(true);
-		this.add(sectorJuego);
-		this.add(panelInformacion);
+		//Agregar aca los componentes de este Frame
+		setPreferredSize(new Dimension(1200, 950));
+		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
+		this.sectorJuego.setPreferredSize(new Dimension(1000, 600));
+		setVisible(true);
+		this.panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
+		this.panelInformacion.setPreferredSize(new Dimension(1000, 100));
+		
+		this.sectorJuego.setVisible(true);
+		this.panelInformacion.setVisible(true);
+		this.add(this.sectorJuego);
+		this.add(this.panelInformacion);
 		pack();
+		
 	}
-*/
+
 	private static JMenuBar crearBarraDeMenu(VentanaDeAlgoCraft ventana) {
         JMenuBar barraDeMenu = new JMenuBar();
 
@@ -80,7 +84,9 @@ public class VentanaDeAlgoCraft extends JFrame{
 	static class OpcionSalirListener implements ActionListener{
 		
         public void actionPerformed(ActionEvent evento) {
+        	
         	System.exit(0);
+        
         }
 		
 	}
@@ -91,12 +97,28 @@ public class VentanaDeAlgoCraft extends JFrame{
 		VentanaDeAlgoCraft ventana;
 		
 		public OpcionNuevoJuegoListener(VentanaDeAlgoCraft ventana){
+			
 			this.ventana = ventana;
+			
 		}
 		
         public void actionPerformed(ActionEvent evento) {
+        	
         	new PedirJugadores(ventana);
-        	//this.ventana.agregarSectoresDeLaVentana();
+        	
+        	try {
+        		
+				this.ventana.agregarSectoresDeLaVentana();
+				
+			} catch (InstantiationException | IllegalAccessException
+					
+					| IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+        	
         }
 		
 	}
