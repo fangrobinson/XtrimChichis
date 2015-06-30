@@ -25,7 +25,7 @@ public class SectorJuego extends JPanel{
 		this.mapaTerrestre.setVisible(true);
 		
 		//Info de Unidades Edificios Etc
-		this.info = new SectorSeleccionInformacion(this.mapaTerrestre,partida.getMapa());
+		this.info = new SectorSeleccionInformacion(this.mapaTerrestre,partida);
 		this.info.setPreferredSize(new Dimension(350, 600));
 		this.info.setVisible(true);
 		this.add(this.info);

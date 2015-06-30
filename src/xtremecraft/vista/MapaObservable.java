@@ -1,8 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Observable;
@@ -12,16 +10,12 @@ import java.util.TreeMap;
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Celda;
-import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Identificable;
-import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
-import xtremecraft.recursos.MinaDeMinerales;
 
-public class MapaObservable extends JPanel implements Observer{
+public class MapaObservable extends JPanel{
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
@@ -29,13 +23,8 @@ public class MapaObservable extends JPanel implements Observer{
 	private HashMap<Class<?>, Class<?>> vistas;
 	private TreeMap<Integer, TreeMap<Integer, Vista>> mapaVisible;
 
-	private ObservableSeleccionado seleccionado1;
-
-	private ObservableSeleccionado seleccionado2;
-	
 	public MapaObservable(){};
 	
-	//public MapaObservable(Mapa mapa, int x, int y){
 	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		Mapa mapa = partida.getMapa();
@@ -89,7 +78,6 @@ public class MapaObservable extends JPanel implements Observer{
 				this.mapaVisible.get(i).put(j, vistaNueva);
 				
 				vistaNueva.paintComponents(getGraphics());
-				vistaNueva.agregarObservador(this);
 				add(vistaNueva);
 				
 			}
@@ -108,50 +96,10 @@ public class MapaObservable extends JPanel implements Observer{
 		
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
+	public TreeMap<Integer, TreeMap<Integer, Vista>> getVistas() {
 		
-		if (this.seleccionado1 == null){
-			this.seleccionado1 = (ObservableSeleccionado) o;
-		}else{
-			this.seleccionado2 = (ObservableSeleccionado) o;
-		}
+		return this.mapaVisible;
 	}
-	
-	//public void agregarAccionConstruirMineral(JLabel label){
-			
-		
-		
-	}//
-	
-
-	class AccionCrearRecolectorDeMineral implements ActionListener{
-		
-		private Tierra tierraParaConstruccion;
-		private Jugador jugador;
-		private MapaObservable mapa;
-		
-		public AccionCrearRecolectorDeMineral(MapaObservable mapa,Jugador jugador,Identificable seleccionado){
-			
-			//try{
-				this.jugador = jugador;
-				this.mapa = mapa;
-				this.tierraParaConstruccion = (Tierra) seleccionado;
-				
-			//catch (ClassCastException){
-				
-				//throw new esteElementoNoPuedeRealizarLaAccionPedidaException();
-			//}
-			
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			
-				Coordenada coordenadaSeleccionado = this.tierraParaConstruccion.getCoordenada();
-				this.jugador.crearRecolectorDeMineral(this.tierraParaConstruccion);
-				//this.mapa.actualizarConRecolector(coordenadaSeleccionado);
-			}
 
 }
 	

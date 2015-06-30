@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 
+import xtremecraft.controlador.AccionConstruirEdificio;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Identificable;
 
@@ -25,14 +27,19 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 
+	private AbstractAction controladorDeAccion;
+
 	
 	public Vista(String nombreVista, String estadoInicial){
 		
-		this.observableSeleccionado.setAcciones(this.devolverAcciones());
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setNombre(this.nombre);
 		this.observableSeleccionado.setEstado(estadoInicial);
+		this.observableSeleccionado.setAcciones(this.devolverAcciones());
+		//prueba:
+		Class claseControlador = AccionConstruirEdificio.class;
+		this.observableSeleccionado.setControladorDeAccion(claseControlador);
 		
 	}
 	
