@@ -11,7 +11,7 @@ import xtremecraft.partida.Partida;
 public class SectorSeleccionInformacion extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private AccionesDisponibles panelAccionesDisponibles;
+	private SectorAccionesDisponibles panelAccionesDisponibles;
 	
 	public SectorSeleccionInformacion(MapaObservable mapaObservable, Partida partida){
 		
@@ -24,7 +24,7 @@ public class SectorSeleccionInformacion extends JPanel{
 		panelSeleccionObjeto.setMaximumSize(new Dimension (200, 600));
 		this.add(panelSeleccionObjeto);
 		
-		this.panelAccionesDisponibles = new AccionesDisponibles();
+		this.panelAccionesDisponibles = new SectorAccionesDisponibles(mapaObservable);
 		this.panelAccionesDisponibles.setMaximumSize(new Dimension (150, 600));
 		setBackground(new Color(255,255,255));
 		panelAccionesDisponibles.setVisible(true);

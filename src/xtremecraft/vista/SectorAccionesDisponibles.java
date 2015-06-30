@@ -1,16 +1,21 @@
 package xtremecraft.vista;
 
-import javax.swing.JComboBox;
+import java.util.Observable;
+import java.util.Observer;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class AccionesDisponibles extends JPanel{
+import xtremecraft.mapa.Coordenada;
+
+public class SectorAccionesDisponibles extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = -973667959098244571L;
+	Coordenada coordenadasSeleccionado;
 	
-	
-	public AccionesDisponibles(){
+	public SectorAccionesDisponibles(MapaObservable mapaVisible){
 		
+		mapaVisible.agregarObservadorAVistas(this);
 		setVisible(true);
 		
 		/*
@@ -32,6 +37,14 @@ public class AccionesDisponibles extends JPanel{
 		accionesDisponiblesJugador.setVisible(true);
 		this.add(accionesDisponiblesJugador);
 		this.setVisible(true);
+		
+	}
+
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		ObservableSeleccionado observable = (ObservableSeleccionado) arg0;
+		this.coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
 		
 	}
 	
