@@ -1,5 +1,6 @@
 package xtremecraft.vista;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import xtremecraft.mapa.Coordenada;
@@ -9,6 +10,7 @@ public class ObservableSeleccionado extends Observable{
 	private Coordenada coordenadaSeleccionado = new Coordenada(0,0);
 	private String nombre;
 	private String estadoImprimibleObservable;
+	private ArrayList<String> acciones;
 
 	public void setCoordenada(Coordenada coordenada) {
 		
@@ -59,5 +61,16 @@ public class ObservableSeleccionado extends Observable{
 		this.notifyObservers();
 		
 	}
+
+	public void setAcciones(ArrayList<String> acciones) {
+		
+		this.acciones = acciones;
+	}
+	
+	public ArrayList<String> getAcciones(){
+		
+		return this.acciones;
+	}
+	
 
 }

@@ -28,6 +28,7 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	public Vista(String nombreVista, String estadoInicial){
 		
+		this.observableSeleccionado.setAcciones(this.devolverAcciones());
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setNombre(this.nombre);

@@ -1,7 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -22,9 +21,8 @@ public class SectorSeleccionInformacion  extends JPanel{
 		
 		this.add(panelSeleccionObjeto);
 		
-		
-		ArrayList<String> accionesIniciales = new ArrayList<String>();
-		AccionesDisponibles panelAccionesDisponibles = new AccionesDisponibles(accionesIniciales);
+		AccionesDisponibles panelAccionesDisponibles = new AccionesDisponibles(mapaObservable);
+		setBackground(new Color(255,255,255));
 		panelAccionesDisponibles.setVisible(true);
 		
 		this.add(panelAccionesDisponibles);
@@ -33,11 +31,4 @@ public class SectorSeleccionInformacion  extends JPanel{
 
 	}
 	
-	public void actualizarAccionesDisponibles(ArrayList<String> accionesNuevas){
-		AccionesDisponibles panelAccionesDisponibles = new AccionesDisponibles(accionesNuevas);
-		panelAccionesDisponibles.setVisible(true);
-		
-		this.add(panelAccionesDisponibles);
-	}
-
 }

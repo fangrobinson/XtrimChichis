@@ -1,10 +1,7 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -13,7 +10,7 @@ import javax.swing.JPanel;
 
 import xtremecraft.partida.Partida;
 
-public class SectorJuego extends JPanel implements MouseListener{
+public class SectorJuego extends JPanel{
 	
 	private MapaObservable mapaTerrestre;
 	private SectorSeleccionInformacion info;
@@ -39,39 +36,4 @@ public class SectorJuego extends JPanel implements MouseListener{
 		
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (this.getComponentAt(e.getX(), e.getY()) == this.mapaTerrestre){
-			Vista vistaClikeada = (Vista) this.mapaTerrestre.getComponentAt(e.getX(), e.getY());
-			ArrayList<String> accionesVista = vistaClikeada.devolverAcciones();
-			this.info.actualizarAccionesDisponibles(accionesVista);
-			
-		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
