@@ -8,26 +8,26 @@ import javax.swing.AbstractAction;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
-import xtremecraft.unidades.Atacable;
-import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
-import xtremecraft.unidades.Defendible;
+import xtremecraft.unidades.UbicacionNoValidaException;
+import xtremecraft.unidades.Unidad;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.ObservableSeleccionado;
 
 @SuppressWarnings("serial")
-public class AccionAtacar extends AbstractAction implements Observer{
+public class AccionMover extends AbstractAction implements Observer{
 
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
 		
-	public AccionAtacar(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionMover(Partida partida, MapaObservable mapa, Coordenada coordenada){
 			
-		super("Atacar");
+		super("Mover");
 		this.coordenada = coordenada;
 		this.partida = partida;
 		this.mapaVista = mapa;
@@ -45,23 +45,24 @@ public class AccionAtacar extends AbstractAction implements Observer{
 	public void update(Observable observado, Object arg1) {
 		
 		ObservableSeleccionado observadoActual = (ObservableSeleccionado) observado;
-		Coordenada coordenadaAtacado = observadoActual.getCoordenadaActualSeleccionado();
+		Coordenada coordenadaAMover = observadoActual.getCoordenadaActualSeleccionado();
 		
 		Mapa mapaReal = this.partida.getMapa();
-		Defendible atacante = (Defendible) mapaReal.getCeldaEnFilaColumna(this.coordenada.fila(), this.coordenada.columna()).getUbicableEnInferior();
+		
+		Terreno terrenoAMover = mapaReal.getCeldaEnFilaColumna(coordenadaAMover.fila(), coordenadaAMover.columna()).getCapaInferior();
+		Unidad unidadAMover = (Unidad) mapaReal.getCeldaEnFilaColumna(this.coordenada.fila(), this.coordenada.columna()).getUbicableEnInferior();
+		Jugador jugadorTurno = this.partida.quienJuega();
+		
+		if (!jugadorTurno.esDeMiPropiedad(unidadAMover)){
+			new MensajeDeError("La unidad que se quiere mover no es del jugador");
+		}
 		
 		try{
-			Atacable atacado = (Atacable) mapaReal.getCeldaEnFilaColumna(coordenadaAtacado.fila(), coordenadaAtacado.columna()).getUbicableEnInferior();
-			
-			Jugador jugadorTurno = this.partida.quienJuega();
-			jugadorTurno.atacar(atacante, atacado);
-			
-		}catch(ClassCastException noSePuedeCastear){
-			new MensajeDeError("No se selecciono a una victima valida");
+			unidadAMover.actualizarUbicacion(terrenoAMover);
+		}catch(UbicacionNoValidaException noSePuedeCastear){
+			new MensajeDeError("No se puede mover a la locacion seleccionada");
 		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
 			new MensajeDeError("No se selecciono a un agresor propio");
-		}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
-			new MensajeDeError("El atacado esta fuera del rango del atacante");
 		}
 		
 		
