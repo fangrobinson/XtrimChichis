@@ -1,6 +1,7 @@
 package xtremecraft.partida;
 
 import java.util.Observable;
+
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
 import xtremecraft.edificios.Fabrica;
