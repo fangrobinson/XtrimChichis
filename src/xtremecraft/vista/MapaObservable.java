@@ -1,13 +1,12 @@
 package xtremecraft.vista;
 
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
+
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Celda;
@@ -16,7 +15,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
 
-public class MapaObservable extends JPanel implements MouseListener {
+public class MapaObservable extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
@@ -29,7 +28,6 @@ public class MapaObservable extends JPanel implements MouseListener {
 	//public MapaObservable(Mapa mapa, int x, int y){
 	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
-		this.addMouseListener(this);
 		Mapa mapa = partida.getMapa();
 		this.modeloReal = mapa;
 		this.vistas = vistas;
@@ -81,7 +79,7 @@ public class MapaObservable extends JPanel implements MouseListener {
 				this.mapaVisible.get(i).put(j, vistaNueva);
 				
 				vistaNueva.paintComponents(getGraphics());
-			
+				vistaNueva.agregarObservador(this);
 				add(vistaNueva);
 				
 			}
@@ -99,56 +97,9 @@ public class MapaObservable extends JPanel implements MouseListener {
 		}
 		
 	}
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-				
-		//TODO: revisar esto considerando la implementacion de la ventana de estados:
-		
-		//Vista vistaSeleccionada = (Vista) this.findComponentAt(x,y);
-		
-		/*Coordenada ubicacion = vistaSeleccionada.getCoordenada();
-		this.modeloReal.getCeldaEnFilaColumna(ubicacion.fila(), ubicacion.columna());*/
-		
-		/*ArrayList<String> opciones = vistaSelecciona
-		 * da.mostrarOpcionesAccion();
-		
-		JPanel panel = new JPanel();
-		JLabel mensaje = new JLabel("Elija la opcion que desee:");
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		JComboBox menuOpciones = new JComboBox((ComboBoxModel) opciones);
-		
-		panel.add(mensaje);		
-		
-		panel.add(menuOpciones);
-		
-		add(panel);
-		panel.setVisible(true);
-		
-		setVisible(true);
-		*/
-	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		mouseClicked(e);
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub		
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}
