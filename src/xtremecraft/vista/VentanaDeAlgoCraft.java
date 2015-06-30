@@ -2,8 +2,6 @@ package xtremecraft.vista;
 
 import java.awt.Dimension;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
@@ -33,7 +31,7 @@ import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 
-public class VentanaDeAlgoCraft extends JFrame implements MouseListener{
+public class VentanaDeAlgoCraft extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -67,35 +65,6 @@ public class VentanaDeAlgoCraft extends JFrame implements MouseListener{
 		pack();
 		setResizable(false);
 		setVisible(true);
-		
-	}
-
-	public void mouseClicked(MouseEvent e) {
-		this.sectorJuego.mouseClicked(e);
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
