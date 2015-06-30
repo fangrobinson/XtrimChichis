@@ -22,6 +22,10 @@ public class MapaObservable extends JPanel implements Observer{
 	private Mapa modeloReal;
 	private HashMap<Class<?>, Class<?>> vistas;
 	private TreeMap<Integer, TreeMap<Integer, Vista>> mapaVisible;
+
+	private Observable seleccionado1;
+
+	private Observable seleccionado2;
 	
 	public MapaObservable(){};
 	
@@ -100,8 +104,11 @@ public class MapaObservable extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		if (this.seleccionado1 == null){
+			this.seleccionado1 = o;
+		}else{
+			this.seleccionado2 = o;
+		}
 	}
 	
 }
