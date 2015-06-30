@@ -12,6 +12,7 @@ import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.unidades.Atacable;
+import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
@@ -59,6 +60,8 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			new MensajeDeError("No se selecciono a una victima valida");
 		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
 			new MensajeDeError("No se selecciono a un agresor propio");
+		}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
+			new MensajeDeError("El atacado esta fuera del rango del atacante");
 		}
 		
 		
