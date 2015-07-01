@@ -39,7 +39,7 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
 		}catch(RazaNoTieneFabricasException noHayFabricas){
-			new MensajeDeError("Se necesita una fabrica para crear una fabrica");
+			new MensajeDeError("Se necesita una fabrica para crear un puerto estelar");
 		}
 	}
 
