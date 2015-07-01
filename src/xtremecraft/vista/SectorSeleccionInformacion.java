@@ -14,24 +14,20 @@ public class SectorSeleccionInformacion extends JPanel{
 	public SectorSeleccionInformacion( MapaObservable mapaObservable, Partida partida){
 		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
-		setMaximumSize(new Dimension (350, 600));
-
-		//setBackground(new Color(255,255,255));
+		setPreferredSize(new Dimension (400, 800));
 				
 		JPanel panelSeleccionObjeto = new SectorEstadoObjetoSeleccionado(mapaObservable,partida.getMapa());
-		panelSeleccionObjeto.setMaximumSize(new Dimension (400, 600));
+		panelSeleccionObjeto.setPreferredSize(new Dimension (400, 400));
 		this.add(panelSeleccionObjeto);
 		
 		this.panelAccionesDisponibles = new SectorAccionesDisponibles(mapaObservable,partida);
-		this.panelAccionesDisponibles.setMaximumSize(new Dimension (400, 600));
-		//setBackground(new Color(255,255,255));
+		this.panelAccionesDisponibles.setMaximumSize(new Dimension (400, 400));
 		panelAccionesDisponibles.setVisible(true);
 		
 		this.add(panelAccionesDisponibles);
 		
 		setVisible(true);
 		
-
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -20,6 +21,7 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 	
 	public SectorAccionesDisponibles(MapaObservable mapaVisible, Partida partida){
 		
+		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 		this.mapaObservable = mapaVisible;
 		this.partida = partida;
 		mapaVisible.agregarObservadorAVistas(this);
