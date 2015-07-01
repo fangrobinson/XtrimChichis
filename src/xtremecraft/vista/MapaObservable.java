@@ -16,7 +16,6 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
-import xtremecraft.unidades.Ubicable;
 
 public class MapaObservable extends JPanel{
 	
@@ -26,11 +25,14 @@ public class MapaObservable extends JPanel{
 	private HashMap<Class<?>, Class<?>> vistas;
 	private TreeMap<Integer, TreeMap<Integer, Vista>> mapaVisible;
 
+	private SectorJuego sector;
+
 	public MapaObservable(){};
 	
 	public MapaObservable(SectorJuego sectorJuego, Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		Mapa mapa = partida.getMapa();
+		this.sector = sectorJuego;
 		this.modeloReal = mapa;
 		this.vistas = vistas;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
@@ -105,6 +107,7 @@ public class MapaObservable extends JPanel{
 	public void actualizarVistaEnCoordenada(Coordenada coordenada) throws InstantiationException, IllegalAccessException{
 		
 		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
+		this.mapaVisible.get(coordenada.fila()).remove(coordenada.columna());
 		int n = this.getComponentZOrder(vistaCelda);
 		this.remove(n);
 		
@@ -144,34 +147,19 @@ public class MapaObservable extends JPanel{
 			
 		}
 		
-		//
 		observable.addObserver(vistaNueva);
-		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
-		
-		//this.mapaVisible.get(i).put(j, vistaNueva);
-		
+		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());		
 		vistaNueva.paintComponents(getGraphics());
 		vistaNueva.setMaximumSize(new Dimension(25,25));
-		//
 		
 		this.add(vistaNueva, n);
+		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
+		
+		this.sector.agregarObservadoresDeVistas(vistaNueva);
 		
 		revalidate();
-		repaint();
+		repaint();			
 		
-		/*Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
-		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
-		
-		if (!celdaReal.getCapaInferior().estaOcupado()){
-			vistaCelda.desocuparVista();
-		}else{
-			Ubicable nuevoOcupante = celdaReal.getCapaInferior().getUbicableEnTerreno();
-			Class<?> vistaClase = this.vistas.get(nuevoOcupante.getClass());
-			Vista vistaOcupante = (Vista) vistaClase.newInstance();
-			vistaCelda.cambiarOcupante(vistaOcupante);
-			
-		}*/
-					
 		
 	}
 	
