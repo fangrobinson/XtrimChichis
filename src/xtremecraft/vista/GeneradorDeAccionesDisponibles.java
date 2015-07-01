@@ -18,41 +18,42 @@ import xtremecraft.controlador.AccionCrearMarine;
 import xtremecraft.controlador.AccionCrearNaveCiencia;
 import xtremecraft.controlador.AccionCrearNaveTransporte;
 import xtremecraft.controlador.AccionMover;
+import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
 import xtremecraft.unidades.Espectro;
 
 public class GeneradorDeAccionesDisponibles {
 		
-	public static HashMap<Class<?>, ArrayList<AbstractAction>> generarAcciones(Partida partida,MapaObservable mapaObservable) {
+	public static HashMap<Class<?>, ArrayList<AbstractAction>> generarAcciones(Partida partida,MapaObservable mapaObservable, Coordenada coordenada) {
 			
 		HashMap<Class<?>, ArrayList<AbstractAction>> acciones = new HashMap<Class<?>, ArrayList<AbstractAction>>();
 			
 		ArrayList<AbstractAction> accionesUnidades = new ArrayList<AbstractAction>();
-		accionesUnidades.add(new AccionMover(partida, mapaObservable));
-		accionesUnidades.add(new AccionAtacar(partida, mapaObservable));
+		accionesUnidades.add(new AccionMover(partida, mapaObservable, coordenada));
+		accionesUnidades.add(new AccionAtacar(partida, mapaObservable, coordenada));
 			
 		ArrayList<AbstractAction> accionesTierra = new ArrayList<AbstractAction>();
-		accionesTierra.add(new AccionConstruirDepositoDeSuministros(partida, mapaObservable));
-		accionesTierra.add(new AccionConstruirBarraca(partida, mapaObservable));
-		accionesTierra.add(new AccionConstruirFabrica(partida, mapaObservable));
-		accionesTierra.add(new AccionConstruirPuertoEstelar(partida, mapaObservable));
+		accionesTierra.add(new AccionConstruirDepositoDeSuministros(partida, mapaObservable, coordenada));
+		accionesTierra.add(new AccionConstruirBarraca(partida, mapaObservable, coordenada));
+		accionesTierra.add(new AccionConstruirFabrica(partida, mapaObservable, coordenada));
+		accionesTierra.add(new AccionConstruirPuertoEstelar(partida, mapaObservable, coordenada));
 		
 		ArrayList<AbstractAction> accionesMineral = new ArrayList<AbstractAction>();
-		accionesMineral.add(new AccionConstruirRecolectorDeMineral(partida, mapaObservable));
+		accionesMineral.add(new AccionConstruirRecolectorDeMineral(partida, mapaObservable, coordenada));
 		
 		ArrayList<AbstractAction> accionesGasVespeno = new ArrayList<AbstractAction>();
-		accionesGasVespeno.add(new AccionConstruirRecolectorDeGasVespeno(partida, mapaObservable));
+		accionesGasVespeno.add(new AccionConstruirRecolectorDeGasVespeno(partida, mapaObservable, coordenada));
 			
 		ArrayList<AbstractAction> accionesBarraca = new ArrayList<AbstractAction>();
-		accionesBarraca.add(new AccionCrearMarine(partida, mapaObservable));
+		accionesBarraca.add(new AccionCrearMarine(partida, mapaObservable, coordenada));
 		
 		ArrayList<AbstractAction> accionesFabrica = new ArrayList<AbstractAction>();
-		accionesFabrica.add(new AccionCrearGoliat(partida, mapaObservable));
+		accionesFabrica.add(new AccionCrearGoliat(partida, mapaObservable, coordenada));
 			
 		ArrayList<AbstractAction> accionesPuertoEstelar = new ArrayList<AbstractAction>();
-		accionesPuertoEstelar.add(new AccionCrearEspectro(partida, mapaObservable));
-		accionesPuertoEstelar.add(new AccionCrearNaveTransporte(partida, mapaObservable));
-		accionesPuertoEstelar.add(new AccionCrearNaveCiencia(partida, mapaObservable));
+		accionesPuertoEstelar.add(new AccionCrearEspectro(partida, mapaObservable, coordenada));
+		accionesPuertoEstelar.add(new AccionCrearNaveTransporte(partida, mapaObservable, coordenada));
+		accionesPuertoEstelar.add(new AccionCrearNaveCiencia(partida, mapaObservable, coordenada));
 			
 		acciones.put(VistaTierra.class, accionesTierra);
 		acciones.put(VistaAire.class, new ArrayList<AbstractAction>());

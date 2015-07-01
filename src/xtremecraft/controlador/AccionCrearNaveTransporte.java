@@ -19,10 +19,11 @@ public class AccionCrearNaveTransporte extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionCrearNaveTransporte(Partida partida, MapaObservable mapa){
+	public AccionCrearNaveTransporte(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearNaveTransporte");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 

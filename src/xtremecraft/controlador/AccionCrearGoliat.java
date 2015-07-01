@@ -19,10 +19,11 @@ public class AccionCrearGoliat extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionCrearGoliat(Partida partida, MapaObservable mapa){
+	public AccionCrearGoliat(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearGoliat");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 

@@ -20,10 +20,11 @@ public class AccionConstruirFabrica extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirFabrica(Partida partida, MapaObservable mapa){
+	public AccionConstruirFabrica(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirFabrica");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 	

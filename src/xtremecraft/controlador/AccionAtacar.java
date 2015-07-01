@@ -32,6 +32,7 @@ public class AccionAtacar extends AbstractAction implements Observer{
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
+		this.coordenada = coordenada;
 		
 	}
 	
