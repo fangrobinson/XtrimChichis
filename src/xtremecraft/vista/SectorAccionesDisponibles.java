@@ -42,8 +42,7 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 		}
 		
 	}
-
-
+	
 	@Override
 	public void update(Observable obs, Object arg1) {
 		

@@ -28,7 +28,7 @@ public class MapaObservable extends JPanel{
 
 	public MapaObservable(){};
 	
-	public MapaObservable(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+	public MapaObservable(SectorJuego sectorJuego, Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		Mapa mapa = partida.getMapa();
 		this.modeloReal = mapa;

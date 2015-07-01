@@ -29,5 +29,12 @@ public class SectorSeleccionInformacion extends JPanel{
 		setVisible(true);
 		
 	}
+
+	public void agregarObservadoresAVista(Vista vista) {
+		
+		//vista.agregarObservador(this.panelAccionesDisponibles);
+		vista.agregarObservador(this.panelAccionesDisponibles);
+		
+	}
 	
 }

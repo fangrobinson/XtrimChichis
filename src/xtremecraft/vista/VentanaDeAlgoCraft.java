@@ -85,7 +85,6 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
 	}
 	
-
 	static class OpcionSalirListener implements ActionListener{
 		
         public void actionPerformed(ActionEvent evento) {
@@ -119,8 +118,7 @@ public class VentanaDeAlgoCraft extends JFrame{
         }
 		
 	}
-
-
+	
 	public void agregarPartida(ArrayList<String> nombresJugadores) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		
 		this.partida = new Partida(nombresJugadores);
