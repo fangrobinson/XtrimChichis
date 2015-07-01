@@ -1,6 +1,5 @@
 package xtremecraft.vista;
 
-import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +25,7 @@ public class SectorEstadoObjetoSeleccionado extends JPanel implements Observer{
 		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createEmptyBorder(20,20,10,10));
-		setBackground(new Color(255,255,255));
+		
 		this.mapaObservable = mapaObservable;
 		this.mapaObservable.agregarObservadorAVistas(this);
 				
