@@ -30,6 +30,8 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 	
 	public void actualizarPanel(ArrayList<AbstractAction> accionesSeleccionado) {
 		
+		this.removeAll();
+		
 		for(int i=0; i<accionesSeleccionado.size(); i++){
 			
 			JButton botonAccion = new JButton(accionesSeleccionado.get(i)); 
@@ -45,7 +47,7 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 		
 		ObservableSeleccionado observable = (ObservableSeleccionado) obs;
 		Coordenada coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
-		Class<?> claseSeleccionado = observable.getClass();
+		Class<? extends Vista> claseSeleccionado = observable.getClaseVista();
 		HashMap<Class<?>, ArrayList<AbstractAction>> acciones = GeneradorDeAccionesDisponibles.generarAcciones(this.partida,this.mapaObservable,coordenadasSeleccionado);
 		ArrayList<AbstractAction> accionesSeleccionado = acciones.get(claseSeleccionado);
 		this.actualizarPanel(accionesSeleccionado);

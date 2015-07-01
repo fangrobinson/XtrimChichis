@@ -17,7 +17,7 @@ public class SectorSeleccionInformacion extends JPanel{
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 		setMaximumSize(new Dimension (350, 600));
 
-		setBackground(new Color(255,255,255));
+		//setBackground(new Color(255,255,255));
 				
 		JPanel panelSeleccionObjeto = new SectorEstadoObjetoSeleccionado(mapaObservable,partida.getMapa());
 		panelSeleccionObjeto.setMaximumSize(new Dimension (200, 600));
@@ -25,7 +25,7 @@ public class SectorSeleccionInformacion extends JPanel{
 		
 		this.panelAccionesDisponibles = new SectorAccionesDisponibles(mapaObservable,partida);
 		this.panelAccionesDisponibles.setMaximumSize(new Dimension (150, 600));
-		setBackground(new Color(255,255,255));
+		//setBackground(new Color(255,255,255));
 		panelAccionesDisponibles.setVisible(true);
 		
 		this.add(panelAccionesDisponibles);
