@@ -10,28 +10,19 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.partida.Partida;
 
 public class SectorAccionesDisponibles extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	Coordenada coordenadasSeleccionado;
+	private Class<?> claseSeleccionado;
 	
-	public SectorAccionesDisponibles(HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles, MapaObservable mapaVisible){
+	public SectorAccionesDisponibles(HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles, MapaObservable mapaVisible,Partida partida){
 		
 		mapaVisible.agregarObservadorAVistas(this);
 		setVisible(true);
-		
-		/*
-		DefaultListModel<String> accionesProcesadas = new DefaultListModel<String>();
-		
-		this.list = new JList<String>(accionesProcesadas);
-		this.list.setBackground(getBackground());
-		this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.list.setLayoutOrientation(JList.VERTICAL);
-		*/
-		
-
-		
+					
 	}
 
 	
@@ -45,9 +36,13 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		ObservableSeleccionado observable = (ObservableSeleccionado) arg0;
+	public void update(Observable obs, Object arg1) {
+		
+		ObservableSeleccionado observable = (ObservableSeleccionado) obs;
 		this.coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
+		this.claseSeleccionado = observable.getClass();
+		ArrayList<AbstractAction> acciones = new ArrayList<AbstractAction>();
+		//for()
 		
 	}
 	
