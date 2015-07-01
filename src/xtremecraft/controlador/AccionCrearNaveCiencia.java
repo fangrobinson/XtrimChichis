@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import xtremecraft.edificios.EdificioEnConstruccionException;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
@@ -46,6 +47,8 @@ public class AccionCrearNaveCiencia extends AbstractAction{
 			new MensajeDeError("La cantidad de poblacion disponibles no es suficiente");
 		}catch(RecursosInsuficientesException noHayRecursos){
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
+		}catch(EdificioEnConstruccionException edificioEnContruccion){
+			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
 		}
 		
 	}

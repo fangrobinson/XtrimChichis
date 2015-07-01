@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import xtremecraft.edificios.EdificioEnConstruccionException;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
+import xtremecraft.raza.FabricaNoEsDeLaRazaException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.vista.MapaObservable;
@@ -47,6 +49,10 @@ public class AccionCrearGoliat extends AbstractAction{
 			new MensajeDeError("La cantidad de poblacion disponibles no es suficiente");
 		}catch(RecursosInsuficientesException noHayRecursos){
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
+		}catch(EdificioEnConstruccionException edificioEnContruccion){
+			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
+		}catch(FabricaNoEsDeLaRazaException esteEdificioNoEsDelJugador){
+			new MensajeDeError("Este edificio no es del jugador en turno");
 		}
 		
 	}
