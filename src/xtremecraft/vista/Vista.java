@@ -123,6 +123,12 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		
 	}
 
+	public void borrarObservador(Observer observador) {
+		
+		this.observableSeleccionado.deleteObserver(observador);
+		
+	}
+
 	/*
 	public void agregarOcupante(Vista vistaOcupante) {
 		

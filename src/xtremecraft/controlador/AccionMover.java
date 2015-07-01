@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
@@ -65,10 +66,14 @@ public class AccionMover extends AbstractAction implements Observer{
 			
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaAMover);
+				this.mapaVista.actualizarDesocuparUbicacion(this.coordenada);
+				this.mapaVista.removerObservador(this);
 			} catch (InstantiationException | IllegalAccessException e) {
 				
 			}
 		}catch(UbicacionNoValidaException noPuedeVerElDestino){
+			new MensajeDeError("No se puede mover a la locacion seleccionada");
+		}catch(NoSePudoOcuparElTerrenoException excepcionOcupado){
 			new MensajeDeError("No se puede mover a la locacion seleccionada");
 		}
 		
