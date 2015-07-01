@@ -3,7 +3,6 @@ package xtremecraft.vista;
 import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
