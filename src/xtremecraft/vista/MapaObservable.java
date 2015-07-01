@@ -90,10 +90,40 @@ public class MapaObservable extends JPanel{
 	
 	public void actualizarVistaEnCoordenada(Coordenada coordenada) throws InstantiationException, IllegalAccessException{
 		
-		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
 		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
+		this.mapaVisible.remove(vistaCelda);
 		
+		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Terreno terrenoInferior = celdaReal.getCapaInferior();
+		Class<?> vistaClase;
+		Vista vistaNueva = null;
+		Observable observable = null;
 		
+		//TODO: refactor considerar cambios a identificable.
+		if (!terrenoInferior.tieneRecursos()){
+			vistaClase = this.vistas.get(terrenoInferior.getClass());
+			vistaNueva = (Vista) vistaClase.newInstance();
+			observable = (Observable)terrenoInferior;
+		}else{
+			vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
+			vistaNueva = (Vista) vistaClase.newInstance();
+			observable = (Observable)terrenoInferior.getRecurso();
+		}if(terrenoInferior.estaOcupado()){
+			Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+			int numero = identificable.getJugador();
+			vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
+			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
+			identificableVisible.setJugador(numero);
+			Vista vistaOcupante = (Vista) identificableVisible;
+		}
+		
+		this.add(vistaNueva);
+		
+		revalidate();
+		repaint();
+		
+		/*Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
 		
 		if (!celdaReal.getCapaInferior().estaOcupado()){
 			vistaCelda.desocuparVista();
@@ -103,7 +133,7 @@ public class MapaObservable extends JPanel{
 			Vista vistaOcupante = (Vista) vistaClase.newInstance();
 			vistaCelda.cambiarOcupante(vistaOcupante);
 			
-		}
+		}*/
 					
 		
 	}
@@ -118,7 +148,7 @@ public class MapaObservable extends JPanel{
 		}
 		
 	}
-
+	
 	public TreeMap<Integer, TreeMap<Integer, Vista>> getVistas() {
 		
 		return this.mapaVisible;
