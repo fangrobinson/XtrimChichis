@@ -31,17 +31,17 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		
 		partida.agregarObservadorDeJugadores(this,partida.quienJuega());
 		
-		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 		
 		this.partida = partida;
 		
-		this.tituloPanel = new JLabel ("SUMINISTROS Y RECURSOS " );
+		this.tituloPanel = new JLabel ( "SUMINISTROS Y RECURSOS" );
 		this.nombreJugador = new JLabel(this.partida.quienJuega().nombre());
 		
-		this.cantidadMinerales = new JLabel ("Minerales:"+this.cantidadDeMinerales(this.partida.quienJuega()));
-		this.cantidadGasVespeno = new JLabel ("Gas vespeno:"+this.cantidadDeGasVespeno(this.partida.quienJuega()));
-		this.cantidadPoblacion = new JLabel ("Poblacion disponible:"+this.cantidadDePoblacion(this.partida.quienJuega()));
+		this.cantidadMinerales = new JLabel ("Minerales:"+this.getStringCantidadDeMinerales(this.partida.quienJuega()));
+		this.cantidadGasVespeno = new JLabel ("Gas vespeno:"+this.getStringCantidadDeGasVespeno(this.partida.quienJuega()));
+		this.cantidadPoblacion = new JLabel ("Poblacion disponible:"+this.getStringCantidadDePoblacion(this.partida.quienJuega()));
 	
 		btnPasarTurno.addMouseListener(this);
 		this.add(btnPasarTurno);
@@ -56,19 +56,19 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		
 	}
 	
-	private String cantidadDePoblacion(Jugador jugador) {
+	private String getStringCantidadDePoblacion(Jugador jugador) {
 		
 		return Integer.toString(jugador.getPoblacionDisponible());
 		
 	}
 
-	private String cantidadDeGasVespeno(Jugador jugador) {
+	private String getStringCantidadDeGasVespeno(Jugador jugador) {
 		
 		return Integer.toString(jugador.getCantidadDeGasVespeno());
 		
 	}
 
-	private String cantidadDeMinerales(Jugador jugador) {
+	private String getStringCantidadDeMinerales(Jugador jugador) {
 		
 		return Integer.toString(jugador.getCantidadDeMinerales());
 		
@@ -86,9 +86,9 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		Jugador jugador = (Jugador) jugadorActual;
 				
 		this.nombreJugador.setText(this.partida.quienJuega().nombre());
-		this.cantidadMinerales.setText("Minerales:"+this.cantidadDeMinerales(jugador));
-		this.cantidadGasVespeno.setText("Gas vespeno:"+this.cantidadDeGasVespeno(jugador));
-		this.cantidadPoblacion.setText("Poblacion disponible:"+this.cantidadDePoblacion(jugador));
+		this.cantidadMinerales.setText("Minerales:"+this.getStringCantidadDeMinerales(jugador));
+		this.cantidadGasVespeno.setText("Gas vespeno:"+this.getStringCantidadDeGasVespeno(jugador));
+		this.cantidadPoblacion.setText("Poblacion disponible:"+this.getStringCantidadDePoblacion(jugador));
 	
 	}
 
@@ -96,6 +96,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 	public void mouseClicked(MouseEvent e) {
 		
 		partida.quienJuega().pasarTurno();
+		this.generarVistaPanel(partida.quienJuega());
 		
 	}
 

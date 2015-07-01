@@ -102,6 +102,7 @@ public class Partida {
 		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
 		Ubicable barraca = jugador.crearBarraca(unTerreno);
 		mapa.ubicar(barraca, this.mapa.getCeldaEnFilaColumna(fila, columna));
+		
 	}
 	
 	public void crearFabrica(Jugador jugador, int fila, int columna){
