@@ -24,7 +24,7 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	protected String nombre;
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
-	private Vista ocupante;
+//	private Vista ocupante;
 
 	
 	public Vista(String nombreVista, String estadoInicial){

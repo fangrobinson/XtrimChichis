@@ -1,7 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Dimension;
-import java.util.TreeMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
