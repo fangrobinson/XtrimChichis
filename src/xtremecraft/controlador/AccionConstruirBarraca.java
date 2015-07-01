@@ -18,11 +18,13 @@ public class AccionConstruirBarraca extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	private MapaObservable mapa;
 	
 	public AccionConstruirBarraca(Partida partida, MapaObservable mapa, Coordenada coordenada){		
 		
 		super("ConstruirBarraca");
 		this.partida = partida;
+		this.mapa = mapa;
 		this.coordenada = coordenada;
 		
 	}
@@ -33,6 +35,12 @@ public class AccionConstruirBarraca extends AbstractAction{
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
 			jugadorActual.crearBarraca(tierraConstruccion);	
+			try {
+				this.mapa.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
