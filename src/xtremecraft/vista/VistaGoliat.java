@@ -9,7 +9,7 @@ import xtremecraft.unidades.Goliat;
 public class VistaGoliat extends VistaIdentificable{
 	
 	static String nombreGoliat = "Goliat";
-	static String estadoInicial = "vida: "+Integer.toString(Goliat.getVidaInicial());
+	static String estadoInicial =  Goliat.getEstadoInicial();
 	
 	public VistaGoliat(){
 		

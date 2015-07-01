@@ -65,6 +65,12 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
 		notifyObservers();
     }
     
+    public static String getEstadoInicial(){
+    	
+    	return "En construccion";
+    	
+    }
+    
     private String generarEstadoImprimible(){
 		
 		return "vida: "+Integer.toString(this.vitalidad.getValor());
@@ -73,6 +79,7 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     
     public String getEstadoImprimible(){
     	
+    	if(this.estaEnConstruccion()) return getEstadoInicial();
     	return this.generarEstadoImprimible();
     	
     }
@@ -91,6 +98,7 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     }
     
     protected boolean puedoAtacar(Ubicable atacado){
+    	
     	return this.puedeAtacar;
 		
 	}
@@ -220,6 +228,8 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
         			this.puedeMoverse = true;
     			}
     		}
+    		setChanged();
+    		notifyObservers();
     	}
     	
     }

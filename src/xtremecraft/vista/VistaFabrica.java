@@ -9,7 +9,7 @@ import xtremecraft.edificios.Fabrica;
 public class VistaFabrica extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreFabrica = "Fabrica";
-	static String estadoInicial = "vida: "+Integer.toString(Fabrica.getVidaInicial());
+	static String estadoInicial = Fabrica.getEstadoInicial();
 
 	public VistaFabrica(){
 		

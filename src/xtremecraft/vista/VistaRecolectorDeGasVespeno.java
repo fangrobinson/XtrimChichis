@@ -9,7 +9,7 @@ import xtremecraft.edificios.RecolectorDeGasVespeno;
 public class VistaRecolectorDeGasVespeno extends VistaIdentificable {
 	
 	static String nombreRecolector = "Recolector de Gas";
-	static String estadoInicial = "vida: "+Integer.toString(RecolectorDeGasVespeno.getVidaInicial());
+	static String estadoInicial = RecolectorDeGasVespeno.getEstadoInicial();
 	
 	public VistaRecolectorDeGasVespeno(){
 		

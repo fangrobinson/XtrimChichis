@@ -9,7 +9,7 @@ import xtremecraft.edificios.Barraca;
 public class VistaBarraca extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreBarraca = "Barraca";
-	static String estadoInicial = "vida: "+Integer.toString(Barraca.getVidaInicial());
+	static String estadoInicial = Barraca.getEstadoInicial();
 	
 	public VistaBarraca(){
 		

@@ -9,7 +9,7 @@ import xtremecraft.edificios.PuertoEstelar;
 public class VistaPuertoEstelar extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombrePuerto = "Puerto Estelar";
-	static String estadoInicial = "vida: "+Integer.toString(PuertoEstelar.getVidaInicial());
+	static String estadoInicial = PuertoEstelar.getEstadoInicial();
 	
 	public VistaPuertoEstelar(){
 		
