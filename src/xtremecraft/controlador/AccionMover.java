@@ -72,7 +72,6 @@ public class AccionMover extends AbstractAction implements Observer{
 			new MensajeDeError("No se puede mover a la locacion seleccionada");
 		}
 		
-		
 	}
 
 }
