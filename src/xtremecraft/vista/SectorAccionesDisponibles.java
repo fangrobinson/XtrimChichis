@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.AbstractAction;
-import javax.swing.JComboBox;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import xtremecraft.mapa.Coordenada;
@@ -28,11 +28,14 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 	}
 
 	
-	public void actualizarPanel(JComboBox<String> accionesDisponiblesJugador) {
+	public void actualizarPanel(ArrayList<AbstractAction> accionesSeleccionado) {
 		
-		accionesDisponiblesJugador.setVisible(true);
-		this.add(accionesDisponiblesJugador);
-		this.setVisible(true);
+		for(int i=0; i<accionesSeleccionado.size(); i++){
+			
+			JButton botonAccion = new JButton(accionesSeleccionado.get(i)); 
+			this.add(botonAccion);
+			
+		}
 		
 	}
 
@@ -44,6 +47,8 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 		Coordenada coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
 		Class<?> claseSeleccionado = observable.getClass();
 		HashMap<Class<?>, ArrayList<AbstractAction>> acciones = GeneradorDeAccionesDisponibles.generarAcciones(this.partida,this.mapaObservable,coordenadasSeleccionado);
+		ArrayList<AbstractAction> accionesSeleccionado = acciones.get(claseSeleccionado);
+		this.actualizarPanel(accionesSeleccionado);
 		
 	}
 	

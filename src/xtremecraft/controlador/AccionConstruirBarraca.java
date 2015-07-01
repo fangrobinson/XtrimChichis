@@ -21,7 +21,6 @@ public class AccionConstruirBarraca extends AbstractAction{
 	
 	public AccionConstruirBarraca(Partida partida, MapaObservable mapa, Coordenada coordenada){		
 
-		
 		super("ConstruirBarraca");
 		this.partida = partida;
 		this.coordenada = coordenada;
@@ -30,6 +29,7 @@ public class AccionConstruirBarraca extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
