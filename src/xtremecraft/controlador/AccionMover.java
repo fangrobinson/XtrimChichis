@@ -53,6 +53,10 @@ public class AccionMover extends AbstractAction implements Observer{
 		Unidad unidadAMover = (Unidad) mapaReal.getCeldaEnFilaColumna(this.coordenada.fila(), this.coordenada.columna()).getUbicableEnInferior();
 		Jugador jugadorTurno = this.partida.quienJuega();
 		
+		if (unidadAMover.estaEnConstruccion()){
+			new MensajeDeError("Esta unidad esta en construccion");
+		}
+		
 		if (!jugadorTurno.esDeMiPropiedad(unidadAMover)){
 			new MensajeDeError("La unidad que se quiere mover no es del jugador");
 		}
@@ -69,7 +73,7 @@ public class AccionMover extends AbstractAction implements Observer{
 				this.mapaVista.actualizarDesocuparUbicacion(this.coordenada);
 				this.mapaVista.removerObservador(this);
 			} catch (InstantiationException | IllegalAccessException e) {
-				
+				new MensajeDeError("Error interno del sistema");
 			}
 		}catch(UbicacionNoValidaException noPuedeVerElDestino){
 			new MensajeDeError("No se puede mover a la locacion seleccionada");

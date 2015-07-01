@@ -57,22 +57,23 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			
 			Jugador jugadorTurno = this.partida.quienJuega();
 			jugadorTurno.atacar(atacante, atacado);
-			
-			try {
-				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
-			} catch (InstantiationException | IllegalAccessException e) {
-				
-			}
-			
-		}catch(ClassCastException noSePuedeCastear){
-			new MensajeDeError("No se selecciono a una victima valida");
-		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
-			new MensajeDeError("No se selecciono a un agresor propio");
+		
 		}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
 			new MensajeDeError("El atacado esta fuera del rango del atacante");
+		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
+			new MensajeDeError("No se selecciono a un agresor propio");
 		}catch(YaSeSeleccionoUnAtaqueException masDeUnAtaquePorTurno){
 			new MensajeDeError("No se puede atacar más de una vez por turno");	
+		}catch(ClassCastException noSePuedeCastear){
+			new MensajeDeError("No se selecciono a una victima valida");
 		}
+			
+		try {
+			this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+		} catch (InstantiationException | IllegalAccessException e) {
+			new MensajeDeError("Error interno del sistema");	
+		}
+		
 		
 		
 	}

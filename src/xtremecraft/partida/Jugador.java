@@ -13,6 +13,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
+import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
 import xtremecraft.unidades.Espectro;
 import xtremecraft.unidades.Goliat;
@@ -77,7 +78,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public void atacar(Defendible atacante, Atacable atacado){
+	public void atacar(Defendible atacante, Atacable atacado) throws AtaqueFueraDelRangoDeVisionException, ElAtacanteNoEsDelJugadorException{
 		
 		Ubicable atacanteUbicado = (Ubicable) atacante;
 		
