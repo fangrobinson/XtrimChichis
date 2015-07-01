@@ -32,7 +32,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		partida.agregarObservadorDeJugadores(this,partida.quienJuega());
 		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
-		setBorder(BorderFactory.createEmptyBorder(20,20,10,10));
+		setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 		
 		this.partida = partida;
 		

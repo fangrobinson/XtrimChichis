@@ -14,7 +14,7 @@ public class SectorReferenciasDelMapa extends JPanel {
 	
 	public SectorReferenciasDelMapa(HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		
-		this.setLayout(new GridLayout(3, 5));
+		this.setLayout(new GridLayout(3, 5, 3, 3));
 		Iterator<Class<?>> iter = vistas.keySet().iterator();
 		
 		while (iter.hasNext()){
@@ -35,7 +35,6 @@ public class SectorReferenciasDelMapa extends JPanel {
 			
 			panelInfoClase.add(vistaNueva);
 			panelInfoClase.add(etiquetaNombre);
-			
 			this.add(panelInfoClase);
 		}
 		

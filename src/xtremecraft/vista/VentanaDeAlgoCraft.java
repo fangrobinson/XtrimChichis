@@ -49,13 +49,14 @@ public class VentanaDeAlgoCraft extends JFrame{
 		
 		setPreferredSize(new Dimension(1200, 750));
 		this.sectorJuego = new SectorJuego(this.partida, this.vistas);
-		this.sectorJuego.setPreferredSize(new Dimension(1200, 600));
-		this.sectorJuego.setMinimumSize(new Dimension(1200, 600));
-		this.sectorJuego.setMaximumSize(new Dimension(1200, 600));
+		this.sectorJuego.setPreferredSize(new Dimension(1200, 550));
+		this.sectorJuego.setMinimumSize(new Dimension(1200, 550));
+		this.sectorJuego.setMaximumSize(new Dimension(1200, 550));
 		setVisible(true);
 		this.panelInformacion = new SectorInformacionParaElUsuario(this.partida, vistas);
-		this.panelInformacion.setPreferredSize(new Dimension(1000, 150));
-		
+		this.panelInformacion.setPreferredSize(new Dimension(1200, 200));
+		this.panelInformacion.setMinimumSize(new Dimension(1200, 200));
+		this.panelInformacion.setMaximumSize(new Dimension(1200, 200));
 		this.sectorJuego.setVisible(true);
 		this.panelInformacion.setVisible(true);
 		this.add(this.sectorJuego);
