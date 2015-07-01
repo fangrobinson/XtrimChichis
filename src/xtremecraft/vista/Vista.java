@@ -123,6 +123,7 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		
 	}
 
+	/*
 	public void agregarOcupante(Vista vistaOcupante) {
 		
 		this.ocupante = vistaOcupante;
@@ -146,6 +147,6 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		this.ocupante = null;
 		this.revalidate();
 		
-	}
+	}*/
 
 }
