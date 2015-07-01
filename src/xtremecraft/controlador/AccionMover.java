@@ -62,6 +62,12 @@ public class AccionMover extends AbstractAction implements Observer{
 		
 		try{
 			unidadAMover.actualizarUbicacion(terrenoAMover);
+			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenadaAMover);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
 		}catch(UbicacionNoValidaException noPuedeVerElDestino){
 			new MensajeDeError("No se puede mover a la locacion seleccionada");
 		}

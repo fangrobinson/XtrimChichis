@@ -136,7 +136,23 @@ public class MapaObservable extends JPanel{
 			identificableVisible.setJugador(numero);
 			Vista vistaOcupante = (Vista) identificableVisible;
 			
+			//agrego
+			
+			vistaNueva.agregarOcupante(vistaOcupante);
+			
+			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+			
 		}
+		
+		//
+		observable.addObserver(vistaNueva);
+		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
+		
+		//this.mapaVisible.get(i).put(j, vistaNueva);
+		
+		vistaNueva.paintComponents(getGraphics());
+		vistaNueva.setMaximumSize(new Dimension(25,25));
+		//
 		
 		this.add(vistaNueva, n);
 		

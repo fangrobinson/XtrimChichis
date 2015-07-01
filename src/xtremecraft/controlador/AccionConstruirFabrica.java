@@ -19,12 +19,14 @@ public class AccionConstruirFabrica extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	private MapaObservable mapaVista;
 	
 	public AccionConstruirFabrica(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirFabrica");
 		this.partida = partida;
 		this.coordenada = coordenada;
+		this.mapaVista = mapa;
 		
 	}
 	
@@ -34,6 +36,12 @@ public class AccionConstruirFabrica extends AbstractAction{
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
 			jugadorActual.crearFabrica(tierraConstruccion);	
+			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){

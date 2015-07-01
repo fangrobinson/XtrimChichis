@@ -18,13 +18,13 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
-	private MapaObservable mapa;
+	private MapaObservable mapaVista;
 	
 	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirRecolectorDeMineral");
 		this.partida = partida;
-		this.mapa = mapa;
+		this.mapaVista = mapa;
 		this.coordenada = coordenada;
 		
 	}
@@ -37,7 +37,7 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 			jugadorActual.crearRecolectorDeMineral(tierraConstruccion);	
 			//this.mapa.borrarARolete();
 			try {
-				this.mapa.actualizarVistaEnCoordenada(coordenada);
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
 			} catch (InstantiationException | IllegalAccessException e) {
 				
 			}
