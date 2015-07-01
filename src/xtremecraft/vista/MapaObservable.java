@@ -10,6 +10,7 @@ import java.util.TreeMap;
 
 import javax.swing.JPanel;
 
+import xtremecraft.controlador.AccionMover;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
@@ -93,21 +94,6 @@ public class MapaObservable extends JPanel{
 		
 	}
 	
-	public void borrarARolete(){
-		
-		this.remove(0);
-
-		this.remove(0);
-
-		this.remove(0);
-
-		this.remove(0);
-		
-		revalidate();
-		repaint();
-		
-	}
-	
 	public void actualizarVistaEnCoordenada(Coordenada coordenada) throws InstantiationException, IllegalAccessException{
 		
 		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
@@ -165,8 +151,7 @@ public class MapaObservable extends JPanel{
 		vistaNueva.setMaximumSize(new Dimension(25,25));
 		
 		this.add(vistaNueva, n);
-		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
-		
+		//this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
 		this.sector.agregarObservadoresDeVistas(vistaNueva);
 		
 		revalidate();
@@ -189,7 +174,48 @@ public class MapaObservable extends JPanel{
 	public TreeMap<Integer, TreeMap<Integer, Vista>> getVistas() {
 		
 		return this.mapaVisible;
+		
 	}
+
+	public void actualizarDesocuparUbicacion(Coordenada coordenada) throws InstantiationException, IllegalAccessException {
+		
+		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Terreno terrenoInferior = celdaReal.getCapaInferior();
+		Class<?> vistaClase;
+		vistaClase = this.vistas.get(terrenoInferior.getClass());
+		Vista vistaNueva = (Vista) vistaClase.newInstance();
+		Observable observable = (Observable)terrenoInferior;
+		observable.addObserver(vistaNueva);
+		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
+		
+		vistaNueva.paintComponents(getGraphics());
+		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());		
+		vistaNueva.paintComponents(getGraphics());
+		vistaNueva.setMaximumSize(new Dimension(25,25));
+		
+		
+		//this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
+		this.sector.agregarObservadoresDeVistas(vistaNueva);
+		
+		revalidate();
+		repaint();			
+		
+		
+		
+	}
+
+	public void removerObservador(AccionMover accionMover) {
+		
+		Observer observador = (Observer) accionMover;
+		for (int i = 0; i < this.modeloReal.ancho(); i++){
+			for (int j = 0; j < this.modeloReal.alto(); j++){
+				Vista vistaActual = this.mapaVisible.get(i).get(j);
+				vistaActual.deleteObserver(observador);
+			}
+		}
+		
+	}
+		
 
 }
 	

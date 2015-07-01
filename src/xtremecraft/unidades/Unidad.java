@@ -149,7 +149,7 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     public void actualizarUbicacion(Terreno terreno) {
 
     	if(this.estaUbicada){
-    		if(!this.puedoVer(terreno.getCoordenada()) || terreno.estaOcupado()){
+    		if((!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado()){
     			throw new UbicacionNoValidaException();
     		}
     		this.terrenoActual.desocupar();
