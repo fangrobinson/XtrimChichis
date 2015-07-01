@@ -35,6 +35,7 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
 			jugadorActual.crearRecolectorDeMineral(tierraConstruccion);	
+			//this.mapa.borrarARolete();
 			try {
 				this.mapa.actualizarVistaEnCoordenada(coordenada);
 			} catch (InstantiationException | IllegalAccessException e) {
