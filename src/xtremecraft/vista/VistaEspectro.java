@@ -9,7 +9,7 @@ import xtremecraft.unidades.Espectro;
 public class VistaEspectro extends VistaIdentificable{
 	
 	static String nombreEspectro = "Espectro";
-	static String estadoInicial = "vida: "+Integer.toString(Espectro.getVidaInicial());
+	static String estadoInicial = Espectro.getEstadoInicial();
 	
 	public VistaEspectro(){
 		

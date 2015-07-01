@@ -45,6 +45,12 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		
 	}
 	
+	public static String getEstadoInicial(){
+		
+		return "En Construccion";
+		
+	}
+	
 	public Coordenada getUbicacionActual(){
 		
 		return this.terrenoActual.getUbicacionActual();
@@ -77,6 +83,7 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 
     public String getEstadoImprimible(){
     	
+    	if(this.estaEnConstruccion()) return getEstadoInicial();
     	return this.generarEstadoImprimible();
     	
     }
@@ -139,6 +146,8 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		}
 		else{
 			this.vida.curarPorTurno(1);
+			setChanged();
+			notifyObservers();
 		}
 	}
 	

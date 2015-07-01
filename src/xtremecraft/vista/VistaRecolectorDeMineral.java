@@ -9,7 +9,7 @@ import xtremecraft.edificios.RecolectorDeMineral;
 public class VistaRecolectorDeMineral extends VistaIdentificable {
 	
 	static String nombreRecolector = "Recolector de Mineral";
-	static String estadoInicial = "vida: "+Integer.toString(RecolectorDeMineral.getVidaInicial());
+	static String estadoInicial = RecolectorDeMineral.getEstadoInicial();
 	
 	public VistaRecolectorDeMineral(){
 		

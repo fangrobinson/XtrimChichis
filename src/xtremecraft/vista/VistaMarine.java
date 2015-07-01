@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 import xtremecraft.unidades.Marine;
 
+
 @SuppressWarnings("serial")
 public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
-	static String estadoInicial = "vida: "+Integer.toString(Marine.getVidaInicial());
+	static String estadoInicial = Marine.getEstadoInicial();
 	
 	public VistaMarine(){
 		

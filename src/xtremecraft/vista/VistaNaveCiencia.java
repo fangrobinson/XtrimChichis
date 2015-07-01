@@ -9,7 +9,7 @@ import xtremecraft.unidades.NaveCiencia;
 public class VistaNaveCiencia extends VistaIdentificable {
 	
 	static String nombreNave = "Nave Ciencia";
-	static String estadoInicial = "vida: "+Integer.toString(NaveCiencia.getVidaInicial());
+	static String estadoInicial = NaveCiencia.getEstadoInicial();
 	
 	public VistaNaveCiencia(){
 		
