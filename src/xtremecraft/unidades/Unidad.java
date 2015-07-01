@@ -9,7 +9,7 @@ import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad extends Observable implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable,Identificable{
+public abstract class Unidad extends Observable implements Ubicable, Atacable, Defendible, Actualizable, Construible, Cobrable, Identificable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;

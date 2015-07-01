@@ -86,6 +86,13 @@ public class NaveCiencia extends UnidadAerea{
 		this.descontarDeEnergia(this.costoMisilEMP);
 		naveAtacada.recibirDanioMisilEMP();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
+		this.atacarCeldas(celdasAfectadas);
+		this.puedeAtacar = false;
+			
+	}
+	
+	private void atacarCeldas(ArrayList<Celda> celdasAfectadas) {
+		
 		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
 			Celda celdaActual = celdasAfectadas.get(posicion);
 			if( this.estaElevado() && celdaActual.getCapaSuperior().estaOcupado()){
@@ -98,10 +105,9 @@ public class NaveCiencia extends UnidadAerea{
 				unAtacable.recibirDanioMisilEMP();
 			}
 		}
-		this.puedeAtacar = false;
-			
+		
 	}
-	
+
 	public void atacarConRadiacion(ArrayList<Celda>celdasAfectadas,Unidad unidad){
 		
 		if(!this.puedoVer(unidad.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();

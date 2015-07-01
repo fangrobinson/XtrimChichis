@@ -68,13 +68,7 @@ public class MapaObservable extends JPanel{
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
-					
 					vistaNueva = (Vista) identificableVisible;
-					
-					//Implementacion con ocupantes
-					//Vista vistaOcupante = (Vista) identificableVisible;
-					//vistaNueva.agregarOcupante(vistaOcupante);
-					
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 					
 				}	
@@ -176,7 +170,7 @@ public class MapaObservable extends JPanel{
 		
 	}
 
-	public void actualizarDesocuparUbicacion(Coordenada coordenada) throws InstantiationException, IllegalAccessException {
+	public void desocuparUbicacion(Coordenada coordenada) throws InstantiationException, IllegalAccessException {
 		
 		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
 		Terreno terrenoInferior = celdaReal.getCapaInferior();
