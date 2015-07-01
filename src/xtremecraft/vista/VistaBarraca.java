@@ -14,7 +14,7 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 	public VistaBarraca(){
 		
 		super(nombreBarraca,estadoInicial);
-		this.color = new Color(153,102,0);
+		this.color = new Color(153,12,0);
 	
 	}
 
