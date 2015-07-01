@@ -2,8 +2,10 @@ package xtremecraft.vista;
 
 import java.awt.Dimension;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -14,6 +16,8 @@ public class SectorJuego extends JPanel{
 	
 	private MapaObservable mapaTerrestre;
 	private SectorSeleccionInformacion info;
+	private HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles;
+	
 	private static final long serialVersionUID = 1L;
 
 	public SectorJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -24,8 +28,10 @@ public class SectorJuego extends JPanel{
 		this.mapaTerrestre.setMaximumSize(new Dimension (600, 600));
 		this.mapaTerrestre.setPreferredSize(new Dimension(600,600));
 		this.mapaTerrestre.setVisible(true);
+		
+		this.accionesDisponibles = AccionesDisponibles.generarAcciones(partida,this.mapaTerrestre);
 
-		this.info = new SectorSeleccionInformacion(this.mapaTerrestre,partida);
+		this.info = new SectorSeleccionInformacion(this.accionesDisponibles,this.mapaTerrestre,partida);
 		this.info.setPreferredSize(new Dimension(400, 600));
 		this.info.setVisible(true);
 		this.add(this.info);

@@ -29,6 +29,7 @@ public class JuegoDeAlgoCraft {
 
 		this.ventana = new VentanaDeAlgoCraft(generarVistas());
 		ventana.setVisible(true);
+		
 	}
 	
 	public static void main(String args[]){

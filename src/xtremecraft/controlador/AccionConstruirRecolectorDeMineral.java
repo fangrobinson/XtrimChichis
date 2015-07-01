@@ -10,6 +10,7 @@ import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -18,10 +19,9 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirRecolectorDeMineral(Partida partida, Coordenada coordenada){
+	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa){
 		
 		super("ConstruirRecolectorDeMineral");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}

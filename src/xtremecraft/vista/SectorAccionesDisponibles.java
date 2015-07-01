@@ -1,8 +1,11 @@
 package xtremecraft.vista;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.AbstractAction;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -13,7 +16,7 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 	private static final long serialVersionUID = -973667959098244571L;
 	Coordenada coordenadasSeleccionado;
 	
-	public SectorAccionesDisponibles(MapaObservable mapaVisible){
+	public SectorAccionesDisponibles(HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles, MapaObservable mapaVisible){
 		
 		mapaVisible.agregarObservadorAVistas(this);
 		setVisible(true);

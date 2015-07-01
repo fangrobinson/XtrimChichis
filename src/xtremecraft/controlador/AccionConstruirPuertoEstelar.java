@@ -11,6 +11,7 @@ import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.RazaNoTieneFabricasException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -19,10 +20,9 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirPuertoEstelar(Partida partida, Coordenada coordenada){
+	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa){
 		
 		super("ConstruirPuertoEstelar");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}

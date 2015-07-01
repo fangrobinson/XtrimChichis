@@ -10,6 +10,7 @@ import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -18,10 +19,9 @@ public class AccionConstruirBarraca extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirBarraca(Partida partida, Coordenada coordenada){
+	public AccionConstruirBarraca(Partida partida, MapaObservable mapa){
 		
 		super("ConstruirBarraca");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}

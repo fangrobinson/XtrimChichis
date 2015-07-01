@@ -10,6 +10,7 @@ import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -18,10 +19,9 @@ public class AccionCrearNaveCiencia extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionCrearNaveCiencia(Partida partida, Coordenada coordenada){
+	public AccionCrearNaveCiencia(Partida partida, MapaObservable mapa){
 		
 		super("CrearNaveCiencia");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}

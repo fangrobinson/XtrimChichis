@@ -10,6 +10,7 @@ import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -18,10 +19,9 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirRecolectorDeGasVespeno(Partida partida, Coordenada coordenada){
+	public AccionConstruirRecolectorDeGasVespeno(Partida partida, MapaObservable mapa){
 		
 		super("ConstruirRecolectorDeGasVespeno");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}

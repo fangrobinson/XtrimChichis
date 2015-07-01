@@ -10,6 +10,7 @@ import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
 @SuppressWarnings("serial")
@@ -18,10 +19,9 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirDepositoDeSuministros(Partida partida, Coordenada coordenada){
+	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa){
 		
 		super("ConstruirDepositoDeSuministros");
-		this.coordenada = coordenada;
 		this.partida = partida;
 		
 	}
