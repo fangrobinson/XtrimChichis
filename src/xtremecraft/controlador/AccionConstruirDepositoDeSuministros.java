@@ -18,12 +18,14 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	private MapaObservable mapaVista;
 	
 	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirDepositoDeSuministros");
 		this.partida = partida;
 		this.coordenada = coordenada;
+		this.mapaVista = mapa;
 		
 	}
 	
@@ -32,7 +34,13 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
-			jugadorActual.crearDepositoDeSuministros(tierraConstruccion);	
+			jugadorActual.crearDepositoDeSuministros(tierraConstruccion);
+			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){

@@ -18,12 +18,14 @@ public class AccionCrearEspectro extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	private MapaObservable mapaVista;
 	
 	public AccionCrearEspectro(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearEspectro");
 		this.partida = partida;
 		this.coordenada = coordenada;
+		this.mapaVista = mapa;
 		
 	}
 
@@ -33,6 +35,13 @@ public class AccionCrearEspectro extends AbstractAction{
 		PuertoEstelar puertoEstelar = (PuertoEstelar) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
 		try{
 			jugadorActual.crearEspectro(puertoEstelar, this.partida.getMapa());
+			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
+			
 		}catch(CantidadDeSuministroInsuficienteException noHaySuministros){
 			new MensajeDeError("La cantidad de poblacion disponibles no es suficiente");
 		}catch(RecursosInsuficientesException noHayRecursos){

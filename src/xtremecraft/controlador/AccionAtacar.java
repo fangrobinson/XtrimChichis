@@ -58,6 +58,12 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			Jugador jugadorTurno = this.partida.quienJuega();
 			jugadorTurno.atacar(atacante, atacado);
 			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
+			
 		}catch(ClassCastException noSePuedeCastear){
 			new MensajeDeError("No se selecciono a una victima valida");
 		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){

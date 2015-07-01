@@ -19,12 +19,14 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
+	private MapaObservable mapaVista;
 	
 	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirPuertoEstelar");
 		this.partida = partida;
 		this.coordenada = coordenada;
+		this.mapaVista = mapa;
 		
 	}
 	
@@ -33,7 +35,14 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		try{
-			jugadorActual.crearPuertoEstelar(tierraConstruccion);	
+			jugadorActual.crearPuertoEstelar(tierraConstruccion);
+			
+			try {
+				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			} catch (InstantiationException | IllegalAccessException e) {
+				
+			}
+			
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
