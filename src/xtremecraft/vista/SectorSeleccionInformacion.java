@@ -27,7 +27,7 @@ public class SectorSeleccionInformacion extends JPanel{
 		panelSeleccionObjeto.setMaximumSize(new Dimension (200, 600));
 		this.add(panelSeleccionObjeto);
 		
-		this.panelAccionesDisponibles = new SectorAccionesDisponibles(accionesDisponibles,mapaObservable);
+		this.panelAccionesDisponibles = new SectorAccionesDisponibles(accionesDisponibles,mapaObservable,partida);
 		this.panelAccionesDisponibles.setMaximumSize(new Dimension (150, 600));
 		setBackground(new Color(255,255,255));
 		panelAccionesDisponibles.setVisible(true);

@@ -17,9 +17,13 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 	private static final long serialVersionUID = -973667959098244571L;
 	Coordenada coordenadasSeleccionado;
 	private Class<?> claseSeleccionado;
+	private MapaObservable mapaObservable;
+	private Partida partida;
 	
-	public SectorAccionesDisponibles(HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles, MapaObservable mapaVisible,Partida partida){
+	public SectorAccionesDisponibles(HashMap<Class<?>, ArrayList<AbstractAction>> accionesDisponibles, MapaObservable mapaVisible, Partida partida){
 		
+		this.mapaObservable = mapaVisible;
+		this.partida = partida;
 		mapaVisible.agregarObservadorAVistas(this);
 		setVisible(true);
 					
@@ -42,7 +46,9 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 		this.coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
 		this.claseSeleccionado = observable.getClass();
 		ArrayList<AbstractAction> acciones = new ArrayList<AbstractAction>();
-		//for()
+		for(int i=0; i<acciones.size(); i++){
+						
+		}
 		
 	}
 	
