@@ -10,6 +10,7 @@ import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.unidades.Marine;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
@@ -34,10 +35,10 @@ public class AccionCrearMarine extends AbstractAction{
 		Jugador jugadorActual = partida.quienJuega();
 		Barraca barraca = (Barraca) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
 		try{
-			jugadorActual.crearMarine(barraca, this.partida.getMapa());
-			
+			Marine marine = jugadorActual.crearMarine(barraca, this.partida.getMapa());
+			Coordenada coordenadaMarine = marine.getUbicacionActual();
 			try {
-				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+				this.mapaVista.actualizarVistaEnCoordenada(coordenadaMarine);
 			} catch (InstantiationException | IllegalAccessException e) {
 				
 			}

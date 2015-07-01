@@ -10,6 +10,7 @@ import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.unidades.Goliat;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 
@@ -34,10 +35,10 @@ public class AccionCrearGoliat extends AbstractAction{
 		Jugador jugadorActual = partida.quienJuega();
 		Fabrica fabrica = (Fabrica) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
 		try{
-			jugadorActual.crearGoliat(fabrica, this.partida.getMapa());
-			
+			Goliat goliat = jugadorActual.crearGoliat(fabrica, this.partida.getMapa());
+			Coordenada coordenadaGoliat = goliat.getUbicacionActual();
 			try {
-				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+				this.mapaVista.actualizarVistaEnCoordenada(coordenadaGoliat);
 			} catch (InstantiationException | IllegalAccessException e) {
 				
 			}
