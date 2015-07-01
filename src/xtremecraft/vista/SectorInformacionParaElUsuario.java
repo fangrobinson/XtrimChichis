@@ -17,7 +17,7 @@ public class SectorInformacionParaElUsuario extends JPanel{
 
 	public SectorInformacionParaElUsuario(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException{
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
-		setPreferredSize(new Dimension(1000, 150));
+		setPreferredSize(new Dimension(1000, 200));
 
 		JPanel informacionJugador = new SectorInformacionJugadorActual(partida);
 		informacionJugador.setPreferredSize(new Dimension(400, 100));
@@ -26,7 +26,7 @@ public class SectorInformacionParaElUsuario extends JPanel{
 		
 		
 		SectorReferenciasDelMapa referencias = new SectorReferenciasDelMapa(vistas);
-		referencias.setPreferredSize(new Dimension(400, 100));
+		referencias.setPreferredSize(new Dimension(600, 100));
 		this.add(referencias);
 		referencias.setVisible(true);
 
