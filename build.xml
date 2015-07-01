@@ -178,4 +178,13 @@
 		</pmd>
 	</target>
 
+	<!-- Nunca edite un xml 
+	<target name="ejecutar.aplicacion" depends="empaquetar">
+		<java classname="xtremecraft.vista.JuegoDeAlgoCraft" fork="true">
+			<classpath refid="classpath" />
+			<classpath location="${build}/dist/algo3.jar" />
+		</java>
+	</target>
+	-->
+	
 </project>
