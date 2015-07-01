@@ -21,7 +21,7 @@ import xtremecraft.controlador.AccionMover;
 import xtremecraft.partida.Partida;
 import xtremecraft.unidades.Espectro;
 
-public class AccionesDisponibles {
+public class GeneradorDeAccionesDisponibles {
 		
 	public static HashMap<Class<?>, ArrayList<AbstractAction>> generarAcciones(Partida partida,MapaObservable mapaObservable) {
 			

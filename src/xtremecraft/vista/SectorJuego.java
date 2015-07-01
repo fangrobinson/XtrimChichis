@@ -29,7 +29,7 @@ public class SectorJuego extends JPanel{
 		this.mapaTerrestre.setPreferredSize(new Dimension(500,500));
 		this.mapaTerrestre.setVisible(true);
 		
-		this.accionesDisponibles = AccionesDisponibles.generarAcciones(partida,this.mapaTerrestre);
+		this.accionesDisponibles = GeneradorDeAccionesDisponibles.generarAcciones(partida,this.mapaTerrestre);
 
 		this.info = new SectorSeleccionInformacion(this.accionesDisponibles,this.mapaTerrestre,partida);
 		this.info.setPreferredSize(new Dimension(400, 600));
