@@ -15,9 +15,11 @@ public class Tierra extends Terreno {
     public boolean ocuparConRecursoNatural(Recurso recursoNatural){
 
     	if(!this.tieneRecursos){  	
+    	
     		this.recurso = recursoNatural;
     		this.tieneRecursos = true;
     		return true;
+    	
     	}
 
     	return false;
@@ -55,9 +57,12 @@ public class Tierra extends Terreno {
     	
     	boolean hayMineralYUbicableNoEsRecolector = this.tieneRecursos() && (!ubicable.puedeUbicarseSobreRecursoNatural());
     	if( (super.estaOcupado()) || hayMineralYUbicableNoEsRecolector || !ubicable.puedeUbicarseEnTierra() ){
+    	
     		throw new NoSePudoOcuparElTerrenoException();
+    	
     	}
     	this.ubicable = ubicable;
+    	
     	return this;
     
     }
@@ -68,7 +73,9 @@ public class Tierra extends Terreno {
 		acciones.add("Crear barraca");
 		acciones.add("Crear fabrica");
 		acciones.add("Crear puerto estelar");
+		
 		return acciones;
-	}
+	
+    }
 
 }

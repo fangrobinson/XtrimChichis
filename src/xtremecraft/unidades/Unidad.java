@@ -206,7 +206,6 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     
     }
     
-    //faltan pruebas de supuesto
     public void pasarTiempo(){
     	
     	if(this.estaVivo()){
@@ -252,7 +251,6 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     	
     }
     
-    //las unidades que estan alrededor del irradiado reciben radiacion.
     public boolean recibirDanio(Radiacion radiacion){
     	
         vitalidad.recibirAtaque(radiacion.getDanio());

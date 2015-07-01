@@ -23,8 +23,10 @@ public class Goliat extends UnidadTerrestre {
 	}
 
 	public void cobrar(){
+		
 		this.jugador.nacion().quitarMinerales(this.minerales);
 		this.jugador.nacion().quitarGas(this.gas);
+	
 	}
 	
 }

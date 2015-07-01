@@ -18,7 +18,6 @@ public class Radiacion{
 
 	public void emitirRadiacion(Unidad unidadAfectada){
 		
-		//La unidad afectada sufre el doble que las que estan alrededor.
 		unidadAfectada.recibirDanio(this);
 		for(int posicion=0;posicion<this.celdasAfectadas.size();posicion++){
 			Celda CeldaActual = this.celdasAfectadas.get(posicion);

@@ -55,10 +55,12 @@ public class Coordenada {
 		ArrayList<Coordenada> coordenadasAdyacentes = new ArrayList<Coordenada>();
 		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
 		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()>=cantidadDeDireccionesVisitadas){
+		
 			Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
 			coordenadasAdyacentes.add(nuevaCoordenada);
 			estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
 			cantidadDeDireccionesVisitadas += 1;
+		
 		}
 		return coordenadasAdyacentes;
 		
@@ -70,14 +72,18 @@ public class Coordenada {
 		ArrayList<Coordenada> coordenadasEnRadio = new ArrayList<Coordenada>();
 		EstrategiaRecorridoDeCoordenadas estrategiaDeAvance = new EstrategiaRecorridoDeCoordenadas(this);
 		while(EstrategiaRecorridoDeCoordenadas.getNumeroDeDireccionesDeMovimiento()>=cantidadDeDireccionesVisitadas){
+			
 			Coordenada nuevaCoordenada = estrategiaDeAvance.avanzar();
 			if(this.distancia(nuevaCoordenada)<=radio){
+			
 				coordenadasEnRadio.add(nuevaCoordenada);
+			
 			}else{
 				estrategiaDeAvance.cambiarDireccionDeMovimiento(this);	
 				cantidadDeDireccionesVisitadas += 1;
 			}
 		}
+		
 		return coordenadasEnRadio;
 
 	}

@@ -22,8 +22,11 @@ public class Mapa {
 	public Mapa(int cantidadJugadores) {
 		
 		if (cantidadJugadores <= 1){
+		
 			throw new IllegalArgumentException("La cantidad de jugadores debe ser un numero positivo");
+		
 		}
+		
 		this.alto = this.decidirAlto();
 		this.ancho = this.decidirAncho();
 		this.terrenosBasesJugadores = new ArrayList<Tierra>();
@@ -33,8 +36,11 @@ public class Mapa {
 		this.estrategiasUbicacion.add(new EstrategiaUbicacionDosJugadores());
 		this.estrategiasUbicacion.add(new EstrategiaUbicacionTresJugadores());
 		this.estrategiasUbicacion.add(new EstrategiaUbicacionCuatroJugadores());
+		
 		rellenarMapa();
+		
 		ubicarBases(cantidadJugadores);
+		
 		ubicarRecursos();	
 		
 	}
@@ -68,9 +74,13 @@ public class Mapa {
 		this.mapaAlto = new TreeMap<Integer, TreeMap<Integer, Celda>>();
 		
 		for(int fila = 0; fila < this.alto ;fila = fila + 1) {
+		
 			this.mapaAlto.put(fila, new TreeMap<Integer, Celda>());
+			
 			for(int columna = 0; columna < this.ancho; columna = columna + 1) {
+			
 				this.mapaAlto.get(fila).put(columna, obtenerCeldaAdecuada(fila, columna));
+			
 			}
 		}
 				
@@ -94,7 +104,7 @@ public class Mapa {
 		
 	}
 	
-	//Ya no hay mas islas voladoras
+	//Ya no hay mas islas voladoras. Dejamos este comentario porque es gracioso.
 	
 	public boolean tieneAire() {
 		
@@ -146,8 +156,10 @@ public class Mapa {
 		ArrayList<Coordenada> coordenadasAdyacentes = coordenadaActual.getCoordenadasAdyacentes();
 		
 		for(int i=0;i<coordenadasAdyacentes.size();i++){
+		
 			Coordenada unaCoordenada = coordenadasAdyacentes.get(i);
 			if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
+			
 				listaDeCeldasAdyacentes.add(this.getCeldaEnFilaColumna(unaCoordenada.fila(),unaCoordenada.columna()));
 			}
 		}	
@@ -159,6 +171,7 @@ public class Mapa {
 		
 		boolean filaEstaDentroDelMapa = (unaCoordenada.fila()>=0) && (unaCoordenada.fila()<this.alto);
 		boolean columnaEstaDentroDelMapa = (unaCoordenada.columna()>=0) && (unaCoordenada.columna()<this.ancho);
+		
 		return filaEstaDentroDelMapa && columnaEstaDentroDelMapa;
 		
 	}
@@ -170,10 +183,14 @@ public class Mapa {
 		ArrayList<Coordenada> coordenadasEnRadio = coordenadaActual.getCoordenadasEnRadio(radio);
 		
 		for(int i=0;i<coordenadasEnRadio.size();i++){
+		
 			Coordenada unaCoordenada = coordenadasEnRadio.get(i);
 			if(this.coordenadaEstaDentroDelMapa(unaCoordenada)){
+			
 				listaDeCeldasEnRadio.add(this.getCeldaEnFilaColumna(unaCoordenada.fila(),unaCoordenada.columna()));
+			
 			}
+		
 		}	
 		listaDeCeldasEnRadio.add(this.getCeldaEnFilaColumna(coordenadaActual.fila(),coordenadaActual.columna()));
 		return listaDeCeldasEnRadio;
@@ -185,7 +202,9 @@ public class Mapa {
 		int fila = ubicable.getUbicacionActual().fila();
 		int columna = ubicable.getUbicacionActual().columna();
 		Celda celda = this.getCeldaEnFilaColumna(fila,columna);
+		
 		if(ubicable.estaElevado()) celda.liberarCapaSuperior();
+		
 		else celda.liberarCapaInferior();
 		
 	}
@@ -205,14 +224,18 @@ public class Mapa {
 		ArrayList<Coordenada> coordenadasUbicacionRecursos = estrategiaUbicacion.getCoordenadasDeUbicacion();
 		Coordenada coordenadaActual;
 		for(int posicion=0;posicion<coordenadasUbicacionRecursos.size();posicion++){
+		
 			coordenadaActual = coordenadasUbicacionRecursos.get(posicion);
 			this.agregarNodoMineral(coordenadaActual);
+
 		}
 		estrategiaUbicacion = this.estrategiasUbicacion.get(estrategiaGasVespeno);
 		coordenadasUbicacionRecursos = estrategiaUbicacion.getCoordenadasDeUbicacion();
 		for(int posicion=0;posicion<coordenadasUbicacionRecursos.size();posicion++){
+		
 			coordenadaActual = coordenadasUbicacionRecursos.get(posicion);
 			this.agregarVolcanGasVespeno(coordenadaActual);
+		
 		}
 		
 	}
@@ -236,9 +259,11 @@ public class Mapa {
 		EstrategiaUbicacion estrategiaUbicacion = this.estrategiasUbicacion.get(cantidadJugadores);
 		ArrayList<Coordenada> coordenadasUbicacion = estrategiaUbicacion.getCoordenadasDeUbicacion();
 		for(int posicion=0;posicion<coordenadasUbicacion.size();posicion++){
+		
 			Coordenada estaCoordenada = coordenadasUbicacion.get(posicion);
 			Tierra terreno =  (Tierra) this.getCeldaEnFilaColumna(estaCoordenada.fila(),estaCoordenada.columna()).getCapaInferior();
 			this.terrenosBasesJugadores.add(terreno);
+		
 		}
 		
 	}
@@ -247,10 +272,13 @@ public class Mapa {
 		
 		ArrayList<Terreno> terrenos = new ArrayList<Terreno>(); 
 		for(Entry<Integer, TreeMap<Integer, Celda>> filas : this.mapaAlto.entrySet()) { 
+		
 			for(Entry<Integer, Celda> columnas : filas.getValue().entrySet()) {
 				Celda celda = columnas.getValue();
 				if(celda.getCapaInferior().tieneRecursos()){
+			
 					terrenos.add(celda.getCapaInferior());
+				
 				}
 			}
 		}
@@ -261,9 +289,12 @@ public class Mapa {
 		
 		ArrayList<Terreno> listaTerrenos = this.obtenerTerrenosConRecursos();
 		for (int i = 0; i < listaTerrenos.size(); i++){
+			
 			Recurso recursoActual = listaTerrenos.get(i).getRecurso(); 
 			if (recursoActual.getClass() == MinaDeMinerales.class && !recursoActual.estaSiendoExplotado()){
+			
 				return listaTerrenos.get(i);
+			
 			}
 		}
 		return null;
@@ -276,7 +307,9 @@ public class Mapa {
 		for (int i = 0; i < listaTerrenos.size(); i++){
 			Recurso recursoActual = listaTerrenos.get(i).getRecurso(); 
 			if (recursoActual.getClass() == VolcanGasVespeno.class){
+			
 				return listaTerrenos.get(i);
+			
 			}
 		}
 		return null;

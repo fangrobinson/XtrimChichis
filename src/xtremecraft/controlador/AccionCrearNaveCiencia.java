@@ -32,13 +32,18 @@ public class AccionCrearNaveCiencia extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		PuertoEstelar puertoEstelar = (PuertoEstelar) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
+		
 		try{
+		
 			jugadorActual.crearNaveCiencia(puertoEstelar, this.partida.getMapa());
 			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}

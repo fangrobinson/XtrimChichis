@@ -24,8 +24,6 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	protected String nombre;
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
-//	private Vista ocupante;
-
 	
 	public Vista(String nombreVista, String estadoInicial){
 		
@@ -74,22 +72,19 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	public void update(Observable observado, Object arg) {
 		
 		Identificable identificableVisibleEnMapa = (Identificable)observado;
-		//this.observableSeleccionado.setNombre(this.nombre);
 		this.observableSeleccionado.setEstado(identificableVisibleEnMapa.getEstadoImprimible());
 		
 	}
 	
 	public void agregarObservador(Observer observador) {
 		
-		//observador avisa cuando el mouse hace click sobre esta celda visible:
 		this.observableSeleccionado.addObserver(observador);
 		
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent click) {
-		//Cuando hago click en el panel, se notifica la ventana de informacion dinamica:
-		//Coordenada ubicacionActual = new Coordenada(click.getX(),click.getY());
+		
 		this.observableSeleccionado.notificarObservado();
 		
 	}
@@ -128,31 +123,5 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		this.observableSeleccionado.deleteObserver(observador);
 		
 	}
-
-	/*
-	public void agregarOcupante(Vista vistaOcupante) {
-		
-		this.ocupante = vistaOcupante;
-		this.add(vistaOcupante);
-		this.revalidate();
-		
-	}
-	
-	public void cambiarOcupante (Vista nuevoOcupante){
-		
-		this.desocuparVista();
-		this.ocupante = nuevoOcupante;
-		this.add(nuevoOcupante);
-		this.revalidate();
-		
-	}
-	
-	public void desocuparVista(){
-		
-		this.ocupante.setVisible(false);
-		this.ocupante = null;
-		this.revalidate();
-		
-	}*/
 
 }

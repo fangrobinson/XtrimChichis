@@ -69,7 +69,7 @@ public class GeneradorDeAccionesDisponibles {
 		acciones.put(VistaEspectro.class, accionesUnidades);
 		//acciones.put(NaveCiencia.class, accionesUnidades);
 		//acciones.put(NaveTransporte.class, accionesUnidades);
-			
+
 		return acciones;
 			
 	}

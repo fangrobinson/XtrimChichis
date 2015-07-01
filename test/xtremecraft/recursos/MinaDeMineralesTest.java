@@ -11,6 +11,7 @@ public class MinaDeMineralesTest {
 	public void getCantidadDeMineralesDevuelveNumeroDeCristalesQueFormanLaMina(){
 		
 		MinaDeMinerales mina=new MinaDeMinerales(4);
+		
 		assertEquals(mina.getCantidadDeMinerales(),4);
 		
 	}
@@ -26,6 +27,7 @@ public class MinaDeMineralesTest {
 	public void minaInicializadaComoNoExplotado(){
 		
 		MinaDeMinerales mina=new MinaDeMinerales(4);
+		
 		assertFalse(mina.estaSiendoExplotado());
 		
 	}
@@ -34,7 +36,9 @@ public class MinaDeMineralesTest {
 	public void minaPasaAEstadoExplotadoLuegoDeSerOcupado(){
 		
 		MinaDeMinerales mina=new MinaDeMinerales(4);
+		
 		mina.ocuparMinaDeMineral();
+		
 		assertTrue(mina.estaSiendoExplotado());
 		
 	}
@@ -43,7 +47,9 @@ public class MinaDeMineralesTest {
 	public void laMinaTieneDiezDeMineralLuegoDeSerExplotada(){
 		
 		MinaDeMinerales mina = new MinaDeMinerales(20);
+		
 		mina.explotar(10);
+		
 		assertEquals(mina.getCantidadDeMinerales(), 10);
 	}
 	
@@ -51,9 +57,11 @@ public class MinaDeMineralesTest {
 	public void siLaMinaSigueSiendoExplotadaSuCantidadDeMineralesSeMantieneEnCero(){
 		
 		MinaDeMinerales mina = new MinaDeMinerales(20);
+		
 		for (int i = 0; i < 4; i++){
 			mina.explotar(10);
 		}
+		
 		assertEquals(mina.getCantidadDeMinerales(), 0);
 	}
 	
@@ -61,7 +69,9 @@ public class MinaDeMineralesTest {
 	public void siLaMinaEsExplotadaConUnValorMayorAlQueTieneDevuelveTodosSusRecursos(){
 		
 		MinaDeMinerales mina = new MinaDeMinerales(20);
+		
 		int recursos = mina.explotar(40);
+		
 		assertEquals(recursos, 20);
 	}
 	

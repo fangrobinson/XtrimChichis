@@ -34,13 +34,19 @@ public class AccionCrearMarine extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Barraca barraca = (Barraca) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
+		
 		try{
+		
 			Marine marine = jugadorActual.crearMarine(barraca, this.partida.getMapa());
 			Coordenada coordenadaMarine = marine.getUbicacionActual();
+			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaMarine);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
@@ -56,4 +62,5 @@ public class AccionCrearMarine extends AbstractAction{
 		}
 		
 	}
+	
 }

@@ -33,7 +33,9 @@ public class Jugador extends Observable implements Actualizable {
 	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
 		
 		if (nombre.length() < 4){
+		
 			throw new NombreMuyCortoException();
+		
 		}
 		this.nombre = nombre;
 		this.nacion = new Terran(this);
@@ -83,7 +85,9 @@ public class Jugador extends Observable implements Actualizable {
 		Ubicable atacanteUbicado = (Ubicable) atacante;
 		
 		if (!this.esDeMiPropiedad(atacanteUbicado)){
+			
 			throw new ElAtacanteNoEsDelJugadorException();
+		
 		}
 		
 		atacante.atacar(atacado);
@@ -93,7 +97,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(tierra);
 		for(int tiempo = 0; tiempo<deposito.tiempoConstruccion();tiempo++){
+		
 			deposito.pasarTiempo();
+		
 		}
 		this.setChanged();
 		this.notifyObservers();
@@ -107,6 +113,7 @@ public class Jugador extends Observable implements Actualizable {
 		Barraca nuevaBarraca = this.nacion.crearBarraca(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+		
 		return nuevaBarraca;
 		
 	}
@@ -116,6 +123,7 @@ public class Jugador extends Observable implements Actualizable {
 		Fabrica nuevaFabrica = this.nacion.crearFabrica(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+		
 		return nuevaFabrica;
 		
 	}
@@ -125,6 +133,7 @@ public class Jugador extends Observable implements Actualizable {
 		PuertoEstelar nuevoPuerto = this.nacion.crearPuertoEstelar(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevoPuerto;
 		
 	}
@@ -134,6 +143,7 @@ public class Jugador extends Observable implements Actualizable {
 		RecolectorDeGasVespeno recolectorDeGas = this.nacion.crearRecolectorDeGasVespeno(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+		
 		return recolectorDeGas;
 		
 	}
@@ -143,6 +153,7 @@ public class Jugador extends Observable implements Actualizable {
 		RecolectorDeMineral recolectorDeMineral = this.nacion.crearRecolectorDeMineral(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+		
 		return recolectorDeMineral;
 		
 	}
@@ -152,6 +163,7 @@ public class Jugador extends Observable implements Actualizable {
 		Marine nuevoMarine = (Marine) this.nacion.crearMarine(unaBarraca, unMapa);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevoMarine;
 		
 	}
@@ -161,6 +173,7 @@ public class Jugador extends Observable implements Actualizable {
 		Goliat nuevoGoliat = (Goliat) this.nacion.crearGoliat(unaFabrica, unMapa);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevoGoliat;
 		
 	}
@@ -170,6 +183,7 @@ public class Jugador extends Observable implements Actualizable {
 		Espectro nuevoEspectro = (Espectro) this.nacion.crearEspectro(unPuerto, unMapa);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevoEspectro;
 		
 	}
@@ -179,6 +193,7 @@ public class Jugador extends Observable implements Actualizable {
 		NaveCiencia nuevaNaveCiencia = (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevaNaveCiencia;
 		
 	}
@@ -188,6 +203,7 @@ public class Jugador extends Observable implements Actualizable {
 		NaveTransporte nuevaNaveTransporte = (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevaNaveTransporte;
 		
 	}
@@ -197,6 +213,7 @@ public class Jugador extends Observable implements Actualizable {
 		DepositoDeSuministros nuevoDeposito = this.nacion.crearDepositoDeSuministros(unTerreno);
 		this.setChanged();
 		this.notifyObservers();
+	
 		return nuevoDeposito;
 		
 	}
@@ -216,8 +233,11 @@ public class Jugador extends Observable implements Actualizable {
 	public void pasarTurno() {
 		
 		if(!this.esMiTurno){
+		
 			throw new JugadorNoTieneElTurnoException();
+	
 		}
+		
 		this.pasarTiempo();
 		this.esMiTurno = false;
 		this.siguienteJugador.setTurno();

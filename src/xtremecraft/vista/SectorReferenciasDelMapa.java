@@ -18,6 +18,7 @@ public class SectorReferenciasDelMapa extends JPanel {
 		Iterator<Class<?>> iter = vistas.keySet().iterator();
 		
 		while (iter.hasNext()){
+		
 			JPanel panelInfoClase = new JPanel();
 			panelInfoClase.setLayout(new BoxLayout(panelInfoClase, BoxLayout.X_AXIS));
 			
