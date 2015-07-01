@@ -124,20 +124,28 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	}
 
 	public void agregarOcupante(Vista vistaOcupante) {
+		
 		this.ocupante = vistaOcupante;
 		this.add(vistaOcupante);
+		this.revalidate();
 		
 	}
 	
 	public void cambiarOcupante (Vista nuevoOcupante){
+		
 		this.desocuparVista();
 		this.ocupante = nuevoOcupante;
 		this.add(nuevoOcupante);
+		this.revalidate();
+		
 	}
 	
 	public void desocuparVista(){
+		
 		this.ocupante.setVisible(false);
 		this.ocupante = null;
+		this.revalidate();
+		
 	}
 
 }

@@ -141,6 +141,7 @@ public class MapaObservable extends JPanel{
 			vistaNueva.agregarOcupante(vistaOcupante);
 			
 			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+			vistaNueva.setMaximumSize(new Dimension(10,10));
 			
 		}
 		
@@ -151,7 +152,7 @@ public class MapaObservable extends JPanel{
 		//this.mapaVisible.get(i).put(j, vistaNueva);
 		
 		vistaNueva.paintComponents(getGraphics());
-		vistaNueva.setMaximumSize(new Dimension(25,25));
+
 		//
 		
 		this.add(vistaNueva, n);
