@@ -1,5 +1,6 @@
 package xtremecraft.vista;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +22,7 @@ public class MensajeDeError extends JFrame{
 		setTitle("ERROR");
 		setVisible(true);
 		//TODO: hacer que el texto se ajuste dinamicamente a el frame.
-		setSize(500,150);
+		setMinimumSize(new Dimension(500,50));
 		setBounds(380, 350, 300, 100);
 		
 		mensajeDeError = new JLabel(mensaje);
