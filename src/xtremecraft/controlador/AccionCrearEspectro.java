@@ -19,10 +19,11 @@ public class AccionCrearEspectro extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionCrearEspectro(Partida partida, MapaObservable mapa){
+	public AccionCrearEspectro(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearEspectro");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 

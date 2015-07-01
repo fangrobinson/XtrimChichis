@@ -19,10 +19,11 @@ public class AccionCrearMarine extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionCrearMarine(Partida partida, MapaObservable mapa){
+	public AccionCrearMarine(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearMarine");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 

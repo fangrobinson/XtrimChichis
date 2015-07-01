@@ -24,11 +24,12 @@ public class AccionMover extends AbstractAction implements Observer{
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
 		
-	public AccionMover(Partida partida, MapaObservable mapa){
+	public AccionMover(Partida partida, MapaObservable mapa, Coordenada coordenada){
 			
 		super("Mover");
 		this.partida = partida;
 		this.mapaVista = mapa;
+		this.coordenada = coordenada;
 		
 	}
 	

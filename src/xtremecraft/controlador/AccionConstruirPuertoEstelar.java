@@ -20,10 +20,11 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa){
+	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirPuertoEstelar");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 	

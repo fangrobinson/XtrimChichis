@@ -19,10 +19,11 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirRecolectorDeGasVespeno(Partida partida, MapaObservable mapa){
+	public AccionConstruirRecolectorDeGasVespeno(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirRecolectorDeGasVespeno");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 	

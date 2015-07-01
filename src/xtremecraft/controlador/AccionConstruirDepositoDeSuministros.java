@@ -19,10 +19,11 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa){
+	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirDepositoDeSuministros");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 	

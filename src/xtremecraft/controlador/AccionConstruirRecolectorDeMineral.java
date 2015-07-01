@@ -19,10 +19,11 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	
-	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa){
+	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirRecolectorDeMineral");
 		this.partida = partida;
+		this.coordenada = coordenada;
 		
 	}
 	
