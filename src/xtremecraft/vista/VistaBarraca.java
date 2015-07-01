@@ -30,6 +30,7 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Crear marine");
 		return acciones;
+		
 	}
 
 }
