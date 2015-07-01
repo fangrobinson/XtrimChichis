@@ -139,6 +139,8 @@ public class MapaObservable extends JPanel{
 			identificableVisible.setJugador(numero);
 			Vista vistaOcupante = (Vista) identificableVisible;
 			
+			this.sector.agregarObservadoresDeVistas(vistaOcupante);
+			
 			//agrego
 			
 			vistaNueva.agregarOcupante(vistaOcupante);
