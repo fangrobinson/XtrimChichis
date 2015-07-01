@@ -12,7 +12,6 @@ public class ObservableSeleccionado extends Observable{
 	private String estadoImprimibleObservable;
 	private ArrayList<String> acciones;
 	private Class<? extends Vista> claseVista;
-	
 
 	public void setCoordenada(Coordenada coordenada) {
 		
@@ -81,9 +80,10 @@ public class ObservableSeleccionado extends Observable{
 	}
 	
 	public Class<? extends Vista> getClaseVista(){
+
 		
 		return this.claseVista;
 		
 	}
-
+	
 }
