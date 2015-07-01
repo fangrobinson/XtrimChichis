@@ -22,6 +22,7 @@ public class MensajeDeError extends JFrame{
 		setVisible(true);
 		//TODO: hacer que el texto se ajuste dinamicamente a el frame.
 		setSize(500,150);
+		setBounds(380, 350, 300, 100);
 		
 		mensajeDeError = new JLabel(mensaje);
 			
