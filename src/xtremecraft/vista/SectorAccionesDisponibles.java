@@ -45,7 +45,7 @@ public class SectorAccionesDisponibles extends JPanel implements Observer{
 		
 		ObservableSeleccionado observable = (ObservableSeleccionado) obs;
 		Coordenada coordenadasSeleccionado = observable.getCoordenadaActualSeleccionado();
-		Class<?> claseSeleccionado = observable.getClass();
+		Class<?> claseSeleccionado = observable.getClaseVista();
 		HashMap<Class<?>, ArrayList<AbstractAction>> acciones = GeneradorDeAccionesDisponibles.generarAcciones(this.partida,this.mapaObservable,coordenadasSeleccionado);
 		ArrayList<AbstractAction> accionesSeleccionado = acciones.get(claseSeleccionado);
 		this.actualizarPanel(accionesSeleccionado);

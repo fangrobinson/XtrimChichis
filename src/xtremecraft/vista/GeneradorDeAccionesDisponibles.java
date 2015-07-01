@@ -20,7 +20,6 @@ import xtremecraft.controlador.AccionCrearNaveTransporte;
 import xtremecraft.controlador.AccionMover;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
-import xtremecraft.unidades.Espectro;
 
 public class GeneradorDeAccionesDisponibles {
 		
@@ -67,7 +66,7 @@ public class GeneradorDeAccionesDisponibles {
 		acciones.put(VistaPuertoEstelar.class, accionesPuertoEstelar);
 		acciones.put(VistaGoliat.class, accionesUnidades);
 		acciones.put(VistaMarine.class, accionesUnidades);
-		acciones.put(Espectro.class, accionesUnidades);
+		acciones.put(VistaEspectro.class, accionesUnidades);
 		//acciones.put(NaveCiencia.class, accionesUnidades);
 		//acciones.put(NaveTransporte.class, accionesUnidades);
 			
