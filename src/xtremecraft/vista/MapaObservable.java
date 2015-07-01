@@ -210,7 +210,7 @@ public class MapaObservable extends JPanel{
 		for (int i = 0; i < this.modeloReal.ancho(); i++){
 			for (int j = 0; j < this.modeloReal.alto(); j++){
 				Vista vistaActual = this.mapaVisible.get(i).get(j);
-				vistaActual.deleteObserver(observador);
+				vistaActual.borrarObservador(observador);
 			}
 		}
 		
