@@ -28,6 +28,7 @@ public class PedirJugadores extends JFrame{
 		
 		setTitle("Cantidad de jugadores");
 		setSize(250,100);
+		setBounds(475, 350, 250, 100);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -72,6 +73,7 @@ public class PedirJugadores extends JFrame{
 		pantallaNombres.setResizable(false);
 		
 		pantallaNombres.setSize(400,150);
+		pantallaNombres.setBounds(400, 300, 400, 150);
 		pantallaNombres.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		
