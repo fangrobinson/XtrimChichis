@@ -9,7 +9,6 @@ import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
-import xtremecraft.raza.FabricaNoEsDeLaRazaException;
 import xtremecraft.raza.PuertoEstelarNoEsDeLaRazaException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
