@@ -39,7 +39,7 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
 			} catch (InstantiationException | IllegalAccessException e) {
-				
+				new MensajeDeError("Error interno del sistema");
 			}
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");

@@ -42,7 +42,7 @@ public class AccionCrearGoliat extends AbstractAction{
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaGoliat);
 			} catch (InstantiationException | IllegalAccessException e) {
-				
+				new MensajeDeError("Error interno del sistema");
 			}
 			
 		}catch(CantidadDeSuministroInsuficienteException noHaySuministros){

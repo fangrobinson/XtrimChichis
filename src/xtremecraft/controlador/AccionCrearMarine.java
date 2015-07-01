@@ -42,7 +42,7 @@ public class AccionCrearMarine extends AbstractAction{
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaMarine);
 			} catch (InstantiationException | IllegalAccessException e) {
-				
+				new MensajeDeError("Error interno del sistema");
 			}
 			
 		}catch(CantidadDeSuministroInsuficienteException noHaySuministros){

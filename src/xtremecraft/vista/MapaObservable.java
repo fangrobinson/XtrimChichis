@@ -8,16 +8,15 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
 
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 
-import xtremecraft.controlador.AccionMover;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
-//import xtremecraft.unidades.Ubicable;
 
 public class MapaObservable extends JPanel{
 	
@@ -151,7 +150,7 @@ public class MapaObservable extends JPanel{
 		vistaNueva.setMaximumSize(new Dimension(25,25));
 		
 		this.add(vistaNueva, n);
-		//this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
+		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
 		this.sector.agregarObservadoresDeVistas(vistaNueva);
 		
 		revalidate();
@@ -194,7 +193,7 @@ public class MapaObservable extends JPanel{
 		vistaNueva.setMaximumSize(new Dimension(25,25));
 		
 		
-		//this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
+		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
 		this.sector.agregarObservadoresDeVistas(vistaNueva);
 		
 		revalidate();
@@ -204,9 +203,9 @@ public class MapaObservable extends JPanel{
 		
 	}
 
-	public void removerObservador(AccionMover accionMover) {
+	public void removerObservador(AbstractAction accion) {
 		
-		Observer observador = (Observer) accionMover;
+		Observer observador = (Observer) accion;
 		for (int i = 0; i < this.modeloReal.ancho(); i++){
 			for (int j = 0; j < this.modeloReal.alto(); j++){
 				Vista vistaActual = this.mapaVisible.get(i).get(j);

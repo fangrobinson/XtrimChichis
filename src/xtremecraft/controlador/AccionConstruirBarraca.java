@@ -40,10 +40,10 @@ public class AccionConstruirBarraca extends AbstractAction{
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
 			} catch (InstantiationException | IllegalAccessException e) {
-
+				new MensajeDeError("Error interno del sistema");
 			}
 		}catch(RecursosInsuficientesException noHayRecursos){
-			 new MensajeDeError("No se tienen suficientes recursos");
+			new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
 		}

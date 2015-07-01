@@ -40,7 +40,7 @@ public class AccionCrearNaveTransporte extends AbstractAction{
 			try {
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
 			} catch (InstantiationException | IllegalAccessException e) {
-				
+				new MensajeDeError("Error interno del sistema");
 			}
 			
 		}catch(CantidadDeSuministroInsuficienteException noHaySuministros){
