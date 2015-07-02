@@ -13,18 +13,19 @@ public abstract class Terreno extends Observable implements Identificable{
 	protected Ubicable ubicable;
 	protected Recurso recurso;
 	protected boolean tieneRecursos;
+	protected boolean estaOcupado;
 	
 	public Terreno(int fila, int columna){
 		
 		this.coordenada = new Coordenada(fila,columna);
-		this.ubicable = null;
+		this.estaOcupado = false;
 		this.tieneRecursos = false;
 		
 	}
 	
 	public boolean estaOcupado(){
 		
-		return (this.ubicable != null);
+		return this.estaOcupado;
 		
 	}
 		
@@ -81,7 +82,7 @@ public abstract class Terreno extends Observable implements Identificable{
 
 	public void desocupar() {
 		
-		this.ubicable = null;
+		this.estaOcupado = false;
 		
 	}
 
@@ -91,7 +92,6 @@ public abstract class Terreno extends Observable implements Identificable{
 		
 	}
 	
-
 	@Override
 	public int getJugador() {
 		

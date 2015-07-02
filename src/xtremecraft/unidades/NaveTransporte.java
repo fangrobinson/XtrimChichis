@@ -38,7 +38,7 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 	
-	public void actualizarUbicacion(Terreno terreno){
+	public void setUbicacionInicial(Terreno terreno){
 		
 		if(!this.estaUbicada){
 			this.terrenoActual = terreno;

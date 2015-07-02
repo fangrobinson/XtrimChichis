@@ -7,26 +7,29 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
-
-import javax.swing.AbstractAction;
 import javax.swing.JPanel;
-
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Partida;
+import xtremecraft.unidades.UbicacionNoValidaException;
+import xtremecraft.unidades.Unidad;
 
-public class MapaObservable extends JPanel{
+public class MapaObservable extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
 	private Mapa modeloReal;
+	private SectorJuego sector;
 	private HashMap<Class<?>, Class<?>> vistas;
 	private TreeMap<Integer, TreeMap<Integer, Vista>> mapaVisible;
+	private Coordenada coordenadaUltimoClickeado;
+	private Coordenada coordenadaOrigenMovimiento;
+	private boolean estrategiaDeMovimientoIniciada;
 
-	private SectorJuego sector;
 
 	public MapaObservable(){};
 	
@@ -37,6 +40,7 @@ public class MapaObservable extends JPanel{
 		this.modeloReal = mapa;
 		this.vistas = vistas;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
+		this.estrategiaDeMovimientoIniciada = false;
 		
 		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
@@ -68,13 +72,7 @@ public class MapaObservable extends JPanel{
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
-					
 					vistaNueva = (Vista) identificableVisible;
-					
-					//Implementacion con ocupantes
-					//Vista vistaOcupante = (Vista) identificableVisible;
-					//vistaNueva.agregarOcupante(vistaOcupante);
-					
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 					
 				}	
@@ -90,6 +88,7 @@ public class MapaObservable extends JPanel{
 				
 			}
 		}
+		this.agregarObservadorAVistas(this);
 		
 	}
 	
@@ -127,31 +126,22 @@ public class MapaObservable extends JPanel{
 			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
 			Vista vistaOcupante = (Vista) identificableVisible;
-			
-//			implementacion con ocupantes
-//			vistaNueva.agregarOcupante(vistaOcupante);
-			this.sector.agregarObservadoresDeVistas(vistaOcupante);
-			
-			//agrego
-			
 			vistaNueva = vistaOcupante;
-			
 			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 			vistaNueva.setMaximumSize(new Dimension(10,10));
 			
 		}
 		
 		observable.addObserver(vistaNueva);
-		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
 		
-		vistaNueva.paintComponents(getGraphics());
-		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());		
+		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
 		vistaNueva.paintComponents(getGraphics());
 		vistaNueva.setMaximumSize(new Dimension(25,25));
 		
 		this.add(vistaNueva, n);
 		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
 		this.sector.agregarObservadoresDeVistas(vistaNueva);
+		this.agregarObservadorAVista(vistaNueva, this);
 		
 		revalidate();
 		repaint();			
@@ -164,9 +154,15 @@ public class MapaObservable extends JPanel{
 		for (int i = 0; i < this.modeloReal.ancho(); i++){
 			for (int j = 0; j < this.modeloReal.alto(); j++){
 				Vista vistaActual = this.mapaVisible.get(i).get(j);
-				vistaActual.agregarObservador(observador);
+				this.agregarObservadorAVista(vistaActual, observador);
 			}
 		}
+		
+	}
+	
+	public void agregarObservadorAVista(Vista nuevaVistaObservada, Observer nuevoObservador){
+		
+		nuevaVistaObservada.agregarObservador(nuevoObservador);
 		
 	}
 	
@@ -176,45 +172,43 @@ public class MapaObservable extends JPanel{
 		
 	}
 
-	public void actualizarDesocuparUbicacion(Coordenada coordenada) throws InstantiationException, IllegalAccessException {
+	@Override
+	public void update(Observable obs, Object arg1) {
 		
-		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
-		Terreno terrenoInferior = celdaReal.getCapaInferior();
-		Class<?> vistaClase;
-		vistaClase = this.vistas.get(terrenoInferior.getClass());
-		Vista vistaNueva = (Vista) vistaClase.newInstance();
-		Observable observable = (Observable)terrenoInferior;
-		observable.addObserver(vistaNueva);
-		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
-		
-		vistaNueva.paintComponents(getGraphics());
-		vistaNueva.setCoordenada(terrenoInferior.getCoordenada());		
-		vistaNueva.paintComponents(getGraphics());
-		vistaNueva.setMaximumSize(new Dimension(25,25));
-		
-		
-		this.mapaVisible.get(coordenada.fila()).put(coordenada.columna(),vistaNueva);
-		this.sector.agregarObservadoresDeVistas(vistaNueva);
-		
-		revalidate();
-		repaint();			
-		
-		
-		
-	}
-
-	public void removerObservador(AbstractAction accion) {
-		
-		Observer observador = (Observer) accion;
-		for (int i = 0; i < this.modeloReal.ancho(); i++){
-			for (int j = 0; j < this.modeloReal.alto(); j++){
-				Vista vistaActual = this.mapaVisible.get(i).get(j);
-				vistaActual.borrarObservador(observador);
+		ObservableSeleccionado observable = (ObservableSeleccionado) obs;
+		this.coordenadaUltimoClickeado = observable.getCoordenadaActualSeleccionado();
+		if(this.estrategiaDeMovimientoIniciada){
+			Celda celdaOrigen = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaOrigenMovimiento.fila(), this.coordenadaOrigenMovimiento.columna());
+			Celda celdaDestino = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
+			Terreno terrenoDestino = celdaDestino.getCapaInferior();
+			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
+			if (unidadAMover.estaEnConstruccion() || !unidadAMover.puedeMoverse()){
+				new MensajeDeError("Esta unidad esta en construccion o ya realizó un movimiento en el turno actual.");
+			}
+			try{
+				unidadAMover.actualizarUbicacion(terrenoDestino);
+			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
+				new MensajeDeError("No se puede mover a la locacion seleccionada");
+			}
+			try {
+				this.actualizarVistaEnCoordenada(this.coordenadaOrigenMovimiento);
+				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
+				this.estrategiaDeMovimientoIniciada = false;
+				
+			} catch (InstantiationException | IllegalAccessException e) {
+				new MensajeDeError("Error interno del sistema");
 			}
 		}
 		
 	}
+
+	public void comenzarMovimiento(Coordenada coordenadaInicioMovimiento) {
+		//TODO: ver que el jugador que inicio el movimiento es el mismo que la termina.
+		//tal vez hacer reset de estrategiaDeMovimientoIniciada al pasar el turno.
+		this.estrategiaDeMovimientoIniciada = true;
+		this.coordenadaOrigenMovimiento = coordenadaInicioMovimiento;
 		
+	}		
 
 }
 	

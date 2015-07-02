@@ -105,13 +105,19 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		notifyObservers();
 	}
 
-	public void actualizarUbicacion(Terreno unTerreno){
+	public void setUbicacionInicial(Terreno unTerreno){
 		
-		this.terrenoActual.desocupar();
 		this.terrenoActual = unTerreno;
 		terrenoActual.ubicar(this);
 		
 	}
+	
+	public void actualizarUbicacion(Terreno unTerreno){
+		
+		this.terrenoActual.desocupar();
+		this.setUbicacionInicial(unTerreno);
+		
+	}	
 	
 	public int tiempoConstruccion(){
 		

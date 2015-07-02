@@ -8,9 +8,9 @@ import javax.swing.AbstractAction;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
@@ -61,7 +61,7 @@ public class AccionAtacar extends AbstractAction implements Observer{
 		
 		}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
 			new MensajeDeError("El atacado esta fuera del rango del atacante");
-		}catch(ElAtacanteNoEsDelJugadorException elAtacanteNoEsPropio){
+		}catch(SeleccionadoNoEsPropiedadDelJugadorException elAtacanteNoEsPropio){
 			new MensajeDeError("No se selecciono a un agresor propio");
 		}catch(YaSeSeleccionoUnAtaqueException masDeUnAtaquePorTurno){
 			new MensajeDeError("No se puede atacar más de una vez por turno");	

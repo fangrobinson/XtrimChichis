@@ -13,6 +13,7 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Actualizable;
 import xtremecraft.partida.Jugador;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.unidades.ConstructorDeUnidades;
 import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.Unidad;
@@ -110,11 +111,11 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
+	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if(!this.esDeMiPropiedad(unaBarraca)){
 	
-			throw new BarracaNoEsDeLaRazaException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		
@@ -130,11 +131,11 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
+	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if(!this.esDeMiPropiedad(unaFabrica)){
 		
-			throw new FabricaNoEsDeLaRazaException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		
@@ -150,11 +151,11 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
+	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if(!this.esDeMiPropiedad(puerto)){
 		
-			throw new PuertoEstelarNoEsDeLaRazaException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		
@@ -170,11 +171,11 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
+	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if(!this.esDeMiPropiedad(puerto)){
 		
-			throw new PuertoEstelarNoEsDeLaRazaException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		
@@ -190,11 +191,11 @@ public class Terran implements Actualizable{
 		
 	}
 
-	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
+	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if(!this.esDeMiPropiedad(puerto)){
 		
-			throw new PuertoEstelarNoEsDeLaRazaException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		

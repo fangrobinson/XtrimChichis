@@ -9,7 +9,7 @@ import xtremecraft.edificios.EdificioEnConstruccionException;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
-import xtremecraft.raza.BarracaNoEsDeLaRazaException;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Marine;
@@ -57,8 +57,8 @@ public class AccionCrearMarine extends AbstractAction{
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
 		}catch(EdificioEnConstruccionException edificioEnContruccion){
 			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
-		}catch(BarracaNoEsDeLaRazaException esteEdificioNoEsDelJugador){
-			new MensajeDeError("Este edificio no es del jugador en turno");
+		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
+			new MensajeDeError("Este edificio no pertenece al jugador actual");
 		}
 		
 	}

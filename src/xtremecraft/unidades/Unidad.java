@@ -9,7 +9,7 @@ import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad extends Observable implements Ubicable,Atacable,Defendible,Actualizable,Construible,Cobrable,Identificable{
+public abstract class Unidad extends Observable implements Ubicable, Atacable, Defendible, Actualizable, Construible, Cobrable, Identificable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -154,17 +154,21 @@ public abstract class Unidad extends Observable implements Ubicable,Atacable,Def
     	
 	}
     
+    public void setUbicacionInicial(Terreno terreno){
+    	
+    	this.terrenoActual = terreno;
+		this.estaUbicada = true;
+    	
+    }
+    
     public void actualizarUbicacion(Terreno terreno) {
 
-    	if(this.estaUbicada){
-    		if((!this.puedoVer(terreno.getCoordenada()))|| terreno.estaOcupado()){
-    			throw new UbicacionNoValidaException();
-    		}
-    		this.terrenoActual.desocupar();
+    	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() ){
+    		throw new UbicacionNoValidaException();
     	}
+    	this.terrenoActual.desocupar();
+    	terreno.ubicar(this);    	
     	this.terrenoActual = terreno;
-    	terrenoActual.ubicar(this);
-		this.estaUbicada = true;
 		
 	}
     

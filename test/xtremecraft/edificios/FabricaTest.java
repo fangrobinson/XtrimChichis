@@ -205,7 +205,7 @@ public class FabricaTest {
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesAFabrica = 17;
 		
-		miniSamus.actualizarUbicacion(tierra3);
+		miniSamus.setUbicacionInicial(tierra3);
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
 		for(int i=0;i<cantidadDeAtaquesAFabrica;i++) miniSamus.atacar(fabrica);
 		

@@ -89,8 +89,8 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(jugador);
 		Espectro tanque2 = new Espectro(jugador);
 		
-		tanque1.actualizarUbicacion(tierra);
-		tanque2.actualizarUbicacion(aire);
+		tanque1.setUbicacionInicial(tierra);
+		tanque2.setUbicacionInicial(aire);
 		
 		for (int i = 0; i < tanque2.tiempoConstruccion(); i++){
 			tanque1.pasarTiempo();
@@ -111,8 +111,8 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(jugador);
 		Goliat tanque2 = new Goliat(jugador);
 		
-		tanque1.actualizarUbicacion(tierra1);
-		tanque2.actualizarUbicacion(tierra2);
+		tanque1.setUbicacionInicial(tierra1);
+		tanque2.setUbicacionInicial(tierra2);
 		
 		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
 			tanque1.pasarTiempo();
@@ -134,8 +134,8 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(jugador);
 		Goliat tanque2 = new Goliat(jugador);
 		
-		tanque1.actualizarUbicacion(tierra);
-		tanque2.actualizarUbicacion(tierraDos);
+		tanque1.setUbicacionInicial(tierra);
+		tanque2.setUbicacionInicial(tierraDos);
 		
 		tanque1.atacar(tanque2);
 	}
@@ -150,8 +150,8 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(jugador);
 		Goliat tanque2 = new Goliat(jugador);
 		
-		tanque1.actualizarUbicacion(tierra1);
-		tanque2.actualizarUbicacion(tierra2);
+		tanque1.setUbicacionInicial(tierra1);
+		tanque2.setUbicacionInicial(tierra2);
 		
 		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
 			tanque1.pasarTiempo();
@@ -174,8 +174,8 @@ public class GoliatTest {
 		Goliat tanque1 = new Goliat(jugador);
 		Goliat tanque2 = new Goliat(jugador);
 		
-		tanque1.actualizarUbicacion(tierra1);
-		tanque2.actualizarUbicacion(tierra2);
+		tanque1.setUbicacionInicial(tierra1);
+		tanque2.setUbicacionInicial(tierra2);
 		
 		for (int i = 0; i < tanque1.tiempoConstruccion(); i++){
 			tanque1.pasarTiempo();
@@ -197,7 +197,7 @@ public class GoliatTest {
 		Terreno tierra = new Tierra(1,2);
 		Goliat tanque = new Goliat(jugador);
 		
-		tanque.actualizarUbicacion(tierra);
+		tanque.setUbicacionInicial(tierra);
 
 		
 		assertEquals(tanque.getUbicacionActual(),tierra.getUbicacionActual());
@@ -212,8 +212,8 @@ public class GoliatTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Goliat tanque = new Goliat(jugador);
 		
-		tanque.actualizarUbicacion(tierra1);
-		tanque.actualizarUbicacion(tierra2);
+		tanque.setUbicacionInicial(tierra1);
+		tanque.setUbicacionInicial(tierra2);
 
 		assertFalse(tierra1.estaOcupado());
 		
@@ -227,7 +227,7 @@ public class GoliatTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Goliat tanque = new Goliat(jugador);
 		
-		tanque.actualizarUbicacion(tierra1);
+		tanque.setUbicacionInicial(tierra1);
 		tanque.actualizarUbicacion(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
@@ -242,7 +242,7 @@ public class GoliatTest {
 		Terreno aireDestino = new Aire(1,1);
 		Goliat tanque = new Goliat(jugador);
 		
-		tanque.actualizarUbicacion(tierra);
+		tanque.setUbicacionInicial(tierra);
 		tanque.actualizarUbicacion(aireDestino);
 		
 	}
@@ -255,7 +255,7 @@ public class GoliatTest {
 		Terreno tierraDestino = new Tierra(20,20);
 		Goliat tanque = new Goliat(jugador);
 		
-		tanque.actualizarUbicacion(tierra);
+		tanque.setUbicacionInicial(tierra);
 		tanque.actualizarUbicacion(tierraDestino);
 		
 	}
@@ -269,8 +269,8 @@ public class GoliatTest {
 		Goliat tanque = new Goliat(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
-		tanque.actualizarUbicacion(tierra);
-		nave.actualizarUbicacion(otraTierra);
+		tanque.setUbicacionInicial(tierra);
+		nave.setUbicacionInicial(otraTierra);
 		
 		nave.transportarNuevaUnidad(tanque);
 					
@@ -285,7 +285,7 @@ public class GoliatTest {
 		Goliat goliatAtacado = new Goliat(jugador);
 		int vidaInicialGoliat = goliatAtacado.getVida();
 		
-		goliatAtacado.actualizarUbicacion(tierra);
+		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -303,7 +303,7 @@ public class GoliatTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Goliat goliatAtacado = new Goliat(jugador);
 		
-		goliatAtacado.actualizarUbicacion(tierra);
+		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);

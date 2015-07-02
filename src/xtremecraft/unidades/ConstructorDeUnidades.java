@@ -56,9 +56,10 @@ public abstract class ConstructorDeUnidades {
 		boolean unidadEstaUbicada = false;
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unEdificio);
 		Celda unaCelda = celdasAdyacentesAlEdificio.remove(0);
-		while(!( celdasAdyacentesAlEdificio.isEmpty() || unidadEstaUbicada ) ){
+		while( ! ( celdasAdyacentesAlEdificio.isEmpty() || unidadEstaUbicada ) ){
 			try{
 				mapa.ubicar(nuevaUnidad, unaCelda);
+				unidadEstaUbicada = true;
 			}
 			catch(RuntimeException NoSePudoOcuparElTerrenoException){
 				unaCelda = celdasAdyacentesAlEdificio.remove(0);

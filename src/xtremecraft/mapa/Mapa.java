@@ -138,14 +138,18 @@ public class Mapa {
 	
 	public void ubicar(Ubicable ubicable, Celda celda){
 		
-		Terreno terreno = null;
+		if(!this.coordenadaEstaDentroDelMapa(new Coordenada(celda.fila(),celda.columna()))){
+			throw new NoSePudoOcuparElTerrenoException();
+		}
+		Terreno terreno;
 		try{
-			terreno = this.ubicarCapaInferior(ubicable, celda);
+			terreno = this.ubicarCapaInferior(ubicable, celda);			
 		}
 		catch(RuntimeException NoSePudoOcuparElTerrenoException){
 			terreno = this.ubicarCapaSuperior(ubicable, celda);
+			
 		}
-		ubicable.actualizarUbicacion(terreno);
+		ubicable.setUbicacionInicial(terreno);
 		
 	}
 	

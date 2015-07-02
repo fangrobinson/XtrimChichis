@@ -8,7 +8,7 @@ public interface Ubicable {
 	
 	Coordenada getUbicacionActual();
 	
-	void actualizarUbicacion(Terreno unTerreno);
+	void setUbicacionInicial(Terreno unTerreno);
 		
 	boolean puedeUbicarseSobreRecursoNatural();
 	
@@ -19,5 +19,7 @@ public interface Ubicable {
 	boolean puedeUbicarseEnAire();
 	
 	boolean estaElevado();
+
+	void actualizarUbicacion(Terreno terreno);
 	
 }

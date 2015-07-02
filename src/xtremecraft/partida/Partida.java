@@ -6,6 +6,7 @@ import java.util.Observer;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Ubicable;
@@ -168,7 +169,7 @@ public class Partida {
 	
 	}
 	
-	public void crearMarine(Jugador jugador, Barraca unaBarraca){
+	public void crearMarine(Jugador jugador, Barraca unaBarraca) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if (jugador != this.quienJuega()){
 	
@@ -180,7 +181,7 @@ public class Partida {
 		
 	}
 	
-	public void crearGoliat(Jugador jugador, Fabrica unaFabrica){
+	public void crearGoliat(Jugador jugador, Fabrica unaFabrica) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if (jugador != this.quienJuega()){
 		
@@ -191,7 +192,7 @@ public class Partida {
 		jugador.crearGoliat(unaFabrica, this.mapa);
 	}
 	
-	public void crearEspectro(Jugador jugador, PuertoEstelar unPuerto){
+	public void crearEspectro(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if (jugador != this.quienJuega()){
 		
@@ -203,7 +204,7 @@ public class Partida {
 		
 	}
 	
-	public void crearNaveCiencia(Jugador jugador, PuertoEstelar unPuerto){
+	public void crearNaveCiencia(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if (jugador != this.quienJuega()){
 		
@@ -215,7 +216,7 @@ public class Partida {
 		
 	}
 	
-	public void crearNaveTransporte(Jugador jugador, PuertoEstelar unPuerto){
+	public void crearNaveTransporte(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		if (jugador != this.quienJuega()){
 		
@@ -234,6 +235,22 @@ public class Partida {
 			Jugador jugadorActual = this.jugadores.get(posicion);
 			jugadorActual.addObserver(observador);
 		
+		}
+		
+	}
+
+	public boolean ubicableElegidoEsDelJugador(Coordenada coordenada)  {
+		
+		Ubicable ubicable = mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
+		return this.quienJuega().esDeMiPropiedad(ubicable);
+		
+	}
+
+	public void validarQueUbicableElegidoEsDelJugador(Coordenada coordenada) throws SeleccionadoNoEsPropiedadDelJugadorException {
+		
+		Ubicable ubicable = mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
+		if( !this.quienJuega().esDeMiPropiedad(ubicable) ){
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		}
 		
 	}

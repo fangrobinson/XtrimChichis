@@ -18,17 +18,15 @@ public abstract class UnidadTerrestre extends Unidad {
 	public boolean puedeUbicarseEnAire() {
 		return false;
 	}
+	
+	 public void actualizarUbicacion(Terreno terreno) {
 
-	public void actualizarUbicacion(Terreno terreno) {
-
-	   	if(this.estaUbicada){
-	   		if(!this.puedoVer(terreno.getCoordenada()) || terreno.estaElevado() ) throw new UbicacionNoValidaException();
-	   		this.terrenoActual.desocupar();
+	   	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() || terreno.estaElevado()){
+	   		throw new UbicacionNoValidaException();
 	   	}
+	   	this.terrenoActual.desocupar();
+	   	terreno.ubicar(this);    	
 	   	this.terrenoActual = terreno;
-	   	terrenoActual.ubicar(this);
-		this.estaUbicada = true;
 			
 	}
-
 }

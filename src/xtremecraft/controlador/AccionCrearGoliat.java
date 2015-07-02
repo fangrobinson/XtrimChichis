@@ -9,8 +9,8 @@ import xtremecraft.edificios.Fabrica;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
-import xtremecraft.raza.FabricaNoEsDeLaRazaException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.vista.MapaObservable;
@@ -34,7 +34,7 @@ public class AccionCrearGoliat extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+			
 		Jugador jugadorActual = partida.quienJuega();
 		Fabrica fabrica = (Fabrica) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
 		
@@ -57,8 +57,8 @@ public class AccionCrearGoliat extends AbstractAction{
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
 		}catch(EdificioEnConstruccionException edificioEnContruccion){
 			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
-		}catch(FabricaNoEsDeLaRazaException esteEdificioNoEsDelJugador){
-			new MensajeDeError("Este edificio no es del jugador en turno");
+		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
+			new MensajeDeError("Este edificio no pertenece al jugador actual");
 		}
 		
 	}
