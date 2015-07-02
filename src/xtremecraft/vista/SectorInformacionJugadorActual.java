@@ -26,8 +26,10 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 	JButton btnPasarTurno = new JButton("PASAR TURNO");
 
 	private JLabel nombreJugador;
+
+	private MapaObservable mapaVistas;
 	
-	public SectorInformacionJugadorActual(Partida partida){
+	public SectorInformacionJugadorActual(Partida partida, MapaObservable mapaVistas){
 		
 		partida.agregarObservadorDeJugadores(this,partida.quienJuega());
 		
@@ -35,7 +37,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 		setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 		
 		this.partida = partida;
-		
+		this.mapaVistas = mapaVistas;
 		this.tituloPanel = new JLabel ( "SUMINISTROS Y RECURSOS" );
 		this.nombreJugador = new JLabel(this.partida.quienJuega().nombre());
 		
@@ -96,6 +98,7 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 	public void mouseClicked(MouseEvent e) {
 		
 		partida.quienJuega().pasarTurno();
+		mapaVistas.pasarTurno();
 		this.generarVistaPanel(partida.quienJuega());
 		
 	}

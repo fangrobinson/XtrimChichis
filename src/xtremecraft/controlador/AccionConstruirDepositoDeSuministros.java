@@ -12,6 +12,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionConstruirDepositoDeSuministros extends AbstractAction{
@@ -19,14 +20,15 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
 		
 		super("ConstruirDepositoDeSuministros");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		
+		this.sector = sectorAccionesDisponibles;
 	}
 	
 	@Override
@@ -50,6 +52,8 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
+		}finally{
+			this.sector.removeAll();
 		}
 		
 	}
