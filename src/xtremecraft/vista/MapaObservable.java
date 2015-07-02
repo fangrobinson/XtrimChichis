@@ -184,11 +184,10 @@ public class MapaObservable extends JPanel implements Observer{
 			Terreno terrenoDestino = celdaDestino.getCapaInferior();
 			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
 			
-			unidadAMover.setUbicacionInicial(terrenoDestino);
+			unidadAMover.actualizarUbicacion(terrenoDestino);
 			try {
-				
 				this.actualizarVistaEnCoordenada(this.coordenadaOrigenMovimiento);
-				//this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
+				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 				this.estrategiaDeMovimientoIniciada = false;
 				
 			} catch (InstantiationException | IllegalAccessException e) {
