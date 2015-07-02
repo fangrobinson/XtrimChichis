@@ -2,6 +2,7 @@ package xtremecraft.mapa;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.Observable;
 import java.util.TreeMap;
 
 import xtremecraft.recursos.MinaDeMinerales;
@@ -10,7 +11,7 @@ import xtremecraft.recursos.VolcanGasVespeno;
 import xtremecraft.unidades.Ubicable;
 
 
-public class Mapa {
+public class Mapa extends Observable{
 	
 	private TreeMap<Integer, TreeMap<Integer, Celda>> mapaAlto;
 	private int alto;

@@ -63,6 +63,7 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
         }
         setChanged();
 		notifyObservers();
+		
     }
     
     public static String getEstadoInicial(){
