@@ -17,6 +17,7 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.raza.Terran;
 
@@ -238,7 +239,7 @@ public class NaveCienciaTest {
 	}
 	
 	@Test
-	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioDeImpactoPierdeSuEnergia(){
+	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioDeImpactoPierdeSuEnergia() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Jugador jugador1 = crearJugadorConRecursosSuficientesParaConstruir();
 		Jugador jugador2 = crearJugadorConRecursosSuficientesParaConstruir();
@@ -418,7 +419,7 @@ public class NaveCienciaTest {
 	}
 	
 	@Test
-	public void atacarConRadiacionHaceQueLasUnidadesADistanciaMenorOIgualAUnoDeLaAfectadaRecibanDanio(){
+	public void atacarConRadiacionHaceQueLasUnidadesADistanciaMenorOIgualAUnoDeLaAfectadaRecibanDanio() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		//TODO: ver que pasa con emitir radiacion cuando hago goliatAtacado.pasarTurno();
 		Jugador jugador1 = crearJugadorConRecursosSuficientesParaConstruir();
 		Jugador jugador2 = crearJugadorConRecursosSuficientesParaConstruir();

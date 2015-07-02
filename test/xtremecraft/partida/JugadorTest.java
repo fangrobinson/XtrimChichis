@@ -8,10 +8,8 @@ import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
-//import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Tierra;
-import xtremecraft.partida.ElAtacanteNoEsDelJugadorException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.JugadorNoTieneElTurnoException;
 import xtremecraft.partida.NombreMuyCortoException;
@@ -19,6 +17,7 @@ import xtremecraft.raza.IteradorEdificios;
 import xtremecraft.raza.IteradorUnidades;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
+import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.unidades.Marine;
 import static org.junit.Assert.assertEquals;
@@ -81,7 +80,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad (){
+	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad () throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		boolean bool = true;
 		Tierra tierra = new Tierra(1,1);
@@ -117,8 +116,8 @@ public class JugadorTest {
 		
 	}
 	
-	@Test (expected = ElAtacanteNoEsDelJugadorException.class)
-	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia (){
+	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia () throws AtaqueFueraDelRangoDeVisionException, SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Tierra tierra = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);
@@ -145,7 +144,6 @@ public class JugadorTest {
 		
 		Marine marine2 = jugador2.crearMarine(barraca2, unMapa);
 		for(int turno=0;turno<marine2.tiempoConstruccion();turno++) marine2.pasarTiempo();
-		
 		
 		jugador.atacar(marine2, marine);
 		
@@ -370,7 +368,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void alPasarTiempoSeConstruyeUnaUnidad(){
+	public void alPasarTiempoSeConstruyeUnaUnidad() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Tierra tierra1 = new Tierra(1,1);
 		Tierra tierra2 = new Tierra(1,2);

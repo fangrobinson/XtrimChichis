@@ -19,6 +19,7 @@ import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.partida.Jugador;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
 import xtremecraft.unidades.Unidad;
@@ -228,8 +229,8 @@ public class TerranTest {
 		
 	}
 	
-	@Test (expected = BarracaNoEsDeLaRazaException.class)
-	public void crearMarineConBarracaNoPropiaLanzaBarracaNoEsDeLaRazaException(){
+	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void crearMarineConBarracaNoPropiaLanzaBarracaNoEsDeLaRazaException() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
 		Terran razaTerran2 = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -241,8 +242,8 @@ public class TerranTest {
 		Unidad unMarine = razaTerran2.crearMarine(unaBarraca, mapa);
 	}
 	
-	@Test(expected = FabricaNoEsDeLaRazaException.class)
-	public void crearGoliatConFabricaNoPropiaLanzaFabricaNoEsDeLaRazaException(){
+	@Test(expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void crearGoliatConFabricaNoPropiaLanzaFabricaNoEsDeLaRazaException() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -258,8 +259,8 @@ public class TerranTest {
 		Unidad unGoliat = razaTerran2.crearGoliat(fabrica, mapa);
 	}
 	
-	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
-	public void crearEspectroConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void crearEspectroConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(4);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -279,8 +280,8 @@ public class TerranTest {
 		Unidad unEspectro = razaTerran2.crearEspectro(puerto, mapa);
 	}
 	
-	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
-	public void crearNaveCienciaConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void crearNaveCienciaConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -300,8 +301,8 @@ public class TerranTest {
 		Unidad naveCiencia = razaTerran2.crearNaveCiencia(puerto, mapa);
 	}
 	
-	@Test (expected = PuertoEstelarNoEsDeLaRazaException.class)
-	public void crearNaveDeTransporteConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException(){
+	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
+	public void crearNaveDeTransporteConPuertoEstelarNoPropioLanzaPuertoEstelarNoEsDeLaRazaException() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -322,7 +323,7 @@ public class TerranTest {
 	}
 
 	@Test
-	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
+	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa() throws SeleccionadoNoEsPropiedadDelJugadorException{
 	
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -339,7 +340,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void crearGoliatEntrenaUnNuevoGoliatYLoUbicaEnElMapa(){
+	public void crearGoliatEntrenaUnNuevoGoliatYLoUbicaEnElMapa() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -360,7 +361,7 @@ public class TerranTest {
 	
 	
 	@Test
-	public void crearEspectroCreaUnNuevoEspectroYLoUbicaEnElMapa(){
+	public void crearEspectroCreaUnNuevoEspectroYLoUbicaEnElMapa() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -381,7 +382,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void crearNaveCienciaCreaUnaNuevaNaveYLaUbicaEnElMapa(){
+	public void crearNaveCienciaCreaUnaNuevaNaveYLaUbicaEnElMapa() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -404,7 +405,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void crearNaveTransporteCreaUnaNuevaNaveYLaUbicaEnElMapa(){
+	public void crearNaveTransporteCreaUnaNuevaNaveYLaUbicaEnElMapa() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -427,7 +428,7 @@ public class TerranTest {
 	}
 	
 	@Test(expected = CantidadDeSuministroInsuficienteException.class)
-	public void siIntentoCrearUnaUnidadYNoTengoSuministrosSuificientesSeLanzaExcepcion(){
+	public void siIntentoCrearUnaUnidadYNoTengoSuministrosSuificientesSeLanzaExcepcion() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -469,7 +470,7 @@ public class TerranTest {
 	}
 	
 	@Test
-	public void pasarTiempoActualizaTodasLosEstadosDeTodasLasUnidadesCreadas(){
+	public void pasarTiempoActualizaTodasLosEstadosDeTodasLasUnidadesCreadas() throws SeleccionadoNoEsPropiedadDelJugadorException{
 
 		Mapa mapa = new Mapa(2);
 		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
@@ -483,26 +484,5 @@ public class TerranTest {
 		assertFalse(unMarine.estaEnConstruccion());
 		
 	}
-	/*
-	@Test
-	public void crearUnidadPermiteCrearHastaSeisUnidadesAlrededorDeUnaBarraca(){
-		
-		Mapa mapa = new Mapa(2);
-		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
-		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
-		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
-		
-		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
-		Unidad marine1 = razaTerran.crearMarine(unaBarraca, mapa);
-		Unidad marine2 = razaTerran.crearMarine(unaBarraca, mapa);
-		Unidad marine3 = razaTerran.crearMarine(unaBarraca, mapa);
-				
-		Coordenada coordenada1 = marine1.getUbicacionActual();
-		Coordenada coordenada2 = marine2.getUbicacionActual();
-		Coordenada coordenada3 = marine3.getUbicacionActual();
 	
-		assertEquals(marine3.getVida(),40);
-		
-	}
-	*/
 }

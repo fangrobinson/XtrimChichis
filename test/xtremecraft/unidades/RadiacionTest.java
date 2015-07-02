@@ -15,6 +15,7 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.Terran;
 
 public class RadiacionTest {
@@ -52,7 +53,7 @@ public class RadiacionTest {
 	}
 	
 	@Test
-	public void emitirRadiacionDisminuyeLaVidaDeLasUnidadesADistanciaMenorOIgualAUnoDeUnidadRadioactiva(){
+	public void emitirRadiacionDisminuyeLaVidaDeLasUnidadesADistanciaMenorOIgualAUnoDeUnidadRadioactiva() throws SeleccionadoNoEsPropiedadDelJugadorException{
 
 		Jugador jugador1 = crearJugadorConRecursosSuficientesParaConstruir();
 		Jugador jugador2 = crearJugadorConRecursosSuficientesParaConstruir();

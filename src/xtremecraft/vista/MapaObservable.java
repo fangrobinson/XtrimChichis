@@ -11,10 +11,11 @@ import javax.swing.JPanel;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
+import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
-import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 public class MapaObservable extends JPanel implements Observer{
@@ -28,7 +29,6 @@ public class MapaObservable extends JPanel implements Observer{
 	private Coordenada coordenadaUltimoClickeado;
 	private Coordenada coordenadaOrigenMovimiento;
 	private boolean estrategiaDeMovimientoIniciada;
-	private Partida partidaActual;
 
 
 	public MapaObservable(){};
@@ -38,7 +38,6 @@ public class MapaObservable extends JPanel implements Observer{
 		Mapa mapa = partida.getMapa();
 		this.sector = sectorJuego;
 		this.modeloReal = mapa;
-		this.partidaActual = partida;
 		this.vistas = vistas;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
 		this.estrategiaDeMovimientoIniciada = false;
@@ -183,8 +182,14 @@ public class MapaObservable extends JPanel implements Observer{
 			Celda celdaDestino = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
 			Terreno terrenoDestino = celdaDestino.getCapaInferior();
 			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
-			
-			unidadAMover.actualizarUbicacion(terrenoDestino);
+			if (unidadAMover.estaEnConstruccion() || !unidadAMover.puedeMoverse()){
+				new MensajeDeError("Esta unidad esta en construccion o ya realizó un movimiento en el turno actual.");
+			}
+			try{
+				unidadAMover.actualizarUbicacion(terrenoDestino);
+			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
+				new MensajeDeError("No se puede mover a la locacion seleccionada");
+			}
 			try {
 				this.actualizarVistaEnCoordenada(this.coordenadaOrigenMovimiento);
 				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);

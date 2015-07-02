@@ -8,8 +8,8 @@ import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
-import xtremecraft.raza.PuertoEstelarNoEsDeLaRazaException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
@@ -52,8 +52,9 @@ public class AccionCrearEspectro extends AbstractAction{
 			new MensajeDeError("La cantidad de poblacion disponibles no es suficiente");
 		}catch(RecursosInsuficientesException noHayRecursos){
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
-		}catch(PuertoEstelarNoEsDeLaRazaException esteEdificioNoEsDelJugador){
-			new MensajeDeError("Este edificio no es del jugador en turno");
+		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
+			new MensajeDeError("Este edificio no pertenece al jugador actual");
 		}
+		
 	}
 }

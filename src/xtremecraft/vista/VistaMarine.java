@@ -10,7 +10,7 @@ import xtremecraft.unidades.Marine;
 public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
-	static String estadoInicial = "vida: "+Integer.toString(Marine.getVidaInicial());//Marine.getEstadoInicial();
+	static String estadoInicial = Marine.getEstadoInicial();
 	
 	public VistaMarine(){
 		

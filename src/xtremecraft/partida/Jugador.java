@@ -80,13 +80,13 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public void atacar(Defendible atacante, Atacable atacado) throws AtaqueFueraDelRangoDeVisionException, ElAtacanteNoEsDelJugadorException{
+	public void atacar(Defendible atacante, Atacable atacado) throws AtaqueFueraDelRangoDeVisionException, SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Ubicable atacanteUbicado = (Ubicable) atacante;
 		
 		if (!this.esDeMiPropiedad(atacanteUbicado)){
 			
-			throw new ElAtacanteNoEsDelJugadorException();
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		
 		}
 		
@@ -158,7 +158,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public Marine crearMarine(Barraca unaBarraca, Mapa unMapa){
+	public Marine crearMarine(Barraca unaBarraca, Mapa unMapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Marine nuevoMarine = (Marine) this.nacion.crearMarine(unaBarraca, unMapa);
 		this.setChanged();
@@ -168,7 +168,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public Goliat crearGoliat(Fabrica unaFabrica, Mapa unMapa){
+	public Goliat crearGoliat(Fabrica unaFabrica, Mapa unMapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Goliat nuevoGoliat = (Goliat) this.nacion.crearGoliat(unaFabrica, unMapa);
 		this.setChanged();
@@ -178,7 +178,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public Espectro crearEspectro(PuertoEstelar unPuerto, Mapa unMapa){
+	public Espectro crearEspectro(PuertoEstelar unPuerto, Mapa unMapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Espectro nuevoEspectro = (Espectro) this.nacion.crearEspectro(unPuerto, unMapa);
 		this.setChanged();
@@ -188,7 +188,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa){
+	public NaveCiencia crearNaveCiencia(PuertoEstelar unPuerto, Mapa unMapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		NaveCiencia nuevaNaveCiencia = (NaveCiencia) this.nacion.crearNaveCiencia(unPuerto, unMapa);
 		this.setChanged();
@@ -198,7 +198,7 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public NaveTransporte crearNaveTransporte(PuertoEstelar unPuerto, Mapa unMapa){
+	public NaveTransporte crearNaveTransporte(PuertoEstelar unPuerto, Mapa unMapa) throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		NaveTransporte nuevaNaveTransporte = (NaveTransporte) this.nacion.crearNaveTransporte(unPuerto, unMapa);
 		this.setChanged();

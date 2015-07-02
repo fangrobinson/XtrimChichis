@@ -17,13 +17,14 @@ import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Marine;
 
 
 public class IntegracionTest {
 	
 	@Test
-	public void prueba01CreacionDeEdificiosYAtaquesValidos(){
+	public void prueba01CreacionDeEdificiosYAtaquesValidos() throws AtaqueFueraDelRangoDeVisionException, SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		ArrayList<String> nombresJugadores = new ArrayList<String>();
 		nombresJugadores.add("noob");
