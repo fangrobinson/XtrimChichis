@@ -15,6 +15,7 @@ import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionCrearGoliat extends AbstractAction{
@@ -22,13 +23,15 @@ public class AccionCrearGoliat extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionCrearGoliat(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionCrearGoliat(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
 		
 		super("CrearGoliat");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
+		this.sector = sectorAccionesDisponibles;
 		
 	}
 
@@ -59,7 +62,8 @@ public class AccionCrearGoliat extends AbstractAction{
 			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
 		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
 			new MensajeDeError("Este edificio no pertenece al jugador actual");
+		}finally{
+			this.sector.removeAll();
 		}
-		
 	}
 }

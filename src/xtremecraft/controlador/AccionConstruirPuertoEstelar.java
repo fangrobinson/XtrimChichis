@@ -13,6 +13,7 @@ import xtremecraft.raza.RazaNoTieneFabricasException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionConstruirPuertoEstelar extends AbstractAction{
@@ -20,13 +21,15 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionConstruirPuertoEstelar(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
 		
 		super("ConstruirPuertoEstelar");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
+		this.sector = sectorAccionesDisponibles;
 		
 	}
 	
@@ -54,8 +57,9 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
 		}catch(RazaNoTieneFabricasException noHayFabricas){
 			new MensajeDeError("Se necesita una fabrica para crear un puerto estelar");
+		}finally{
+			this.sector.removeAll();
 		}
-		
 	}
 
 }

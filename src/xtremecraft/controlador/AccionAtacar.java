@@ -18,6 +18,7 @@ import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.ObservableSeleccionado;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionAtacar extends AbstractAction implements Observer{
@@ -25,15 +26,16 @@ public class AccionAtacar extends AbstractAction implements Observer{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 		
-	public AccionAtacar(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionAtacar(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
 			
 		super("Atacar");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
 		this.coordenada = coordenada;
-		
+		this.sector = sectorAccionesDisponibles;
 	}
 	
 	@Override
@@ -67,6 +69,8 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			new MensajeDeError("No se puede atacar más de una vez por turno");	
 		}catch(ClassCastException noSePuedeCastear){
 			new MensajeDeError("No se selecciono a una victima valida");
+		}finally{
+			this.sector.removeAll();
 		}
 			
 		try {
@@ -75,9 +79,7 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			
 		} catch (InstantiationException | IllegalAccessException e) {
 			new MensajeDeError("Error interno del sistema");	
-		}
-		
-		
+		}		
 		
 	}
 
