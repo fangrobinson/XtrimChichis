@@ -174,7 +174,10 @@ public class RecolectorDeMineralTest {
 		int cantidadDeAtaquesARecolector = 17;
 		
 		miniSamus.setUbicacionInicial(tierra);
-		for(int i=0;i<cantidadDeAtaquesARecolector;i++) miniSamus.atacar(centroMineralTerran);
+		for(int i=0;i<cantidadDeAtaquesARecolector;i++){
+			miniSamus.atacar(centroMineralTerran);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(centroMineralTerran.estaVivo());		
 		

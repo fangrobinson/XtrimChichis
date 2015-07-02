@@ -198,7 +198,10 @@ public class BarracaTest {
 		int cantidadDeAtaquesABarraca = 17;
 		
 		miniSamus.setUbicacionInicial(tierra2);
-		for(int i=0;i<cantidadDeAtaquesABarraca;i++) miniSamus.atacar(unaBarraca);
+		for(int i=0;i<cantidadDeAtaquesABarraca;i++){
+			miniSamus.atacar(unaBarraca);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(unaBarraca.estaVivo());		
 		

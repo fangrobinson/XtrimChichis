@@ -82,7 +82,7 @@ public class NaveCiencia extends UnidadAerea{
 	public void atacarConMisilEMP(Mapa mapa,NaveCiencia naveAtacada){
 		
 		if(!this.puedoVer(naveAtacada.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();
-		if(!this.puedoAtacar(naveAtacada)) throw new YaSeSeleccionoUnAtaqueException();
+		if(!this.puedoAtacar()) throw new YaSeSeleccionoUnAtaqueException();
 		this.descontarDeEnergia(this.costoMisilEMP);
 		naveAtacada.recibirDanioMisilEMP();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
@@ -111,7 +111,7 @@ public class NaveCiencia extends UnidadAerea{
 	public void atacarConRadiacion(ArrayList<Celda>celdasAfectadas,Unidad unidad){
 		
 		if(!this.puedoVer(unidad.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();
-		if(!this.puedoAtacar(unidad)) throw new YaSeSeleccionoUnAtaqueException();
+		if(!this.puedoAtacar()) throw new YaSeSeleccionoUnAtaqueException();
 		this.descontarDeEnergia(this.costoRadiacion);
 		Radiacion ataqueRadioactivo = new Radiacion(celdasAfectadas);
 		unidad.recibirAtaqueRadiacion(ataqueRadioactivo);

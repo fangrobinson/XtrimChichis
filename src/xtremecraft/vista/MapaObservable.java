@@ -26,6 +26,7 @@ import xtremecraft.unidades.IdentificableUbicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
+import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
 
 public class MapaObservable extends JPanel implements Observer{
 	
@@ -201,13 +202,13 @@ public class MapaObservable extends JPanel implements Observer{
 				unidadAMover.actualizarUbicacion(terrenoDestino);
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
 				new MensajeDeError("No se puede mover a la locacion seleccionada");
-			}
-			try {
+			}catch(YaSeSeleccionoUnMovimientoException u) {
+				new MensajeDeError("La unidad que se quiere mover ya se movió");
+			}try{
 				this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
 				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 				this.estrategiaDeMovimientoIniciada = false;
-				
-			} catch (InstantiationException | IllegalAccessException e) {
+			}catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
 			

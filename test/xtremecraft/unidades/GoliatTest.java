@@ -166,6 +166,7 @@ public class GoliatTest {
 		
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2);
+			tanque1.pasarTiempo();
 		}
 		
 		assertEquals(tanque2.vitalidad.getValor(), 0);
@@ -190,6 +191,7 @@ public class GoliatTest {
 		
 		for (int i = 0; i < 11; i++){
 			tanque1.atacar(tanque2);
+			tanque1.pasarTiempo();
 		}
 		
 		assertFalse(tanque2.estaVivo());

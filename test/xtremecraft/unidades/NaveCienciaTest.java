@@ -411,11 +411,12 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
 		Goliat goliatAtacado = new Goliat(jugador);
-		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
+		
 		
 		goliatAtacado.setUbicacionInicial(tierra);
 		naveCienciaAtacante.setUbicacionInicial(aire);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
+		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		for(int tiempo=0;tiempo<tiempoMuerteUnidad;tiempo++) goliatAtacado.pasarTiempo();

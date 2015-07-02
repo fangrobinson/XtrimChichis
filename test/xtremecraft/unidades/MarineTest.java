@@ -236,7 +236,10 @@ public class MarineTest {
 			miniSamus.pasarTiempo();
 			miniMasterChief.pasarTiempo();
 		}
-		for(int i=0;i<cantidadDeAtaques;i++) miniSamus.atacar(miniMasterChief);
+		for(int i=0;i<cantidadDeAtaques;i++){
+			miniSamus.atacar(miniMasterChief);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(miniMasterChief.estaVivo());
 		

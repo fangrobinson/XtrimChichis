@@ -9,7 +9,7 @@ import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.Tierra;
+import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Jugador;
 import xtremecraft.partida.JugadorNoTieneElTurnoException;
 import xtremecraft.partida.NombreMuyCortoException;
@@ -30,7 +30,7 @@ public class JugadorTest {
 	public void siSeIntentaCrearUnJugadorConUnNombreMuyCortoSeLanzaNombreMuyCortoException(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
 		new Jugador("Ana",tierra, mapa);
 		
 	}
@@ -39,7 +39,7 @@ public class JugadorTest {
 	public void alCrearseUnJugadorElMismoEstaEnJuego(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		boolean juega = jugador.estaEnJuego();
 		
@@ -52,8 +52,8 @@ public class JugadorTest {
 		
 		boolean unidadEsDeMiPropiedad = true;
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
 		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		Jugador jugador2 = new Jugador("OtroJuan",tierra2, mapa);
 		jugador.nacion().juntarMinerales(1000);
@@ -70,9 +70,9 @@ public class JugadorTest {
 		
 		boolean unidadEsDeMiPropiedad = true;
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(1, 3).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(1, 3).getCapaInferior();
 		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		Jugador jugador2 = new Jugador("OtroJuan",tierra2, mapa);
 		jugador.nacion().juntarMinerales(1000);
@@ -90,8 +90,8 @@ public class JugadorTest {
 		
 		Mapa mapa = new Mapa(2);
 		boolean unidadEsDeMiPropiedad = true;
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
 		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -113,8 +113,8 @@ public class JugadorTest {
 		
 		Mapa mapa = new Mapa(2);
 		boolean unidadEsDeMiPropiedad = true;
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(2, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(2, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(1000);
@@ -129,10 +129,10 @@ public class JugadorTest {
 	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia () throws AtaqueFueraDelRangoDeVisionException, SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
-		Tierra tierra4 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra4 =  mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
 		
 		Jugador jugador = new Jugador("Juan",tierra, mapa);	
 		jugador.nacion().juntarMinerales(2000);
@@ -163,7 +163,7 @@ public class JugadorTest {
 		
 
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
 		Jugador jugador1 = new Jugador("Juan",tierra, mapa);
 		
 		jugador1.setTurno();
@@ -176,8 +176,8 @@ public class JugadorTest {
 	public void pasarTurnoHaceQueElJugadorDejeElTurnoActual(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador1 = new Jugador("Juan", tierra, mapa);
 		Jugador jugador2 = new Jugador("Pepe", tierra2, mapa);	
 		
@@ -193,8 +193,8 @@ public class JugadorTest {
 	public void pasarTurnoHaceQueElJugadorSiguienteTengaElTurno(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador1 = new Jugador("Juan", tierra, mapa);
 		Jugador jugador2 = new Jugador("Pepe", tierra2, mapa);	
 		
@@ -210,9 +210,9 @@ public class JugadorTest {
 	public void siUnJugadorQueNoTieneTurnoIntentaPasarElTurnoSeLanzaJugadorNoTieneElTurnoException(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
 		Jugador jugador1 = new Jugador("Flash", tierra, mapa);
 		Jugador jugador2 = new Jugador("Batman", tierra2, mapa);
 		Jugador jugador3 = new Jugador("LinternaVerde", tierra3, mapa);
@@ -229,8 +229,8 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeLaBarraca(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -252,8 +252,8 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeElDepositoDeSuministros(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -275,9 +275,9 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeLaFabrica(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -305,8 +305,8 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeElRecolectorDeMineral(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -331,8 +331,8 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeElRecolectorDeGasVespeno(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -355,10 +355,10 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeElPuertoEstelar(){
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
-		Tierra tierra4 = (Tierra) mapa.getCeldaEnFilaColumna(4, 5).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Terreno tierra4 =  mapa.getCeldaEnFilaColumna(4, 5).getCapaInferior();
 		Jugador jugador = new Jugador("Flash", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
@@ -391,9 +391,9 @@ public class JugadorTest {
 	public void alPasarTiempoSeConstruyeUnaUnidad() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
 		Mapa mapa = new Mapa(2);
-		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
-		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
-		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 =  mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Terreno tierra3 =  mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
 		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		
