@@ -131,10 +131,9 @@
 		<javac srcdir="src" destdir="${build}/classes" debug="no">
 		</javac>
 	</target>
-
 	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes" />
-	</target>
+			<jar destfile="${build}/dist/xtremecraft.jar" basedir="${build}/classes" />
+		</target>
 
 	<target name="integracion-continua" depends="run-pmd,coverage-report,alternate-coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
 
@@ -177,14 +176,11 @@
 			</fileset>
 		</pmd>
 	</target>
-
-	<!-- Nunca edite un xml 
+	
 	<target name="ejecutar.aplicacion" depends="empaquetar">
 		<java classname="xtremecraft.vista.JuegoDeAlgoCraft" fork="true">
-			<classpath refid="classpath" />
-			<classpath location="${build}/dist/algo3.jar" />
+		<classpath refid="classpath"/>
+		<classpath location="${build}/dist/xtremecraft.jar"/>
 		</java>
 	</target>
-	-->
-	
 </project>
