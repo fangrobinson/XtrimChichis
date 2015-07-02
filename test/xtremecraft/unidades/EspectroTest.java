@@ -163,6 +163,7 @@ public class EspectroTest {
 		
 		for (int i = 0; i < 16; i++){
 			gengar.atacar(misdreavus);
+			gengar.pasarTiempo();
 		}
 		
 		assertEquals(misdreavus.vitalidad.getValor(), 0);
@@ -187,6 +188,7 @@ public class EspectroTest {
 		
 		for (int i = 0; i < 16; i++){
 			gengar.atacar(misdreavus);
+			gengar.pasarTiempo();
 		}
 		
 		assertFalse(misdreavus.estaVivo());

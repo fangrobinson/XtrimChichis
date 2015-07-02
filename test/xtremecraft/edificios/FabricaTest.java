@@ -207,7 +207,10 @@ public class FabricaTest {
 		
 		miniSamus.setUbicacionInicial(tierra3);
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
-		for(int i=0;i<cantidadDeAtaquesAFabrica;i++) miniSamus.atacar(fabrica);
+		for(int i=0;i<cantidadDeAtaquesAFabrica;i++){
+			miniSamus.atacar(fabrica);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(fabrica.estaVivo());		
 		
