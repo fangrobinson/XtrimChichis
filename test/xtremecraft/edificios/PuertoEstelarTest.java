@@ -280,7 +280,10 @@ public class PuertoEstelarTest {
 
 		miniSamus.setUbicacionInicial(tierra4);
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
-		for(int i=0;i<cantidadDeAtaquesAPuerto;i++) miniSamus.atacar(puertoEstelar);
+		for(int i=0;i<cantidadDeAtaquesAPuerto;i++){
+			miniSamus.atacar(puertoEstelar);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(puertoEstelar.estaVivo());		
 		

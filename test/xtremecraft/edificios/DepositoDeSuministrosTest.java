@@ -152,7 +152,10 @@ public class DepositoDeSuministrosTest {
 		
 		miniSamus.setUbicacionInicial(tierra);
 		deposito.setUbicacionInicial(otraTierra);
-		for(int i=0;i<cantidadDeAtaquesADeposito;i++) miniSamus.atacar(deposito);
+		for(int i=0;i<cantidadDeAtaquesADeposito;i++){
+			miniSamus.atacar(deposito);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(deposito.estaVivo());		
 		

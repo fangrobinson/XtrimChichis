@@ -226,15 +226,15 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     			if(this.esRadioactivo){
     	    		this.radiacion.emitirRadiacion(this);
     	    	}
-    			if (this.puedeAtacar){
+    			else if (this.puedeAtacar){
     				this.vitalidad.curarPorTurno(1);
+    				if(this.puedeMoverse && this.puedeAtacar){
+        				this.vitalidad.curarPorTurno(1);
+        			}
     			}
-    			if(this.puedeMoverse && this.puedeAtacar){
-    				this.vitalidad.curarPorTurno(1);
-    			}
-    			this.puedeAtacar = true;
-    			this.puedeMoverse = true;
     		}
+    		this.puedeAtacar = true;
+			this.puedeMoverse = true;
     		setChanged();
     		notifyObservers();
     	}

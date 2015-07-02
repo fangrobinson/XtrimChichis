@@ -173,7 +173,10 @@ public class NaveTransporteTest {
 			unGoliat.pasarTiempo();
 		}
 		
-		for(int i=0;i<cantidadDeAtaques;i++) unGoliat.atacar(taxiVolador);
+		for(int i=0;i<cantidadDeAtaques;i++){
+			unGoliat.atacar(taxiVolador);
+			unGoliat.pasarTiempo();
+		}
 		
 		assertFalse(taxiVolador.estaVivo());
 		

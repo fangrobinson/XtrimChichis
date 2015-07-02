@@ -166,7 +166,10 @@ public class RecolectorDeGasVespenoTest {
 		int cantidadDeAtaquesARecolector = 17;
 		
 		miniSamus.setUbicacionInicial(tierra);
-		for(int i=0;i<cantidadDeAtaquesARecolector;i++) miniSamus.atacar(refineria);
+		for(int i=0;i<cantidadDeAtaquesARecolector;i++){
+			miniSamus.atacar(refineria);
+			miniSamus.pasarTiempo();
+		}
 		
 		assertFalse(refineria.estaVivo());		
 		
