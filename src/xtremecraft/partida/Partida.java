@@ -6,10 +6,12 @@ import java.util.Observer;
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Ubicable;
+import xtremecraft.unidades.Unidad;
 
 public class Partida {
 	
@@ -252,6 +254,23 @@ public class Partida {
 		if( !this.quienJuega().esDeMiPropiedad(ubicable) ){
 			throw new SeleccionadoNoEsPropiedadDelJugadorException();
 		}
+		
+	}
+
+	public boolean unidadSeleccionadaEstaEnConstruccion(Coordenada coordenada) {
+		
+		Celda celda = this.mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Unidad unidad = (Unidad) celda.getUbicableEnInferior();
+		return unidad.estaEnConstruccion();
+		
+	}
+
+	public boolean unidadSeleccionadaPuedeMoverse(Coordenada coordenada) {
+
+		Celda celda = this.mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Unidad unidad = (Unidad) celda.getUbicableEnInferior();
+		return unidad.puedeMoverse();
+		
 		
 	}
 	

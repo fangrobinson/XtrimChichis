@@ -178,13 +178,12 @@ public class MapaObservable extends JPanel implements Observer{
 		ObservableSeleccionado observable = (ObservableSeleccionado) obs;
 		this.coordenadaUltimoClickeado = observable.getCoordenadaActualSeleccionado();
 		if(this.estrategiaDeMovimientoIniciada){
+			
 			Celda celdaOrigen = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaOrigenMovimiento.fila(), this.coordenadaOrigenMovimiento.columna());
 			Celda celdaDestino = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
 			Terreno terrenoDestino = celdaDestino.getCapaInferior();
 			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
-			if (unidadAMover.estaEnConstruccion() || !unidadAMover.puedeMoverse()){
-				new MensajeDeError("Esta unidad esta en construccion o ya realizó un movimiento en el turno actual.");
-			}
+
 			try{
 				unidadAMover.actualizarUbicacion(terrenoDestino);
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
