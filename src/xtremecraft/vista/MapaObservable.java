@@ -7,28 +7,39 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
+
 import javax.swing.JPanel;
+
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.partida.Identificable;
+import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
+import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
+import xtremecraft.unidades.Atacable;
+import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
+import xtremecraft.unidades.Defendible;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
+import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
 
 public class MapaObservable extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = 7787529771808926374L;
 	
-	private Mapa modeloReal;
+	private Partida partida;
 	private SectorJuego sector;
 	private HashMap<Class<?>, Class<?>> vistas;
 	private TreeMap<Integer, TreeMap<Integer, Vista>> mapaVisible;
 	private Coordenada coordenadaUltimoClickeado;
-	private Coordenada coordenadaOrigenMovimiento;
 	private boolean estrategiaDeMovimientoIniciada;
+	private boolean estrategiaDeAtaqueIniciada;
+	private Coordenada coordenadaOrigenEstrategia;
+	
+
 
 
 	public MapaObservable(){};
@@ -36,9 +47,10 @@ public class MapaObservable extends JPanel implements Observer{
 	public MapaObservable(SectorJuego sectorJuego, Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		Mapa mapa = partida.getMapa();
+		
 		this.sector = sectorJuego;
-		this.modeloReal = mapa;
 		this.vistas = vistas;
+		this.partida = partida;
 		this.mapaVisible = new TreeMap<Integer, TreeMap<Integer, Vista>> ();
 		this.estrategiaDeMovimientoIniciada = false;
 		
@@ -46,11 +58,11 @@ public class MapaObservable extends JPanel implements Observer{
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
 		
 				
-		TreeMap<Integer, TreeMap<Integer, Celda>> mapaIterable = this.modeloReal.devolverMapaEstatico();
+		TreeMap<Integer, TreeMap<Integer, Celda>> mapaIterable = this.partida.getMapa().devolverMapaEstatico();
 		
-		for (int i = 0; i < this.modeloReal.ancho(); i++){
+		for (int i = 0; i < this.partida.getMapa().ancho(); i++){
 			this.mapaVisible.put(i,new TreeMap<Integer,Vista>());
-			for (int j = 0; j < this.modeloReal.alto(); j++){
+			for (int j = 0; j < this.partida.getMapa().alto(); j++){
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
 				Class<?> vistaClase;
@@ -99,7 +111,7 @@ public class MapaObservable extends JPanel implements Observer{
 		int n = this.getComponentZOrder(vistaCelda);
 		this.remove(n);
 		
-		Celda celdaReal = this.modeloReal.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Celda celdaReal = this.partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
 		Terreno terrenoInferior = celdaReal.getCapaInferior();
 		Class<?> vistaClase;
 		Vista vistaNueva = null;
@@ -151,8 +163,8 @@ public class MapaObservable extends JPanel implements Observer{
 	
 	public void agregarObservadorAVistas(Observer observador){
 		
-		for (int i = 0; i < this.modeloReal.ancho(); i++){
-			for (int j = 0; j < this.modeloReal.alto(); j++){
+		for (int i = 0; i < this.partida.getMapa().ancho(); i++){
+			for (int j = 0; j < this.partida.getMapa().alto(); j++){
 				Vista vistaActual = this.mapaVisible.get(i).get(j);
 				this.agregarObservadorAVista(vistaActual, observador);
 			}
@@ -179,8 +191,8 @@ public class MapaObservable extends JPanel implements Observer{
 		this.coordenadaUltimoClickeado = observable.getCoordenadaActualSeleccionado();
 		if(this.estrategiaDeMovimientoIniciada){
 			
-			Celda celdaOrigen = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaOrigenMovimiento.fila(), this.coordenadaOrigenMovimiento.columna());
-			Celda celdaDestino = this.modeloReal.getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
+			Celda celdaOrigen = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaOrigenEstrategia.fila(), this.coordenadaOrigenEstrategia.columna());
+			Celda celdaDestino = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
 			Terreno terrenoDestino = celdaDestino.getCapaInferior();
 			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
 
@@ -190,22 +202,67 @@ public class MapaObservable extends JPanel implements Observer{
 				new MensajeDeError("No se puede mover a la locacion seleccionada");
 			}
 			try {
-				this.actualizarVistaEnCoordenada(this.coordenadaOrigenMovimiento);
+				this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
 				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 				this.estrategiaDeMovimientoIniciada = false;
 				
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
+			
+		}if(this.estrategiaDeAtaqueIniciada){
+			
+			Celda celdaAtacante = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaOrigenEstrategia.fila(), this.coordenadaOrigenEstrategia.columna());
+			Celda celdaAtacado = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
+			
+			Defendible atacante = (Defendible) celdaAtacante.getUbicableEnInferior();
+			
+			try{
+				Atacable atacado = (Atacable) celdaAtacado.getUbicableEnInferior();
+				Jugador jugadorTurno = this.partida.quienJuega();
+				jugadorTurno.atacar(atacante, atacado);
+			
+			}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
+				new MensajeDeError("El atacado esta fuera del rango del atacante");
+			}catch(SeleccionadoNoEsPropiedadDelJugadorException elAtacanteNoEsPropio){
+				new MensajeDeError("No se selecciono a un agresor propio");
+			}catch(YaSeSeleccionoUnAtaqueException masDeUnAtaquePorTurno){
+				new MensajeDeError("No se puede atacar más de una vez por turno");	
+			}catch(ClassCastException noSePuedeCastear){
+				new MensajeDeError("No se selecciono a una victima valida");
+			}
+			
+			try {
+				this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
+				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
+				this.estrategiaDeAtaqueIniciada = false;
+				
+			} catch (InstantiationException | IllegalAccessException e) {
+				new MensajeDeError("Error interno del sistema");
+			}
+			
 		}
 		
 	}
 
 	public void comenzarMovimiento(Coordenada coordenadaInicioMovimiento) {
-		//TODO: ver que el jugador que inicio el movimiento es el mismo que la termina.
-		//tal vez hacer reset de estrategiaDeMovimientoIniciada al pasar el turno.
+		
 		this.estrategiaDeMovimientoIniciada = true;
-		this.coordenadaOrigenMovimiento = coordenadaInicioMovimiento;
+		this.coordenadaOrigenEstrategia = coordenadaInicioMovimiento;
+		
+	}
+
+	public void comenzarAtaque(Coordenada coordenadaInicioAtaque) {
+
+		this.estrategiaDeAtaqueIniciada = true;
+		this.coordenadaOrigenEstrategia = coordenadaInicioAtaque;
+		
+	}
+
+	public void pasarTurno() {
+		
+		this.estrategiaDeAtaqueIniciada = false;
+		this.estrategiaDeMovimientoIniciada = false;
 		
 	}		
 

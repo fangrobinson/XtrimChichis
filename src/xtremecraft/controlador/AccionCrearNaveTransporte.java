@@ -13,6 +13,7 @@ import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionCrearNaveTransporte extends AbstractAction{
@@ -20,14 +21,15 @@ public class AccionCrearNaveTransporte extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionCrearNaveTransporte(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionCrearNaveTransporte(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
 		
 		super("CrearNaveTransporte");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		
+		this.sector = sectorAccionesDisponibles;
 	}
 
 	@Override
@@ -54,7 +56,8 @@ public class AccionCrearNaveTransporte extends AbstractAction{
 			new MensajeDeError("La cantidad de recursos disponibles no es suficiente");
 		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
 			new MensajeDeError("Este edificio no pertenece al jugador actual");
+		}finally{
+			this.sector.removeAll();
 		}
-		
 	}
 }

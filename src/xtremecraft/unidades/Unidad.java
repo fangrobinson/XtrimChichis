@@ -283,5 +283,9 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
 	public boolean puedeMoverse() {
 		return this.puedeMoverse;
 	}
+
+	public boolean puedeAtacar() {
+		return this.puedeAtacar;
+	}
    
 }
