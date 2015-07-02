@@ -93,11 +93,12 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	if (!this.puedeAtacar){
     		throw new YaSeSeleccionoUnAtaqueException();
     	}
+    	this.puedeAtacar = false;
     	atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
 		
     }
     
-    protected boolean puedoAtacar(Ubicable atacado){
+    protected boolean puedoAtacar(){
     	
     	return this.puedeAtacar;
 		
@@ -151,6 +152,7 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	
     	this.terrenoActual.desocupar();
     	this.terrenoActual = naveTransporte.getTerrenoActual();
+    	this.puedeMoverse = false;
     	
 	}
     
@@ -166,6 +168,10 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() ){
     		throw new UbicacionNoValidaException();
     	}
+    	if (!this.puedeMoverse){
+    		throw new YaSeSeleccionoUnMovimientoException();
+    	}
+    	this.puedeMoverse = false;
     	this.terrenoActual.desocupar();
     	terreno.ubicar(this);    	
     	this.terrenoActual = terreno;
@@ -222,14 +228,12 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	    	}
     			if (this.puedeAtacar){
     				this.vitalidad.curarPorTurno(1);
-    				this.puedeAtacar = true;
-        			this.puedeMoverse = true;
     			}
     			if(this.puedeMoverse && this.puedeAtacar){
     				this.vitalidad.curarPorTurno(1);
-    				this.puedeAtacar = true;
-        			this.puedeMoverse = true;
     			}
+    			this.puedeAtacar = true;
+    			this.puedeMoverse = true;
     		}
     		setChanged();
     		notifyObservers();
