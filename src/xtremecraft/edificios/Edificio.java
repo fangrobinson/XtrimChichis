@@ -4,6 +4,7 @@ import java.util.Observable;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Actualizable;
 import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
@@ -27,6 +28,10 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 	protected Jugador jugador;
 	
 	public Edificio(Jugador unJugador,Terreno unTerreno,int vida){
+		
+		if (unTerreno.getClass() != Tierra.class){
+			throw new UnEdificioSoloSePuedeUbicarEnTierraException();
+		}
 		
 		this.terrenoActual = unTerreno;
 		vidaInicial = vida;

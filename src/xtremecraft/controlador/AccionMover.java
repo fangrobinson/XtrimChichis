@@ -7,7 +7,7 @@ import javax.swing.AbstractAction;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
-import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
+//import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.SectorAccionesDisponibles;

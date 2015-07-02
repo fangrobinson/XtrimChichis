@@ -10,7 +10,6 @@ import xtremecraft.edificios.RecolectorDeGasVespeno;
 import xtremecraft.edificios.RecolectorDeMineral;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.mapa.Tierra;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
@@ -30,7 +29,7 @@ public class Jugador extends Observable implements Actualizable {
 	private int numeroDeJugador;
 	private boolean esMiTurno;
 	
-	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
+	public Jugador (String nombre, Terreno terreno) throws NombreMuyCortoException{
 		
 		if (nombre.length() < 4){
 		
@@ -39,7 +38,7 @@ public class Jugador extends Observable implements Actualizable {
 		}
 		this.nombre = nombre;
 		this.nacion = new Terran(this);
-		this.crearBaseInicial(tierra);
+		this.crearBaseInicial(terreno);
 		this.esMiTurno = false;
 		
 	}
@@ -93,9 +92,9 @@ public class Jugador extends Observable implements Actualizable {
 		atacante.atacar(atacado);
 	}
 	
-	private void crearBaseInicial(Tierra tierra){
+	private void crearBaseInicial(Terreno terreno){
 		
-		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(terreno);
 		for(int tiempo = 0; tiempo<deposito.tiempoConstruccion();tiempo++){
 		
 			deposito.pasarTiempo();
