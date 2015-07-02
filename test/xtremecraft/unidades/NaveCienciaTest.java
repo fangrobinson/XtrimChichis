@@ -25,8 +25,11 @@ public class NaveCienciaTest {
 	
 	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
@@ -37,8 +40,11 @@ public class NaveCienciaTest {
 	@Test (expected = RecursosInsuficientesException.class)
 	public void unidadCreadaParaRazaSinRecursosLanzaExcepcion(){
 
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		
 		new NaveCiencia(jugador);
 	}
@@ -255,18 +261,18 @@ public class NaveCienciaTest {
 		Terreno aire2 = mapa.getCeldaEnFilaColumna(10, 11).getCapaSuperior();
 		Terreno aire3 = mapa.getCeldaEnFilaColumna(11, 10).getCapaSuperior();
 		
-		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1);
-		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4);
+		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1, mapa);
+		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4, mapa);
 		for (int tiempo=0;tiempo<barracaJugador1.tiempoConstruccion();tiempo++) barracaJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<barracaJugador2.tiempoConstruccion();tiempo++) barracaJugador2.pasarTiempo();
 		
-		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2);
-		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5);
+		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2, mapa);
+		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5, mapa);
 		for (int tiempo=0;tiempo<fabricaJugador1.tiempoConstruccion();tiempo++) fabricaJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<fabricaJugador2.tiempoConstruccion();tiempo++) fabricaJugador2.pasarTiempo();
 		
-		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3);	
-		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6);	
+		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3, mapa);	
+		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6, mapa);	
 		for (int tiempo=0;tiempo<puertoEstelarJugador1.tiempoConstruccion();tiempo++) puertoEstelarJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<puertoEstelarJugador2.tiempoConstruccion();tiempo++) puertoEstelarJugador2.pasarTiempo();
 		
@@ -434,18 +440,18 @@ public class NaveCienciaTest {
 		Terreno tierra8 = mapa.getCeldaEnFilaColumna(10, 10).getCapaInferior();
 		Terreno tierra9 = mapa.getCeldaEnFilaColumna(11, 10).getCapaSuperior();
 		
-		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1);
-		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4);
+		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1, mapa);
+		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4, mapa);
 		for (int tiempo=0;tiempo<barracaJugador1.tiempoConstruccion();tiempo++) barracaJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<barracaJugador2.tiempoConstruccion();tiempo++) barracaJugador2.pasarTiempo();
 		
-		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2);
-		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5);
+		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2, mapa);
+		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5, mapa);
 		for (int tiempo=0;tiempo<fabricaJugador1.tiempoConstruccion();tiempo++) fabricaJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<fabricaJugador2.tiempoConstruccion();tiempo++) fabricaJugador2.pasarTiempo();
 		
-		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3);	
-		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6);	
+		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3, mapa);	
+		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6, mapa);	
 		for (int tiempo=0;tiempo<puertoEstelarJugador1.tiempoConstruccion();tiempo++) puertoEstelarJugador1.pasarTiempo();
 		for (int tiempo=0;tiempo<puertoEstelarJugador2.tiempoConstruccion();tiempo++) puertoEstelarJugador2.pasarTiempo();
 		

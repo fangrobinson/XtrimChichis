@@ -40,7 +40,7 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 
 		try{
 		
-			jugadorActual.crearRecolectorDeGasVespeno(tierraConstruccion);
+			jugadorActual.crearRecolectorDeGasVespeno(tierraConstruccion, this.partida.getMapa());
 			
 			
 			try {

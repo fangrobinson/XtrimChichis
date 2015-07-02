@@ -41,7 +41,7 @@ public class AccionConstruirFabrica extends AbstractAction{
 		
 		try{
 		
-			jugadorActual.crearFabrica(tierraConstruccion);	
+			jugadorActual.crearFabrica(tierraConstruccion, this.partida.getMapa());	
 			
 			try {
 			

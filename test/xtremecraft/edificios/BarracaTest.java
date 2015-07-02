@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
@@ -18,8 +19,9 @@ public class BarracaTest {
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(15, 16).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		Terreno otraTierra = new Tierra(1,1);
 		new Barraca(jugador, otraTierra);
 		
@@ -28,17 +30,20 @@ public class BarracaTest {
 	@Test
 	public void barracaSeInicializaConEstadoVivo(){
 		
-		int fila = 1;
-		int columna = 2;
-		Tierra tierra = new Tierra(15,15);
-		Terreno unTerreno = new Tierra(fila,columna);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila1 = 1;
+		int fila2 = 15;
+		int columna1 = 2;
+		int columna2 = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra1 = (Tierra) mapa.getCeldaEnFilaColumna(fila1, columna1).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(fila2, columna2).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra1, mapa);
 		
 		jugador.nacion().juntarGas(1000);
 		jugador.nacion().juntarMinerales(1000);
 		
 		
-		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
+		Barraca unaBarraca = jugador.crearBarraca(tierra2, mapa);
 		
 		assertTrue(unaBarraca.estaVivo());
 		
@@ -47,29 +52,32 @@ public class BarracaTest {
 	@Test
 	public void estaEnContruccionDeberiaDevolverTrueAlCrearLaBarraca(){
 		
-		int fila = 1;
-		int columna = 2;
-		Tierra tierra = new Tierra(15,15);
-		Terreno unTerreno = new Tierra(fila,columna);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila1 = 1;
+		int fila2 = 15;
+		int columna1 = 2;
+		int columna2 = 15;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra1 = (Tierra) mapa.getCeldaEnFilaColumna(fila1, columna1).getCapaInferior();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila2, columna2).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra1, mapa);
 		
 		jugador.nacion().juntarGas(1000);
 		jugador.nacion().juntarMinerales(1000);
 		
-		Barraca unaBarraca = new Barraca(jugador,unTerreno);
+		Barraca unaBarraca = new Barraca(jugador, unTerreno);
 		
 		assertTrue(unaBarraca.estaEnConstruccion());
 		
 	}
 	
-
 	@Test(expected = EdificioEnConstruccionException.class)
 	public void siBarracaNoEstaConstruidaYSeIntentaEntrenarUnMarineSeLanzaExcepcion(){
 		
 		int fila = 1;
 		int columna = 2;
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terreno unTerreno = new Tierra(fila,columna);
 		
 		jugador.nacion().juntarGas(1000);
@@ -157,8 +165,9 @@ public class BarracaTest {
 	
 	public Barraca construirNuevaBarraca(int fila, int columna){
 		
-		Tierra tierra = new Tierra(fila,columna);
-		Jugador jugador = new Jugador("Juan",tierra);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		jugador.nacion().juntarGas(1000);
 		jugador.nacion().juntarMinerales(1000);
 		Barraca unaBarraca = new Barraca(jugador, tierra);
@@ -172,9 +181,14 @@ public class BarracaTest {
 	@Test
 	public void siUnaBarracaEsAtacadaHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
-		Tierra tierra1 = new Tierra(15,15);
-		Terreno tierra2 = new Tierra(3,2);
-		Jugador jugador = new Jugador("Juan",tierra1);
+		int fila1 = 1;
+		int fila2 = 3;
+		int columna1 = 2;
+		int columna2 = 4;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra1 = (Tierra) mapa.getCeldaEnFilaColumna(fila1, columna1).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(fila2, columna2).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra1, mapa);
 		
 		jugador.nacion().juntarGas(1000);
 		jugador.nacion().juntarMinerales(1000);

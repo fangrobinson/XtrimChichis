@@ -22,6 +22,7 @@ import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
+import xtremecraft.unidades.IdentificableUbicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
@@ -79,7 +80,7 @@ public class MapaObservable extends JPanel implements Observer{
 					vistaNueva = (Vista) vistaClase.newInstance();
 					observable = (Observable)terrenoInferior.getRecurso();
 				}if(terrenoInferior.estaOcupado()){
-					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+					IdentificableUbicable identificable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
 					int numero = identificable.getJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();

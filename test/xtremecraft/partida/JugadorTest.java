@@ -29,15 +29,18 @@ public class JugadorTest {
 	@Test(expected = NombreMuyCortoException.class)
 	public void siSeIntentaCrearUnJugadorConUnNombreMuyCortoSeLanzaNombreMuyCortoException(){
 		
-		Tierra tierra = new Tierra(1,1);
-		new Jugador("Ana",tierra);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		new Jugador("Ana",tierra, mapa);
+		
 	}
 	
 	@Test
 	public void alCrearseUnJugadorElMismoEstaEnJuego(){
 		
-		Tierra tierra = new Tierra(1,1);
-		Jugador jugador = new Jugador("Juan",tierra);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		boolean juega = jugador.estaEnJuego();
 		
 		assertTrue(juega);
@@ -47,102 +50,108 @@ public class JugadorTest {
 	@Test
 	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceLaUnidad (){
 		
-		boolean bool = true;
-		Tierra tierra = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(2,1);
-		Jugador jugador = new Jugador("Juan",tierra);		
-		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
+		boolean unidadEsDeMiPropiedad = true;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
+		Jugador jugador2 = new Jugador("OtroJuan",tierra2, mapa);
 		jugador.nacion().juntarMinerales(1000);
 		Marine marine = new Marine(jugador);
 		
-		bool = jugador2.esDeMiPropiedad(marine);
+		unidadEsDeMiPropiedad = jugador2.esDeMiPropiedad(marine);
 		
-		assertFalse(bool);
+		assertFalse(unidadEsDeMiPropiedad);
 		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveFalseSiNoLePerteneceElEdificio (){
 		
-		boolean bool = true;
-		Tierra tierra = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Jugador jugador = new Jugador("Juan",tierra);
-		Jugador jugador2 = new Jugador ("OtroJuan", tierra2);
+		boolean unidadEsDeMiPropiedad = true;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 5).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(1, 3).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
+		Jugador jugador2 = new Jugador("OtroJuan",tierra2, mapa);
+		jugador.nacion().juntarMinerales(1000);
 		jugador.nacion().juntarMinerales(1000);
 		Barraca barraca = new Barraca(jugador, tierra3);
 		
-		bool = jugador2.esDeMiPropiedad(barraca);
+		unidadEsDeMiPropiedad = jugador2.esDeMiPropiedad(barraca);
 		
-		assertFalse(bool);
+		assertFalse(unidadEsDeMiPropiedad);
 		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceLaUnidad () throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
-		boolean bool = true;
-		Tierra tierra = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Mapa unMapa = new Mapa(2);
+		Mapa mapa = new Mapa(2);
+		boolean unidadEsDeMiPropiedad = true;
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		
-		Jugador jugador = new Jugador("Juan",tierra);		
 		jugador.nacion().juntarMinerales(2000);
-		Barraca barraca = jugador.crearBarraca(tierra2);
+		
+		Barraca barraca = jugador.crearBarraca(tierra2, mapa);
 		
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
 		
-		Marine marine = jugador.crearMarine(barraca, unMapa);
+		Marine marine = jugador.crearMarine(barraca, mapa);
 		
-		bool = jugador.esDeMiPropiedad(marine);
+		unidadEsDeMiPropiedad = jugador.esDeMiPropiedad(marine);
 		
-		assertTrue(bool);
+		assertTrue(unidadEsDeMiPropiedad);
 		
 	}
 	
 	@Test
 	public void esDeMiPropiedadDevuelveTrueSiLePerteneceElEdificio (){
 		
-		boolean bool = true;
-		Tierra tierra = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador = new Jugador("Juan",tierra);		
-		jugador.nacion().juntarMinerales(1000);
-		Barraca barraca = jugador.crearBarraca(tierra2);
+		Mapa mapa = new Mapa(2);
+		boolean unidadEsDeMiPropiedad = true;
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(2, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Juan",tierra, mapa);
 		
-		bool = jugador.esDeMiPropiedad(barraca);
-		assertTrue(bool);
+		jugador.nacion().juntarMinerales(1000);
+		Barraca barraca = jugador.crearBarraca(tierra2, mapa);
+		
+		unidadEsDeMiPropiedad = jugador.esDeMiPropiedad(barraca);
+		assertTrue(unidadEsDeMiPropiedad);
 		
 	}
 	
 	@Test (expected = SeleccionadoNoEsPropiedadDelJugadorException.class)
 	public void atacarLanzaElAtacanteNoEsDelJugadorExceptionSiSeLoLlamaConUnaUnidadNoPropia () throws AtaqueFueraDelRangoDeVisionException, SeleccionadoNoEsPropiedadDelJugadorException{
 		
-		Tierra tierra = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Tierra tierra4 = new Tierra(1,4);
-		Mapa unMapa = new Mapa(2);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(1, 4).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Tierra tierra4 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
 		
-		Jugador jugador = new Jugador("Juan",tierra);	
+		Jugador jugador = new Jugador("Juan",tierra, mapa);	
 		jugador.nacion().juntarMinerales(2000);
 		
-		Barraca barraca = jugador.crearBarraca(tierra2);
+		Barraca barraca = jugador.crearBarraca(tierra2, mapa);
 		for(int turno=0;turno<barraca.tiempoConstruccion();turno++) barraca.pasarTiempo();
 		
-		Marine marine = jugador.crearMarine(barraca, unMapa);
+		Marine marine = jugador.crearMarine(barraca, mapa);
 		for(int turno=0;turno<marine.tiempoConstruccion();turno++) marine.pasarTiempo();
 		
 		
-		Jugador jugador2 = new Jugador("Juan",tierra3);	
+		Jugador jugador2 = new Jugador("Juan",tierra3, mapa);	
 		jugador2.nacion().juntarMinerales(2000);
 		
-		Barraca barraca2 = jugador2.crearBarraca(tierra4);
+		Barraca barraca2 = jugador2.crearBarraca(tierra4, mapa);
 		for(int turno=0;turno<barraca2.tiempoConstruccion();turno++) barraca2.pasarTiempo();
 		
 		
-		Marine marine2 = jugador2.crearMarine(barraca2, unMapa);
+		Marine marine2 = jugador2.crearMarine(barraca2, mapa);
 		for(int turno=0;turno<marine2.tiempoConstruccion();turno++) marine2.pasarTiempo();
 		
 		jugador.atacar(marine2, marine);
@@ -152,8 +161,10 @@ public class JugadorTest {
 	@Test
 	public void setTurnoHaceQueElJugadorTengaElTurno(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Jugador jugador1 = new Jugador("Juan",tierra1);
+
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Jugador jugador1 = new Jugador("Juan",tierra, mapa);
 		
 		jugador1.setTurno();
 		
@@ -164,10 +175,11 @@ public class JugadorTest {
 	@Test
 	public void pasarTurnoHaceQueElJugadorDejeElTurnoActual(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador1 = new Jugador("Juan",tierra1);
-		Jugador jugador2 = new Jugador("Pepe",tierra2);	
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador1 = new Jugador("Juan", tierra, mapa);
+		Jugador jugador2 = new Jugador("Pepe", tierra2, mapa);	
 		
 		jugador1.setTurno();
 		jugador1.setJugadorSiguiente(jugador2);
@@ -180,10 +192,11 @@ public class JugadorTest {
 	@Test
 	public void pasarTurnoHaceQueElJugadorSiguienteTengaElTurno(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador1 = new Jugador("Juan",tierra1);
-		Jugador jugador2 = new Jugador("Pepe",tierra2);	
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador1 = new Jugador("Juan", tierra, mapa);
+		Jugador jugador2 = new Jugador("Pepe", tierra2, mapa);	
 		
 		jugador1.setTurno();
 		jugador1.setJugadorSiguiente(jugador2);
@@ -196,12 +209,13 @@ public class JugadorTest {
 	@Test(expected = JugadorNoTieneElTurnoException.class)
 	public void siUnJugadorQueNoTieneTurnoIntentaPasarElTurnoSeLanzaJugadorNoTieneElTurnoException(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Jugador jugador1 = new Jugador("Flash",tierra1);
-		Jugador jugador2 = new Jugador("Linterna Verde",tierra2);
-		Jugador jugador3 = new Jugador("Aquaman",tierra3);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Jugador jugador1 = new Jugador("Flash", tierra, mapa);
+		Jugador jugador2 = new Jugador("Batman", tierra2, mapa);
+		Jugador jugador3 = new Jugador("LinternaVerde", tierra3, mapa);
 		
 		jugador1.setJugadorSiguiente(jugador2);
 		jugador2.setJugadorSiguiente(jugador3);
@@ -214,13 +228,14 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeLaBarraca(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
-		jugador.crearBarraca(tierra2);
+		jugador.crearBarraca(tierra2, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
@@ -236,13 +251,14 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeElDepositoDeSuministros(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
-		jugador.crearDepositoDeSuministros(tierra2);
+		jugador.crearDepositoDeSuministros(tierra2, mapa);
 		
 		for (int i =0; i < 6; i++ ){
 			jugador.pasarTiempo();
@@ -258,20 +274,21 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeLaFabrica(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
-		jugador.crearBarraca(tierra2);
+		jugador.crearBarraca(tierra2, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
 		}
 		
-		jugador.crearFabrica(tierra3);
+		jugador.crearFabrica(tierra3, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
@@ -287,16 +304,17 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeElRecolectorDeMineral(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
 		MinaDeMinerales mina = new MinaDeMinerales(30);
 		tierra2.agregarRecursoNatural(mina);
 		
-		jugador.crearRecolectorDeMineral(tierra2);
+		jugador.crearRecolectorDeMineral(tierra2, mapa);
 		
 		for (int i =0; i < 4; i++ ){
 			jugador.pasarTiempo();
@@ -312,15 +330,16 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeElRecolectorDeGasVespeno(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
 		VolcanGasVespeno volcancito = new VolcanGasVespeno(40);
 		tierra2.agregarRecursoNatural(volcancito);
-		jugador.crearRecolectorDeGasVespeno(tierra2);
+		jugador.crearRecolectorDeGasVespeno(tierra2, mapa);
 		
 		for (int i =0; i < 6; i++ ){
 			jugador.pasarTiempo();
@@ -335,27 +354,28 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeElPuertoEstelar(){
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Tierra tierra4 = new Tierra(1,4);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Tierra tierra4 = (Tierra) mapa.getCeldaEnFilaColumna(4, 5).getCapaInferior();
+		Jugador jugador = new Jugador("Flash", tierra, mapa);
 		
 		jugador.nacion().juntarMinerales(2000);
 		
-        jugador.crearBarraca(tierra2);
+        jugador.crearBarraca(tierra2, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
 		}
 		
-		jugador.crearFabrica(tierra3);
+		jugador.crearFabrica(tierra3, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
 		}
 		
-		jugador.crearPuertoEstelar(tierra4);
+		jugador.crearPuertoEstelar(tierra4, mapa);
 		
 		for (int i =0; i < 10; i++ ){
 			jugador.pasarTiempo();
@@ -370,20 +390,22 @@ public class JugadorTest {
 	@Test
 	public void alPasarTiempoSeConstruyeUnaUnidad() throws SeleccionadoNoEsPropiedadDelJugadorException{
 		
-		Tierra tierra1 = new Tierra(1,1);
-		Tierra tierra2 = new Tierra(1,2);
-		Tierra tierra3 = new Tierra(1,3);
-		Jugador jugador = new Jugador("Batman", tierra1);
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Tierra tierra2 = (Tierra) mapa.getCeldaEnFilaColumna(3, 2).getCapaInferior();
+		Tierra tierra3 = (Tierra) mapa.getCeldaEnFilaColumna(5, 2).getCapaInferior();
+		Jugador jugador = new Jugador("Batman", tierra, mapa);
+		
 		
 		jugador.nacion().juntarMinerales(2000);
 		
-		jugador.crearBarraca(tierra2);
+		jugador.crearBarraca(tierra2, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();
 		}
 		
-		Fabrica unaFabrica = jugador.crearFabrica(tierra3);
+		Fabrica unaFabrica = jugador.crearFabrica(tierra3, mapa);
 		
 		for (int i =0; i < 12; i++ ){
 			jugador.pasarTiempo();

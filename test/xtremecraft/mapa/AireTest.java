@@ -14,6 +14,20 @@ import org.junit.Test;
 
 public class AireTest {
 
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
+		
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
+		Terran razaTerran = jugador.nacion();
+		razaTerran.juntarGas(1000);
+		razaTerran.juntarMinerales(1000);
+		return jugador;
+		
+	}
+	
 	@Test
 	public void nuevoAireCreaAguaConEstadoNoOcupado(){
 		
@@ -25,11 +39,7 @@ public class AireTest {
 	@Test(expected = NoSePudoOcuparElTerrenoException.class)
 	public void aireEstaOcupadaDeberiaDevolverFalseSiTratoDeUbicarUnaUnidadTerrestre(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
-		Terran razaTerran = jugador.nacion();
-		razaTerran.juntarMinerales(1000);
-		razaTerran.juntarGas(1000);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno terreno=new Aire(1,4);
 		Unidad goliat= new Goliat(jugador);
 		terreno.ubicar(goliat);
@@ -49,11 +59,7 @@ public class AireTest {
 	public void ocuparterrenoConUnidadGuardaLaUnidadEnElterreno(){
 		
 		Aire aire = new Aire(1,3);
-		Tierra tierra = new Tierra(1,2);
-		Jugador jugador = new Jugador("Juan",tierra);
-		Terran razaTerran = jugador.nacion();
-		razaTerran.juntarMinerales(1000);
-		razaTerran.juntarGas(1000);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Unidad espectro = new Espectro(jugador);
 		aire.ubicar(espectro);
 		Unidad unidad = (Unidad) aire.getUbicableEnTerreno();

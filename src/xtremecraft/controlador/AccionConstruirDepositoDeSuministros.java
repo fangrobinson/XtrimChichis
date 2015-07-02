@@ -39,7 +39,7 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 		
 		try{
 			
-			jugadorActual.crearDepositoDeSuministros(tierraConstruccion);
+			jugadorActual.crearDepositoDeSuministros(tierraConstruccion, this.partida.getMapa());
 			
 			try {
 				

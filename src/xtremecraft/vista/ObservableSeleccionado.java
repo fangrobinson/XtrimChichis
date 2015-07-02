@@ -2,7 +2,6 @@ package xtremecraft.vista;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
 import xtremecraft.mapa.Coordenada;
 
 public class ObservableSeleccionado extends Observable{

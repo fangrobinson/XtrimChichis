@@ -40,7 +40,7 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 		
 		try{
 		
-			jugadorActual.crearRecolectorDeMineral(tierraConstruccion);	
+			jugadorActual.crearRecolectorDeMineral(tierraConstruccion, this.partida.getMapa());	
 			
 			try {
 			

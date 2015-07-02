@@ -44,14 +44,14 @@ public class IntegracionTest {
 
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2, 4).getCapaInferior(); 
 		
-		RecolectorDeMineral recolector = jugadorTurno.crearRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral recolector = jugadorTurno.crearRecolectorDeMineral(unTerreno, mapa);
 		
 		assertTrue(jugadorTurno.getCantidadDeMinerales() < recursoMineral);
 		
 		//Lo mismo para el otro jugador
 		xtremGame.quienJuega().pasarTurno();
 		unTerreno = mapa.getCeldaEnFilaColumna(2, 6).getCapaInferior(); 
-		RecolectorDeMineral recolector2 = xtremGame.quienJuega().crearRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral recolector2 = xtremGame.quienJuega().crearRecolectorDeMineral(unTerreno, mapa);
 		xtremGame.quienJuega().pasarTurno();
 		//Volvemos al jugador inical
 		
@@ -73,14 +73,14 @@ public class IntegracionTest {
 		
 		recursoMineral = xtremGame.quienJuega().getCantidadDeMinerales();
 		unTerreno = mapa.getCeldaEnFilaColumna(0, 0).getCapaInferior(); 
-		Barraca barracaJugadorUno = xtremGame.quienJuega().crearBarraca(unTerreno);
+		Barraca barracaJugadorUno = xtremGame.quienJuega().crearBarraca(unTerreno, mapa);
 		
 		assertTrue(xtremGame.quienJuega().getCantidadDeMinerales() < recursoMineral);
 
 		xtremGame.quienJuega().pasarTurno();
 		recursoMineral = xtremGame.quienJuega().getCantidadDeMinerales();
 		unTerreno = mapa.getCeldaEnFilaColumna(0, 1).getCapaInferior(); 
-		Barraca barracaJugadorDos = xtremGame.quienJuega().crearBarraca(unTerreno);
+		Barraca barracaJugadorDos = xtremGame.quienJuega().crearBarraca(unTerreno, mapa);
 		assertTrue(xtremGame.quienJuega().getCantidadDeMinerales() < recursoMineral);
 		
 		assertTrue(barracaJugadorUno.estaEnConstruccion());
@@ -104,7 +104,7 @@ public class IntegracionTest {
 		assertFalse(marineUno.estaEnConstruccion());
 		
 		unTerreno = mapa.getCeldaEnFilaColumna(0, 2).getCapaInferior(); 
-		Fabrica fabricaDos = xtremGame.quienJuega().crearFabrica(unTerreno);
+		Fabrica fabricaDos = xtremGame.quienJuega().crearFabrica(unTerreno, mapa);
 		assertTrue(fabricaDos.estaEnConstruccion());
 		for(int j = 0; j < 40; j++){
 			xtremGame.quienJuega().pasarTurno();
@@ -112,7 +112,7 @@ public class IntegracionTest {
 		assertFalse(fabricaDos.estaEnConstruccion());
 		
 		unTerreno = mapa.getCeldaEnFilaColumna(1, 10).getCapaInferior();
-		RecolectorDeGasVespeno recolectorDeGasDos = xtremGame.quienJuega().crearRecolectorDeGasVespeno(unTerreno);
+		RecolectorDeGasVespeno recolectorDeGasDos = xtremGame.quienJuega().crearRecolectorDeGasVespeno(unTerreno, mapa);
 		assertTrue(recolectorDeGasDos.estaEnConstruccion());
 		for(int j = 0; j < 40; j++){
 			xtremGame.quienJuega().pasarTurno();
@@ -120,7 +120,7 @@ public class IntegracionTest {
 		assertFalse(recolectorDeGasDos.estaEnConstruccion());
 			
 		unTerreno = mapa.getCeldaEnFilaColumna(0, 3).getCapaInferior(); 
-		PuertoEstelar unPuertoDos = xtremGame.quienJuega().crearPuertoEstelar(unTerreno);
+		PuertoEstelar unPuertoDos = xtremGame.quienJuega().crearPuertoEstelar(unTerreno, mapa);
 		assertTrue(unPuertoDos.estaEnConstruccion());
 		for(int j = 0; j < 40; j++){
 			xtremGame.quienJuega().pasarTurno();

@@ -5,11 +5,10 @@ import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Actualizable;
-import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad extends Observable implements Ubicable, Atacable, Defendible, Actualizable, Construible, Cobrable, Identificable{
+public abstract class Unidad extends Observable implements IdentificableUbicable, Atacable, Defendible, Actualizable, Construible, Cobrable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -81,6 +80,7 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     public String getEstadoImprimible(){
     	
     	if(this.estaEnConstruccion()) return getEstadoInicial();
+    	if(!this.estaVivo()) return "Unidad muerta";
     	return this.generarEstadoImprimible();
     	
     }

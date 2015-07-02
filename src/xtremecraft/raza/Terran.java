@@ -53,60 +53,66 @@ public class Terran implements Actualizable{
 		
 	}
 	
-	public Barraca crearBarraca(Terreno unTerreno){
+	public Barraca crearBarraca(Terreno unTerreno, Mapa mapa){
 		
 		Barraca nuevaBarraca = new Barraca(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevaBarraca);
 		this.agregarEdificio(nuevaBarraca);
+		nuevaBarraca.addObserver(mapa);
 		return nuevaBarraca;
 		
 	}
 	
-	public Fabrica crearFabrica(Terreno unTerreno){
+	public Fabrica crearFabrica(Terreno unTerreno, Mapa mapa){
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Barraca unaBarraca = iter.getBarraca();
 		Fabrica nuevaFabrica = new Fabrica(this.jugador, unaBarraca, unTerreno);
 		unTerreno.ubicar(nuevaFabrica);
 		this.agregarEdificio(nuevaFabrica);
+		nuevaFabrica.addObserver(mapa);
 		return nuevaFabrica;
 			
 	}
 		
-	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
+	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno, Mapa mapa){
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
 		Fabrica unaFabrica = iter.getFabrica();
 		PuertoEstelar nuevoPuerto = new PuertoEstelar(this.jugador, unaFabrica, unTerreno);
 		unTerreno.ubicar(nuevoPuerto);
 		this.agregarEdificio(nuevoPuerto);
+		nuevoPuerto.addObserver(mapa);
 		return nuevoPuerto;
 	
 	}
 	
-	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
+	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno, Mapa mapa){
 		
 		RecolectorDeMineral nuevoCentroMineral = RecolectorDeMineral.nuevoRecolectorDeMineral(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevoCentroMineral);
 		this.agregarEdificio(nuevoCentroMineral);
+		nuevoCentroMineral.addObserver(mapa);
 		return nuevoCentroMineral;
 		
 	}
 	
-	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
+	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno, Mapa mapa){
 		
 		RecolectorDeGasVespeno nuevaRefineria = RecolectorDeGasVespeno.nuevoRecolectorDeGasVespeno(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevaRefineria);
 		this.agregarEdificio(nuevaRefineria);
+		nuevaRefineria.addObserver(mapa);
 		return nuevaRefineria;
 		
 	}
 	
-	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
+	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno, Mapa mapa){
 		
 		DepositoDeSuministros nuevoDeposito = new DepositoDeSuministros(this.jugador, unTerreno);
 		unTerreno.ubicar(nuevoDeposito);
 		this.agregarEdificio(nuevoDeposito);
+		nuevoDeposito.addObserver(mapa);
 		return nuevoDeposito;
 		
 	}

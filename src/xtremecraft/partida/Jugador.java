@@ -30,7 +30,7 @@ public class Jugador extends Observable implements Actualizable {
 	private int numeroDeJugador;
 	private boolean esMiTurno;
 	
-	public Jugador (String nombre, Tierra tierra) throws NombreMuyCortoException{
+	public Jugador (String nombre, Tierra tierra, Mapa mapa) throws NombreMuyCortoException{
 		
 		if (nombre.length() < 4){
 		
@@ -39,7 +39,7 @@ public class Jugador extends Observable implements Actualizable {
 		}
 		this.nombre = nombre;
 		this.nacion = new Terran(this);
-		this.crearBaseInicial(tierra);
+		this.crearBaseInicial(tierra, mapa);
 		this.esMiTurno = false;
 		
 	}
@@ -93,9 +93,9 @@ public class Jugador extends Observable implements Actualizable {
 		atacante.atacar(atacado);
 	}
 	
-	private void crearBaseInicial(Tierra tierra){
+	private void crearBaseInicial(Tierra tierra, Mapa mapa){
 		
-		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(tierra);
+		DepositoDeSuministros deposito = this.nacion.crearDepositoDeSuministros(tierra, mapa);
 		for(int tiempo = 0; tiempo<deposito.tiempoConstruccion();tiempo++){
 		
 			deposito.pasarTiempo();
@@ -108,9 +108,9 @@ public class Jugador extends Observable implements Actualizable {
 	
 	//metodos de creacion
 	
-	public Barraca crearBarraca(Terreno unTerreno){
+	public Barraca crearBarraca(Terreno unTerreno, Mapa mapa){
 		
-		Barraca nuevaBarraca = this.nacion.crearBarraca(unTerreno);
+		Barraca nuevaBarraca = this.nacion.crearBarraca(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 		
@@ -118,9 +118,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public Fabrica crearFabrica(Terreno unTerreno){
+	public Fabrica crearFabrica(Terreno unTerreno, Mapa mapa){
 		
-		Fabrica nuevaFabrica = this.nacion.crearFabrica(unTerreno);
+		Fabrica nuevaFabrica = this.nacion.crearFabrica(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 		
@@ -128,9 +128,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno){
+	public PuertoEstelar crearPuertoEstelar(Terreno unTerreno, Mapa mapa){
 		
-		PuertoEstelar nuevoPuerto = this.nacion.crearPuertoEstelar(unTerreno);
+		PuertoEstelar nuevoPuerto = this.nacion.crearPuertoEstelar(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 	
@@ -138,9 +138,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno){
+	public RecolectorDeGasVespeno crearRecolectorDeGasVespeno(Terreno unTerreno, Mapa mapa){
 		
-		RecolectorDeGasVespeno recolectorDeGas = this.nacion.crearRecolectorDeGasVespeno(unTerreno);
+		RecolectorDeGasVespeno recolectorDeGas = this.nacion.crearRecolectorDeGasVespeno(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 		
@@ -148,9 +148,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno){
+	public RecolectorDeMineral crearRecolectorDeMineral(Terreno unTerreno, Mapa mapa){
 		
-		RecolectorDeMineral recolectorDeMineral = this.nacion.crearRecolectorDeMineral(unTerreno);
+		RecolectorDeMineral recolectorDeMineral = this.nacion.crearRecolectorDeMineral(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 		
@@ -208,9 +208,9 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno){
+	public DepositoDeSuministros crearDepositoDeSuministros(Terreno unTerreno, Mapa mapa){
 		
-		DepositoDeSuministros nuevoDeposito = this.nacion.crearDepositoDeSuministros(unTerreno);
+		DepositoDeSuministros nuevoDeposito = this.nacion.crearDepositoDeSuministros(unTerreno, mapa);
 		this.setChanged();
 		this.notifyObservers();
 	

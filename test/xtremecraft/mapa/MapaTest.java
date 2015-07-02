@@ -18,8 +18,11 @@ public class MapaTest {
 	
 	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
@@ -135,7 +138,7 @@ public class MapaTest {
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
+		Barraca unaBarraca = jugador.crearBarraca(unTerreno, mapa);
 		ArrayList<Celda> celdasAdyacentesAlEdificio = mapa.obtenerCeldasAdyacentesAlUbicable(unaBarraca);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
@@ -147,13 +150,7 @@ public class MapaTest {
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna-1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
-		/*
-		for(int i=0;i<celdasObtenidasDesdeElMapa.size();i++){
-			int filaObtenida = celdasObtenidasDesdeElMapa.get(i).fila();
-			int columnaObtenida = celdasObtenidasDesdeElMapa.get(i).columna();
-			System.out.println("fila:"+Integer.toString(filaObtenida)+", columna:"+Integer.toString(columnaObtenida));
-		}
-		*/
+	
 		assertTrue(celdasAdyacentesAlEdificio.containsAll(celdasObtenidasDesdeElMapa));
 		
 	}
@@ -182,7 +179,7 @@ public class MapaTest {
 		int fila =14;
 		int columna =16;
 		Terreno unTerreno = mapa.getCeldaEnFilaColumna(fila,columna).getCapaInferior();
-		Barraca unaBarraca = jugador.crearBarraca(unTerreno);
+		Barraca unaBarraca = jugador.crearBarraca(unTerreno, mapa);
 		ArrayList<Celda> celdasEnRadio = mapa.obtenerCeldasEnRadio(unaBarraca,2);
 		ArrayList<Celda> celdasObtenidasDesdeElMapa = new ArrayList<Celda>();
 		
