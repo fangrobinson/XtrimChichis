@@ -41,7 +41,6 @@ public class AccionMover extends AbstractAction {
 			if ( unidadEnConstruccion || !unidadSeleccionadaPuedeMoverse ){
 				new MensajeDeError("Esta unidad esta en construccion o ya realizó un movimiento en el turno actual.");
 			}else{
-				
 				this.mapaVista.comenzarMovimiento(this.coordenada);
 			}
 			
@@ -50,7 +49,6 @@ public class AccionMover extends AbstractAction {
 		}finally{
 			this.sector.removeAll();
 		}
-
 		this.mapaVista.comenzarMovimiento(this.coordenada);
 	}
 

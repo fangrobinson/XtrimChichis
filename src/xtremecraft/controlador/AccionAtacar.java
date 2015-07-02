@@ -1,27 +1,27 @@
 package xtremecraft.controlador;
 
 import java.awt.event.ActionEvent;
-import java.util.Observable;
-import java.util.Observer;
+//import java.util.Observable;
+//import java.util.Observer;
 
 import javax.swing.AbstractAction;
 
 import xtremecraft.mapa.Coordenada;
-import xtremecraft.mapa.Mapa;
-import xtremecraft.partida.Jugador;
+//import xtremecraft.mapa.Mapa;
+//import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
-import xtremecraft.unidades.Atacable;
-import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
-import xtremecraft.unidades.Defendible;
-import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
+//import xtremecraft.unidades.Atacable;
+//import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
+//import xtremecraft.unidades.Defendible;
+//import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
-import xtremecraft.vista.ObservableSeleccionado;
+//import xtremecraft.vista.ObservableSeleccionado;
 import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
-public class AccionAtacar extends AbstractAction implements Observer{
+public class AccionAtacar extends AbstractAction{
 
 	private Partida partida;
 	private Coordenada coordenada;
@@ -37,8 +37,31 @@ public class AccionAtacar extends AbstractAction implements Observer{
 		this.coordenada = coordenada;
 		this.sector = sectorAccionesDisponibles;
 	}
-	
+
 	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		try {
+			this.partida.validarQueUbicableElegidoEsDelJugador(this.coordenada);
+			
+			boolean unidadEnConstruccion = this.partida.unidadSeleccionadaEstaEnConstruccion(this.coordenada);
+			
+			boolean unidadSeleccionadaPuedeAtacar = this.partida.unidadSeleccionadaPuedeAtacar(this.coordenada);
+			
+			if ( unidadEnConstruccion || !unidadSeleccionadaPuedeAtacar ){
+				new MensajeDeError("Esta unidad esta en construccion o ya realizó un ataque en el turno actual.");
+			}else{
+				this.mapaVista.comenzarAtaque(this.coordenada);
+			}
+			
+		} catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
+			new MensajeDeError("La unidad que quiere atacar no es del jugador");
+		}finally{
+			this.sector.removeAll();
+		}
+		this.mapaVista.comenzarAtaque(this.coordenada);		
+	}
+	
+	/*@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
 		this.mapaVista.agregarObservadorAVistas(this);
@@ -81,6 +104,6 @@ public class AccionAtacar extends AbstractAction implements Observer{
 			new MensajeDeError("Error interno del sistema");	
 		}		
 		
-	}
+	}*/
 
 }

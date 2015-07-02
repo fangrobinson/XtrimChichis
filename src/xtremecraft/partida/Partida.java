@@ -271,6 +271,13 @@ public class Partida {
 		Unidad unidad = (Unidad) celda.getUbicableEnInferior();
 		return unidad.puedeMoverse();
 		
+	}
+
+	public boolean unidadSeleccionadaPuedeAtacar(Coordenada coordenada) {
+		
+		Celda celda = this.mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
+		Unidad unidad = (Unidad) celda.getUbicableEnInferior();
+		return unidad.puedeAtacar();
 		
 	}
 	
