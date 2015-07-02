@@ -182,7 +182,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.setUbicacionInicial(tierra1);
-		miniSamus.setUbicacionInicial(tierra2);
+		miniSamus.actualizarUbicacion(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
 		
@@ -197,7 +197,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.setUbicacionInicial(tierra);
-		miniSamus.setUbicacionInicial(tierraDestino);
+		miniSamus.actualizarUbicacion(tierraDestino);
 		
 	}
 	
@@ -210,7 +210,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		
 		miniSamus.setUbicacionInicial(tierra);
-		miniSamus.setUbicacionInicial(aireDestino);
+		miniSamus.actualizarUbicacion(aireDestino);
 		
 	}
 		

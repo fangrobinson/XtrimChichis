@@ -147,7 +147,13 @@ public class MapaTest {
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna-1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila+1,columna-1));
 		celdasObtenidasDesdeElMapa.add(mapa.getCeldaEnFilaColumna(fila-1,columna+1));
-		
+		/*
+		for(int i=0;i<celdasObtenidasDesdeElMapa.size();i++){
+			int filaObtenida = celdasObtenidasDesdeElMapa.get(i).fila();
+			int columnaObtenida = celdasObtenidasDesdeElMapa.get(i).columna();
+			System.out.println("fila:"+Integer.toString(filaObtenida)+", columna:"+Integer.toString(columnaObtenida));
+		}
+		*/
 		assertTrue(celdasAdyacentesAlEdificio.containsAll(celdasObtenidasDesdeElMapa));
 		
 	}
@@ -155,17 +161,13 @@ public class MapaTest {
 	@Test
 	public void liberarEspacioCorrespondienteADejaLiberaElEspacioOcupadoPorElUbicable(){
 		
-		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
+		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Celda celda = mapa.getCeldaEnFilaColumna(1,1);
 		Goliat goliat = new Goliat(jugador);
 		
 		celda.ubicarCapaInferior(goliat);
-		celda = mapa.getCeldaEnFilaColumna(1,2);
 		goliat.setUbicacionInicial(celda.getCapaInferior());
-		
-		assertTrue(celda.getCapaInferior().estaOcupado());
-		
 		mapa.liberarEspacioCorrespondienteA(goliat);
 		
 		assertFalse(celda.getCapaInferior().estaOcupado());

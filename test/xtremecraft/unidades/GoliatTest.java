@@ -228,7 +228,7 @@ public class GoliatTest {
 		Goliat tanque = new Goliat(jugador);
 		
 		tanque.setUbicacionInicial(tierra1);
-		tanque.setUbicacionInicial(tierra2);
+		tanque.actualizarUbicacion(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
 		
@@ -243,7 +243,7 @@ public class GoliatTest {
 		Goliat tanque = new Goliat(jugador);
 		
 		tanque.setUbicacionInicial(tierra);
-		tanque.setUbicacionInicial(aireDestino);
+		tanque.actualizarUbicacion(aireDestino);
 		
 	}
 		
@@ -256,7 +256,7 @@ public class GoliatTest {
 		Goliat tanque = new Goliat(jugador);
 		
 		tanque.setUbicacionInicial(tierra);
-		tanque.setUbicacionInicial(tierraDestino);
+		tanque.actualizarUbicacion(tierraDestino);
 		
 	}
 	

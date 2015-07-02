@@ -106,11 +106,7 @@ public class NaveCienciaTest {
 		naveCiencia.aumentarEnergiaEnTurno();
 		
 		assertEquals(naveCiencia.getEnergia(),60);
-		
-		//naveCiencia.aumentarEnergiaEnTurno();
-		
-		//assertEquals(naveCiencia.getEnergia(),70);
-	
+			
 	}
 	
 	@Test
@@ -122,7 +118,7 @@ public class NaveCienciaTest {
 		for(int i=0;i<15;i++){
 			naveCiencia.aumentarEnergiaEnTurno();
 		}
-		//assertEquals(naveCiencia.getEnergia(),200);
+		
 		naveCiencia.aumentarEnergiaEnTurno();
 		
 		assertEquals(naveCiencia.getEnergia(),200);
@@ -423,27 +419,51 @@ public class NaveCienciaTest {
 	
 	@Test
 	public void atacarConRadiacionHaceQueLasUnidadesADistanciaMenorOIgualAUnoDeLaAfectadaRecibanDanio(){
-		
-		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		//TODO: ver que pasa con emitir radiacion cuando hago goliatAtacado.pasarTurno();
+		Jugador jugador1 = crearJugadorConRecursosSuficientesParaConstruir();
+		Jugador jugador2 = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
-		Terreno aire = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
-		Terreno tierra = mapa.getCeldaEnFilaColumna(5,6).getCapaInferior();
-		Terreno otraTierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
-		Goliat goliatAtacado = new Goliat(jugador);
-		Goliat goliatIrradiado = new Goliat(jugador);
-		int vidaInicialIrradiado = goliatIrradiado.getVida();
+		Terreno tierra1 = mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3, 3).getCapaInferior();
+		Terreno tierra3 = mapa.getCeldaEnFilaColumna(4, 4).getCapaInferior();
+		Terreno tierra4 = mapa.getCeldaEnFilaColumna(5, 5).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(9, 9).getCapaInferior();
+		Terreno tierra6 = mapa.getCeldaEnFilaColumna(4, 6).getCapaInferior();
+		Terreno tierra7 = mapa.getCeldaEnFilaColumna(10, 11).getCapaInferior();
+		Terreno tierra8 = mapa.getCeldaEnFilaColumna(10, 10).getCapaInferior();
+		Terreno tierra9 = mapa.getCeldaEnFilaColumna(11, 10).getCapaSuperior();
 		
-		naveCienciaAtacante.setUbicacionInicial(aire);
-		goliatAtacado.setUbicacionInicial(tierra);
-		goliatIrradiado.setUbicacionInicial(otraTierra);
-		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
-		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
+		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1);
+		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4);
+		for (int tiempo=0;tiempo<barracaJugador1.tiempoConstruccion();tiempo++) barracaJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<barracaJugador2.tiempoConstruccion();tiempo++) barracaJugador2.pasarTiempo();
+		
+		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2);
+		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5);
+		for (int tiempo=0;tiempo<fabricaJugador1.tiempoConstruccion();tiempo++) fabricaJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<fabricaJugador2.tiempoConstruccion();tiempo++) fabricaJugador2.pasarTiempo();
+		
+		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3);	
+		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6);	
+		for (int tiempo=0;tiempo<puertoEstelarJugador1.tiempoConstruccion();tiempo++) puertoEstelarJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<puertoEstelarJugador2.tiempoConstruccion();tiempo++) puertoEstelarJugador2.pasarTiempo();
+		
+		NaveCiencia naveCienciaAtacante = jugador1.crearNaveCiencia(puertoEstelarJugador1, mapa);
+		Goliat goliatAtacado = jugador2.crearGoliat(fabricaJugador2, mapa);
+		Goliat goliatIrradiado = jugador2.crearGoliat(fabricaJugador2, mapa);
+		
+		naveCienciaAtacante.actualizarUbicacion(tierra9);
+		goliatAtacado.actualizarUbicacion(tierra7);
+		goliatIrradiado.actualizarUbicacion(tierra8);		
+		
+		int vidaInicialGoliatIrradiado = goliatIrradiado.getVida();
+		
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
-		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
-		goliatAtacado.pasarTiempo();
+		Radiacion radiacion = new Radiacion(celdasAfectadas);
+		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		radiacion.emitirRadiacion(goliatAtacado);
 		
-		assertTrue(vidaInicialIrradiado > goliatIrradiado.getVida());
+		assertTrue(vidaInicialGoliatIrradiado > goliatIrradiado.getVida());
 				
 	}
 	

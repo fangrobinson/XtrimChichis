@@ -21,7 +21,6 @@ import xtremecraft.mapa.NoHayRecursoException;
 import xtremecraft.partida.Jugador;
 import xtremecraft.recursos.MinaDeMinerales;
 import xtremecraft.recursos.VolcanGasVespeno;
-//import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 
 public class TerranTest {
@@ -484,6 +483,26 @@ public class TerranTest {
 		assertFalse(unMarine.estaEnConstruccion());
 		
 	}
+	/*
+	@Test
+	public void crearUnidadPermiteCrearHastaSeisUnidadesAlrededorDeUnaBarraca(){
+		
+		Mapa mapa = new Mapa(2);
+		Terran razaTerran = crearRazaTerranConRecursosSuficientesParaConstruir();
+		Terreno unTerreno = mapa.getCeldaEnFilaColumna(2,3).getCapaInferior();
+		Barraca unaBarraca = razaTerran.crearBarraca(unTerreno);
+		
+		for(int turno=0;turno<unaBarraca.tiempoConstruccion();turno++) unaBarraca.pasarTiempo();
+		Unidad marine1 = razaTerran.crearMarine(unaBarraca, mapa);
+		Unidad marine2 = razaTerran.crearMarine(unaBarraca, mapa);
+		Unidad marine3 = razaTerran.crearMarine(unaBarraca, mapa);
+				
+		Coordenada coordenada1 = marine1.getUbicacionActual();
+		Coordenada coordenada2 = marine2.getUbicacionActual();
+		Coordenada coordenada3 = marine3.getUbicacionActual();
 	
-	
+		assertEquals(marine3.getVida(),40);
+		
+	}
+	*/
 }

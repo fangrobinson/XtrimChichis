@@ -27,6 +27,7 @@ public class Aire extends Terreno {
     	
     	}
     	this.ubicable = ubicable;
+    	this.estaOcupado = true;
     	return this;
     }
 
