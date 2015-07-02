@@ -89,7 +89,7 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
     }
 	
 	public void recibirDanio(int valorDanio){
-		//TODO: Implementar logica de danio recibido que resta turnos.
+		
 		if(this.estaEnConstruccion){
 			int turnosARestar = valorDanio % (this.vidaMax()/this.tiempoConstruccion);
 			this.turnosConstruccionPasados -= turnosARestar;
@@ -100,17 +100,24 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 		if(this.vida.getValor() == 0){
 			this.estaVivo = false;
 		}
+		
 		setChanged();
 		notifyObservers();
 	}
 
-	public void actualizarUbicacion(Terreno unTerreno){
+	public void setUbicacionInicial(Terreno unTerreno){
 		
-		this.terrenoActual.desocupar();
 		this.terrenoActual = unTerreno;
 		terrenoActual.ubicar(this);
 		
 	}
+	
+	public void actualizarUbicacion(Terreno unTerreno){
+		
+		this.terrenoActual.desocupar();
+		this.setUbicacionInicial(unTerreno);
+		
+	}	
 	
 	public int tiempoConstruccion(){
 		
@@ -137,11 +144,15 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 	}
 	
 	public void pasarTiempo(){
+		
 		if (this.estaEnConstruccion()){
+		
 			this.turnosConstruccionPasados += 1;
 			if (this.turnosConstruccionPasados >= this.tiempoConstruccion){
+			
 				this.estaEnConstruccion = false;
 				this.vida.curarPorTurno(100);
+			
 			}
 		}
 		else{

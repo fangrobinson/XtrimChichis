@@ -31,13 +31,19 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
+
 		try{
+		
 			jugadorActual.crearRecolectorDeGasVespeno(tierraConstruccion);
 			
+			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
@@ -47,5 +53,7 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
 		}
+		
 	}
+	
 }

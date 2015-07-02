@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import xtremecraft.edificios.Barraca;
+import xtremecraft.edificios.Fabrica;
+import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Aire;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
@@ -133,7 +136,7 @@ public class NaveCienciaTest {
 		Terreno unTerreno=new Aire(1,4);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.actualizarUbicacion(unTerreno);
+		naveCiencia.setUbicacionInicial(unTerreno);
 		
 		assertEquals(naveCiencia.getUbicacionActual(),unTerreno.getUbicacionActual());
 		
@@ -147,7 +150,7 @@ public class NaveCienciaTest {
 		Terreno tierra2 = new Tierra(2,3);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.actualizarUbicacion(tierra1);
+		naveCiencia.setUbicacionInicial(tierra1);
 		naveCiencia.actualizarUbicacion(tierra2);
 
 		assertFalse(tierra1.estaOcupado());
@@ -162,7 +165,7 @@ public class NaveCienciaTest {
 		Terreno tierra2 = new Tierra(2,3);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.actualizarUbicacion(tierra1);
+		naveCiencia.setUbicacionInicial(tierra1);
 		naveCiencia.actualizarUbicacion(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
@@ -177,7 +180,7 @@ public class NaveCienciaTest {
 		Terreno aireDestino = new Aire(20,20);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.actualizarUbicacion(aire);
+		naveCiencia.setUbicacionInicial(aire);
 		naveCiencia.actualizarUbicacion(aireDestino);
 		
 	}
@@ -191,8 +194,8 @@ public class NaveCienciaTest {
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
-		naveCiencia.actualizarUbicacion(tierra);
-		nave.actualizarUbicacion(otraTierra);
+		naveCiencia.setUbicacionInicial(tierra);
+		nave.setUbicacionInicial(otraTierra);
 		
 		nave.transportarNuevaUnidad(naveCiencia);
 				
@@ -208,8 +211,8 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
 		NaveCiencia naveCienciaAtacada = new NaveCiencia(jugador);
 		
-		naveCienciaAtacante.actualizarUbicacion(aire);
-		naveCienciaAtacada.actualizarUbicacion(otroAire);
+		naveCienciaAtacante.setUbicacionInicial(aire);
+		naveCienciaAtacada.setUbicacionInicial(otroAire);
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 		
 		assertEquals(naveCienciaAtacada.getEnergia(),0);
@@ -229,9 +232,9 @@ public class NaveCienciaTest {
 		Goliat goliatEnRadioDeImpacto = new Goliat(jugador);
 		int vidaInicialGoliat = goliatEnRadioDeImpacto.getVida();
 		
-		naveCienciaAtacante.actualizarUbicacion(aire);
-		naveCienciaAtacada.actualizarUbicacion(otroAire);
-		goliatEnRadioDeImpacto.actualizarUbicacion(tierra);
+		naveCienciaAtacante.setUbicacionInicial(aire);
+		naveCienciaAtacada.setUbicacionInicial(otroAire);
+		goliatEnRadioDeImpacto.setUbicacionInicial(tierra);
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 		
 		assertEquals(goliatEnRadioDeImpacto.getVida(),vidaInicialGoliat);
@@ -241,18 +244,43 @@ public class NaveCienciaTest {
 	@Test
 	public void atacarConMisilEMPSiHayUnaUnidadMagicaEnElRadioDeImpactoPierdeSuEnergia(){
 		
-		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
+		Jugador jugador1 = crearJugadorConRecursosSuficientesParaConstruir();
+		Jugador jugador2 = crearJugadorConRecursosSuficientesParaConstruir();
 		Mapa mapa = new Mapa(2);
-		Terreno aire1 = mapa.getCeldaEnFilaColumna(5,5).getCapaSuperior();
-		Terreno aire2 = mapa.getCeldaEnFilaColumna(6,6).getCapaSuperior();
-		Terreno aire3 = mapa.getCeldaEnFilaColumna(7,7).getCapaSuperior();
-		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
-		NaveCiencia naveCienciaAtacada = new NaveCiencia(jugador);
-		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia(jugador);
+		Terreno tierra1 = mapa.getCeldaEnFilaColumna(1, 2).getCapaInferior();
+		Terreno tierra2 = mapa.getCeldaEnFilaColumna(3, 3).getCapaInferior();
+		Terreno tierra3 = mapa.getCeldaEnFilaColumna(4, 4).getCapaInferior();
+		Terreno tierra4 = mapa.getCeldaEnFilaColumna(5, 5).getCapaInferior();
+		Terreno tierra5 = mapa.getCeldaEnFilaColumna(9, 9).getCapaInferior();
+		Terreno tierra6 = mapa.getCeldaEnFilaColumna(4, 6).getCapaInferior();
+		
+		Terreno aire1 = mapa.getCeldaEnFilaColumna(10, 10).getCapaSuperior();
+		Terreno aire2 = mapa.getCeldaEnFilaColumna(10, 11).getCapaSuperior();
+		Terreno aire3 = mapa.getCeldaEnFilaColumna(11, 10).getCapaSuperior();
+		
+		Barraca barracaJugador1 = jugador1.crearBarraca(tierra1);
+		Barraca barracaJugador2 = jugador2.crearBarraca(tierra4);
+		for (int tiempo=0;tiempo<barracaJugador1.tiempoConstruccion();tiempo++) barracaJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<barracaJugador2.tiempoConstruccion();tiempo++) barracaJugador2.pasarTiempo();
+		
+		Fabrica fabricaJugador1 = jugador1.crearFabrica(tierra2);
+		Fabrica fabricaJugador2 = jugador2.crearFabrica(tierra5);
+		for (int tiempo=0;tiempo<fabricaJugador1.tiempoConstruccion();tiempo++) fabricaJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<fabricaJugador2.tiempoConstruccion();tiempo++) fabricaJugador2.pasarTiempo();
+		
+		PuertoEstelar puertoEstelarJugador1 = jugador1.crearPuertoEstelar(tierra3);	
+		PuertoEstelar puertoEstelarJugador2 = jugador2.crearPuertoEstelar(tierra6);	
+		for (int tiempo=0;tiempo<puertoEstelarJugador1.tiempoConstruccion();tiempo++) puertoEstelarJugador1.pasarTiempo();
+		for (int tiempo=0;tiempo<puertoEstelarJugador2.tiempoConstruccion();tiempo++) puertoEstelarJugador2.pasarTiempo();
+		
+		NaveCiencia naveCienciaAtacante = jugador1.crearNaveCiencia(puertoEstelarJugador1, mapa);
+		NaveCiencia naveCienciaAtacada = jugador2.crearNaveCiencia(puertoEstelarJugador2, mapa);
+		NaveCiencia naveCienciaEnRadioDeImpacto = jugador2.crearNaveCiencia(puertoEstelarJugador2, mapa);
 		
 		naveCienciaAtacante.actualizarUbicacion(aire1);
 		naveCienciaAtacada.actualizarUbicacion(aire2);
 		naveCienciaEnRadioDeImpacto.actualizarUbicacion(aire3);
+		
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 		
 		assertEquals(naveCienciaEnRadioDeImpacto.getEnergia(),0);
@@ -269,8 +297,8 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
 		NaveCiencia naveCienciaAtacada = new NaveCiencia(jugador);
 		
-		naveCienciaAtacante.actualizarUbicacion(aire1);
-		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaAtacante.setUbicacionInicial(aire1);
+		naveCienciaAtacada.setUbicacionInicial(aire2);
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 				
 	}
@@ -288,9 +316,9 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaEnRadioDeImpacto = new NaveCiencia(jugador);
 		int energiaInicialNaveEnRadioDeImpacto = naveCienciaEnRadioDeImpacto.getEnergia();
 		
-		naveCienciaAtacante.actualizarUbicacion(aire1);
-		naveCienciaAtacada.actualizarUbicacion(aire2);
-		naveCienciaEnRadioDeImpacto.actualizarUbicacion(tierra);
+		naveCienciaAtacante.setUbicacionInicial(aire1);
+		naveCienciaAtacada.setUbicacionInicial(aire2);
+		naveCienciaEnRadioDeImpacto.setUbicacionInicial(tierra);
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 		
 		assertEquals(naveCienciaEnRadioDeImpacto.getEnergia(),energiaInicialNaveEnRadioDeImpacto);
@@ -308,8 +336,8 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacada = new NaveCiencia(jugador);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
-		naveCienciaAtacante.actualizarUbicacion(aire1);
-		naveCienciaAtacada.actualizarUbicacion(aire2);
+		naveCienciaAtacante.setUbicacionInicial(aire1);
+		naveCienciaAtacada.setUbicacionInicial(aire2);
 		naveCienciaAtacante.atacarConMisilEMP(mapa,naveCienciaAtacada);
 		
 		assertTrue(energiaInicialNaveAtacante > naveCienciaAtacante.getEnergia());
@@ -327,8 +355,8 @@ public class NaveCienciaTest {
 		Goliat goliatAtacado = new Goliat(jugador);
 		int energiaInicialNaveAtacante = naveCienciaAtacante.getEnergia();
 		
-		naveCienciaAtacante.actualizarUbicacion(aire);
-		goliatAtacado.actualizarUbicacion(tierra);
+		naveCienciaAtacante.setUbicacionInicial(aire);
+		goliatAtacado.setUbicacionInicial(tierra);
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 		
@@ -346,8 +374,8 @@ public class NaveCienciaTest {
 		NaveCiencia naveCienciaAtacante = new NaveCiencia(jugador);
 		Goliat goliatAtacado = new Goliat(jugador);
 		
-		naveCienciaAtacante.actualizarUbicacion(aire);
-		goliatAtacado.actualizarUbicacion(tierra);
+		naveCienciaAtacante.setUbicacionInicial(aire);
+		goliatAtacado.setUbicacionInicial(tierra);
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
 				
@@ -361,7 +389,7 @@ public class NaveCienciaTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.actualizarUbicacion(tierra);
+		naveCiencia.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -382,8 +410,8 @@ public class NaveCienciaTest {
 		Goliat goliatAtacado = new Goliat(jugador);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
-		goliatAtacado.actualizarUbicacion(tierra);
-		naveCienciaAtacante.actualizarUbicacion(aire);
+		goliatAtacado.setUbicacionInicial(tierra);
+		naveCienciaAtacante.setUbicacionInicial(aire);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		naveCienciaAtacante.atacarConRadiacion(celdasAfectadas,goliatAtacado);
@@ -406,9 +434,9 @@ public class NaveCienciaTest {
 		Goliat goliatIrradiado = new Goliat(jugador);
 		int vidaInicialIrradiado = goliatIrradiado.getVida();
 		
-		naveCienciaAtacante.actualizarUbicacion(aire);
-		goliatAtacado.actualizarUbicacion(tierra);
-		goliatIrradiado.actualizarUbicacion(otraTierra);
+		naveCienciaAtacante.setUbicacionInicial(aire);
+		goliatAtacado.setUbicacionInicial(tierra);
+		goliatIrradiado.setUbicacionInicial(otraTierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
@@ -428,7 +456,7 @@ public class NaveCienciaTest {
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		int vidaInicial = naveCiencia.getVida();
 		
-		naveCiencia.actualizarUbicacion(tierra);
+		naveCiencia.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<naveCiencia.tiempoConstruccion();tiempo++) naveCiencia.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveCiencia, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);

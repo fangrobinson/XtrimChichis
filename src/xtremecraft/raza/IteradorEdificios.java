@@ -12,6 +12,7 @@ public class IteradorEdificios extends IteradorRaza<Edificio> {
 	public IteradorEdificios(ArrayList<Edificio> lista){
 		
 		this.elementosRaza = lista;
+	
 	}
 	
 	
@@ -19,8 +20,10 @@ public class IteradorEdificios extends IteradorRaza<Edificio> {
 		
 	    Barraca barraca = (Barraca) this.nextDe(Barraca.class);
 	    if (barraca == null){
+	
 	    	throw new RazaNoTieneBarracasException();
 	    }
+	    
 	    return barraca;
 		
 	}
@@ -29,8 +32,11 @@ public class IteradorEdificios extends IteradorRaza<Edificio> {
 		
 		Fabrica fabrica = (Fabrica) this.nextDe(Fabrica.class);
 	    if (fabrica == null){
+	    
 	    	throw new RazaNoTieneFabricasException();
+	    
 	    }
+	    
 	    return fabrica;
 		
 	}

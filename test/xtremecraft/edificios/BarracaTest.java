@@ -183,7 +183,7 @@ public class BarracaTest {
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesABarraca = 17;
 		
-		miniSamus.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra2);
 		for(int i=0;i<cantidadDeAtaquesABarraca;i++) miniSamus.atacar(unaBarraca);
 		
 		assertFalse(unaBarraca.estaVivo());		

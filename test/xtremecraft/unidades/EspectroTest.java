@@ -86,8 +86,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		Espectro misdreavus = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(tierra);
-		misdreavus.actualizarUbicacion(aire);
+		gengar.setUbicacionInicial(tierra);
+		misdreavus.setUbicacionInicial(aire);
 		
 		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
 			gengar.pasarTiempo();
@@ -108,8 +108,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		Espectro misdreavus = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(tierra1);
-		misdreavus.actualizarUbicacion(tierra2);
+		gengar.setUbicacionInicial(tierra1);
+		misdreavus.setUbicacionInicial(tierra2);
 		
 		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
 			gengar.pasarTiempo();
@@ -131,8 +131,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		Espectro misdreavus = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(unTerreno);
-		misdreavus.actualizarUbicacion(otroTerreno);
+		gengar.setUbicacionInicial(unTerreno);
+		misdreavus.setUbicacionInicial(otroTerreno);
 		
 		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
 			gengar.pasarTiempo();
@@ -153,8 +153,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		Espectro misdreavus = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(unTerreno);
-		misdreavus.actualizarUbicacion(otroTerreno);
+		gengar.setUbicacionInicial(unTerreno);
+		misdreavus.setUbicacionInicial(otroTerreno);
 		
 		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
 			gengar.pasarTiempo();
@@ -177,8 +177,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		Espectro misdreavus = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(unTerreno);
-		misdreavus.actualizarUbicacion(otroTerreno);
+		gengar.setUbicacionInicial(unTerreno);
+		misdreavus.setUbicacionInicial(otroTerreno);
 		
 		for (int i = 0; i < gengar.tiempoConstruccion(); i++){
 			gengar.pasarTiempo();
@@ -201,7 +201,7 @@ public class EspectroTest {
 		
 		Espectro unEspectro = new Espectro(jugador);
 		
-		unEspectro.actualizarUbicacion(unTerreno);
+		unEspectro.setUbicacionInicial(unTerreno);
 		
 		assertEquals(unEspectro.getUbicacionActual(),unTerreno.getUbicacionActual());
 		
@@ -215,7 +215,7 @@ public class EspectroTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Espectro unEspectro = new Espectro(jugador);
 		
-		unEspectro.actualizarUbicacion(tierra1);
+		unEspectro.setUbicacionInicial(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
 
 		assertFalse(tierra1.estaOcupado());
@@ -230,7 +230,7 @@ public class EspectroTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Espectro unEspectro = new Espectro(jugador);
 		
-		unEspectro.actualizarUbicacion(tierra1);
+		unEspectro.setUbicacionInicial(tierra1);
 		unEspectro.actualizarUbicacion(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
@@ -246,8 +246,8 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
-		gengar.actualizarUbicacion(tierra);
-		nave.actualizarUbicacion(otraTierra);
+		gengar.setUbicacionInicial(tierra);
+		nave.setUbicacionInicial(otraTierra);
 		
 		nave.transportarNuevaUnidad(gengar);
 				
@@ -262,7 +262,7 @@ public class EspectroTest {
 		Espectro gengar = new Espectro(jugador);
 		int vidaInicial = gengar.getVida();
 		
-		gengar.actualizarUbicacion(tierra);
+		gengar.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(gengar, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -280,7 +280,7 @@ public class EspectroTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Espectro gengar = new Espectro(jugador);
 		
-		gengar.actualizarUbicacion(tierra);
+		gengar.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<gengar.tiempoConstruccion();tiempo++) gengar.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(gengar, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);

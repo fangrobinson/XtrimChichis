@@ -162,7 +162,7 @@ public class PuertoEstelarTest {
 		PuertoEstelar puertoEstelar = new PuertoEstelar(jugador, fabrica, tierra3);
 		
 		
-		puertoEstelar.actualizarUbicacion(tierra4);
+		puertoEstelar.setUbicacionInicial(tierra4);
 		
 		assertEquals(puertoEstelar.getUbicacionActual().fila(), 5);
 		assertEquals(puertoEstelar.getUbicacionActual().columna(), 7);
@@ -278,7 +278,7 @@ public class PuertoEstelarTest {
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesAPuerto = 17;
 
-		miniSamus.actualizarUbicacion(tierra4);
+		miniSamus.setUbicacionInicial(tierra4);
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
 		for(int i=0;i<cantidadDeAtaquesAPuerto;i++) miniSamus.atacar(puertoEstelar);
 		

@@ -21,7 +21,9 @@ public class Barraca extends Edificio{
 	public Marine entrenarMarine(){
 		
 		if(this.estaEnConstruccion()){
+			
 			throw new EdificioEnConstruccionException();
+		
 		}
 		return new Marine(this.jugador);
 		

@@ -1,6 +1,5 @@
 package xtremecraft.mapa;
 
-
 public class AvanceAIzquierda extends EstrategiaDeMovimiento{
 	
 	public AvanceAIzquierda(){

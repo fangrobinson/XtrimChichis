@@ -21,7 +21,9 @@ public class RecolectorDeGasVespeno extends Recolector {
 		
 		RecolectorDeGasVespeno nuevoRecolector = new RecolectorDeGasVespeno(jugador, unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
+	
 			throw new NoHayGasVespenoException();
+		
 		}	
 		return nuevoRecolector;
 		
@@ -43,7 +45,9 @@ public class RecolectorDeGasVespeno extends Recolector {
 	public void pasarTiempo(){
 		
 		if (!super.estaEnConstruccion){
+		
 			this.jugador.nacion().juntarGas(this.recurso.explotar(this.aumentoDeReservaEnTurno));
+		
 		}
 		super.pasarTiempo();
 		

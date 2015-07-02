@@ -13,7 +13,6 @@ public class VistaTierra extends Vista{
 		
 		super(nombreTerreno,estadoInicial);
 		this.color = new Color(153,102,0);
-		//this.nombre = nombreTerreno;
 		
 	}
 

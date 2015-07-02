@@ -1,34 +1,27 @@
 package xtremecraft.controlador;
 
 import java.awt.event.ActionEvent;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.AbstractAction;
 
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
-import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.NoSePudoOcuparElTerrenoException;
 import xtremecraft.mapa.Terreno;
-import xtremecraft.partida.Jugador;
 import xtremecraft.partida.Partida;
-import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.vista.MapaObservable;
-import xtremecraft.vista.MensajeDeError;
-import xtremecraft.vista.ObservableSeleccionado;
 
 @SuppressWarnings("serial")
-public class AccionMover extends AbstractAction implements Observer{
+public class AccionMover extends AbstractAction {
 
-	private Partida partida;
+	//private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
 		
 	public AccionMover(Partida partida, MapaObservable mapa, Coordenada coordenada){
 			
 		super("Mover");
-		this.partida = partida;
+		//this.partida = partida;
 		this.mapaVista = mapa;
 		this.coordenada = coordenada;
 		
@@ -37,10 +30,10 @@ public class AccionMover extends AbstractAction implements Observer{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		this.mapaVista.agregarObservadorAVistas(this);
+		this.mapaVista.comenzarMovimiento(this.coordenada);
 		
 	}
-
+/*
 	@Override
 	public void update(Observable observado, Object arg1) {
 		
@@ -69,9 +62,10 @@ public class AccionMover extends AbstractAction implements Observer{
 			unidadAMover.actualizarUbicacion(terrenoAMover);
 			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaAMover);
-				this.mapaVista.desocuparUbicacion(this.coordenada);
-				this.mapaVista.removerObservador(this);
+				
+
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
@@ -80,5 +74,5 @@ public class AccionMover extends AbstractAction implements Observer{
 		}
 		
 	}
-
+*/
 }

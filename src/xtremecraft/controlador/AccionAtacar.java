@@ -53,6 +53,7 @@ public class AccionAtacar extends AbstractAction implements Observer{
 		Defendible atacante = (Defendible) mapaReal.getCeldaEnFilaColumna(this.coordenada.fila(), this.coordenada.columna()).getUbicableEnInferior();
 		
 		try{
+			
 			Atacable atacado = (Atacable) mapaReal.getCeldaEnFilaColumna(coordenadaAtacado.fila(), coordenadaAtacado.columna()).getUbicableEnInferior();
 			
 			Jugador jugadorTurno = this.partida.quienJuega();
@@ -69,7 +70,9 @@ public class AccionAtacar extends AbstractAction implements Observer{
 		}
 			
 		try {
+			
 			this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			
 		} catch (InstantiationException | IllegalAccessException e) {
 			new MensajeDeError("Error interno del sistema");	
 		}

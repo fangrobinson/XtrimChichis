@@ -59,13 +59,13 @@ public abstract class ConstructorDeUnidades {
 		while(!( celdasAdyacentesAlEdificio.isEmpty() || unidadEstaUbicada ) ){
 			try{
 				mapa.ubicar(nuevaUnidad, unaCelda);
+				unidadEstaUbicada = true;
 			}
 			catch(RuntimeException NoSePudoOcuparElTerrenoException){
 				unaCelda = celdasAdyacentesAlEdificio.remove(0);
 			}
-			//unidadEstaUbicada = mapa.ubicar(nuevaUnidad, unaCelda);
 		}
-		//if(!unidadEstaUbicada) throw new UbicacionNoValidaException();
+		
 	}
 
 }

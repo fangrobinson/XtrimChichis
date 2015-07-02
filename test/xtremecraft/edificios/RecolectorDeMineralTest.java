@@ -167,7 +167,7 @@ public class RecolectorDeMineralTest {
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesARecolector = 17;
 		
-		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.setUbicacionInicial(tierra);
 		for(int i=0;i<cantidadDeAtaquesARecolector;i++) miniSamus.atacar(centroMineralTerran);
 		
 		assertFalse(centroMineralTerran.estaVivo());		

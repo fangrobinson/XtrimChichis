@@ -14,9 +14,12 @@ abstract public class IteradorRaza<T extends Construible> {
 		
 		int cant = 0;
 		for(int posicion = 0; posicion < this.elementosRaza.size(); posicion++){
+		
 			Construible construibleActual = this.elementosRaza.get(posicion);
 			if ((construibleActual.getClass() == unidadClass)&&(!construibleActual.estaEnConstruccion())){
-					cant++;
+			
+				cant++;
+			
 			}
 		}
 		return cant;
@@ -27,11 +30,14 @@ abstract public class IteradorRaza<T extends Construible> {
 		
 		int cant = 0;
 		for(int posicion = 0; posicion < this.elementosRaza.size(); posicion++){
+			
 			Construible construibleActual = this.elementosRaza.get(posicion);
 			if (construibleActual.getClass() == unidadClass){
+			
 				cant++;	
 			}
 		}
+		
 		return cant;
 		
 	}
@@ -40,12 +46,16 @@ abstract public class IteradorRaza<T extends Construible> {
 		
     	for (int posicion = this.indice; posicion < this.elementosRaza.size(); posicion++){
     		T construibleActual = this.elementosRaza.get(posicion);
+    	
     		if (construibleActual.getClass() == unidadClass && !(construibleActual.estaEnConstruccion())){
+    		
     			this.indice = posicion++;
     			return construibleActual;
+    		
     		}
     	}
         this.indice = this.elementosRaza.size();
+        
         return null;
         
     }
@@ -65,11 +75,15 @@ abstract public class IteradorRaza<T extends Construible> {
 	public boolean elementoPertenece(T elemento){
 		
 		for(int posicion = 0; posicion < this.elementosRaza.size(); posicion++){
+		
 			T construibleActual = this.elementosRaza.get(posicion);
     		if (construibleActual == elemento){
+    		
     			return true;
+    		
     		}
     	}
+		
 		return false;
 	}
 	

@@ -45,22 +45,6 @@ public class PartidaTest {
 		assertEquals(tiempo, 0);
 		
 	}
-	/*
-	@Test
-	public void pasoElTiempoYTiempoAvanza(){
-		
-		ArrayList<String> jugadores = new ArrayList<String>();
-		jugadores.add("ninioRata");
-		jugadores.add("noob");
-	
-		Partida partida = new Partida(jugadores);
-		
-		partida.pasarTiempo();
-		int tiempo = partida.tiempo();
-		
-		assertTrue(tiempo > 0);
-		
-	}*/
 	
 	@Test
 	public void creoUnaPartidaYPuedoConocerQuienEmpieza (){

@@ -34,13 +34,19 @@ public class AccionCrearGoliat extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Fabrica fabrica = (Fabrica) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getUbicableEnInferior();
+		
 		try{
+		
 			Goliat goliat = jugadorActual.crearGoliat(fabrica, this.partida.getMapa());
 			Coordenada coordenadaGoliat = goliat.getUbicacionActual();
+			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaGoliat);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}

@@ -18,6 +18,7 @@ public class SectorJuego extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	public SectorJuego(Partida partida, HashMap<Class<?>, Class<?>> vistas) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	
 		setLayout(new BoxLayout(this ,BoxLayout.X_AXIS));
 		
 

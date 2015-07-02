@@ -150,8 +150,8 @@ public class DepositoDeSuministrosTest {
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesADeposito = 17;
 		
-		miniSamus.actualizarUbicacion(tierra);
-		deposito.actualizarUbicacion(otraTierra);
+		miniSamus.setUbicacionInicial(tierra);
+		deposito.setUbicacionInicial(otraTierra);
 		for(int i=0;i<cantidadDeAtaquesADeposito;i++) miniSamus.atacar(deposito);
 		
 		assertFalse(deposito.estaVivo());		

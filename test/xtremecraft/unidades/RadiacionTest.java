@@ -36,7 +36,7 @@ public class RadiacionTest {
 		Goliat goliatAtacado = new Goliat(jugador);
 		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
 		
-		goliatAtacado.actualizarUbicacion(tierra);
+		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -59,8 +59,8 @@ public class RadiacionTest {
 		Goliat goliatIrradiado = new Goliat(jugador);
 		int vidaInicialGoliatIrradiado = goliatIrradiado.getVida();
 		
-		goliatAtacado.actualizarUbicacion(tierra);
-		goliatIrradiado.actualizarUbicacion(otraTierra);
+		goliatAtacado.setUbicacionInicial(tierra);
+		goliatIrradiado.setUbicacionInicial(otraTierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
 		for(int tiempo=0;tiempo<goliatIrradiado.tiempoConstruccion();tiempo++) goliatIrradiado.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);

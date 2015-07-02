@@ -32,13 +32,18 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
+		
 		try{
 			jugadorActual.crearPuertoEstelar(tierraConstruccion);
 			
+		
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
@@ -50,6 +55,7 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 		}catch(RazaNoTieneFabricasException noHayFabricas){
 			new MensajeDeError("Se necesita una fabrica para crear un puerto estelar");
 		}
+		
 	}
 
 }

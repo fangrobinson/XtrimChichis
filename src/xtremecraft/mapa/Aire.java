@@ -20,8 +20,11 @@ public class Aire extends Terreno {
 	}
 
     public Terreno ubicar(Ubicable ubicable){
-    	if(super.estaOcupado() || !ubicable.puedeUbicarseEnAire()){
+    	
+    	if( this.estaOcupado() || !ubicable.puedeUbicarseEnAire()){
+    	
     		throw new NoSePudoOcuparElTerrenoException();
+    	
     	}
     	this.ubicable = ubicable;
     	return this;

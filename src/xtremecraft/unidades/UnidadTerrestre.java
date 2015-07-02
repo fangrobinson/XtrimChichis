@@ -19,10 +19,10 @@ public abstract class UnidadTerrestre extends Unidad {
 		return false;
 	}
 
-	public void actualizarUbicacion(Terreno terreno) {
+	public void setUbicacionInicial(Terreno terreno) {
 
 	   	if(this.estaUbicada){
-	   		if(!this.puedoVer(terreno.getCoordenada()) || terreno.estaElevado() ) throw new UbicacionNoValidaException();
+	   		if(!this.puedoVer( terreno.getCoordenada() ) || terreno.estaElevado() ) throw new UbicacionNoValidaException();
 	   		this.terrenoActual.desocupar();
 	   	}
 	   	this.terrenoActual = terreno;

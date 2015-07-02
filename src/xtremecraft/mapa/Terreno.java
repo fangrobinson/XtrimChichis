@@ -91,7 +91,6 @@ public abstract class Terreno extends Observable implements Identificable{
 		
 	}
 	
-
 	@Override
 	public int getJugador() {
 		

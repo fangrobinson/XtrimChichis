@@ -91,8 +91,8 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		NaveTransporte remisVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire1);
-		remisVolador.actualizarUbicacion(aire2);
+		taxiVolador.setUbicacionInicial(aire1);
+		remisVolador.setUbicacionInicial(aire2);
 		
 		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
 			taxiVolador.pasarTiempo();
@@ -113,8 +113,8 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		NaveTransporte remisVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire);
-		remisVolador.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(aire);
+		remisVolador.setUbicacionInicial(tierra);
 		
 		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
 			taxiVolador.pasarTiempo();
@@ -134,7 +134,7 @@ public class NaveTransporteTest {
 		Terreno aire = new Aire(1,2);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire);
+		taxiVolador.setUbicacionInicial(aire);
 
 		assertEquals(taxiVolador.getUbicacionActual(),aire.getUbicacionActual());
 		
@@ -148,8 +148,8 @@ public class NaveTransporteTest {
 		Terreno tierra = new Tierra(2,3);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire);
-		taxiVolador.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(aire);
+		taxiVolador.setUbicacionInicial(tierra);
 
 		assertFalse(aire.estaOcupado());
 		
@@ -165,8 +165,8 @@ public class NaveTransporteTest {
 		Goliat unGoliat = new Goliat(jugador);
 		int cantidadDeAtaques = 15;
 		
-		taxiVolador.actualizarUbicacion(aire);
-		unGoliat.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(aire);
+		unGoliat.setUbicacionInicial(tierra);
 		
 		for (int i = 0; i < taxiVolador.tiempoConstruccion(); i++){
 			taxiVolador.pasarTiempo();
@@ -204,8 +204,8 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		Goliat unGoliat = new Goliat(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire);
-		unGoliat.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(aire);
+		unGoliat.setUbicacionInicial(tierra);
 		taxiVolador.transportarNuevaUnidad(unGoliat);
 		
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
@@ -234,13 +234,13 @@ public class NaveTransporteTest {
 		Goliat goliat5 = new Goliat(jugador);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		goliat0.actualizarUbicacion(tierra0);
-		goliat1.actualizarUbicacion(tierra1);
-		goliat2.actualizarUbicacion(tierra2);
-		goliat3.actualizarUbicacion(tierra3);
-		goliat4.actualizarUbicacion(tierra4);
-		goliat5.actualizarUbicacion(tierra5);
-		taxiVolador.actualizarUbicacion(aire);
+		goliat0.setUbicacionInicial(tierra0);
+		goliat1.setUbicacionInicial(tierra1);
+		goliat2.setUbicacionInicial(tierra2);
+		goliat3.setUbicacionInicial(tierra3);
+		goliat4.setUbicacionInicial(tierra4);
+		goliat5.setUbicacionInicial(tierra5);
+		taxiVolador.setUbicacionInicial(aire);
 		goliat0.subirANaveDeTransporte(taxiVolador);
 		
 		taxiVolador.bajarUnidad(mapa, goliat0);
@@ -257,10 +257,10 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		Goliat unGoliat = new Goliat(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire1);
-		unGoliat.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(aire1);
+		unGoliat.setUbicacionInicial(tierra);
 		taxiVolador.transportarNuevaUnidad(unGoliat);
-		taxiVolador.actualizarUbicacion(aire2);
+		taxiVolador.setUbicacionInicial(aire2);
 		
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
 		
@@ -274,8 +274,8 @@ public class NaveTransporteTest {
 		Terreno aireDestino = new Aire(40,40);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(aire);
-		taxiVolador.actualizarUbicacion(aireDestino);
+		taxiVolador.setUbicacionInicial(aire);
+		taxiVolador.setUbicacionInicial(aireDestino);
 		
 	}
 	
@@ -288,7 +288,7 @@ public class NaveTransporteTest {
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		int vidaInicial = taxiVolador.getVida();
 		
-		taxiVolador.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(taxiVolador, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -306,7 +306,7 @@ public class NaveTransporteTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.actualizarUbicacion(tierra);
+		taxiVolador.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<taxiVolador.tiempoConstruccion();tiempo++) taxiVolador.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(taxiVolador, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);

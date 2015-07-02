@@ -162,7 +162,7 @@ public class MapaTest {
 		
 		celda.ubicarCapaInferior(goliat);
 		celda = mapa.getCeldaEnFilaColumna(1,2);
-		goliat.actualizarUbicacion(celda.getCapaInferior());
+		goliat.setUbicacionInicial(celda.getCapaInferior());
 		
 		assertTrue(celda.getCapaInferior().estaOcupado());
 		

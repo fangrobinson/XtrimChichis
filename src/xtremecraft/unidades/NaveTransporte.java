@@ -30,9 +30,6 @@ public class NaveTransporte extends UnidadAerea {
 	
 	public void transportarNuevaUnidad(Unidad unidad){
 
-		/*if((unidadesTransportadas.size() >= capacidadMaxima)){
-			throw new NaveConCapacidadMaximaException();
-		}*/
 		if(!unidad.puedoVer(this.getUbicacionActual())){
 			throw new NaveFueraDelRangoDeVisionUnidadException();
 		}
@@ -41,7 +38,7 @@ public class NaveTransporte extends UnidadAerea {
 		
 	}
 	
-	public void actualizarUbicacion(Terreno terreno){
+	public void setUbicacionInicial(Terreno terreno){
 		
 		if(!this.estaUbicada){
 			this.terrenoActual = terreno;
@@ -72,8 +69,7 @@ public class NaveTransporte extends UnidadAerea {
 				continue;
 			}
 		}
-		//TODO: verificar si en este punto queremos lanzar la excepcion o 
-		//seguir devolviendo false:
+
 		if(posicion == celdasAdyacentes.size()) throw new UnidadNoSePudoBajarDeLaNaveException();
 		
 	}

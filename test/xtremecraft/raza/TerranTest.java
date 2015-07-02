@@ -209,8 +209,6 @@ public class TerranTest {
 		Terreno unTerreno = new Tierra(1,2);
 		DepositoDeSuministros deposito = razaTerran.crearDepositoDeSuministros(unTerreno);
 		
-		//Dejo deposito en estado construido:
-		//Refactoring ---> razaTerran.pasarTiempo() debe actualizar todos los edificios.
 		for(int turno=0;turno<6;turno++) deposito.pasarTiempo();
 		
 		assertEquals(deposito.tiempoConstruccion(),6);
@@ -323,8 +321,7 @@ public class TerranTest {
 		Unidad naveTransporte = razaTerran2.crearNaveTransporte(puerto, mapa);
 		
 	}
-	
-	//TODO: emprolijar estos tests. Mas de 1 assert x test.
+
 	@Test
 	public void crearMarineEntrenaUnNuevoMarineYLoUbicaEnElMapa(){
 	
@@ -338,8 +335,6 @@ public class TerranTest {
 		
 		assertEquals(unMarine.getVida(),40);
 		assertEquals(unMarine.getRadioVision(),7);
-		//assertEquals(unMarine.getUbicacionActual().fila(),2);
-		//assertEquals(unMarine.getUbicacionActual().columna(),2);
 		assertFalse(unMarine.estaElevado());
 		
 	}
@@ -360,8 +355,6 @@ public class TerranTest {
 		
 		assertEquals(unGoliat.getVida(),125);
 		assertEquals(unGoliat.getRadioVision(),8);
-		//assertEquals(unGoliat.getUbicacionActual().fila(),5);
-		//assertEquals(unGoliat.getUbicacionActual().columna(),5);
 		assertFalse(unGoliat.estaElevado());
 		
 	}
@@ -384,11 +377,6 @@ public class TerranTest {
 		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad unEspectro = razaTerran.crearEspectro(puerto, mapa);
-		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
-		assertEquals(unEspectro.getVida(),120);
-		assertEquals(unEspectro.getRadioVision(),7);
-		//assertEquals(unEspectro.getUbicacionActual().fila(),9);
-		//assertEquals(unEspectro.getUbicacionActual().columna(),7);
 		assertFalse(unEspectro.estaElevado());
 		
 	}
@@ -410,11 +398,8 @@ public class TerranTest {
 		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad naveCiencia = razaTerran.crearNaveCiencia(puerto, mapa);
-		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
 		assertEquals(naveCiencia.getVida(),200);
 		assertEquals(naveCiencia.getRadioVision(),10);
-		//assertEquals(naveCiencia.getUbicacionActual().fila(),9);
-		//assertEquals(naveCiencia.getUbicacionActual().columna(),7);
 		assertFalse(naveCiencia.estaElevado());
 		
 	}
@@ -435,11 +420,9 @@ public class TerranTest {
 		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad naveTransporte = razaTerran.crearNaveTransporte(puerto, mapa);
-		//SUPONGO QUE LA UNIDAD VOLADORA SE CREA EN LA TIERRA PERO SE ELEVA AUTOMATICAMENTE
+		
 		assertEquals(naveTransporte.getVida(),150);
 		assertEquals(naveTransporte.getRadioVision(),8);
-		//assertEquals(naveTransporte.getUbicacionActual().fila(),9);
-		//assertEquals(naveTransporte.getUbicacionActual().columna(),7);
 		assertFalse(naveTransporte.estaElevado());
 		
 	}

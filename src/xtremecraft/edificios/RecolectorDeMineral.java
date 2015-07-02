@@ -23,7 +23,9 @@ public class RecolectorDeMineral extends Recolector{
 		
 		RecolectorDeMineral nuevoRecolector = new RecolectorDeMineral(jugador, unTerreno);
 		if( ( !unTerreno.tieneRecursos() ) || ( !unTerreno.getRecurso().puedeSerExtraidoPor(nuevoRecolector) ) ){
+		
 			throw new NoHayGasVespenoException();
+		
 		}	
 		return nuevoRecolector;
 		
@@ -43,7 +45,9 @@ public class RecolectorDeMineral extends Recolector{
 	
 	public void pasarTiempo(){
 		if (!super.estaEnConstruccion){
+			
 			this.jugador.nacion().juntarMinerales(this.recurso.explotar(this.aumentoDeReservaEnTurno));
+		
 		}
 		super.pasarTiempo();
 	}

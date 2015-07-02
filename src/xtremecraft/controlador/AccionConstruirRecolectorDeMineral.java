@@ -31,16 +31,22 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Jugador jugadorActual = partida.quienJuega();
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
+		
 		try{
+		
 			jugadorActual.crearRecolectorDeMineral(tierraConstruccion);	
-			//this.mapa.borrarARolete();
+			
 			try {
+			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+			
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
+		
 		}catch(RecursosInsuficientesException noHayRecursos){
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){

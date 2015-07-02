@@ -154,17 +154,21 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	
 	}
     
+    public void setUbicacionInicial(Terreno terreno){
+    	
+    	this.terrenoActual = terreno;
+		this.estaUbicada = true;
+    	
+    }
+    
     public void actualizarUbicacion(Terreno terreno) {
 
-    	if(this.estaUbicada){
-    		if((!this.puedoVer(terreno.getCoordenada()))|| terreno.estaOcupado()){
-    			throw new UbicacionNoValidaException();
-    		}
-    		this.terrenoActual.desocupar();
+    	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() ){
+    		throw new UbicacionNoValidaException();
     	}
+    	this.terrenoActual.desocupar();
+    	terreno.ubicar(this);    	
     	this.terrenoActual = terreno;
-    	terrenoActual.ubicar(this);
-		this.estaUbicada = true;
 		
 	}
     
@@ -206,7 +210,6 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     
     }
     
-    //faltan pruebas de supuesto
     public void pasarTiempo(){
     	
     	if(this.estaVivo()){
@@ -252,7 +255,6 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	
     }
     
-    //las unidades que estan alrededor del irradiado reciben radiacion.
     public boolean recibirDanio(Radiacion radiacion){
     	
         vitalidad.recibirAtaque(radiacion.getDanio());

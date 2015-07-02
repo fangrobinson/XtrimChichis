@@ -113,14 +113,19 @@ public class Terran implements Actualizable{
 	public Unidad crearMarine(Barraca unaBarraca, Mapa mapa){
 		
 		if(!this.esDeMiPropiedad(unaBarraca)){
+	
 			throw new BarracaNoEsDeLaRazaException();
+		
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaBarraca,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+		
 			throw new CantidadDeSuministroInsuficienteException();
+		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
 		return nuevaUnidad;
 		
 	}
@@ -128,14 +133,19 @@ public class Terran implements Actualizable{
 	public Unidad crearGoliat(Fabrica unaFabrica, Mapa mapa){
 		
 		if(!this.esDeMiPropiedad(unaFabrica)){
+		
 			throw new FabricaNoEsDeLaRazaException();
+		
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaUnidad(unaFabrica,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+		
 			throw new CantidadDeSuministroInsuficienteException();
+		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
 		return nuevaUnidad;
 		
 	}
@@ -143,14 +153,19 @@ public class Terran implements Actualizable{
 	public Unidad crearEspectro(PuertoEstelar puerto, Mapa mapa){
 		
 		if(!this.esDeMiPropiedad(puerto)){
+		
 			throw new PuertoEstelarNoEsDeLaRazaException();
+		
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevoEspectro(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+		
 			throw new CantidadDeSuministroInsuficienteException();
+		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
 		return nuevaUnidad;
 		
 	}
@@ -158,14 +173,19 @@ public class Terran implements Actualizable{
 	public Unidad crearNaveCiencia(PuertoEstelar puerto, Mapa mapa){
 		
 		if(!this.esDeMiPropiedad(puerto)){
+		
 			throw new PuertoEstelarNoEsDeLaRazaException();
+		
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveCiencia(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+		
 			throw new CantidadDeSuministroInsuficienteException();
+		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
 		return nuevaUnidad;
 		
 	}
@@ -173,14 +193,19 @@ public class Terran implements Actualizable{
 	public Unidad crearNaveTransporte(PuertoEstelar puerto, Mapa mapa){
 		
 		if(!this.esDeMiPropiedad(puerto)){
+		
 			throw new PuertoEstelarNoEsDeLaRazaException();
+		
 		}
 		
 		Unidad nuevaUnidad = ConstructorDeUnidades.nuevaNaveTransporte(puerto,mapa);
 		if( this.poblacionMaxima < this.poblacionActual() + nuevaUnidad.getPoblacionOcupada() ){
+		
 			throw new CantidadDeSuministroInsuficienteException();
+		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
 		return nuevaUnidad;
 		
 	}
@@ -206,6 +231,7 @@ public class Terran implements Actualizable{
 	public boolean posee(Edificio edificio){
 		
 		IteradorEdificios iter = new IteradorEdificios(this.edificios);
+		
 		return iter.elementoPertenece(edificio);
 		
 	}
@@ -213,6 +239,7 @@ public class Terran implements Actualizable{
 	public boolean posee(Unidad unidad){
 		
 		IteradorUnidades iter = new IteradorUnidades(this.unidades);
+		
 		return iter.elementoPertenece(unidad);
 		
 	}
@@ -223,6 +250,7 @@ public class Terran implements Actualizable{
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
 			poblacionOcupada += this.unidades.get(posicionActual).getPoblacionOcupada();
 		}
+		
 		return poblacionOcupada;
 		
 	}
@@ -239,9 +267,12 @@ public class Terran implements Actualizable{
 	private void extraerUnidadesMuertas(){
 		
 		for(int posicionActual = 0; posicionActual < this.unidades.size(); posicionActual++){
+			
 			Unidad unidadActual = this.unidades.get(posicionActual);
 			if(!unidadActual.estaVivo()){
+		
 				this.unidades.remove(unidadActual);
+			
 			}
 			else unidadActual.pasarTiempo();
 		}
@@ -251,9 +282,12 @@ public class Terran implements Actualizable{
 	private void extraerEdificiosMuertos(){
 		
 		for(int posicionActual = 0; posicionActual < this.edificios.size(); posicionActual++){
+		
 			Edificio edificioActual = this.edificios.get(posicionActual);
 			if(!edificioActual.estaVivo()){
+			
 				this.edificios.remove(edificioActual);
+			
 			}
 			else edificioActual.pasarTiempo();
 		}
@@ -275,10 +309,13 @@ public class Terran implements Actualizable{
 	public void quitarMinerales(int cantidad) {
 		
 		if (cantidad > this.minerales){
+	
 			throw new RecursosInsuficientesException();
 		}
 		else{
+			
 			this.minerales -= cantidad;
+		
 		}
 		
 	}
@@ -286,10 +323,14 @@ public class Terran implements Actualizable{
 	public void quitarGas(int cantidad) {
 		
 		if (cantidad > this.gas){
+		
 			throw new RecursosInsuficientesException();
+		
 		}
 		else{
+		
 			this.gas -= cantidad;
+		
 		}
 		
 	}

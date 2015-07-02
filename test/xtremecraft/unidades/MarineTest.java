@@ -96,8 +96,8 @@ public class MarineTest {
 			miniMasterChief.pasarTiempo();
 		}
 		
-		miniSamus.actualizarUbicacion(tierra);
-		miniMasterChief.actualizarUbicacion(aire);
+		miniSamus.setUbicacionInicial(tierra);
+		miniMasterChief.setUbicacionInicial(aire);
 		
 		miniSamus.atacar(miniMasterChief);
 		
@@ -114,8 +114,8 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		Marine miniMasterChief = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra1);
-		miniMasterChief.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra1);
+		miniMasterChief.setUbicacionInicial(tierra2);
 		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
 			miniSamus.pasarTiempo();
 			miniMasterChief.pasarTiempo();
@@ -134,8 +134,8 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		Marine miniMasterChief = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra1);
-		miniMasterChief.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra1);
+		miniMasterChief.setUbicacionInicial(tierra2);
 		
 		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
 			miniSamus.pasarTiempo();
@@ -152,7 +152,7 @@ public class MarineTest {
 		Terreno tierra = new Tierra(1,2);
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.setUbicacionInicial(tierra);
 		
 		assertEquals(miniSamus.getUbicacionActual(),tierra.getUbicacionActual());
 		
@@ -166,8 +166,8 @@ public class MarineTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra1);
-		miniSamus.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra1);
+		miniSamus.setUbicacionInicial(tierra2);
 
 		assertFalse(tierra1.estaOcupado());
 		
@@ -181,8 +181,8 @@ public class MarineTest {
 		Terreno tierra2 = new Tierra(2,3);
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra1);
-		miniSamus.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra1);
+		miniSamus.setUbicacionInicial(tierra2);
 
 		assertTrue(tierra2.estaOcupado());
 		
@@ -196,8 +196,8 @@ public class MarineTest {
 		Terreno tierraDestino = new Tierra(20,20);
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra);
-		miniSamus.actualizarUbicacion(tierraDestino);
+		miniSamus.setUbicacionInicial(tierra);
+		miniSamus.setUbicacionInicial(tierraDestino);
 		
 	}
 	
@@ -209,8 +209,8 @@ public class MarineTest {
 		Terreno aireDestino = new Aire(1,1);
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra);
-		miniSamus.actualizarUbicacion(aireDestino);
+		miniSamus.setUbicacionInicial(tierra);
+		miniSamus.setUbicacionInicial(aireDestino);
 		
 	}
 		
@@ -224,8 +224,8 @@ public class MarineTest {
 		Marine miniMasterChief = new Marine(jugador);
 		int cantidadDeAtaques = 7;
 		
-		miniSamus.actualizarUbicacion(tierra1);
-		miniMasterChief.actualizarUbicacion(tierra2);
+		miniSamus.setUbicacionInicial(tierra1);
+		miniMasterChief.setUbicacionInicial(tierra2);
 		for (int i = 0; i < miniSamus.tiempoConstruccion(); i++){
 			miniSamus.pasarTiempo();
 			miniMasterChief.pasarTiempo();
@@ -245,8 +245,8 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		NaveTransporte nave = new NaveTransporte(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra);
-		nave.actualizarUbicacion(otraTierra);
+		miniSamus.setUbicacionInicial(tierra);
+		nave.setUbicacionInicial(otraTierra);
 		
 		nave.transportarNuevaUnidad(miniSamus);
 				
@@ -261,7 +261,7 @@ public class MarineTest {
 		Marine miniSamus = new Marine(jugador);
 		int vidaInicial = miniSamus.getVida();
 		
-		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(miniSamus, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
@@ -279,7 +279,7 @@ public class MarineTest {
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Marine miniSamus = new Marine(jugador);
 		
-		miniSamus.actualizarUbicacion(tierra);
+		miniSamus.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<miniSamus.tiempoConstruccion();tiempo++) miniSamus.pasarTiempo();
 		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(miniSamus, Radiacion.radioDeAlcance);
 		Radiacion radiacion = new Radiacion(celdasAfectadas);
