@@ -106,8 +106,6 @@ public class Jugador extends Observable implements Actualizable {
 		
 	}
 	
-	//metodos de creacion
-	
 	public Barraca crearBarraca(Terreno unTerreno){
 		
 		Barraca nuevaBarraca = this.nacion.crearBarraca(unTerreno);

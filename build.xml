@@ -177,7 +177,7 @@
 		</pmd>
 	</target>
 	
-	<target name="ejecutar.aplicacion" depends="empaquetar">
+	<target name="jugar" depends="empaquetar">
 		<java classname="xtremecraft.vista.JuegoDeAlgoCraft" fork="true">
 		<classpath refid="classpath"/>
 		<classpath location="${build}/dist/xtremecraft.jar"/>
