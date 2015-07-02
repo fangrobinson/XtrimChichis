@@ -44,4 +44,8 @@ public class SectorJuego extends JPanel{
 		
 	}
 
+	public MapaObservable getMapaVisible() {
+		return this.mapaTerrestre;
+	}
+
 }

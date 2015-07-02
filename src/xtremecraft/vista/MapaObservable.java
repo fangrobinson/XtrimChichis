@@ -246,17 +246,23 @@ public class MapaObservable extends JPanel implements Observer{
 	}
 
 	public void comenzarMovimiento(Coordenada coordenadaInicioMovimiento) {
-		//TODO: ver que el jugador que inicio el movimiento es el mismo que la termina.
-		//tal vez hacer reset de estrategiaDeMovimientoIniciada al pasar el turno.
+		
 		this.estrategiaDeMovimientoIniciada = true;
 		this.coordenadaOrigenEstrategia = coordenadaInicioMovimiento;
 		
 	}
 
 	public void comenzarAtaque(Coordenada coordenadaInicioAtaque) {
-		//TODO: mismo caso que en comenzarMovimienyo
+
 		this.estrategiaDeAtaqueIniciada = true;
 		this.coordenadaOrigenEstrategia = coordenadaInicioAtaque;
+		
+	}
+
+	public void pasarTurno() {
+		
+		this.estrategiaDeAtaqueIniciada = false;
+		this.estrategiaDeMovimientoIniciada = false;
 		
 	}		
 
