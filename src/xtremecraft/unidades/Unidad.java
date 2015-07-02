@@ -160,17 +160,17 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	
     	this.terrenoActual = terreno;
 		this.estaUbicada = true;
-    	
     }
     
     public void actualizarUbicacion(Terreno terreno) {
-
+    	
     	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() ){
     		throw new UbicacionNoValidaException();
     	}
     	if (!this.puedeMoverse){
     		throw new YaSeSeleccionoUnMovimientoException();
     	}
+    	
     	this.puedeMoverse = false;
     	this.terrenoActual.desocupar();
     	terreno.ubicar(this);    	
