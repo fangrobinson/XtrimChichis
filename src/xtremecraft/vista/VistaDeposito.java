@@ -9,7 +9,8 @@ import xtremecraft.edificios.DepositoDeSuministros;
 public class VistaDeposito extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreDeposito = "Deposito de suministros";
-	static String estadoInicial = "vida: "+Integer.toString(DepositoDeSuministros.getVidaInicial());
+	static String estadoInicial = DepositoDeSuministros.getEstadoInicial();
+	
 	public VistaDeposito(){
 		
 		super(nombreDeposito,estadoInicial);
