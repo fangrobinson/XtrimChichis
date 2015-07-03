@@ -20,6 +20,8 @@ import xtremecraft.controlador.AccionCrearNaveTransporte;
 import xtremecraft.controlador.AccionMover;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
+import xtremecraft.unidades.NaveCiencia;
+import xtremecraft.unidades.NaveTransporte;
 
 public class GeneradorDeAccionesDisponibles {
 		
@@ -30,7 +32,13 @@ public class GeneradorDeAccionesDisponibles {
 		ArrayList<AbstractAction> accionesUnidades = new ArrayList<AbstractAction>();
 		accionesUnidades.add(new AccionMover(partida, mapaObservable, coordenada, sector));
 		accionesUnidades.add(new AccionAtacar(partida, mapaObservable, coordenada, sector));
-			
+		
+		ArrayList<AbstractAction> accionesNaveCiencia = new ArrayList<AbstractAction>();
+		ArrayList<AbstractAction> accionesNaveTransporte = new ArrayList<AbstractAction>();
+		
+		accionesNaveCiencia.add(new AccionMover(partida, mapaObservable, coordenada, sector));
+		accionesNaveTransporte.add(new AccionMover(partida, mapaObservable, coordenada, sector));
+		
 		ArrayList<AbstractAction> accionesTierra = new ArrayList<AbstractAction>();
 		accionesTierra.add(new AccionConstruirDepositoDeSuministros(partida, mapaObservable, coordenada, sector));
 		accionesTierra.add(new AccionConstruirBarraca(partida, mapaObservable, coordenada, sector));
@@ -67,8 +75,8 @@ public class GeneradorDeAccionesDisponibles {
 		acciones.put(VistaGoliat.class, accionesUnidades);
 		acciones.put(VistaMarine.class, accionesUnidades);
 		acciones.put(VistaEspectro.class, accionesUnidades);
-		//acciones.put(NaveCiencia.class, accionesUnidades);
-		//acciones.put(NaveTransporte.class, accionesUnidades);
+		acciones.put(NaveCiencia.class, accionesNaveCiencia);
+		acciones.put(NaveTransporte.class, accionesNaveTransporte);
 
 		return acciones;
 			
