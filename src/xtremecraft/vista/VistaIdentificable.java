@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public abstract class VistaIdentificable extends Vista implements IdentificableVisible{
 	
-	public VistaIdentificable(String nombre, String estadoInicial){
+	public VistaIdentificable(String nombre){
 		
-		super(nombre,estadoInicial);
+		super(nombre);
 		
 	}
 	

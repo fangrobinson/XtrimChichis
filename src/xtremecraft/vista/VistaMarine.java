@@ -3,18 +3,14 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import xtremecraft.unidades.Marine;
-
-
 @SuppressWarnings("serial")
 public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
-	static String estadoInicial = Marine.getEstadoInicial();
 	
 	public VistaMarine(){
 		
-		super(nombreMarine,estadoInicial);
+		super(nombreMarine);
 		this.color = new Color(255,102,0);
 	
 	}

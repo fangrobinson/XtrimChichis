@@ -154,6 +154,8 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     	this.terrenoActual.desocupar();
     	this.terrenoActual = naveTransporte.getTerrenoActual();
     	//this.puedeMoverse = false;
+    	setChanged();
+		notifyObservers();
     	
 	}
     
@@ -237,7 +239,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     		}
     		this.puedeAtacar = true;
 			this.puedeMoverse = true;
-    		setChanged();
+			setChanged();
     		notifyObservers();
     	}
     	
