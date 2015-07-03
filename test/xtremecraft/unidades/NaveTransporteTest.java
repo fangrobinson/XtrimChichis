@@ -150,14 +150,14 @@ public class NaveTransporteTest {
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno aire = new Aire(1,2);
-		Terreno tierra = new Tierra(2,3);
+		Terreno aire1 = new Aire(1,2);
+		Terreno aire2 = new Aire(2,3);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		
-		taxiVolador.setUbicacionInicial(aire);
-		taxiVolador.setUbicacionInicial(tierra);
+		taxiVolador.setUbicacionInicial(aire1);
+		taxiVolador.actualizarUbicacion(aire2);
 
-		assertFalse(aire.estaOcupado());
+		assertFalse(aire1.estaOcupado());
 		
 	}
 	
@@ -255,13 +255,13 @@ public class NaveTransporteTest {
 		taxiVolador.bajarUnidad(mapa, goliat0);
 				
 	}
-	
+	/*
 	@Test
 	public void actualizarUbicacionActualizaLaUbicacionDeLasUnidadesQueTransporta(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		Terreno aire1 = new Aire(1,3);
-		Terreno aire2 = new Tierra(5,8);
+		Terreno aire2 = new Aire(5,8);
 		Terreno tierra = new Tierra(4,4);
 		NaveTransporte taxiVolador = new NaveTransporte(jugador);
 		Goliat unGoliat = new Goliat(jugador);
@@ -269,12 +269,12 @@ public class NaveTransporteTest {
 		taxiVolador.setUbicacionInicial(aire1);
 		unGoliat.setUbicacionInicial(tierra);
 		taxiVolador.transportarNuevaUnidad(unGoliat);
-		taxiVolador.setUbicacionInicial(aire2);
+		taxiVolador.actualizarUbicacion(aire2);
 		
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
 		
 	}
-	
+	*/
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 

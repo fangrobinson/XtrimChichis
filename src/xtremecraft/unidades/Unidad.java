@@ -161,6 +161,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     	
     	this.terrenoActual = terreno;
 		this.estaUbicada = true;
+		
     }
     
     public void actualizarUbicacion(Terreno terreno) {

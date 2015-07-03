@@ -15,6 +15,7 @@ import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Goliat;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionCrearGoliat extends AbstractAction{
@@ -22,14 +23,15 @@ public class AccionCrearGoliat extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionCrearGoliat(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionCrearGoliat(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sector){
 		
 		super("CrearGoliat");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		
+		this.sector = sector;
 	}
 
 	@Override
@@ -46,7 +48,8 @@ public class AccionCrearGoliat extends AbstractAction{
 			try {
 			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaGoliat);
-			
+				this.sector.removeAll();
+				
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}

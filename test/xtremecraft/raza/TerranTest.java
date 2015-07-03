@@ -431,7 +431,7 @@ public class TerranTest {
 		for(int turno=0;turno<puerto.tiempoConstruccion();turno++) puerto.pasarTiempo();
 		
 		Unidad unEspectro = razaTerran.crearEspectro(puerto, mapa);
-		assertFalse(unEspectro.estaElevado());
+		assertTrue(unEspectro.estaElevado());
 		
 	}
 	
@@ -454,7 +454,7 @@ public class TerranTest {
 		Unidad naveCiencia = razaTerran.crearNaveCiencia(puerto, mapa);
 		assertEquals(naveCiencia.getVida(),200);
 		assertEquals(naveCiencia.getRadioVision(),10);
-		assertFalse(naveCiencia.estaElevado());
+		assertTrue(naveCiencia.estaElevado());
 		
 	}
 	
@@ -475,9 +475,7 @@ public class TerranTest {
 		
 		Unidad naveTransporte = razaTerran.crearNaveTransporte(puerto, mapa);
 		
-		assertEquals(naveTransporte.getVida(),150);
-		assertEquals(naveTransporte.getRadioVision(),8);
-		assertFalse(naveTransporte.estaElevado());
+		assertTrue(naveTransporte.estaElevado());
 		
 	}
 	

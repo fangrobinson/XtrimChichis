@@ -12,6 +12,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionConstruirRecolectorDeMineral extends AbstractAction{
@@ -19,13 +20,15 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionConstruirRecolectorDeMineral(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sector){
 		
 		super("ConstruirRecolectorDeMineral");
 		this.partida = partida;
 		this.mapaVista = mapa;
 		this.coordenada = coordenada;
+		this.sector = sector;
 		
 	}
 	
@@ -42,7 +45,8 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 			try {
 			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
-			
+				this.sector.removeAll();
+				
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}

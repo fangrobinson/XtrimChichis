@@ -7,6 +7,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionAtacar extends AbstractAction{
@@ -14,14 +15,16 @@ public class AccionAtacar extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 		
-	public AccionAtacar(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionAtacar(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sector){
 			
 		super("Atacar");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
 		this.coordenada = coordenada;
+		this.sector = sector;
 		
 	}
 
@@ -38,6 +41,7 @@ public class AccionAtacar extends AbstractAction{
 				new MensajeDeError("Esta unidad esta en construccion o ya realizó un ataque en el turno actual.");
 			}else{
 				this.mapaVista.comenzarAtaque(this.coordenada);
+				this.sector.removeAll();
 			}
 			
 		} catch (SeleccionadoNoEsPropiedadDelJugadorException e) {

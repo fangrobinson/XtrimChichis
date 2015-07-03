@@ -14,6 +14,7 @@ import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionCrearEspectro extends AbstractAction{
@@ -21,14 +22,15 @@ public class AccionCrearEspectro extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionCrearEspectro(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionCrearEspectro(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sector){
 		
 		super("CrearEspectro");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		
+		this.sector = sector;
 	}
 
 	@Override
@@ -44,7 +46,8 @@ public class AccionCrearEspectro extends AbstractAction{
 			try {
 			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
-			
+				this.sector.removeAll();
+				
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}

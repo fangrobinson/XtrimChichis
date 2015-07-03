@@ -149,14 +149,14 @@ public class NaveCienciaTest {
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(2,3);
+		Terreno aire1 = new Aire(1,2);
+		Terreno aire2 = new Aire(2,3);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.setUbicacionInicial(tierra1);
-		naveCiencia.actualizarUbicacion(tierra2);
+		naveCiencia.setUbicacionInicial(aire1);
+		naveCiencia.actualizarUbicacion(aire2);
 
-		assertFalse(tierra1.estaOcupado());
+		assertFalse(aire1.estaOcupado());
 		
 	}
 	
@@ -164,14 +164,14 @@ public class NaveCienciaTest {
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(2,3);
+		Terreno aire1 = new Aire(1,2);
+		Terreno aire2 = new Aire(2,3);
 		NaveCiencia naveCiencia = new NaveCiencia(jugador);
 		
-		naveCiencia.setUbicacionInicial(tierra1);
-		naveCiencia.actualizarUbicacion(tierra2);
+		naveCiencia.setUbicacionInicial(aire1);
+		naveCiencia.actualizarUbicacion(aire2);
 
-		assertTrue(tierra2.estaOcupado());
+		assertTrue(aire2.estaOcupado());
 		
 	}
 	

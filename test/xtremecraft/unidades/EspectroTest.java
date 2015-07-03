@@ -220,14 +220,14 @@ public class EspectroTest {
 	public void actualizarUbicacionLiberaElTerrenoDeUbicacionAnterior(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(2,3);
+		Terreno aire1 = new Aire(1,2);
+		Terreno aire2 = new Aire(2,3);
 		Espectro unEspectro = new Espectro(jugador);
 		
-		unEspectro.setUbicacionInicial(tierra1);
-		unEspectro.actualizarUbicacion(tierra2);
+		unEspectro.setUbicacionInicial(aire1);
+		unEspectro.actualizarUbicacion(aire2);
 
-		assertFalse(tierra1.estaOcupado());
+		assertFalse(aire1.estaOcupado());
 		
 	}
 	
@@ -235,14 +235,14 @@ public class EspectroTest {
 	public void actualizarUbicacionOcupaElNuevoTerreno(){
 		
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
-		Terreno tierra1 = new Tierra(1,2);
-		Terreno tierra2 = new Tierra(2,3);
+		Terreno aire1 = new Aire(1,2);
+		Terreno aire2 = new Aire(2,3);
 		Espectro unEspectro = new Espectro(jugador);
 		
-		unEspectro.setUbicacionInicial(tierra1);
-		unEspectro.actualizarUbicacion(tierra2);
+		unEspectro.setUbicacionInicial(aire1);
+		unEspectro.actualizarUbicacion(aire2);
 
-		assertTrue(tierra2.estaOcupado());
+		assertTrue(aire2.estaOcupado());
 		
 	}
 	

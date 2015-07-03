@@ -27,6 +27,7 @@ public abstract class UnidadTerrestre extends Unidad {
 	   	this.terrenoActual.desocupar();
 	   	terreno.ubicar(this);    	
 	   	this.terrenoActual = terreno;
+	   	this.puedeMoverse = false;
 			
 	}
 }

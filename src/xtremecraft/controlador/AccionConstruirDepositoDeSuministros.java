@@ -12,6 +12,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
+import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionConstruirDepositoDeSuministros extends AbstractAction{
@@ -19,13 +20,15 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
+	private SectorAccionesDisponibles sector;
 	
-	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada){
+	public AccionConstruirDepositoDeSuministros(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sector){
 		
 		super("ConstruirDepositoDeSuministros");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
+		this.sector = sector;
 		
 	}
 	
@@ -42,6 +45,7 @@ public class AccionConstruirDepositoDeSuministros extends AbstractAction{
 			try {
 				
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+				this.sector.removeAll();
 				
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
