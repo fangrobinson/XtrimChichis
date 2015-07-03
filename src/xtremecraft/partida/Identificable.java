@@ -2,7 +2,7 @@ package xtremecraft.partida;
 
 public interface Identificable {
 
-	int getJugador();
+	int getNumeroJugador();
 	
 	String getEstadoImprimible();
 	

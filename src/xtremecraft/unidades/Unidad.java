@@ -38,7 +38,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 		
 	}
 	
-	public int getJugador(){
+	public int getNumeroJugador(){
 		
 		return this.jugador.getNumeroDeJugador();
 		
@@ -293,6 +293,10 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 
 	public boolean puedeAtacar() {
 		return this.puedeAtacar;
+	}
+	
+	public Jugador getJugador(){
+		return this.jugador;
 	}
    
 }

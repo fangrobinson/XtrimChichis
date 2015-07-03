@@ -23,6 +23,7 @@ import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
 import xtremecraft.unidades.IdentificableUbicable;
+import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
@@ -86,7 +87,7 @@ public class MapaObservable extends JPanel implements Observer{
 					observable = (Observable)terrenoInferior.getRecurso();
 				}if(terrenoInferior.estaOcupado()){
 					IdentificableUbicable identificableUbicable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
-					int numero = identificableUbicable.getJugador();
+					int numero = identificableUbicable.getNumeroJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
@@ -144,7 +145,7 @@ public class MapaObservable extends JPanel implements Observer{
 		}if(terrenoInferior.estaOcupado()){
 			
 			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
-			int numero = identificableUbicable.getJugador();
+			int numero = identificableUbicable.getNumeroJugador();
 			vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
@@ -169,7 +170,6 @@ public class MapaObservable extends JPanel implements Observer{
 		
 		revalidate();
 		repaint();			
-		
 		
 	}
 	
@@ -231,8 +231,12 @@ public class MapaObservable extends JPanel implements Observer{
 			
 			Defendible atacante = (Defendible) celdaAtacante.getUbicableEnInferior();
 			
+			
+			
+			Ubicable ubicableAtacado = null;
 			try{
 				Atacable atacado = (Atacable) celdaAtacado.getUbicableEnInferior();
+				ubicableAtacado = (Ubicable) atacado;
 				Jugador jugadorTurno = this.partida.quienJuega();
 				jugadorTurno.atacar(atacante, atacado);
 			
@@ -254,7 +258,12 @@ public class MapaObservable extends JPanel implements Observer{
 			} catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
-			
+
+			if (ubicableAtacado != null){
+				new MensajeDeError("Murio");
+				ubicableAtacado.getJugador().verificarSigueEnJuego();
+			}
+
 		}
 		
 	}

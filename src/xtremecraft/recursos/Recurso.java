@@ -41,7 +41,7 @@ public abstract class Recurso extends Observable implements Identificable{
 	public abstract boolean puedeSerExtraidoPor(Recolector nuevoRecolector);
 	
 	@Override
-	public int getJugador() {
+	public int getNumeroJugador() {
 		
 		throw new IdentificableNoTieneJugadorException();
 		

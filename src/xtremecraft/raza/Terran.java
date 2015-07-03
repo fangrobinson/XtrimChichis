@@ -42,8 +42,7 @@ public class Terran implements Actualizable{
 
 	public boolean estaViva(){
 		
-		IteradorEdificios iter = new IteradorEdificios(edificios);
-		return (iter.tieneCreados(DepositoDeSuministros.class));
+		return !(this.edificios.isEmpty() && this.unidades.isEmpty());
 		
 	}
 	
