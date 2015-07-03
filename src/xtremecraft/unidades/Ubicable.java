@@ -2,6 +2,7 @@ package xtremecraft.unidades;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
 public interface Ubicable {
@@ -23,5 +24,7 @@ public interface Ubicable {
 	boolean estaVivo();
 
 	void actualizarUbicacion(Terreno terreno);
+	
+	Jugador getJugador();
 	
 }

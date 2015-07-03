@@ -20,6 +20,7 @@ import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
+import xtremecraft.vista.MensajeDeError;
 
 public class Jugador extends Observable implements Actualizable {
 	
@@ -70,6 +71,26 @@ public class Jugador extends Observable implements Actualizable {
 	public boolean estaEnJuego(){
 		
 		return this.nacion.estaViva();
+		
+	}
+	
+	public void verificarSigueEnJuego(){
+		
+		if (!this.estaEnJuego()){
+			
+			Jugador anterior = this.siguienteJugador;
+			
+			while (anterior.siguienteJugador != this){
+				
+				anterior = anterior.siguienteJugador;
+				
+			}
+			
+			anterior.siguienteJugador = this.siguienteJugador;
+			
+			new MensajeDeError("Cambie el jugador");
+			
+		}
 		
 	}
 	

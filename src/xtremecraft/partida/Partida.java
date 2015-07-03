@@ -86,6 +86,12 @@ public class Partida {
 		
 	}
 	
+	public Jugador getJugadorNumero(int numero){
+		
+		return this.jugadores.get(numero);
+		
+	}
+	
 	public Jugador quienJuega(){
 		
 		for(int posicion = 0; posicion < this.jugadores.size(); posicion++){

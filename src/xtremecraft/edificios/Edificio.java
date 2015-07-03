@@ -72,7 +72,7 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 		
 	}
 	
-	public int getJugador(){
+	public int getNumeroJugador(){
 		
 		return this.jugador.getNumeroDeJugador();
 		
@@ -188,6 +188,10 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 		
 		return this.estaVivo;
 		
+	}
+	
+	public Jugador getJugador(){
+		return this.jugador;
 	}
 	
 }
