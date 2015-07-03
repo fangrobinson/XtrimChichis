@@ -3,17 +3,14 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import xtremecraft.unidades.Espectro;
-
 @SuppressWarnings("serial")
 public class VistaEspectro extends VistaIdentificable{
 	
 	static String nombreEspectro = "Espectro";
-	static String estadoInicial = Espectro.getEstadoInicial();
 	
 	public VistaEspectro(){
 		
-		super(nombreEspectro,estadoInicial);
+		super(nombreEspectro);
 		this.color = new Color(0,102,255);
 	
 	}

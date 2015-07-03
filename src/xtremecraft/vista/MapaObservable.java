@@ -71,22 +71,27 @@ public class MapaObservable extends JPanel implements Observer{
 				Class<?> vistaClase;
 				Vista vistaNueva = null;
 				Observable observable = null;
-				
+				Identificable identificable ;
 				//TODO: refactor considerar cambios a identificable.
 				if (!terrenoInferior.tieneRecursos()){
 					vistaClase = this.vistas.get(terrenoInferior.getClass());
 					vistaNueva = (Vista) vistaClase.newInstance();
+					identificable = (Identificable) terrenoInferior;
+					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior;
 				}else{
 					vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
 					vistaNueva = (Vista) vistaClase.newInstance();
+					identificable = (Identificable) terrenoInferior.getRecurso();
+					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior.getRecurso();
 				}if(terrenoInferior.estaOcupado()){
-					IdentificableUbicable identificable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
-					int numero = identificable.getNumeroJugador();
+					IdentificableUbicable identificableUbicable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
+					int numero = identificableUbicable.getNumeroJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 					identificableVisible.setJugador(numero);
+					vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 					vistaNueva = (Vista) identificableVisible;
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 					
@@ -119,29 +124,34 @@ public class MapaObservable extends JPanel implements Observer{
 		Class<?> vistaClase;
 		Vista vistaNueva = null;
 		Observable observable = null;
-		
+		Identificable identificable;
 		//TODO: refactor considerar cambios a identificable.
 		if (!terrenoInferior.tieneRecursos()){
 			
 			vistaClase = this.vistas.get(terrenoInferior.getClass());
 			vistaNueva = (Vista) vistaClase.newInstance();
 			observable = (Observable)terrenoInferior;
+			identificable = (Identificable) terrenoInferior;
+			vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 			
 		}else{
 			
 			vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
 			vistaNueva = (Vista) vistaClase.newInstance();
 			observable = (Observable)terrenoInferior.getRecurso();
+			identificable = (Identificable) terrenoInferior.getRecurso();
+			vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 			
 		}if(terrenoInferior.estaOcupado()){
 			
-			Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
-			int numero = identificable.getNumeroJugador();
+			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+			int numero = identificableUbicable.getNumeroJugador();
 			vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
 			Vista vistaOcupante = (Vista) identificableVisible;
 			vistaNueva = vistaOcupante;
+			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 			vistaNueva.setMaximumSize(new Dimension(10,10));
 			

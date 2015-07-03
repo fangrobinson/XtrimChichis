@@ -3,17 +3,14 @@ package xtremecraft.vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import xtremecraft.edificios.Barraca;
-
 @SuppressWarnings("serial")
 public class VistaBarraca extends VistaIdentificable implements IdentificableVisible{
 	
 	static String nombreBarraca = "Barraca";
-	static String estadoInicial = Barraca.getEstadoInicial();
 	
 	public VistaBarraca(){
 		
-		super(nombreBarraca,estadoInicial);
+		super(nombreBarraca);
 		this.color = new Color(153,12,0);
 	
 	}

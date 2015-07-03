@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,15 +24,21 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 	
-	public Vista(String nombreVista, String estadoInicial){
+	public Vista(String nombreVista){
 		
+		String estadoInicial= "";
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setClaseVista(this.getClass());
 		this.observableSeleccionado.setNombre(this.nombre);
 		this.observableSeleccionado.setEstado(estadoInicial);
-		this.observableSeleccionado.setAcciones(this.devolverAcciones());
 		this.observableSeleccionado.setClaseVista(this.getClass());
+		
+	}
+	
+	public void setEstadoImprimible(String estado){
+		
+		this.observableSeleccionado.setEstado(estado);
 		
 	}
 	
@@ -64,10 +69,7 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		return this.color;
 		
 	}
-	
-	public abstract ArrayList<String> devolverAcciones();
-	
-	
+		
 	@Override
 	public void update(Observable observado, Object arg) {
 		
@@ -85,7 +87,7 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		
-		this.observableSeleccionado.notificarObservado();
+		this.observableSeleccionado.notificarObservador();
 		
 	}
 

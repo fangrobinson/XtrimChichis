@@ -12,6 +12,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.SectorAccionesDisponibles;
@@ -41,11 +42,12 @@ public class AccionCrearNaveTransporte extends AbstractAction{
 		
 		try{
 		
-			jugadorActual.crearNaveTransporte(puertoEstelar, this.partida.getMapa());
+			NaveTransporte naveTransporte = jugadorActual.crearNaveTransporte(puertoEstelar, this.partida.getMapa());
+			Coordenada coordenadaNaveTransporte = naveTransporte.getUbicacionActual();
 			
 			try {
 			
-				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+				this.mapaVista.actualizarVistaEnCoordenada(coordenadaNaveTransporte);
 				this.sector.removeAll();
 				
 			} catch (InstantiationException | IllegalAccessException e) {

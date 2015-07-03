@@ -104,9 +104,9 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 		if(this.vida.getValor() == 0){
 			this.estaVivo = false;
 		}
-		
 		setChanged();
 		notifyObservers();
+		
 	}
 
 	public void setUbicacionInicial(Terreno unTerreno){
@@ -120,6 +120,8 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 		
 		this.terrenoActual.desocupar();
 		this.setUbicacionInicial(unTerreno);
+		setChanged();
+		notifyObservers();
 		
 	}	
 	
@@ -150,20 +152,18 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 	public void pasarTiempo(){
 		
 		if (this.estaEnConstruccion()){
-		
 			this.turnosConstruccionPasados += 1;
 			if (this.turnosConstruccionPasados >= this.tiempoConstruccion){
-			
 				this.estaEnConstruccion = false;
 				this.vida.curarPorTurno(100);
-			
 			}
 		}
 		else{
 			this.vida.curarPorTurno(1);
-			setChanged();
-			notifyObservers();
 		}
+		setChanged();
+		notifyObservers();
+		
 	}
 	
     public boolean pertenezcoAEstaRaza(Terran terran){

@@ -12,6 +12,7 @@ import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.raza.CantidadDeSuministroInsuficienteException;
 import xtremecraft.raza.RecursosInsuficientesException;
+import xtremecraft.unidades.Espectro;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.SectorAccionesDisponibles;
@@ -41,11 +42,15 @@ public class AccionCrearEspectro extends AbstractAction{
 		
 		try{
 		
-			jugadorActual.crearEspectro(puertoEstelar, this.partida.getMapa());
+			Espectro espectro = jugadorActual.crearEspectro(puertoEstelar, this.partida.getMapa());
+			Coordenada coordenadaEspectro = espectro.getUbicacionActual();
+			
+			System.out.print(espectro.getUbicacionActual().columna());
+			System.out.print(espectro.getUbicacionActual().fila());
 			
 			try {
 			
-				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
+				this.mapaVista.actualizarVistaEnCoordenada(coordenadaEspectro);
 				this.sector.removeAll();
 				
 			} catch (InstantiationException | IllegalAccessException e) {
