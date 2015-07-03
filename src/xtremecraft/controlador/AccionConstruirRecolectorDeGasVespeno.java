@@ -12,7 +12,6 @@ import xtremecraft.partida.Partida;
 import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
-import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
@@ -20,15 +19,13 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
-	private SectorAccionesDisponibles sector;
 	
-	public AccionConstruirRecolectorDeGasVespeno(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
+	public AccionConstruirRecolectorDeGasVespeno(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("ConstruirRecolectorDeGasVespeno");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		this.sector = sectorAccionesDisponibles;
 		
 	}
 	
@@ -55,9 +52,8 @@ public class AccionConstruirRecolectorDeGasVespeno extends AbstractAction{
 			 new MensajeDeError("No se tienen suficientes recursos");
 		}catch(NoSePudoOcuparElTerrenoException terrenoOcupado){
 			new MensajeDeError("El terreno seleccionado no está disponible para construir");
-		}finally{
-			this.sector.removeAll();
 		}
+		
 	}
 	
 }

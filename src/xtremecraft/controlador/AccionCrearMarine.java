@@ -15,7 +15,6 @@ import xtremecraft.raza.RecursosInsuficientesException;
 import xtremecraft.unidades.Marine;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
-import xtremecraft.vista.SectorAccionesDisponibles;
 
 @SuppressWarnings("serial")
 public class AccionCrearMarine extends AbstractAction{
@@ -23,15 +22,13 @@ public class AccionCrearMarine extends AbstractAction{
 	private Partida partida;
 	private Coordenada coordenada;
 	private MapaObservable mapaVista;
-	private SectorAccionesDisponibles sector;
 	
-	public AccionCrearMarine(Partida partida, MapaObservable mapa, Coordenada coordenada, SectorAccionesDisponibles sectorAccionesDisponibles){
+	public AccionCrearMarine(Partida partida, MapaObservable mapa, Coordenada coordenada){
 		
 		super("CrearMarine");
 		this.partida = partida;
 		this.coordenada = coordenada;
 		this.mapaVista = mapa;
-		this.sector = sectorAccionesDisponibles;
 		
 	}
 
@@ -62,9 +59,8 @@ public class AccionCrearMarine extends AbstractAction{
 			new MensajeDeError("Este edificio esta en construccion aun no se puede utilizar");
 		}catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
 			new MensajeDeError("Este edificio no pertenece al jugador actual");
-		}finally{
-			this.sector.removeAll();
 		}
+		
 	}
 	
 }
