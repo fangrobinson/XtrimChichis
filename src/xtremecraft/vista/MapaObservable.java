@@ -200,16 +200,17 @@ public class MapaObservable extends JPanel implements Observer{
 
 			try{
 				unidadAMover.actualizarUbicacion(terrenoDestino);
+				try{
+					this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
+					this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
+					this.estrategiaDeMovimientoIniciada = false;
+				}catch (InstantiationException | IllegalAccessException e) {
+					new MensajeDeError("Error interno del sistema");
+				}
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
 				new MensajeDeError("No se puede mover a la locacion seleccionada");
 			}catch(YaSeSeleccionoUnMovimientoException u) {
 				new MensajeDeError("La unidad que se quiere mover ya se movió");
-			}try{
-				this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
-				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
-				this.estrategiaDeMovimientoIniciada = false;
-			}catch (InstantiationException | IllegalAccessException e) {
-				new MensajeDeError("Error interno del sistema");
 			}
 			
 		}if(this.estrategiaDeAtaqueIniciada){
