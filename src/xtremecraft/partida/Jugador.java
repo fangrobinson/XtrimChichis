@@ -78,6 +78,8 @@ public class Jugador extends Observable implements Actualizable {
 		
 		if (!this.estaEnJuego()){
 			
+			new MensajeDeError("Murio un jugador");
+			
 			Jugador anterior = this.siguienteJugador;
 			
 			while (anterior.siguienteJugador != this){

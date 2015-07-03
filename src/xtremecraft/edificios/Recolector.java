@@ -15,6 +15,7 @@ public abstract class Recolector extends Edificio implements Actualizable{
 	protected Recolector(Jugador jugador,Terreno terreno){
 		
 		super(jugador,terreno, vidaInicial);
+		this.aumentoDeReservaEnTurno = 1000;
 		this.aumentoDeReservaEnTurno = 10;
 	
 	}

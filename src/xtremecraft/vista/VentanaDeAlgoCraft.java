@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-//import javax.swing.JPanel;
-
 
 import xtremecraft.partida.Partida;
 
@@ -73,6 +71,10 @@ public class VentanaDeAlgoCraft extends JFrame{
         JMenu menuAbout = new JMenu("Sobre Nosotros");
         barraDeMenu.add(menuArchivo);
         barraDeMenu.add(menuAbout);
+        JMenuItem integrantes = new JMenuItem("Integrantes");
+
+        integrantes.addActionListener(new OpcionSobreListener());
+        menuAbout.add(integrantes);
         
         JMenuItem nuevoJuego = new JMenuItem("Nuevo Juego");
         JMenuItem salir = new JMenuItem("Salir");
@@ -90,6 +92,17 @@ public class VentanaDeAlgoCraft extends JFrame{
         public void actionPerformed(ActionEvent evento) {
         	
         	System.exit(0);
+        
+        }
+		
+	}
+	
+	static class OpcionSobreListener implements ActionListener{
+		
+        public void actionPerformed(ActionEvent evento) {
+        	
+        	JFrame ventana = new VentanaSobreDesarrolladores();
+        	ventana.setVisible(true);
         
         }
 		

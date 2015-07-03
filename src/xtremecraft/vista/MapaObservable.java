@@ -250,7 +250,6 @@ public class MapaObservable extends JPanel implements Observer{
 			}
 
 			if (ubicableAtacado != null){
-				new MensajeDeError("Murio");
 				ubicableAtacado.getJugador().verificarSigueEnJuego();
 			}
 
