@@ -56,6 +56,14 @@ public class NaveTransporte extends UnidadAerea {
 		
 	 }
 	
+	public void actualizarUbicacion(Terreno terreno){
+		super.actualizarUbicacion(terreno);
+		for(int pos=0;pos<this.unidadesTransportadas.size();pos++){
+			this.unidadesTransportadas.get(pos).actualizarUbicacion(this);
+		}
+		
+	}
+	
 	public void bajarUnidad(Mapa mapa,Unidad unaUnidad){
 		
 		ArrayList<Celda> celdasAdyacentes = mapa.obtenerCeldasAdyacentesAlUbicable(this);
