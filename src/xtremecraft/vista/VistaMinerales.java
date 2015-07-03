@@ -15,7 +15,7 @@ public class VistaMinerales extends Vista {
 		
 		super(nombreMarine,estadoInicial);
 		this.nombre = nombreMarine;
-		this.color = new Color(255,200,0);
+		this.color = new Color(0,204,204);
 		
 	}
 

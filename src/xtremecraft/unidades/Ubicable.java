@@ -19,6 +19,8 @@ public interface Ubicable {
 	boolean puedeUbicarseEnAire();
 	
 	boolean estaElevado();
+	
+	boolean estaVivo();
 
 	void actualizarUbicacion(Terreno terreno);
 	

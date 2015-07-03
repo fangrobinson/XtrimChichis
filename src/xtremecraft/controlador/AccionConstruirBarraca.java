@@ -41,7 +41,7 @@ public class AccionConstruirBarraca extends AbstractAction{
 		
 		try{
 			
-			jugadorActual.crearBarraca(tierraConstruccion);	
+			jugadorActual.crearBarraca(tierraConstruccion, this.partida.getMapa());	
 
 			try {
 				

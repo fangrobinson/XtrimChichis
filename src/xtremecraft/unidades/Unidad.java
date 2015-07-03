@@ -5,11 +5,10 @@ import xtremecraft.edificios.Construible;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Actualizable;
-import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 
-public abstract class Unidad extends Observable implements Ubicable, Atacable, Defendible, Actualizable, Construible, Cobrable, Identificable{
+public abstract class Unidad extends Observable implements IdentificableUbicable, Atacable, Defendible, Actualizable, Construible, Cobrable{
 	
 	BarraDeVitalidad vitalidad;
 	Danio danio;
@@ -63,6 +62,7 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
         }
         setChanged();
 		notifyObservers();
+		
     }
     
     public static String getEstadoInicial(){
@@ -80,6 +80,7 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     public String getEstadoImprimible(){
     	
     	if(this.estaEnConstruccion()) return getEstadoInicial();
+    	if(!this.estaVivo()) return "Unidad muerta";
     	return this.generarEstadoImprimible();
     	
     }
@@ -160,17 +161,17 @@ public abstract class Unidad extends Observable implements Ubicable, Atacable, D
     	
     	this.terrenoActual = terreno;
 		this.estaUbicada = true;
-    	
     }
     
     public void actualizarUbicacion(Terreno terreno) {
-
+    	
     	if( (!this.puedoVer(terreno.getCoordenada())) || terreno.estaOcupado() ){
     		throw new UbicacionNoValidaException();
     	}
     	if (!this.puedeMoverse){
     		throw new YaSeSeleccionoUnMovimientoException();
     	}
+    	
     	this.puedeMoverse = false;
     	this.terrenoActual.desocupar();
     	terreno.ubicar(this);    	

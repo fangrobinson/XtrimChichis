@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
@@ -18,8 +19,11 @@ public class RecolectorDeGasVespenoTest {
 
 	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
@@ -30,9 +34,11 @@ public class RecolectorDeGasVespenoTest {
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearBarracaConRazaSinRecursosLanzaExcepcion(){
 		
-		Tierra tierraNacion = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierraNacion);
-		Terreno tierra = new Tierra(1,1);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		VolcanGasVespeno volcan = new VolcanGasVespeno(200);
 		tierra.agregarRecursoNatural(volcan);
 		

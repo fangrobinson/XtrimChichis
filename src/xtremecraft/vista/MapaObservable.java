@@ -22,9 +22,11 @@ import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
+import xtremecraft.unidades.IdentificableUbicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
+import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
 
 public class MapaObservable extends JPanel implements Observer{
 	
@@ -79,7 +81,7 @@ public class MapaObservable extends JPanel implements Observer{
 					vistaNueva = (Vista) vistaClase.newInstance();
 					observable = (Observable)terrenoInferior.getRecurso();
 				}if(terrenoInferior.estaOcupado()){
-					Identificable identificable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+					IdentificableUbicable identificable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
 					int numero = identificable.getJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 					IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
@@ -200,13 +202,13 @@ public class MapaObservable extends JPanel implements Observer{
 				unidadAMover.actualizarUbicacion(terrenoDestino);
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
 				new MensajeDeError("No se puede mover a la locacion seleccionada");
-			}
-			try {
+			}catch(YaSeSeleccionoUnMovimientoException u) {
+				new MensajeDeError("La unidad que se quiere mover ya se movió");
+			}try{
 				this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
 				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 				this.estrategiaDeMovimientoIniciada = false;
-				
-			} catch (InstantiationException | IllegalAccessException e) {
+			}catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
 			}
 			

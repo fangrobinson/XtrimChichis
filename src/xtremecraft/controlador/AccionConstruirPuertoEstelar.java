@@ -40,7 +40,7 @@ public class AccionConstruirPuertoEstelar extends AbstractAction{
 		Tierra tierraConstruccion = (Tierra) partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna()).getCapaInferior();
 		
 		try{
-			jugadorActual.crearPuertoEstelar(tierraConstruccion);
+			jugadorActual.crearPuertoEstelar(tierraConstruccion, this.partida.getMapa());
 			
 		
 			try {

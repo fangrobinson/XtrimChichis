@@ -3,13 +3,9 @@ package xtremecraft.partida;
 import java.util.ArrayList;
 import java.util.Observer;
 
-import xtremecraft.edificios.Barraca;
-import xtremecraft.edificios.Fabrica;
-import xtremecraft.edificios.PuertoEstelar;
 import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Mapa;
-import xtremecraft.mapa.Terreno;
 import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.Unidad;
 
@@ -35,7 +31,7 @@ public class Partida {
 		for (int posicion = 0; posicion < nombresJugadores.size(); posicion++){
 		
 			int numeroDeJugador = posicion + 1;
-			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(posicion), this.mapa.obtenerTerrenoJugador(numeroDeJugador));
+			Jugador jugadorNuevo = new Jugador(nombresJugadores.get(posicion), this.mapa.obtenerTerrenoJugador(numeroDeJugador), this.mapa);
 			jugadores.add(jugadorNuevo);
 		
 		}
@@ -103,7 +99,7 @@ public class Partida {
 		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
 		
 	}
-	
+	/*
 	public void crearBarraca(Jugador jugador, int fila, int columna){
 		
 		if (jugador != this.quienJuega()){
@@ -229,7 +225,7 @@ public class Partida {
 		jugador.crearNaveTransporte(unPuerto, this.mapa);
 		
 	}
-
+*/
 	public void agregarObservadorDeJugadores(Observer observador,Jugador jugador){
 		
 		for(int posicion = 0; posicion < this.jugadores.size(); posicion++){

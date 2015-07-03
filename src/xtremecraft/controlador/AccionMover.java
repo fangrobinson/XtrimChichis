@@ -7,7 +7,7 @@ import javax.swing.AbstractAction;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
 import xtremecraft.partida.SeleccionadoNoEsPropiedadDelJugadorException;
-import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
+//import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
 import xtremecraft.vista.MapaObservable;
 import xtremecraft.vista.MensajeDeError;
 import xtremecraft.vista.SectorAccionesDisponibles;
@@ -37,7 +37,7 @@ public class AccionMover extends AbstractAction {
 			
 			boolean unidadEnConstruccion = this.partida.unidadSeleccionadaEstaEnConstruccion(this.coordenada);
 			
-			boolean unidadSeleccionadaPuedeMoverse = this.partida.unidadSeleccionadaPuedeMoverse(this.coordenada);
+			//boolean unidadSeleccionadaPuedeMoverse = this.partida.unidadSeleccionadaPuedeMoverse(this.coordenada);
 			
 			if ( unidadEnConstruccion /*|| !unidadSeleccionadaPuedeMoverse*/ ){
 				new MensajeDeError("Esta unidad esta en construccion o ya realizó un movimiento en el turno actual.");
@@ -47,8 +47,6 @@ public class AccionMover extends AbstractAction {
 			
 		} catch (SeleccionadoNoEsPropiedadDelJugadorException e) {
 			new MensajeDeError("La unidad que se quiere mover no es del jugador");
-		}catch(YaSeSeleccionoUnMovimientoException u) {
-			new MensajeDeError("La unidad que se quiere mover ya se movió");
 		}finally{
 			this.sector.removeAll();
 		}

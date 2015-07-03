@@ -4,18 +4,17 @@ import java.util.Observable;
 
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.mapa.Terreno;
+import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Actualizable;
-import xtremecraft.partida.Identificable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.BarraDeVitalidad;
 import xtremecraft.unidades.Cobrable;
+import xtremecraft.unidades.IdentificableUbicable;
 import xtremecraft.unidades.Radiacion;
-import xtremecraft.unidades.Ubicable;
 
-
-public abstract class Edificio extends Observable implements Ubicable,Atacable,Actualizable,Construible,Cobrable,Identificable{
+public abstract class Edificio extends Observable implements IdentificableUbicable,Atacable,Actualizable,Construible,Cobrable{
 	
 	protected Terreno terrenoActual;
 	protected static int vidaInicial;
@@ -27,6 +26,10 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
 	protected Jugador jugador;
 	
 	public Edificio(Jugador unJugador,Terreno unTerreno,int vida){
+		
+		if (unTerreno.getClass() != Tierra.class){
+			throw new UnEdificioSoloSePuedeUbicarEnTierraException();
+		}
 		
 		this.terrenoActual = unTerreno;
 		vidaInicial = vida;
@@ -84,6 +87,7 @@ public abstract class Edificio extends Observable implements Ubicable,Atacable,A
     public String getEstadoImprimible(){
     	
     	if(this.estaEnConstruccion()) return getEstadoInicial();
+    	if(!this.estaVivo()) return "Edificio muerto";
     	return this.generarEstadoImprimible();
     	
     }

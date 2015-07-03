@@ -11,14 +11,24 @@ import xtremecraft.unidades.Ubicable;
 
 public class CeldaTest {
 	
-	@Test
-	public void ubicarCapaInferiorUnMarineDevuelveLaMismaCelda(){
+	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
+		return jugador;
+		
+	}	
+	
+	@Test
+	public void ubicarCapaInferiorUnMarineDevuelveLaMismaCelda(){
+		
+		Jugador jugador =  crearJugadorConRecursosSuficientesParaConstruir();
 		Tierra tierraEsperada = new Tierra(2,2);
 		Celda celda_vacia = new Celda(tierraEsperada, new Aire(2,2));
 		Ubicable marine = new Marine(jugador);
@@ -30,11 +40,7 @@ public class CeldaTest {
 	@Test(expected = NoSePudoOcuparElTerrenoException.class)
 	public void ubicarCapaSuperiorUnMarineLanzaExcepcion(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
-		Terran razaTerran = jugador.nacion();
-		razaTerran.juntarGas(1000);
-		razaTerran.juntarMinerales(1000);
+		Jugador jugador =  crearJugadorConRecursosSuficientesParaConstruir();
 		Celda celda = new Celda(new Tierra(1,2), new Aire(1,2));
 		Ubicable marine = new Marine(jugador);
 		celda.ubicarCapaSuperior(marine);

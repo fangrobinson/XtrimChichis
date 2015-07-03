@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
@@ -17,8 +18,11 @@ public class DepositoDeSuministrosTest {
 	
 	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
@@ -29,13 +33,16 @@ public class DepositoDeSuministrosTest {
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearDepositoDeSuministrosConRazaSinRecursosLanzaExcepcion(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
-		Terreno unaTierra = new Tierra(2,2);
-		Terreno otraTierra = new Tierra(1,1);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Terreno tierra =  mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
+		Terreno unTerreno = new Tierra(2,2);
+		Terreno otroTerreno = new Tierra(1,1);
 		
-		new DepositoDeSuministros(jugador, unaTierra);
-		new DepositoDeSuministros(jugador, otraTierra);
+		new DepositoDeSuministros(jugador, unTerreno);
+		new DepositoDeSuministros(jugador, otroTerreno);
 		
 	}
 	
@@ -144,14 +151,14 @@ public class DepositoDeSuministrosTest {
 	public void siUnDepositoEsAtacadoHastaQueSuVidaLlegaACeroPasaAEstadoNoVivo(){
 		
 		Terreno tierra = new Tierra(3,2);
-		Terreno otraTierra = new Tierra(1,2);
+		Terreno otroTerreno = new Tierra(1,2);
 		Jugador jugador = crearJugadorConRecursosSuficientesParaConstruir();
 		DepositoDeSuministros deposito = construirNuevoDeposito(jugador, tierra);
 		Marine miniSamus = new Marine(jugador);
 		int cantidadDeAtaquesADeposito = 17;
 		
 		miniSamus.setUbicacionInicial(tierra);
-		deposito.setUbicacionInicial(otraTierra);
+		deposito.setUbicacionInicial(otroTerreno);
 		for(int i=0;i<cantidadDeAtaquesADeposito;i++){
 			miniSamus.atacar(deposito);
 			miniSamus.pasarTiempo();

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
 import xtremecraft.partida.Jugador;
@@ -20,8 +21,11 @@ public class PuertoEstelarTest {
 	
 	public Jugador crearJugadorConRecursosSuficientesParaConstruir(){
 		
-		Tierra tierra = new Tierra(15,15);
-		Jugador jugador = new Jugador("Juan",tierra);
+		int fila = 15;
+		int columna = 16;
+		Mapa mapa = new Mapa(2);
+		Tierra tierra = (Tierra) mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", tierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		razaTerran.juntarGas(1000);
 		razaTerran.juntarMinerales(1000);
@@ -32,13 +36,14 @@ public class PuertoEstelarTest {
 	@Test(expected = RecursosInsuficientesException.class)
 	public void crearPuertoConRazaSinRecursosLanzaExcepcion(){
 		
-		Tierra primerTierra = new Tierra(15,15);
-		Tierra segundaTierra = new Tierra(1,1);
-		Tierra tercerTierra = new Tierra (2,2);
-		Tierra cuartaTierra = new Tierra(3,3);
-		Tierra quintaTierra = new Tierra(11,11);
-		Tierra sextaTierra = new Tierra(12,12);
-		Jugador jugador = new Jugador("Juan",primerTierra);
+		Mapa mapa = new Mapa(2);
+		Tierra primerTierra = (Tierra) mapa.getCeldaEnFilaColumna(15,16).getCapaInferior();
+		Tierra segundaTierra = (Tierra) mapa.getCeldaEnFilaColumna(9, 10).getCapaInferior();
+		Tierra tercerTierra = (Tierra) mapa.getCeldaEnFilaColumna(11, 12).getCapaInferior();
+		Tierra cuartaTierra = (Tierra) mapa.getCeldaEnFilaColumna(15,18).getCapaInferior();
+		Tierra quintaTierra = (Tierra) mapa.getCeldaEnFilaColumna(12,16).getCapaInferior();
+		Tierra sextaTierra = (Tierra) mapa.getCeldaEnFilaColumna(15,13).getCapaInferior();
+		Jugador jugador = new Jugador("Juan", primerTierra, mapa);
 		Terran razaTerran = jugador.nacion();
 		
 		
