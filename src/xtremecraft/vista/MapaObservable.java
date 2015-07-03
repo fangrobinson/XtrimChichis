@@ -208,6 +208,7 @@ public class MapaObservable extends JPanel implements Observer{
 					new MensajeDeError("Error interno del sistema");
 				}
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
+				this.estrategiaDeMovimientoIniciada = false;
 				new MensajeDeError("No se puede mover a la locacion seleccionada");
 			}catch(YaSeSeleccionoUnMovimientoException u) {
 				new MensajeDeError("La unidad que se quiere mover ya se movió");
