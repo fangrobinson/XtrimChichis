@@ -255,7 +255,7 @@ public class NaveTransporteTest {
 		taxiVolador.bajarUnidad(mapa, goliat0);
 				
 	}
-	/*
+	
 	@Test
 	public void actualizarUbicacionActualizaLaUbicacionDeLasUnidadesQueTransporta(){
 		
@@ -274,7 +274,8 @@ public class NaveTransporteTest {
 		assertEquals(unGoliat.getUbicacionActual(),taxiVolador.getUbicacionActual());
 		
 	}
-	*/
+	
+	
 	@Test(expected = UbicacionNoValidaException.class)
 	public void siLaUnidadTrataDeUbicarseEnUnTerrenoQueNoPuedeVerSeLanzaExcepcion(){
 
