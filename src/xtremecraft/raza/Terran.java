@@ -1,6 +1,8 @@
 package xtremecraft.raza;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.DepositoDeSuministros;
@@ -19,7 +21,7 @@ import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.Unidad;
 
 
-public class Terran implements Actualizable{
+public class Terran implements Actualizable, Observer{
 
 		private ArrayList<Unidad> unidades;
 		private ArrayList<Edificio> edificios;
@@ -58,6 +60,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevaBarraca);
 		this.agregarEdificio(nuevaBarraca);
 		nuevaBarraca.addObserver(mapa);
+		nuevaBarraca.addObserver(this);
 		return nuevaBarraca;
 		
 	}
@@ -70,6 +73,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevaFabrica);
 		this.agregarEdificio(nuevaFabrica);
 		nuevaFabrica.addObserver(mapa);
+		nuevaFabrica.addObserver(this);
 		return nuevaFabrica;
 			
 	}
@@ -82,6 +86,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevoPuerto);
 		this.agregarEdificio(nuevoPuerto);
 		nuevoPuerto.addObserver(mapa);
+		nuevoPuerto.addObserver(this);
 		return nuevoPuerto;
 	
 	}
@@ -92,6 +97,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevoCentroMineral);
 		this.agregarEdificio(nuevoCentroMineral);
 		nuevoCentroMineral.addObserver(mapa);
+//		nuevoCentroMineral.addObserver(this);
 		return nuevoCentroMineral;
 		
 	}
@@ -102,6 +108,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevaRefineria);
 		this.agregarEdificio(nuevaRefineria);
 		nuevaRefineria.addObserver(mapa);
+		nuevaRefineria.addObserver(this);
 		return nuevaRefineria;
 		
 	}
@@ -112,6 +119,7 @@ public class Terran implements Actualizable{
 		unTerreno.ubicar(nuevoDeposito);
 		this.agregarEdificio(nuevoDeposito);
 		nuevoDeposito.addObserver(mapa);
+		nuevoDeposito.addObserver(this);
 		return nuevoDeposito;
 		
 	}
@@ -131,6 +139,8 @@ public class Terran implements Actualizable{
 		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
+		nuevaUnidad.addObserver(this);
 		
 		return nuevaUnidad;
 		
@@ -152,6 +162,8 @@ public class Terran implements Actualizable{
 		}
 		this.agregarUnidad(nuevaUnidad);
 		
+		nuevaUnidad.addObserver(this);
+		
 		return nuevaUnidad;
 		
 	}
@@ -171,6 +183,8 @@ public class Terran implements Actualizable{
 		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		
+		nuevaUnidad.addObserver(this);
 		
 		return nuevaUnidad;
 		
@@ -192,6 +206,8 @@ public class Terran implements Actualizable{
 		}
 		this.agregarUnidad(nuevaUnidad);
 		
+		nuevaUnidad.addObserver(this);
+		
 		return nuevaUnidad;
 		
 	}
@@ -211,6 +227,7 @@ public class Terran implements Actualizable{
 		
 		}
 		this.agregarUnidad(nuevaUnidad);
+		nuevaUnidad.addObserver(this);
 		
 		return nuevaUnidad;
 		
@@ -362,6 +379,17 @@ public class Terran implements Actualizable{
 	public ArrayList<Unidad> unidades(){
 		
 		return this.unidades;
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
+		Ubicable u = (Ubicable) o;
+		if (!u.estaVivo()){
+			this.edificios.remove(u);
+			this.unidades.remove(u);
+		}
 		
 	}
 	

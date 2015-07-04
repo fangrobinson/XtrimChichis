@@ -14,7 +14,7 @@ public class Marine extends UnidadTerrestre{
 		this.cobrar();
 		this.vitalidad = new BarraDeVitalidad(vidaInicial);
 		this.danio = new Danio (666,666);
-		this.danio = new Danio (6,6);
+//		this.danio = new Danio (6,6);
 		this.vision = 7;
 		this.tiempoConstruccion = 3;
 		this.suministro = 1;

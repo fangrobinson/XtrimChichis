@@ -24,9 +24,9 @@ public class VentanaSobreDesarrolladores extends JFrame {
 		
 		JTextArea texto = new JTextArea(
 			    "Este trabajo practico fue hecho por: \n" +
-			    "Ana Czarnitzki\n" +
-			    "Robinson Fang\n" +
-			    "Eugenia Mariotti\n"
+			    "-Ana Czarnitzki\n" +
+			    "-Robinson Fang\n" +
+			    "-Eugenia Mariotti\n"
 		);
 		texto.setMaximumSize(new Dimension(320,180));
 		texto.setEditable(false);

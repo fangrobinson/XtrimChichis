@@ -105,133 +105,7 @@ public class Partida {
 		throw new NoSeEncontroNingunJugadorConTurnoAsignadoException();
 		
 	}
-	/*
-	public void crearBarraca(Jugador jugador, int fila, int columna){
-		
-		if (jugador != this.quienJuega()){
-			
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
-		Ubicable barraca = jugador.crearBarraca(unTerreno);
-		mapa.ubicar(barraca, this.mapa.getCeldaEnFilaColumna(fila, columna));
-		
-	}
 	
-	public void crearFabrica(Jugador jugador, int fila, int columna){
-		
-		if (jugador != this.quienJuega()){
-			
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
-		Ubicable fabrica = jugador.crearFabrica(unTerreno);
-		mapa.ubicar(fabrica, this.mapa.getCeldaEnFilaColumna(fila, columna));
-	}
-	
-	public void crearPuertoEstelar(Jugador jugador, int fila, int columna){
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
-		Ubicable puerto = jugador.crearPuertoEstelar(unTerreno);
-		mapa.ubicar(puerto, this.mapa.getCeldaEnFilaColumna(fila, columna));
-	}
-	
-	public void crearRecolectorDeGasVespeno(Jugador jugador, int fila, int columna){
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
-		Ubicable recolectorGas = jugador.crearRecolectorDeGasVespeno(unTerreno);
-		mapa.ubicar(recolectorGas, this.mapa.getCeldaEnFilaColumna(fila, columna));
-	}
-	
-	public void crearRecolectorDeMineral(Jugador jugador, int fila, int columna){
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		Terreno unTerreno = this.mapa.getCeldaEnFilaColumna(fila, columna).getCapaInferior();
-		Ubicable recolectorMineral = jugador.crearRecolectorDeMineral(unTerreno);
-		mapa.ubicarCapaInferior(recolectorMineral, this.mapa.getCeldaEnFilaColumna(fila, columna));
-	
-	}
-	
-	public void crearMarine(Jugador jugador, Barraca unaBarraca) throws SeleccionadoNoEsPropiedadDelJugadorException{
-		
-		if (jugador != this.quienJuega()){
-	
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		jugador.crearMarine(unaBarraca, this.mapa);
-		
-	}
-	
-	public void crearGoliat(Jugador jugador, Fabrica unaFabrica) throws SeleccionadoNoEsPropiedadDelJugadorException{
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		jugador.crearGoliat(unaFabrica, this.mapa);
-	}
-	
-	public void crearEspectro(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		jugador.crearEspectro(unPuerto, this.mapa);
-		
-	}
-	
-	public void crearNaveCiencia(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		jugador.crearNaveCiencia(unPuerto, this.mapa);
-		
-	}
-	
-	public void crearNaveTransporte(Jugador jugador, PuertoEstelar unPuerto) throws SeleccionadoNoEsPropiedadDelJugadorException{
-		
-		if (jugador != this.quienJuega()){
-		
-			throw new JugadorNoTieneElTurnoException();
-		
-		}
-		
-		jugador.crearNaveTransporte(unPuerto, this.mapa);
-		
-	}
-*/
 	public void agregarObservadorDeJugadores(Observer observador,Jugador jugador){
 		
 		for(int posicion = 0; posicion < this.jugadores.size(); posicion++){
@@ -280,6 +154,47 @@ public class Partida {
 		Celda celda = this.mapa.getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
 		Unidad unidad = (Unidad) celda.getUbicableEnInferior();
 		return unidad.puedeAtacar();
+		
+	}
+	
+	private boolean verificarHayGanador(){
+		
+		int cantidadVivos = 0;
+		
+		for (int i = 0; i < this.cantidadJugadores; i++){
+			
+			if(this.jugadores.get(i).estaEnJuego()){
+				
+				cantidadVivos ++;
+				
+			}
+			
+		}
+		
+		return cantidadVivos == 1;
+		
+	}
+	
+	public Jugador jugadorGanador(){
+		
+		Jugador ganador = null;
+		
+		if(!this.verificarHayGanador()){
+			return ganador;
+		}
+		 
+		
+		for (int i = 0; i < this.cantidadJugadores; i++){
+			
+			if(this.jugadores.get(i).estaEnJuego()){
+				
+				ganador = this.jugadores.get(i);
+				
+			}
+			
+		}
+		
+		return ganador;
 		
 	}
 	

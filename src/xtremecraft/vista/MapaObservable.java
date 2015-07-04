@@ -260,7 +260,14 @@ public class MapaObservable extends JPanel implements Observer{
 			}
 
 			if (ubicableAtacado != null){
+				
 				ubicableAtacado.getJugador().verificarSigueEnJuego();
+				Jugador ganador = this.partida.jugadorGanador();
+
+				if(ganador != null){
+					new MensajeDeError("Hay Ganador");
+				}
+				
 			}
 
 		}
