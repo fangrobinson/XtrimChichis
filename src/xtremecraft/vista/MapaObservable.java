@@ -23,6 +23,7 @@ import xtremecraft.unidades.Atacable;
 import xtremecraft.unidades.AtaqueFueraDelRangoDeVisionException;
 import xtremecraft.unidades.Defendible;
 import xtremecraft.unidades.IdentificableUbicable;
+import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.UbicacionNoValidaException;
 import xtremecraft.unidades.Unidad;
@@ -235,10 +236,23 @@ public class MapaObservable extends JPanel implements Observer{
 			
 			Ubicable ubicableAtacado = null;
 			try{
+				
 				Atacable atacado = (Atacable) celdaAtacado.getUbicableEnInferior();
 				ubicableAtacado = (Ubicable) atacado;
 				Jugador jugadorTurno = this.partida.quienJuega();
-				jugadorTurno.atacar(atacante, atacado);
+				
+				//TODO: refactoring urgente
+				
+				if (atacante.getClass() == NaveCiencia.class){
+					
+					NaveCiencia naveAtacante = (NaveCiencia) atacante;
+					Unidad unidadAtacada = (Unidad) atacado;
+					
+					jugadorTurno.atacarConRadiacion(naveAtacante, unidadAtacada, this.partida.getMapa());
+				}else{
+					jugadorTurno.atacar(atacante, atacado);
+				}
+				
 			
 			}catch(AtaqueFueraDelRangoDeVisionException ataqueFueraDeRango){
 				new MensajeDeError("El atacado esta fuera del rango del atacante");

@@ -20,6 +20,7 @@ import xtremecraft.unidades.Marine;
 import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
+import xtremecraft.unidades.Unidad;
 import xtremecraft.vista.MensajeDeError;
 
 public class Jugador extends Observable implements Actualizable {
@@ -114,6 +115,19 @@ public class Jugador extends Observable implements Actualizable {
 		
 		atacante.atacar(atacado);
 	}
+	
+	public void atacarConRadiacion(NaveCiencia naveCiencia, Unidad unidad, Mapa mapa) throws SeleccionadoNoEsPropiedadDelJugadorException {
+		
+		if (!this.esDeMiPropiedad(naveCiencia)){
+			
+			throw new SeleccionadoNoEsPropiedadDelJugadorException();
+		
+		}
+		
+		naveCiencia.atacarConRadiacion(mapa, unidad);
+		
+	}
+	
 	
 	private void crearBaseInicial(Terreno terreno, Mapa mapa){
 		
@@ -296,5 +310,6 @@ public class Jugador extends Observable implements Actualizable {
 		return this.nacion.getPoblacionMaxima();
 		
 	}
-	
+
+
 }
