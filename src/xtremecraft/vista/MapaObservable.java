@@ -122,6 +122,7 @@ public class MapaObservable extends JPanel implements Observer{
 		
 		Celda celdaReal = this.partida.getMapa().getCeldaEnFilaColumna(coordenada.fila(), coordenada.columna());
 		Terreno terrenoInferior = celdaReal.getCapaInferior();
+		Terreno terrenoSuperior = celdaReal.getCapaSuperior();
 		Class<?> vistaClase;
 		Vista vistaNueva = null;
 		Observable observable = null;
@@ -143,15 +144,26 @@ public class MapaObservable extends JPanel implements Observer{
 			identificable = (Identificable) terrenoInferior.getRecurso();
 			vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 			
-		}if(terrenoInferior.estaOcupado()){
+		}if (terrenoSuperior.estaOcupado()){
+			
+			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+			int numero = identificableUbicable.getNumeroJugador();
+			vistaClase = this.vistas.get(terrenoSuperior.getUbicableEnTerreno().getClass());
+			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
+			identificableVisible.setJugador(numero);
+			vistaNueva = (Vista) identificableVisible;
+			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
+			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+			vistaNueva.setMaximumSize(new Dimension(10,10));
+			
+		}else if(terrenoInferior.estaOcupado()){
 			
 			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
 			int numero = identificableUbicable.getNumeroJugador();
 			vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
 			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
-			Vista vistaOcupante = (Vista) identificableVisible;
-			vistaNueva = vistaOcupante;
+			vistaNueva = (Vista) identificableVisible;
 			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 			vistaNueva.setMaximumSize(new Dimension(10,10));
