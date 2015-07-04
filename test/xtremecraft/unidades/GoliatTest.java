@@ -4,12 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
 
 import xtremecraft.mapa.Aire;
-import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -295,11 +292,10 @@ public class GoliatTest {
 		
 		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
-		Radiacion radiacion = new Radiacion(celdasAfectadas);
-		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		Radiacion radiacion = new Radiacion(mapa, 2, 10);
+		goliatAtacado.recibirDanio(radiacion);
 		
-		assertEquals((vidaInicialGoliat-Radiacion.danioIrradiado), goliatAtacado.getVida());
+		assertEquals((vidaInicialGoliat-10), goliatAtacado.getVida());
 		
 	}
 	
@@ -313,9 +309,8 @@ public class GoliatTest {
 		
 		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
-		Radiacion radiacion = new Radiacion(celdasAfectadas);
-		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		Radiacion radiacion = new Radiacion(mapa, 2, 10);
+		goliatAtacado.recibirDanio(radiacion);
 		
 		assertTrue(goliatAtacado.esRadioactivo());
 		

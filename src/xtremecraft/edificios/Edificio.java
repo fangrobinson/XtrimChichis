@@ -9,16 +9,16 @@ import xtremecraft.partida.Actualizable;
 import xtremecraft.partida.Jugador;
 import xtremecraft.raza.Terran;
 import xtremecraft.unidades.Atacable;
+import xtremecraft.unidades.Ataque;
 import xtremecraft.unidades.BarraDeVitalidad;
 import xtremecraft.unidades.Cobrable;
 import xtremecraft.unidades.IdentificableUbicable;
-import xtremecraft.unidades.Radiacion;
 
 public abstract class Edificio extends Observable implements IdentificableUbicable,Atacable,Actualizable,Construible,Cobrable{
 	
 	protected Terreno terrenoActual;
 	protected static int vidaInicial;
-	protected BarraDeVitalidad vida;
+	protected BarraDeVitalidad vitalidad;
 	protected int tiempoConstruccion;
 	protected int turnosConstruccionPasados;
 	protected boolean estaVivo;
@@ -33,8 +33,8 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 		
 		this.terrenoActual = unTerreno;
 		vidaInicial = vida;
-		this.vida = new BarraDeVitalidad(vida);
-		this.vida.recibirAtaque(vida);
+		this.vitalidad = new BarraDeVitalidad(vida);
+		this.vitalidad.recibirAtaque(vida);
 		this.turnosConstruccionPasados = 0;
 		this.estaEnConstruccion = true;
 		this.estaVivo = true;
@@ -62,7 +62,7 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 	
 	public int getVida(){
 		
-		return this.vida.getValor();
+		return this.vitalidad.getValor();
 		
 	}
 	
@@ -80,7 +80,7 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 	
 	private String generarEstadoImprimible(){
 		
-		return "vida: "+Integer.toString(this.vida.getValor());
+		return "vida: "+Integer.toString(this.vitalidad.getValor());
 		
 	}
 
@@ -91,23 +91,6 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
     	return this.generarEstadoImprimible();
     	
     }
-	
-	public void recibirDanio(int valorDanio){
-		
-		if(this.estaEnConstruccion){
-			int turnosARestar = valorDanio % (this.vidaMax()/this.tiempoConstruccion);
-			this.turnosConstruccionPasados -= turnosARestar;
-		}
-		else{
-			this.vida.recibirAtaque(valorDanio);	
-		}
-		if(this.vida.getValor() == 0){
-			this.estaVivo = false;
-		}
-		setChanged();
-		notifyObservers();
-		
-	}
 
 	public void setUbicacionInicial(Terreno unTerreno){
 		
@@ -133,7 +116,7 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 
 	public int vidaMax(){
 		
-		return this.vida.vidaMax();
+		return this.vitalidad.vidaMax();
 		
 	}
 	
@@ -155,11 +138,11 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 			this.turnosConstruccionPasados += 1;
 			if (this.turnosConstruccionPasados >= this.tiempoConstruccion){
 				this.estaEnConstruccion = false;
-				this.vida.curarPorTurno(100);
+				this.vitalidad.curarPorTurno(100);
 			}
 		}
 		else{
-			this.vida.curarPorTurno(1);
+			this.vitalidad.curarPorTurno(1);
 		}
 		setChanged();
 		notifyObservers();
@@ -172,15 +155,51 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
     	
     }
 
-	public boolean recibirDanioMisilEMP(){
-		
-		return false;
-		
-	}
+//	public boolean recibirDanioMisilEMP(){
+//		
+//		return false;
+//		
+//	}
+//	
+//	public boolean recibirDanio(Radiacion radiacion){
+//		
+//		return false;
+//		
+//	}
 	
-	public boolean recibirDanio(Radiacion radiacion){
+//	public void recibirDanio(int valorDanio){
+//		
+//		if(this.estaEnConstruccion){
+//			int turnosARestar = valorDanio % (this.vidaMax()/this.tiempoConstruccion);
+//			this.turnosConstruccionPasados -= turnosARestar;
+//		}
+//		else{
+//			this.vida.recibirAtaque(valorDanio);	
+//		}
+//		if(this.vida.getValor() == 0){
+//			this.estaVivo = false;
+//		}
+//		setChanged();
+//		notifyObservers();
+//		
+//	}
+    
+    public void recibirDanio(Ataque ataque){
+    	
+    	ataque.afectar(this);
+
+        if(this.vitalidad.getValor() == 0){
+        	this.estaVivo = false;
+        }
+        
+        setChanged();
+		notifyObservers();
 		
-		return false;
+    }
+    
+	public void recibirAtaqueFisico(int danio){
+		
+		this.vitalidad.recibirAtaque(danio);
 		
 	}
 	
@@ -192,6 +211,12 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
 	
 	public Jugador getJugador(){
 		return this.jugador;
+	}
+
+	public void restarTurnosConstruccion(int turnosARestar) {
+
+		this.turnosConstruccionPasados -= turnosARestar;
+	
 	}
 	
 }

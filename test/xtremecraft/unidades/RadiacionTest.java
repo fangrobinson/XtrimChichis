@@ -2,15 +2,11 @@ package xtremecraft.unidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-
 import org.junit.Test;
 
 import xtremecraft.edificios.Barraca;
 import xtremecraft.edificios.Fabrica;
 import xtremecraft.edificios.PuertoEstelar;
-import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 import xtremecraft.mapa.Terreno;
 import xtremecraft.mapa.Tierra;
@@ -41,13 +37,12 @@ public class RadiacionTest {
 		Mapa mapa = new Mapa(2);
 		Terreno tierra = mapa.getCeldaEnFilaColumna(6,6).getCapaInferior();
 		Goliat goliatAtacado = new Goliat(jugador);
-		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/Radiacion.danioIrradiado);
+		int tiempoMuerteUnidad = (int)(goliatAtacado.getVida()/2);
 		
 		goliatAtacado.setUbicacionInicial(tierra);
 		for(int tiempo=0;tiempo<goliatAtacado.tiempoConstruccion();tiempo++) goliatAtacado.pasarTiempo();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
-		Radiacion radiacion = new Radiacion(celdasAfectadas);
-		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		Radiacion radiacion = new Radiacion(mapa, 2, 10);
+		goliatAtacado.recibirDanio(radiacion);
 		for(int tiempo=0;tiempo<tiempoMuerteUnidad;tiempo++) radiacion.emitirRadiacion(goliatAtacado);
 		
 		
@@ -93,12 +88,12 @@ public class RadiacionTest {
 		naveCienciaAtacante.actualizarUbicacion(tierra9);
 		goliatAtacado.actualizarUbicacion(tierra7);
 		goliatIrradiado.actualizarUbicacion(tierra8);		
-		
+		for (int tiempo=0;tiempo<450;tiempo++) goliatAtacado.pasarTiempo();
+		for (int tiempo=0;tiempo<450;tiempo++) goliatIrradiado.pasarTiempo();
 		int vidaInicialGoliatIrradiado = goliatIrradiado.getVida();
 		
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(goliatAtacado, Radiacion.radioDeAlcance);
-		Radiacion radiacion = new Radiacion(celdasAfectadas);
-		goliatAtacado.recibirAtaqueRadiacion(radiacion);
+		Radiacion radiacion = new Radiacion(mapa, 2, 10);
+		goliatAtacado.recibirDanio(radiacion);
 		radiacion.emitirRadiacion(goliatAtacado);
 		
 		assertTrue(vidaInicialGoliatIrradiado > goliatIrradiado.getVida());

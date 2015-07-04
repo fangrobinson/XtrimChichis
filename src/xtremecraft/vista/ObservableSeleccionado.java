@@ -5,7 +5,8 @@ import xtremecraft.mapa.Coordenada;
 
 public class ObservableSeleccionado extends Observable{
 	
-	private Coordenada coordenadaSeleccionado = new Coordenada(0,0);
+//	private Coordenada coordenadaSeleccionado = new Coordenada(0,0);
+	private Coordenada coordenadaSeleccionado;
 	private String nombre;
 	private String estadoImprimibleObservable;
 	private Class<? extends Vista> claseVista;

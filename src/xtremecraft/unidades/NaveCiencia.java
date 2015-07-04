@@ -1,10 +1,6 @@
 package xtremecraft.unidades;
 
 import xtremecraft.partida.Jugador;
-
-import java.util.ArrayList;
-
-import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Mapa;
 
 public class NaveCiencia extends UnidadAerea{
@@ -14,10 +10,12 @@ public class NaveCiencia extends UnidadAerea{
 	private int aumentoDeEnergiaEnTurno = 10;
 	private int minerales = 100;
 	private int gas = 225; 
-	private int radioMisilEMP = 3;
-	private int costoMisilEMP = 100;
+//	private int radioMisilEMP = 3;
+//	private int costoMisilEMP = 100;
 	private int costoRadiacion = 100;
 	private static int vidaInicial = 200;
+	private static int radioDeAlcance = 2;
+	private static int danioIrradiado = 10;
 	
 	public NaveCiencia(Jugador unJugador){
 		
@@ -78,43 +76,43 @@ public class NaveCiencia extends UnidadAerea{
 		return true;
 		
 	}
+//	
+//	public void atacarConMisilEMP(Mapa mapa,NaveCiencia naveAtacada){
+//		
+//		if(!this.puedoVer(naveAtacada.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();
+//		if(!this.puedoAtacar()) throw new YaSeSeleccionoUnAtaqueException();
+//		this.descontarDeEnergia(this.costoMisilEMP);
+//		naveAtacada.recibirDanioMisilEMP();
+//		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
+//		this.atacarCeldas(celdasAfectadas);
+//		this.puedeAtacar = false;
+//			
+//	}
 	
-	public void atacarConMisilEMP(Mapa mapa,NaveCiencia naveAtacada){
-		
-		if(!this.puedoVer(naveAtacada.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();
-		if(!this.puedoAtacar()) throw new YaSeSeleccionoUnAtaqueException();
-		this.descontarDeEnergia(this.costoMisilEMP);
-		naveAtacada.recibirDanioMisilEMP();
-		ArrayList<Celda> celdasAfectadas = mapa.obtenerCeldasEnRadio(naveAtacada,this.radioMisilEMP);
-		this.atacarCeldas(celdasAfectadas);
-		this.puedeAtacar = false;
-			
-	}
-	
-	private void atacarCeldas(ArrayList<Celda> celdasAfectadas) {
-		
-		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
-			Celda celdaActual = celdasAfectadas.get(posicion);
-			if( this.estaElevado() && celdaActual.getCapaSuperior().estaOcupado()){
-				Ubicable unUbicable = celdaActual.getUbicableEnSuperior();
-				Atacable unAtacable = (Atacable)unUbicable;
-				unAtacable.recibirDanioMisilEMP();
-			}else if( (!this.estaElevado()) && celdaActual.getCapaInferior().estaOcupado()){
-				Ubicable unUbicable = celdaActual.getUbicableEnInferior();
-				Atacable unAtacable = (Atacable)unUbicable;
-				unAtacable.recibirDanioMisilEMP();
-			}
-		}
-		
-	}
+//	private void atacarCeldas(ArrayList<Celda> celdasAfectadas) {
+//		
+//		for(int posicion=0;posicion<celdasAfectadas.size();posicion++){
+//			Celda celdaActual = celdasAfectadas.get(posicion);
+//			if( this.estaElevado() && celdaActual.getCapaSuperior().estaOcupado()){
+//				Ubicable unUbicable = celdaActual.getUbicableEnSuperior();
+//				Atacable unAtacable = (Atacable)unUbicable;
+//				unAtacable.recibirDanioMisilEMP();
+//			}else if( (!this.estaElevado()) && celdaActual.getCapaInferior().estaOcupado()){
+//				Ubicable unUbicable = celdaActual.getUbicableEnInferior();
+//				Atacable unAtacable = (Atacable)unUbicable;
+//				unAtacable.recibirDanioMisilEMP();
+//			}
+//		}
+//		
+//	}
 
-	public void atacarConRadiacion(ArrayList<Celda>celdasAfectadas,Unidad unidad){
+	public void atacarConRadiacion(Mapa mapa,Unidad unidad){
 		
 		if(!this.puedoVer(unidad.getUbicacionActual())) throw new AtaqueFueraDelRangoDeVisionException();
 		if(!this.puedoAtacar()) throw new YaSeSeleccionoUnAtaqueException();
 		this.descontarDeEnergia(this.costoRadiacion);
-		Radiacion ataqueRadioactivo = new Radiacion(celdasAfectadas);
-		unidad.recibirAtaqueRadiacion(ataqueRadioactivo);
+		Radiacion ataqueRadioactivo = new Radiacion(mapa, radioDeAlcance, danioIrradiado);
+		unidad.recibirDanio(ataqueRadioactivo);
 		this.puedeAtacar = false;
 		
 	}

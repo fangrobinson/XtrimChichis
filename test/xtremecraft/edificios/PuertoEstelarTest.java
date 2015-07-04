@@ -207,8 +207,8 @@ public class PuertoEstelarTest {
 		
 
 		for (int tiempo=0;tiempo<puertoEstelar.tiempoConstruccion();tiempo++) puertoEstelar.pasarTiempo();
-		puertoEstelar.recibirDanio(valorDanio);
-		puertoEstelar.recibirDanio(valorDanio);
+		puertoEstelar.recibirAtaqueFisico(valorDanio);
+		puertoEstelar.recibirAtaqueFisico(valorDanio);
 		vidaEsperada -= valorDanio;
 		
 		assertEquals(puertoEstelar.getVida(), vidaEsperada);

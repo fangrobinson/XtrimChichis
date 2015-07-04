@@ -2,14 +2,18 @@ package xtremecraft.unidades;
 
 public interface Atacable {
 	
-	void recibirDanio(int danio);
+//	void recibirDanio(int danio);
 	 
 	int getVida();
 	
 	boolean estaVivo();
 
-	boolean recibirDanioMisilEMP();
+//	boolean recibirDanioMisilEMP();
+//
+//	boolean recibirDanio(Radiacion radiacion);
+//	
+	void recibirDanio(Ataque ataque);
 
-	boolean recibirDanio(Radiacion radiacion);
+	void recibirAtaqueFisico(int danio);
 
 }

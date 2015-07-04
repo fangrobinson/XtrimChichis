@@ -156,8 +156,8 @@ public class RecolectorDeMineralTest {
 		int valorDanio = 30;
 		int vidaEsperada = centroMineralTerran.vidaMax() - valorDanio;
 		
-		centroMineralTerran.recibirDanio(valorDanio);
-		centroMineralTerran.recibirDanio(valorDanio);
+		centroMineralTerran.recibirAtaqueFisico(valorDanio);
+		centroMineralTerran.recibirAtaqueFisico(valorDanio);
 		vidaEsperada -= valorDanio;
 		
 		assertEquals(centroMineralTerran.getVida(), vidaEsperada);

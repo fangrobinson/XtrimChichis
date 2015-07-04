@@ -154,9 +154,9 @@ public class RecolectorDeGasVespenoTest {
 		int valorDanio = 30;
 		int vidaEsperada = refineria.vidaMax() - valorDanio;
 		
-		refineria.recibirDanio(valorDanio);
+		refineria.recibirAtaqueFisico(valorDanio);
 		vidaEsperada = refineria.vidaMax() - (valorDanio * 2) ;
-		refineria.recibirDanio(valorDanio);
+		refineria.recibirAtaqueFisico(valorDanio);
 		
 		assertEquals(refineria.getVida(), vidaEsperada);
 		

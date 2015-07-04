@@ -144,9 +144,9 @@ public class BarracaTest {
 		int valorDanio = 30;
 		
 		int vidaEsperada = unaBarraca.vidaMax() - valorDanio;
-		unaBarraca.recibirDanio(valorDanio);
+		unaBarraca.recibirAtaqueFisico(valorDanio);
 		vidaEsperada -= valorDanio;
-		unaBarraca.recibirDanio(valorDanio);
+		unaBarraca.recibirAtaqueFisico(valorDanio);
 		
 		assertEquals(unaBarraca.getVida(), vidaEsperada);
 		

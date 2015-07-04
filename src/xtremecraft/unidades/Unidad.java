@@ -23,7 +23,6 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 	protected Terreno terrenoActual;
 	protected Jugador jugador;
 	private Radiacion radiacion;
-	private boolean esRadioactivo;
 	protected static int vidaInicial;
 	
 	protected Unidad(Jugador unJugador){
@@ -33,7 +32,6 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 		this.puedeMoverse = true;
 		this.estaViva = true;
 		this.estaUbicada = false;
-		this.esRadioactivo = false;
 		this.tiempoConstruccionActual = 1;
 		
 	}
@@ -49,21 +47,6 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 		return vidaInicial;
 		
 	}
-		
-    public void recibirDanio(int danio){
-    	
-    	if(this.estaEnConstruccion()){
-    		throw new UnidadEnConstruccionException();
-    	}
-    	
-        vitalidad.recibirAtaque(danio);
-        if(this.vitalidad.getValor() == 0){
-        	this.estaViva = false;
-        }
-        setChanged();
-		notifyObservers();
-		
-    }
     
     public static String getEstadoInicial(){
     	
@@ -95,7 +78,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     		throw new YaSeSeleccionoUnAtaqueException();
     	}
     	this.puedeAtacar = false;
-    	atacado.recibirDanio(this.danio.getDanio(atacadoUbicado.estaElevado()));
+    	atacado.recibirDanio(this.danio);
 		
     }
     
@@ -153,7 +136,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     	
     	this.terrenoActual.desocupar();
     	this.terrenoActual = naveTransporte.getTerrenoActual();
-    	//this.puedeMoverse = false;
+
     	setChanged();
 		notifyObservers();
     	
@@ -227,7 +210,7 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     			this.tiempoConstruccionActual += 1;
     		}
     		else{
-    			if(this.esRadioactivo){
+    			if(this.esRadioactivo()){
     	    		this.radiacion.emitirRadiacion(this);
     	    	}
     			else if (this.puedeAtacar){
@@ -263,27 +246,60 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
     	
     }
     
-    public boolean recibirDanio(Radiacion radiacion){
+	
+    public void recibirDanio(Ataque ataque){
     	
-        vitalidad.recibirAtaque(radiacion.getDanio());
-        if(this.vitalidad.getValor()==0) this.estaViva=false;
-        return true;
+    	if(this.estaEnConstruccion()){
+    		throw new UnidadEnConstruccionException();
+    	}
+    	
+    	ataque.afectar(this);
+
+        if(this.vitalidad.getValor() == 0){
+        	this.estaViva = false;
+        }
         
+        setChanged();
+		notifyObservers();
+		
     }
-    
-    public boolean recibirAtaqueRadiacion(Radiacion radiacion){
+
+    public void infectarCon(Radiacion radiacion){
     	
-        this.radiacion = radiacion;
-        this.puedeAtacar = false;
-        this.puedeMoverse = false;
-        this.esRadioactivo = true;
-        return this.recibirDanio(radiacion);
-    
+    	this.radiacion = radiacion;
+    	
     }
+    
+    
+	public void recibirAtaqueFisico(int danio){
+		
+		this.vitalidad.recibirAtaque(danio);
+		
+	}
+    
+//    public boolean recibirDanio(Radiacion radiacion){
+//    	
+//    	radiacion.afectar(this.vitalidad)
+//    	
+//        vitalidad.recibirAtaque(radiacion.getDanio());
+//        if(this.vitalidad.getValor()==0) this.estaViva=false;
+//        return true;
+//        
+//    }
+
+//    public boolean recibirAtaqueRadiacion(Radiacion radiacion){
+//    	
+//        this.radiacion = radiacion;
+//        this.puedeAtacar = false;
+//        this.puedeMoverse = false;
+//        this.esRadioactivo = true;
+//        return this.recibirDanio(radiacion);
+//    
+//    }
     
     public boolean esRadioactivo() {
 		
-		return this.esRadioactivo;
+		return (this.radiacion != null);
 		
 	}
 

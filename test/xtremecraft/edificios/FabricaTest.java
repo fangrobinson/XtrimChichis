@@ -175,9 +175,9 @@ public class FabricaTest {
 		int vidaEsperada = fabrica.vidaMax() - valorDanio;
 		
 		for (int tiempo=0;tiempo<fabrica.tiempoConstruccion();tiempo++) fabrica.pasarTiempo();
-		fabrica.recibirDanio(valorDanio);
+		fabrica.recibirAtaqueFisico(valorDanio);
 		vidaEsperada = vidaEsperada - valorDanio;
-		fabrica.recibirDanio(valorDanio);
+		fabrica.recibirAtaqueFisico(valorDanio);
 		
 		assertEquals(fabrica.getVida(), vidaEsperada);
 		
