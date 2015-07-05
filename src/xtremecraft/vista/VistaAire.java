@@ -2,9 +2,8 @@ package xtremecraft.vista;
 
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class VistaAire extends Vista{
-	
-	private static final long serialVersionUID = 1L;
 
 	static String nombreAire = "Terreno Aire";
 	

@@ -31,9 +31,8 @@ import xtremecraft.unidades.Unidad;
 import xtremecraft.unidades.YaSeSeleccionoUnAtaqueException;
 import xtremecraft.unidades.YaSeSeleccionoUnMovimientoException;
 
+@SuppressWarnings("serial")
 public class MapaObservable extends JPanel implements Observer{
-	
-	private static final long serialVersionUID = 7787529771808926374L;
 	
 	private Partida partida;
 	private SectorJuego sector;

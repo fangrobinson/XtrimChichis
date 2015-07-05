@@ -3,17 +3,13 @@ package xtremecraft.vista;
 import java.awt.Dimension;
 import java.util.HashMap;
 
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import xtremecraft.partida.Partida;
 
+@SuppressWarnings("serial")
 public class SectorInformacionParaElUsuario extends JPanel{
-
-	private static final long serialVersionUID = 1L;
-	
-	
 
 	public SectorInformacionParaElUsuario(Partida partida, HashMap<Class<?>, Class<?>> vistas, MapaObservable mapaVistas) throws InstantiationException, IllegalAccessException{
 		

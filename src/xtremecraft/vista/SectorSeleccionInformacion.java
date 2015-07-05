@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 
 import xtremecraft.partida.Partida;
 
+@SuppressWarnings("serial")
 public class SectorSeleccionInformacion extends JPanel{
 
-	private static final long serialVersionUID = 1L;
 	private SectorAccionesDisponibles panelAccionesDisponibles;
 	private SectorEstadoObjetoSeleccionado panelSeleccionObjeto;
 	

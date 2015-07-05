@@ -6,9 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class MensajeGanador extends JFrame{
-
-	private static final long serialVersionUID = 1L;
 	
 	JPanel panel;
 	JLabel label;
