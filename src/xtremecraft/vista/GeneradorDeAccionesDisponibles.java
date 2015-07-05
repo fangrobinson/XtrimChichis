@@ -34,11 +34,12 @@ public class GeneradorDeAccionesDisponibles {
 		accionesUnidades.add(new AccionAtacar(partida, mapaObservable, coordenada, sector));
 		
 		ArrayList<AbstractAction> accionesNaveCiencia = new ArrayList<AbstractAction>();
-		ArrayList<AbstractAction> accionesNaveTransporte = new ArrayList<AbstractAction>();
-		
 		accionesNaveCiencia.add(new AccionMover(partida, mapaObservable, coordenada, sector));
-		accionesNaveTransporte.add(new AccionMover(partida, mapaObservable, coordenada, sector));
+		accionesNaveCiencia.add(new AccionAtacar(partida, mapaObservable, coordenada, sector));
 		
+		ArrayList<AbstractAction> accionesNaveTransporte = new ArrayList<AbstractAction>();
+		accionesNaveTransporte.add(new AccionMover(partida, mapaObservable, coordenada, sector));
+				
 		ArrayList<AbstractAction> accionesTierra = new ArrayList<AbstractAction>();
 		accionesTierra.add(new AccionConstruirDepositoDeSuministros(partida, mapaObservable, coordenada, sector));
 		accionesTierra.add(new AccionConstruirBarraca(partida, mapaObservable, coordenada, sector));
@@ -61,7 +62,7 @@ public class GeneradorDeAccionesDisponibles {
 		accionesPuertoEstelar.add(new AccionCrearEspectro(partida, mapaObservable, coordenada, sector));
 		accionesPuertoEstelar.add(new AccionCrearNaveTransporte(partida, mapaObservable, coordenada, sector));
 		accionesPuertoEstelar.add(new AccionCrearNaveCiencia(partida, mapaObservable, coordenada, sector));
-			
+		
 		acciones.put(VistaTierra.class, accionesTierra);
 		acciones.put(VistaAire.class, new ArrayList<AbstractAction>());
 		acciones.put(VistaGas.class, accionesGasVespeno);

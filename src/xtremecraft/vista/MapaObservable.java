@@ -218,6 +218,7 @@ public class MapaObservable extends JPanel implements Observer{
 			
 			Celda celdaOrigen = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaOrigenEstrategia.fila(), this.coordenadaOrigenEstrategia.columna());
 			Celda celdaDestino = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
+			
 			Terreno terrenoDestino = celdaDestino.getCapaInferior();
 			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
 
@@ -291,7 +292,7 @@ public class MapaObservable extends JPanel implements Observer{
 				Jugador ganador = this.partida.jugadorGanador();
 
 				if(ganador != null){
-					new MensajeDeError("Hay Ganador");
+					new MensajeGanador(ganador.nombre());
 				}
 				
 			}
