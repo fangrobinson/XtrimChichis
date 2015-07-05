@@ -10,6 +10,12 @@ public class VistaNaveCiencia extends VistaIdentificable {
 	public VistaNaveCiencia(){
 		
 		super(nombreNave);
+		String estadoInicial= "";
+		this.observableSeleccionado = new ObservableSeleccionadoSuperior();
+		this.observableSeleccionado.setClaseVista(this.getClass());
+		this.observableSeleccionado.setNombre(this.nombre);
+		this.observableSeleccionado.setEstado(estadoInicial);
+		this.observableSeleccionado.setClaseVista(this.getClass());
 		this.color = new Color(153,153,0);
 	
 	}
