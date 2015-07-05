@@ -26,10 +26,10 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 	
-	public Vista(String nombreVista, ArrayList<Vista> vistasInferiores){
+	public Vista(String nombreVista){
 		
 		String estadoInicial= "";
-		this.vistasInferiories = vistasInferiores;
+		this.vistasInferiories = new ArrayList<Vista>();
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setClaseVista(this.getClass());
@@ -45,12 +45,18 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 		
 	}
 	
+	public void setVistasInferiores(ArrayList<Vista> vistasInferiores) {
+		
+		this.vistasInferiories = vistasInferiores;
+		
+	}
+	
 	public void setEstadoImprimible(String estado){
 		
 		this.observableSeleccionado.setEstado(estado);
 		
 	}
-	
+		
 	public void paintComponent(Graphics grafico) {
 
         super.paintComponent(grafico);

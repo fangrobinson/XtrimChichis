@@ -61,7 +61,6 @@ public class MapaObservable extends JPanel implements Observer{
 		
 		setBounds(mapa.ancho(), mapa.alto(), 800, 800);
 		this.setLayout(new GridLayout(mapa.ancho(), mapa.alto()));
-		
 				
 		TreeMap<Integer, TreeMap<Integer, Celda>> mapaIterable = this.partida.getMapa().devolverMapaEstatico();
 		
@@ -70,30 +69,31 @@ public class MapaObservable extends JPanel implements Observer{
 			for (int j = 0; j < this.partida.getMapa().alto(); j++){
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
-				Terreno terrenoSuperior = celda.getCapaSuperior();
 				Class<?> vistaClase;
 				Vista vistaNueva = null;
 				Observable observable = null;
-				ArrayList<Vista> vistasInferiores = new ArrayList<Vista>();
 				Identificable identificable ;
 				//TODO: refactor considerar cambios a identificable.
 				if (!terrenoInferior.tieneRecursos()){
+					
 					vistaClase = this.vistas.get(terrenoInferior.getClass());
 					vistaNueva = (Vista) vistaClase.newInstance();
 					identificable = (Identificable) terrenoInferior;
 					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior;
-					vistasInferiores.add(vistaNueva);
+					
 				}
 				else if(terrenoInferior.tieneRecursos()){
+					
 					vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
-					vistaNueva = (Vista) vistaClase.newInstance();
+					vistaNueva = (Vista)vistaClase.newInstance();
 					identificable = (Identificable) terrenoInferior.getRecurso();
 					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior.getRecurso();
-					vistasInferiores.add(vistaNueva);
+					
 				}
 				if(terrenoInferior.estaOcupado()){
+					
 					IdentificableUbicable identificableUbicable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
 					int numero = identificableUbicable.getNumeroJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
@@ -102,14 +102,13 @@ public class MapaObservable extends JPanel implements Observer{
 					vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 					vistaNueva = (Vista) identificableVisible;
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
-					vistasInferiores.add(vistaNueva);
+					
 					
 				}	
 					
 				
 				observable.addObserver(vistaNueva);
 				vistaNueva.setCoordenada(terrenoInferior.getCoordenada());
-				
 				this.mapaVisible.get(i).put(j, vistaNueva);
 				
 				vistaNueva.paintComponents(getGraphics());
@@ -122,7 +121,7 @@ public class MapaObservable extends JPanel implements Observer{
 		
 	}
 	
-	public void actualizarVistaEnCoordenada(Coordenada coordenada) throws InstantiationException, IllegalAccessException{
+	public void actualizarVistaEnCoordenada(Coordenada coordenada) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		Vista vistaCelda = this.mapaVisible.get(coordenada.fila()).get(coordenada.columna());
 		this.mapaVisible.get(coordenada.fila()).remove(coordenada.columna());
@@ -136,46 +135,53 @@ public class MapaObservable extends JPanel implements Observer{
 		Vista vistaNueva = null;
 		Observable observable = null;
 		Identificable identificable;
-		//TODO: refactor considerar cambios a identificable.
+		ArrayList<Vista> vistasInferiores = new ArrayList<Vista>();
+	
 		if (!terrenoInferior.tieneRecursos()){
 			
 			vistaClase = this.vistas.get(terrenoInferior.getClass());
-			vistaNueva = (Vista) vistaClase.newInstance();
+			vistaNueva = (Vista)vistaClase.newInstance();
 			observable = (Observable)terrenoInferior;
 			identificable = (Identificable) terrenoInferior;
 			vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
+			vistasInferiores.add(vistaNueva);
 			
-		}else{
+		}else {
 			
 			vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
-			vistaNueva = (Vista) vistaClase.newInstance();
+			vistaNueva = (Vista)vistaClase.newInstance();
 			observable = (Observable)terrenoInferior.getRecurso();
 			identificable = (Identificable) terrenoInferior.getRecurso();
 			vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
+			vistasInferiores.add(vistaNueva);
 			
-		}if (terrenoSuperior.estaOcupado()){
-			
-			Identificable identificableUbicable = (Identificable)terrenoSuperior.getUbicableEnTerreno();
-			int numero = identificableUbicable.getNumeroJugador();
-			vistaClase = this.vistas.get(terrenoSuperior.getUbicableEnTerreno().getClass());
-			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
-			identificableVisible.setJugador(numero);
-			vistaNueva = (Vista) identificableVisible;
-			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
-			observable = (Observable)terrenoSuperior.getUbicableEnTerreno();
-			vistaNueva.setMaximumSize(new Dimension(10,10));
-			
-		}else if(terrenoInferior.estaOcupado()){
+		}
+		if(terrenoInferior.estaOcupado()){
 			
 			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
 			int numero = identificableUbicable.getNumeroJugador();
 			vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
-			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
+			IdentificableVisible identificableVisible = (IdentificableVisible)vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
 			vistaNueva = (Vista) identificableVisible;
 			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
 			vistaNueva.setMaximumSize(new Dimension(10,10));
+			vistasInferiores.add(vistaNueva);
+			
+		}
+		if (terrenoSuperior.estaOcupado()){
+			
+			Identificable identificableUbicable = (Identificable)terrenoSuperior.getUbicableEnTerreno();
+			int numero = identificableUbicable.getNumeroJugador();
+			vistaClase = this.vistas.get(terrenoSuperior.getUbicableEnTerreno().getClass());
+			IdentificableVisible identificableVisible = (IdentificableVisible)vistaClase.newInstance();
+			identificableVisible.setJugador(numero);
+			vistaNueva = (Vista) identificableVisible;
+			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
+			observable = (Observable)terrenoSuperior.getUbicableEnTerreno();
+			vistaNueva.setMaximumSize(new Dimension(10,10));
+			vistaNueva.setVistasInferiores(vistasInferiores);
 			
 		}
 		
@@ -237,8 +243,17 @@ public class MapaObservable extends JPanel implements Observer{
 					this.actualizarVistaEnCoordenada(this.coordenadaOrigenEstrategia);
 					this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 					this.estrategiaDeMovimientoIniciada = false;
-				}catch (InstantiationException | IllegalAccessException e) {
+				}catch (InstantiationException | IllegalAccessException | IllegalArgumentException  e) {
 					new MensajeDeError("Error interno del sistema");
+				} catch (InvocationTargetException e) {
+					new MensajeDeError("Error interno del sistema");
+					e.printStackTrace();
+				} catch (NoSuchMethodException e) {
+					new MensajeDeError("Error interno del sistema");
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					new MensajeDeError("Error interno del sistema");
+					e.printStackTrace();
 				}
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
 				this.estrategiaDeMovimientoIniciada = false;
@@ -291,10 +306,18 @@ public class MapaObservable extends JPanel implements Observer{
 				this.actualizarVistaEnCoordenada(this.coordenadaUltimoClickeado);
 				this.estrategiaDeAtaqueIniciada = false;
 				
-			} catch (InstantiationException | IllegalAccessException e) {
+			}catch (InstantiationException | IllegalAccessException | IllegalArgumentException  e) {
 				new MensajeDeError("Error interno del sistema");
+			} catch (InvocationTargetException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
 			}
-
 			if (ubicableAtacado != null){
 				
 				ubicableAtacado.getJugador().verificarSigueEnJuego();

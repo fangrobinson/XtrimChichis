@@ -8,9 +8,9 @@ public class VistaMarine extends VistaIdentificable{
 	
 	static String nombreMarine = "Marine";
 	
-	public VistaMarine(ArrayList<Vista> vistasInferiores){
+	public VistaMarine(){
 		
-		super(nombreMarine, vistasInferiores);
+		super(nombreMarine);
 		this.color = new Color(255,102,0);
 	
 	}

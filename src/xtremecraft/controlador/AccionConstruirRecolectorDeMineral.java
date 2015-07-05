@@ -1,6 +1,7 @@
 package xtremecraft.controlador;
 
 import java.awt.event.ActionEvent;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.AbstractAction;
 
@@ -47,8 +48,17 @@ public class AccionConstruirRecolectorDeMineral extends AbstractAction{
 				this.mapaVista.actualizarVistaEnCoordenada(coordenada);
 				this.sector.removeAll();
 				
-			} catch (InstantiationException | IllegalAccessException e) {
+			}catch (InstantiationException | IllegalAccessException e) {
 				new MensajeDeError("Error interno del sistema");
+			}catch (InvocationTargetException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
+			}catch (NoSuchMethodException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
+			}catch (SecurityException e) {
+				new MensajeDeError("Error interno del sistema");
+				e.printStackTrace();
 			}
 		
 		}catch(RecursosInsuficientesException noHayRecursos){

@@ -8,10 +8,9 @@ public class VistaDeposito extends VistaIdentificable implements IdentificableVi
 	
 	static String nombreDeposito = "Deposito de suministros";
 	
-	public VistaDeposito(ArrayList<Vista> vistasInferiores){
+	public VistaDeposito(){
 		
-		super(nombreDeposito, vistasInferiores);
-		this.vistasInferiories = vistasInferiores;
+		super(nombreDeposito);
 		this.color = new Color(128,128,128);
 	
 	}

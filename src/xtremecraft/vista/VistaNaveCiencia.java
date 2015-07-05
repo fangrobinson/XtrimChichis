@@ -1,16 +1,15 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class VistaNaveCiencia extends VistaIdentificable {
 	
 	static String nombreNave = "Nave Ciencia";
 	
-	public VistaNaveCiencia(ArrayList<Vista> vistasInferiores){
+	public VistaNaveCiencia(){
 		
-		super(nombreNave, vistasInferiores);
+		super(nombreNave);
 		this.color = new Color(153,153,0);
 	
 	}
