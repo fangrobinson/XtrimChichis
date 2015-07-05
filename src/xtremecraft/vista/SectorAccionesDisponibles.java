@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Partida;
 
+@SuppressWarnings("serial")
 public class SectorAccionesDisponibles extends JPanel implements Observer{
 	
-	private static final long serialVersionUID = -973667959098244571L;
 	private MapaObservable mapaObservable;
 	private Partida partida;
 	

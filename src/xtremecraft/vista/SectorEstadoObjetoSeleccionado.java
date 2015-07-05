@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 
 import xtremecraft.mapa.Mapa;
 
+@SuppressWarnings("serial")
 public class SectorEstadoObjetoSeleccionado extends JPanel implements Observer{
 
-	private static final long serialVersionUID = 1L;
 	private MapaObservable mapaObservable;
 	
 	private JLabel titulo = new JLabel("ESTADO ACTUAL SELECCIONADO"); 

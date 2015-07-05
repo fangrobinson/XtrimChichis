@@ -14,9 +14,8 @@ import javax.swing.JPanel;
 import xtremecraft.mapa.Coordenada;
 import xtremecraft.partida.Identificable;
 
+@SuppressWarnings("serial")
 public abstract class Vista extends JPanel implements MouseListener,Observer{
-	
-	private static final long serialVersionUID = -973667959098244571L;
 	
 	protected Color color;
 	private Coordenada ubicacion;

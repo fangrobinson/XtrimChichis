@@ -16,9 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class PedirJugadores extends JFrame{
-
-	private static final long serialVersionUID = 1L;
 	
 	private static ArrayList<String> nombresJugadores = new ArrayList<String>();
 	private static int cantidadJugadores;
@@ -44,8 +43,8 @@ public class PedirJugadores extends JFrame{
 	
 	static class MenuJugadoresListener implements ActionListener{
 		
-		JFrame frame;
-		VentanaDeAlgoCraft ventanaJuego;
+		private JFrame frame;
+		private VentanaDeAlgoCraft ventanaJuego;
 		
 		public MenuJugadoresListener(JFrame frame, VentanaDeAlgoCraft  ventanaJuego){
 			this.frame = frame;
