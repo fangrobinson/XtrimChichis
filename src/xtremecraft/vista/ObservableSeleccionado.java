@@ -44,15 +44,27 @@ public class ObservableSeleccionado extends Observable{
 		
 	}
 	
-	public Ubicable devolverUbicableParaMovimiento(Celda celda){
-		
-		return null;
-		
-	}
+//	public Ubicable devolverUbicableParaMovimiento(Celda celda){
+//		
+//		return null;
+//		
+//	}
+//	
+//	public Terreno devolverTerrenoDestinoParaMovimiento(Celda celda){
+//		
+//		return null;
+//		
+//	}
 	
 	public Terreno devolverTerrenoDestinoParaMovimiento(Celda celda){
 		
-		return null;
+		return celda.getCapaInferior();
+		
+	}
+	
+	public Ubicable devolverUbicableParaMovimiento(Celda celda){
+		
+		return celda.getCapaInferior().getUbicableEnTerreno();
 		
 	}
 	

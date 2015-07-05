@@ -99,8 +99,7 @@ public class MapaObservable extends JPanel implements Observer{
 					vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 					vistaNueva = (Vista) identificableVisible;
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
-					
-					
+				
 				}	
 					
 				
@@ -231,10 +230,10 @@ public class MapaObservable extends JPanel implements Observer{
 			Celda celdaOrigen = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaOrigenEstrategia.fila(), this.coordenadaOrigenEstrategia.columna());
 			Celda celdaDestino = this.partida.getMapa().getCeldaEnFilaColumna(this.coordenadaUltimoClickeado.fila(), this.coordenadaUltimoClickeado.columna());
 			
-			//Terreno terreno = observable.devolverTerrenoDestinoParaMovimiento
-			//Ubicable ubicable = observable.devolverUbicableParaMovimiento
-			Terreno terrenoDestino = celdaDestino.getCapaInferior();
-			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
+			Terreno terrenoDestino = observable.devolverTerrenoDestinoParaMovimiento(celdaDestino);
+			Ubicable unidadAMover= observable.devolverUbicableParaMovimiento(celdaOrigen);
+//			Terreno terrenoDestino = celdaDestino.getCapaInferior();
+//			Unidad unidadAMover = (Unidad) celdaOrigen.getUbicableEnInferior();
 
 			try{
 				unidadAMover.actualizarUbicacion(terrenoDestino);
