@@ -45,9 +45,6 @@ public class AccionCrearEspectro extends AbstractAction{
 			Espectro espectro = jugadorActual.crearEspectro(puertoEstelar, this.partida.getMapa());
 			Coordenada coordenadaEspectro = espectro.getUbicacionActual();
 			
-			System.out.print(espectro.getUbicacionActual().columna());
-			System.out.print(espectro.getUbicacionActual().fila());
-			
 			try {
 			
 				this.mapaVista.actualizarVistaEnCoordenada(coordenadaEspectro);

@@ -146,14 +146,14 @@ public class MapaObservable extends JPanel implements Observer{
 			
 		}if (terrenoSuperior.estaOcupado()){
 			
-			Identificable identificableUbicable = (Identificable)terrenoInferior.getUbicableEnTerreno();
+			Identificable identificableUbicable = (Identificable)terrenoSuperior.getUbicableEnTerreno();
 			int numero = identificableUbicable.getNumeroJugador();
 			vistaClase = this.vistas.get(terrenoSuperior.getUbicableEnTerreno().getClass());
 			IdentificableVisible identificableVisible = (IdentificableVisible) vistaClase.newInstance();
 			identificableVisible.setJugador(numero);
 			vistaNueva = (Vista) identificableVisible;
 			vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
-			observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+			observable = (Observable)terrenoSuperior.getUbicableEnTerreno();
 			vistaNueva.setMaximumSize(new Dimension(10,10));
 			
 		}else if(terrenoInferior.estaOcupado()){
