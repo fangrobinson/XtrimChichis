@@ -1,11 +1,14 @@
 package xtremecraft.vista;
 
 import java.util.Observable;
+
+import xtremecraft.mapa.Celda;
 import xtremecraft.mapa.Coordenada;
+import xtremecraft.mapa.Terreno;
+import xtremecraft.unidades.Ubicable;
 
 public class ObservableSeleccionado extends Observable{
 	
-//	private Coordenada coordenadaSeleccionado = new Coordenada(0,0);
 	private Coordenada coordenadaSeleccionado;
 	private String nombre;
 	private String estadoImprimibleObservable;
@@ -38,6 +41,18 @@ public class ObservableSeleccionado extends Observable{
 	public void setEstado(String estado){
 		
 		this.estadoImprimibleObservable = estado;
+		
+	}
+	
+	public Ubicable devolverUbicableParaMovimiento(Celda celda){
+		
+		return null;
+		
+	}
+	
+	public Terreno devolverTerrenoDestinoParaMovimiento(Celda celda){
+		
+		return null;
 		
 	}
 	
