@@ -87,6 +87,13 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		
+		if (click.getButton() == MouseEvent.BUTTON3){
+
+		}
+		if (click.getButton() == MouseEvent.BUTTON1){
+
+		}
+		
 		this.observableSeleccionado.notificarObservador();
 		
 	}
