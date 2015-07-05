@@ -2,6 +2,6 @@ package xtremecraft.vista;
 
 public interface IdentificableVisible {
 	
-	void setJugador(int numeroDeJugador);
+	public void setJugador(int numeroDeJugador);
 
 }
