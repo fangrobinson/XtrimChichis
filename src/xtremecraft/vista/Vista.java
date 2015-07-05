@@ -22,14 +22,14 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	Coordenada ubicacion;
 	int numeroJugador;
 	protected String nombre;
-	protected ArrayList<Vista> vistasInferiories;
+	protected ArrayList<Vista> vistasInferiores;
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 	
 	public Vista(String nombreVista){
 		
 		String estadoInicial= "";
-		this.vistasInferiories = new ArrayList<Vista>();
+		this.vistasInferiores = new ArrayList<Vista>();
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setClaseVista(this.getClass());
@@ -41,13 +41,13 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	public ArrayList<Vista> getVistasInferiores(){
 		
-		return this.vistasInferiories;
+		return this.vistasInferiores;
 		
 	}
 	
 	public void setVistasInferiores(ArrayList<Vista> vistasInferiores) {
 		
-		this.vistasInferiories = vistasInferiores;
+		this.vistasInferiores = vistasInferiores;
 		
 	}
 	
@@ -102,14 +102,16 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		
-		if (click.getButton() == MouseEvent.BUTTON3){
-
-		}
 		if (click.getButton() == MouseEvent.BUTTON1){
-
+			this.observableSeleccionado.notificarObservador();
+		}
+		if (click.getButton() == MouseEvent.BUTTON3){
+			int size = this.vistasInferiores.size();
+			if (size>0) this.vistasInferiores.get(size - 1).observableSeleccionado.notificarObservador();;
+			
 		}
 		
-		this.observableSeleccionado.notificarObservador();
+//		this.observableSeleccionado.notificarObservador();
 		
 	}
 
