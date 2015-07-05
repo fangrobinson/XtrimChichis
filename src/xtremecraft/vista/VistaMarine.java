@@ -10,6 +10,12 @@ public class VistaMarine extends VistaIdentificable{
 	public VistaMarine(){
 		
 		super(nombreMarine);
+		String estadoInicial= "";
+		this.observableSeleccionado = new ObservableSeleccionadoInferior();
+		this.observableSeleccionado.setClaseVista(this.getClass());
+		this.observableSeleccionado.setNombre(this.nombre);
+		this.observableSeleccionado.setEstado(estadoInicial);
+		this.observableSeleccionado.setClaseVista(this.getClass());
 		this.color = new Color(255,102,0);
 	
 	}

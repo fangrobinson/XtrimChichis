@@ -10,6 +10,12 @@ public class VistaGoliat extends VistaIdentificable{
 	public VistaGoliat(){
 		
 		super(nombreGoliat);
+		String estadoInicial= "";
+		this.observableSeleccionado = new ObservableSeleccionadoInferior();
+		this.observableSeleccionado.setClaseVista(this.getClass());
+		this.observableSeleccionado.setNombre(this.nombre);
+		this.observableSeleccionado.setEstado(estadoInicial);
+		this.observableSeleccionado.setClaseVista(this.getClass());
 		this.color = new Color(0,102,51);
 	
 	}
