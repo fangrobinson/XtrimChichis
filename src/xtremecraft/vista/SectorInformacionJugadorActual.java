@@ -18,12 +18,12 @@ public class SectorInformacionJugadorActual extends JPanel implements Observer, 
 
 	private static final long serialVersionUID = 1L;
 	
-	Partida partida;
-	JLabel tituloPanel;
-	JLabel cantidadMinerales;
-	JLabel cantidadGasVespeno;
-	JLabel cantidadPoblacion;
-	JButton btnPasarTurno = new JButton("PASAR TURNO");
+	private Partida partida;
+	private JLabel tituloPanel;
+	private JLabel cantidadMinerales;
+	private JLabel cantidadGasVespeno;
+	private JLabel cantidadPoblacion;
+	private JButton btnPasarTurno = new JButton("PASAR TURNO");
 
 	private JLabel nombreJugador;
 

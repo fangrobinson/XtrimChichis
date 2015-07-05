@@ -21,7 +21,6 @@ import xtremecraft.unidades.NaveCiencia;
 import xtremecraft.unidades.NaveTransporte;
 import xtremecraft.unidades.Ubicable;
 import xtremecraft.unidades.Unidad;
-import xtremecraft.vista.MensajeDeError;
 
 public class Jugador extends Observable implements Actualizable {
 	
@@ -79,8 +78,6 @@ public class Jugador extends Observable implements Actualizable {
 		
 		if (!this.estaEnJuego()){
 			
-			new MensajeDeError("Murio un jugador");
-			
 			Jugador anterior = this.siguienteJugador;
 			
 			while (anterior.siguienteJugador != this){
@@ -90,8 +87,6 @@ public class Jugador extends Observable implements Actualizable {
 			}
 			
 			anterior.siguienteJugador = this.siguienteJugador;
-			
-			new MensajeDeError("Cambie el jugador");
 			
 		}
 		
