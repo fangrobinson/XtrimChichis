@@ -1,7 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class VistaMarine extends VistaIdentificable{
@@ -22,12 +21,5 @@ public class VistaMarine extends VistaIdentificable{
 		
 	}
 	
-    public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		acciones.add("Moverse");
-		acciones.add("Atacar");
-		return acciones;
-	}
 
 }

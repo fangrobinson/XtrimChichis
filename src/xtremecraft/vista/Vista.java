@@ -17,9 +17,9 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	
 	private static final long serialVersionUID = -973667959098244571L;
 	
-	Color color;
-	Coordenada ubicacion;
-	int numeroJugador;
+	protected Color color;
+	private Coordenada ubicacion;
+	protected int numeroJugador;
 	protected String nombre;
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
