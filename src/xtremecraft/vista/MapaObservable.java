@@ -3,6 +3,7 @@ package xtremecraft.vista;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -69,9 +70,11 @@ public class MapaObservable extends JPanel implements Observer{
 			for (int j = 0; j < this.partida.getMapa().alto(); j++){
 				Celda celda = mapaIterable.get(i).get(j);
 				Terreno terrenoInferior = celda.getCapaInferior();
+				Terreno terrenoSuperior = celda.getCapaSuperior();
 				Class<?> vistaClase;
 				Vista vistaNueva = null;
 				Observable observable = null;
+				ArrayList<Vista> vistasInferiores = new ArrayList<Vista>();
 				Identificable identificable ;
 				//TODO: refactor considerar cambios a identificable.
 				if (!terrenoInferior.tieneRecursos()){
@@ -80,13 +83,17 @@ public class MapaObservable extends JPanel implements Observer{
 					identificable = (Identificable) terrenoInferior;
 					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior;
-				}else{
+					vistasInferiores.add(vistaNueva);
+				}
+				else if(terrenoInferior.tieneRecursos()){
 					vistaClase = this.vistas.get(terrenoInferior.getRecurso().getClass());
 					vistaNueva = (Vista) vistaClase.newInstance();
 					identificable = (Identificable) terrenoInferior.getRecurso();
 					vistaNueva.setEstadoImprimible(identificable.getEstadoImprimible());
 					observable = (Observable)terrenoInferior.getRecurso();
-				}if(terrenoInferior.estaOcupado()){
+					vistasInferiores.add(vistaNueva);
+				}
+				if(terrenoInferior.estaOcupado()){
 					IdentificableUbicable identificableUbicable = (IdentificableUbicable) terrenoInferior.getUbicableEnTerreno();
 					int numero = identificableUbicable.getNumeroJugador();
 					vistaClase = this.vistas.get(terrenoInferior.getUbicableEnTerreno().getClass());
@@ -95,8 +102,10 @@ public class MapaObservable extends JPanel implements Observer{
 					vistaNueva.setEstadoImprimible(identificableUbicable.getEstadoImprimible());
 					vistaNueva = (Vista) identificableVisible;
 					observable = (Observable)terrenoInferior.getUbicableEnTerreno();
+					vistasInferiores.add(vistaNueva);
 					
 				}	
+					
 				
 				observable.addObserver(vistaNueva);
 				vistaNueva.setCoordenada(terrenoInferior.getCoordenada());

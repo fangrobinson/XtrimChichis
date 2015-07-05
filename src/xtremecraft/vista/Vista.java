@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,18 +22,26 @@ public abstract class Vista extends JPanel implements MouseListener,Observer{
 	Coordenada ubicacion;
 	int numeroJugador;
 	protected String nombre;
+	protected ArrayList<Vista> vistasInferiories;
 	
 	private ObservableSeleccionado observableSeleccionado = new ObservableSeleccionado();
 	
-	public Vista(String nombreVista){
+	public Vista(String nombreVista, ArrayList<Vista> vistasInferiores){
 		
 		String estadoInicial= "";
+		this.vistasInferiories = vistasInferiores;
 		this.addMouseListener(this);
 		this.nombre = nombreVista;
 		this.observableSeleccionado.setClaseVista(this.getClass());
 		this.observableSeleccionado.setNombre(this.nombre);
 		this.observableSeleccionado.setEstado(estadoInicial);
 		this.observableSeleccionado.setClaseVista(this.getClass());
+		
+	}
+	
+	public ArrayList<Vista> getVistasInferiores(){
+		
+		return this.vistasInferiories;
 		
 	}
 	

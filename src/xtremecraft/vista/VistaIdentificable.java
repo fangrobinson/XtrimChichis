@@ -2,15 +2,16 @@ package xtremecraft.vista;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public abstract class VistaIdentificable extends Vista implements IdentificableVisible{
 	
-	public VistaIdentificable(String nombre){
+	public VistaIdentificable(String nombre, ArrayList<Vista> vistasInferiores){
 		
-		super(nombre);
+		super(nombre, vistasInferiores);
 		
 	}
 	

@@ -1,6 +1,7 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class VistaAire extends Vista{
 	
@@ -8,9 +9,9 @@ public class VistaAire extends Vista{
 
 	static String nombreAire = "Terreno Aire";
 	
-	public VistaAire(){
+	public VistaAire(ArrayList<Vista> vistasInferiores){
 		
-		super(nombreAire);
+		super(nombreAire,vistasInferiores);
 		this.color = new Color(216, 255, 249);
 		
 	}
