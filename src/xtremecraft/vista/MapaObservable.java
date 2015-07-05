@@ -43,9 +43,6 @@ public class MapaObservable extends JPanel implements Observer{
 	private boolean estrategiaDeMovimientoIniciada;
 	private boolean estrategiaDeAtaqueIniciada;
 	private Coordenada coordenadaOrigenEstrategia;
-	
-
-
 
 	public MapaObservable(){};
 	
@@ -256,8 +253,15 @@ public class MapaObservable extends JPanel implements Observer{
 					e.printStackTrace();
 				}
 			}catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalido){
-				this.estrategiaDeMovimientoIniciada = false;
-				new MensajeDeError("No se puede mover a la locacion seleccionada");
+				try{
+					terrenoDestino = celdaDestino.getCapaSuperior();
+					unidadAMover.actualizarUbicacion(terrenoDestino);
+				}
+				catch(UbicacionNoValidaException | NoSePudoOcuparElTerrenoException destinoInvalidoo){
+					this.estrategiaDeMovimientoIniciada = false;
+					new MensajeDeError("No se puede mover a la locacion seleccionada");
+				}
+				
 			}catch(YaSeSeleccionoUnMovimientoException u) {
 				new MensajeDeError("La unidad que se quiere mover ya se movió");
 			}

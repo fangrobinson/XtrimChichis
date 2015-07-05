@@ -277,26 +277,6 @@ public abstract class Unidad extends Observable implements IdentificableUbicable
 		
 	}
     
-//    public boolean recibirDanio(Radiacion radiacion){
-//    	
-//    	radiacion.afectar(this.vitalidad)
-//    	
-//        vitalidad.recibirAtaque(radiacion.getDanio());
-//        if(this.vitalidad.getValor()==0) this.estaViva=false;
-//        return true;
-//        
-//    }
-
-//    public boolean recibirAtaqueRadiacion(Radiacion radiacion){
-//    	
-//        this.radiacion = radiacion;
-//        this.puedeAtacar = false;
-//        this.puedeMoverse = false;
-//        this.esRadioactivo = true;
-//        return this.recibirDanio(radiacion);
-//    
-//    }
-    
     public boolean esRadioactivo() {
 		
 		return (this.radiacion != null);

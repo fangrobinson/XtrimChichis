@@ -154,35 +154,6 @@ public abstract class Edificio extends Observable implements IdentificableUbicab
     	return terran.posee(this);
     	
     }
-
-//	public boolean recibirDanioMisilEMP(){
-//		
-//		return false;
-//		
-//	}
-//	
-//	public boolean recibirDanio(Radiacion radiacion){
-//		
-//		return false;
-//		
-//	}
-	
-//	public void recibirDanio(int valorDanio){
-//		
-//		if(this.estaEnConstruccion){
-//			int turnosARestar = valorDanio % (this.vidaMax()/this.tiempoConstruccion);
-//			this.turnosConstruccionPasados -= turnosARestar;
-//		}
-//		else{
-//			this.vida.recibirAtaque(valorDanio);	
-//		}
-//		if(this.vida.getValor() == 0){
-//			this.estaVivo = false;
-//		}
-//		setChanged();
-//		notifyObservers();
-//		
-//	}
     
     public void recibirDanio(Ataque ataque){
     	
