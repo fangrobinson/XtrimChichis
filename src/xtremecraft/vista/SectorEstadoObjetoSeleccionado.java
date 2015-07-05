@@ -15,10 +15,10 @@ public class SectorEstadoObjetoSeleccionado extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
 	private MapaObservable mapaObservable;
 	
-	JLabel titulo = new JLabel("ESTADO ACTUAL SELECCIONADO"); 
-	JLabel nombreObservable = new JLabel("");
-	JLabel estadoObservable = new JLabel("");
-	JLabel coordenadaObservable = new JLabel("");
+	private JLabel titulo = new JLabel("ESTADO ACTUAL SELECCIONADO"); 
+	private JLabel nombreObservable = new JLabel("");
+	private JLabel estadoObservable = new JLabel("");
+	private JLabel coordenadaObservable = new JLabel("");
 	
 	public SectorEstadoObjetoSeleccionado(MapaObservable mapaObservable, Mapa mapa) {
 		

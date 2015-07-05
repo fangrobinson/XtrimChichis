@@ -12,6 +12,8 @@ public class SectorSeleccionInformacion extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private SectorAccionesDisponibles panelAccionesDisponibles;
 	private SectorEstadoObjetoSeleccionado panelSeleccionObjeto;
+	
+	
 	public SectorSeleccionInformacion( MapaObservable mapaObservable, Partida partida){
 		
 		setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
