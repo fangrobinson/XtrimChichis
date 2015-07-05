@@ -1,7 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class VistaBarraca extends VistaIdentificable implements IdentificableVisible{
@@ -19,14 +18,6 @@ public class VistaBarraca extends VistaIdentificable implements IdentificableVis
 	public void setNombre() {
 		
 		this.nombre = nombreBarraca;
-		
-	}
-	
-	public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		acciones.add("Crear marine");
-		return acciones;
 		
 	}
 

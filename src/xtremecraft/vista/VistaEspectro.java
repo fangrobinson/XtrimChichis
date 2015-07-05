@@ -1,7 +1,6 @@
 package xtremecraft.vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class VistaEspectro extends VistaIdentificable{
@@ -20,14 +19,6 @@ public class VistaEspectro extends VistaIdentificable{
 		
 		this.nombre = nombreEspectro;
 		
-	}
-	
-    public ArrayList<String> devolverAcciones(){
-		
-		ArrayList<String> acciones = new ArrayList<String>();
-		acciones.add("Moverse");
-		acciones.add("Atacar");
-		return acciones;
 	}
 
 }
