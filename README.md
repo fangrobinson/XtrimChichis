@@ -4,6 +4,6 @@ Repositorio encargado de alojar todos los archivos del Trabajo práctico final d
 
 # Integrantes
 
-  - Eugenia Mariotti[https://github.com/emariotti3]
+  - [Eugenia Mariotti](https://github.com/emariotti3)
   - Ana Czarnitzky
   - Robinson Fang
